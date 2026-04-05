@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Cormorant+Garamond:ital,wght@1,400;1,600&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ffb3ad",
+              "tertiary-container": "#656767",
+              "surface-container-low": "#1c1b1b",
+              "primary-container": "#cc1122",
+              "secondary": "#ffb3ac",
+              "on-surface": "#e5e2e1",
+              "on-primary-container": "#ffdedb",
+              "surface-variant": "#353534",
+              "primary-fixed": "#ffdad7",
+              "on-error-container": "#ffdad6",
+              "tertiary": "#c6c6c7",
+              "secondary-fixed": "#ffdad6",
+              "on-secondary-fixed-variant": "#8a1a1a",
+              "surface": "#131313",
+              "surface-container-lowest": "#0e0e0e",
+              "inverse-primary": "#c0001b",
+              "surface-container": "#201f1f",
+              "tertiary-fixed-dim": "#c6c6c7",
+              "on-secondary-container": "#ff9e96",
+              "surface-tint": "#ffb3ad",
+              "surface-container-highest": "#353534",
+              "surface-bright": "#3a3939",
+              "on-tertiary-fixed": "#1a1c1c",
+              "on-secondary-fixed": "#410003",
+              "surface-dim": "#131313",
+              "inverse-on-surface": "#313030",
+              "on-tertiary-container": "#e5e6e6",
+              "on-primary-fixed": "#410004",
+              "outline": "#ad8885",
+              "secondary-fixed-dim": "#ffb3ac",
+              "on-primary": "#68000a",
+              "error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-error": "#690005",
+              "secondary-container": "#8e1c1c",
+              "on-surface-variant": "#e6bdb9",
+              "outline-variant": "#5c3f3d",
+              "on-primary-fixed-variant": "#930012",
+              "surface-container-high": "#2a2a2a",
+              "inverse-surface": "#e5e2e1",
+              "primary-fixed-dim": "#ffb3ad",
+              "on-tertiary": "#2f3131",
+              "on-secondary": "#680007",
+              "background": "#131313",
+              "tertiary-fixed": "#e2e2e2",
+              "on-background": "#e5e2e1",
+              "error": "#ffb4ab"
+            },
+            fontFamily: {
+              "headline": ["Bebas Neue"],
+              "body": ["DM Sans"],
+              "label": ["DM Sans"],
+              "serif": ["Cormorant Garamond"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>.film-grain {
+    position: relative
+    }
+.film-grain::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCDINiO86r04i8vmjBQwoinWQigu071ty_E4xjIcCLBq0T0VZ5k5GhTEUlY9pUBV-LMoRKUeXm_PEcQmfD_3inY-kW1qo4seMoMT7udYfWUfo2Jp1IquFIuXPOYUgKrav8EHGAb16NTcYehwfAboxCCxnKfEl9bmHEfQlKJZp0mSLitF5aN2qrdO9MIc6U2EIprPQ_EH-4KjDvBX6Cr8qvYn9LuPZ12IWpyupqhJg6XzTaO4x92XV_vAN4euu-nkIWp_5EoZIZviMo);
+    opacity: 0.03;
+    pointer-events: none
+    }
+.clipped-corner {
+    clip-path: polygon(0 0, 92% 0, 100% 15%, 100% 100%, 0 100%)
+    }
+.skew-btn {
+    transform: skewx(-12deg)
+    }
+.skew-text {
+    transform: skewx(12deg)
+    }
+.neon-glow-red {
+    box-shadow: 0 0 25px rgba(204, 17, 34, 0.25)
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-dim text-on-surface font-body selection:bg-primary-container selection:text-white">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-6 py-4 bg-[#0A0A0A]/90 backdrop-blur-md z-50 border-b border-[#CC1122]/10 shadow-[0_4px_20px_rgba(204,17,34,0.15)]">
+<div class="font-['Bebas_Neue'] text-3xl italic tracking-widest text-[#CC1122]">
+            FINESSE BJJ
+        </div>
+<button class="material-symbols-outlined text-white text-2xl">
+            menu
+        </button>
+</header>
+<main class="pt-20 pb-24 film-grain min-h-screen">
+<!-- Hero Section -->
+<section class="relative h-[353px] flex items-end px-6 pb-8 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover grayscale brightness-50" data-alt="Intense close up of two Brazilian Jiu Jitsu practitioners grappling on a dark mat with dramatic spotlighting and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo4y5EXY8O4AXoM5jWyjvnkKtuFDWdoI2nohhi0OthiM31TO2REh-UKDDWYgM1BZ4VU0S75kp9WZGmW-Grsw0uZUHWXZ7nryrSz4zPhUPlaQPn9BarHs8h8xSRNA5-N8xc6vB_UaHktygTPgsX9V3RWhA1BSTGmcPTuSmLhnGZjh1vGVioEYHuDCFv_4EhWrfmYq8M4jfAcdNIKKOe-UiMaF0RABOKcPKWB462mthByzewz8oJko9NG2K5SzxNDqg1n9j1l88SqfI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 w-full">
+<h1 class="font-headline text-7xl leading-[0.85] tracking-tighter text-white mb-2">
+                    CHOOSE YOUR <br/><span class="text-primary-container">BATTLE</span>
+</h1>
+<p class="font-serif italic text-xl text-on-surface-variant max-w-[280px]">
+                    "Precision over power. Technique over ego."
+                </p>
+</div>
+</section>
+<!-- Date Selector (Horizontal Scroll) -->
+<div class="bg-surface-container py-4 sticky top-[72px] z-40 border-b border-outline-variant/10">
+<div class="flex gap-4 px-6 overflow-x-auto no-scrollbar">
+<button class="flex flex-col items-center min-w-[50px] py-2 border-b-2 border-primary-container">
+<span class="text-xs uppercase tracking-widest text-primary-container font-bold">Mon</span>
+<span class="font-headline text-2xl text-white">18</span>
+</button>
+<button class="flex flex-col items-center min-w-[50px] py-2">
+<span class="text-xs uppercase tracking-widest text-gray-500">Tue</span>
+<span class="font-headline text-2xl text-gray-400">19</span>
+</button>
+<button class="flex flex-col items-center min-w-[50px] py-2">
+<span class="text-xs uppercase tracking-widest text-gray-500">Wed</span>
+<span class="font-headline text-2xl text-gray-400">20</span>
+</button>
+<button class="flex flex-col items-center min-w-[50px] py-2">
+<span class="text-xs uppercase tracking-widest text-gray-500">Thu</span>
+<span class="font-headline text-2xl text-gray-400">21</span>
+</button>
+<button class="flex flex-col items-center min-w-[50px] py-2">
+<span class="text-xs uppercase tracking-widest text-gray-500">Fri</span>
+<span class="font-headline text-2xl text-gray-400">22</span>
+</button>
+<button class="flex flex-col items-center min-w-[50px] py-2">
+<span class="text-xs uppercase tracking-widest text-gray-500">Sat</span>
+<span class="font-headline text-2xl text-gray-400">23</span>
+</button>
+</div>
+</div>
+<!-- Schedule List -->
+<section class="px-6 py-8 space-y-6">
+<!-- Active Session -->
+<div class="relative group">
+<div class="absolute -inset-1 bg-primary-container/20 blur-xl rounded-full transition-opacity group-hover:opacity-100"></div>
+<div class="relative clipped-corner bg-surface-container-high p-6 neon-glow-red border-l-4 border-primary-container">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-headline text-lg text-primary-container tracking-widest uppercase">LIVE NOW</span>
+<h3 class="font-headline text-3xl text-white leading-none mt-1">ADVANCED NO-GI</h3>
+</div>
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">sensors</span>
+</div>
+<div class="flex items-center gap-6 text-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-outline">schedule</span>
+<span class="uppercase tracking-tighter font-bold">18:00 - 19:30</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-outline">person</span>
+<span class="uppercase tracking-tighter font-bold">PROF. ELIAS</span>
+</div>
+</div>
+<div class="mt-6">
+<button class="skew-btn bg-primary-container w-full py-3 active:scale-95 transition-transform">
+<span class="skew-text block font-headline text-xl text-white tracking-widest">JOIN THE MATS</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Upcoming 1 -->
+<div class="clipped-corner bg-surface-container p-6 border-l-4 border-outline-variant/30">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-headline text-lg text-gray-500 tracking-widest uppercase">UPCOMING</span>
+<h3 class="font-headline text-3xl text-on-surface leading-none mt-1">FUNDAMENTALS GI</h3>
+</div>
+<span class="material-symbols-outlined text-gray-600">lock_open</span>
+</div>
+<div class="flex items-center gap-6 text-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">schedule</span>
+<span class="uppercase tracking-tighter">19:30 - 20:30</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">person</span>
+<span class="uppercase tracking-tighter">COACH MARCUS</span>
+</div>
+</div>
+</div>
+<!-- Upcoming 2 -->
+<div class="clipped-corner bg-surface-container p-6 border-l-4 border-outline-variant/30">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-headline text-lg text-gray-500 tracking-widest uppercase">UPCOMING</span>
+<h3 class="font-headline text-3xl text-on-surface leading-none mt-1">OPEN MAT</h3>
+</div>
+<span class="material-symbols-outlined text-gray-600">groups</span>
+</div>
+<div class="flex items-center gap-6 text-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">schedule</span>
+<span class="uppercase tracking-tighter">20:30 - 21:30</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs">person</span>
+<span class="uppercase tracking-tighter">SELF DIRECTED</span>
+</div>
+</div>
+</div>
+<!-- Legend/Quote -->
+<div class="py-12 text-center">
+<p class="font-serif italic text-2xl text-outline-variant leading-relaxed">
+                    "The mat is a mirror. It never lies."
+                </p>
+<div class="mt-4 h-px w-24 bg-gradient-to-r from-transparent via-primary-container to-transparent mx-auto"></div>
+</div>
+</section>
+<!-- Programs Grid (Mobile Feature) -->
+<section class="bg-surface-container-lowest px-6 py-12">
+<h2 class="font-headline text-4xl text-white mb-8 tracking-tighter">OTHER DISCIPLINES</h2>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative h-40 overflow-hidden clipped-corner">
+<img class="w-full h-full object-cover grayscale opacity-40" data-alt="Athletic person stretching in a dark gym environment with sharp lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLUgoMUJoZXccYR83ebCkmc2iM9bsiRx203ZJfLX8r0QaOShx7-aX084DQ8FmdD97l9snK-hF7p63Zg54X94FDy9NdiQYRXCNny8JQmHpD2SwgWIEOVsSsPeIG9uaxy17CQjeEwuSjyHbt89E5goNoHP9eu8lcv3wqBzh56SBbwK4SRRMwSJVgTYVXo8wN-3HYig8LaTMKqWm6sc7ya6yMyH7j4OMYimkwXZpXqtvpUrR8u39-Y7FGK0-yS8mAyui8--PcUL0mK5c"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="font-headline text-2xl text-white tracking-widest">YOGA</span>
+</div>
+</div>
+<div class="relative h-40 overflow-hidden clipped-corner">
+<img class="w-full h-full object-cover grayscale opacity-40" data-alt="Striking martial arts training in a gritty dark garage setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANC6v6TT6zXOttlTEZeWo7RvayR5g7ZfMYbmIyFDeUtZJtsDZE9PPugfTtazjR7LtGH-Y5mUzi5WRyVVn_h5Tn13MwwBjBocQJQGcRawZgYibF779x34et7pRDnjrbgBaowdJbUXyE0bNg5Kz15C0q1xpQNHwUrumnaWY5oHVbygsuY3Jd4wtwBHUskjN191TCO1v3-7edEckZKusKA9GYazMsrOskGywnoZoOOkBtivt6KNC921pKRDY81RY1FakQCSOr2iSio-I"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="font-headline text-2xl text-white tracking-widest">STRIKING</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer / Bottom Navigation Shell -->
+<footer class="bg-[#1A1014] w-full flex flex-col items-center gap-6 px-4 py-12 border-t border-[#CC1122]/20 film-grain">
+<div class="font-['Bebas_Neue'] text-2xl text-[#CC1122]">FINESSE BJJ</div>
+<div class="flex gap-8">
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">PRIVACY</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">TERMS</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">CONTACT</a>
+</div>
+<div class="font-['DM_Sans'] text-[10px] tracking-[0.2em] uppercase text-gray-600 text-center">
+            © 2024 FINESSE BJJ ACADEMY. ALL RIGHTS RESERVED. <br/> CINEMATIC AGGRESSION.
+        </div>
+</footer>
+<!-- Mobile Bottom NavBar (Fixed) -->
+<nav class="fixed bottom-0 w-full bg-[#0A0A0A]/95 backdrop-blur-lg border-t border-[#CC1122]/20 flex justify-around items-center py-4 z-50 md:hidden">
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold tracking-tighter uppercase">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#CC1122]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<span class="text-[10px] font-bold tracking-tighter uppercase">Schedule</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="text-[10px] font-bold tracking-tighter uppercase">Programs</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold tracking-tighter uppercase">Account</span>
+</button>
+</nav>
+</body></html>

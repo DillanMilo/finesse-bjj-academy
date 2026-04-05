@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Cormorant+Garamond:ital,wght@1,400;1,600&amp;family=DM+Sans:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#c0001b",
+              "on-primary-container": "#ffdedb",
+              "on-secondary": "#680007",
+              "surface-container-low": "#1c1b1b",
+              "surface-bright": "#3a3939",
+              "secondary-fixed": "#ffdad6",
+              "on-tertiary": "#2f3131",
+              "surface-variant": "#353534",
+              "primary": "#ffb3ad",
+              "on-primary": "#68000a",
+              "on-surface-variant": "#e6bdb9",
+              "on-surface": "#e5e2e1",
+              "inverse-surface": "#e5e2e1",
+              "on-tertiary-fixed": "#1a1c1c",
+              "surface-dim": "#131313",
+              "on-primary-fixed": "#410004",
+              "error-container": "#93000a",
+              "error": "#ffb4ab",
+              "tertiary-fixed": "#e2e2e2",
+              "surface-tint": "#ffb3ad",
+              "on-tertiary-container": "#e5e6e6",
+              "secondary": "#ffb3ac",
+              "primary-container": "#cc1122",
+              "secondary-container": "#8e1c1c",
+              "surface-container": "#201f1f",
+              "secondary-fixed-dim": "#ffb3ac",
+              "primary-fixed": "#ffdad7",
+              "surface-container-lowest": "#0e0e0e",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-secondary-container": "#ff9e96",
+              "on-error": "#690005",
+              "inverse-on-surface": "#313030",
+              "on-secondary-fixed-variant": "#8a1a1a",
+              "outline-variant": "#5c3f3d",
+              "tertiary": "#c6c6c7",
+              "on-background": "#e5e2e1",
+              "on-error-container": "#ffdad6",
+              "primary-fixed-dim": "#ffb3ad",
+              "background": "#131313",
+              "on-primary-fixed-variant": "#930012",
+              "on-secondary-fixed": "#410003",
+              "surface-container-high": "#2a2a2a",
+              "outline": "#ad8885",
+              "tertiary-fixed-dim": "#c6c6c7",
+              "tertiary-container": "#656767",
+              "surface-container-highest": "#353534",
+              "surface": "#131313"
+            },
+            fontFamily: {
+              "headline": ["Bebas Neue", "sans-serif"],
+              "body": ["DM Sans", "sans-serif"],
+              "label": ["DM Sans", "sans-serif"],
+              "display": ["Bebas Neue", "sans-serif"],
+              "serif": ["Cormorant Garamond", "serif"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>.film-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.03;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCBaxzXeZcYFuxyIVFLDjrgdoaH_GTrnLtA2U-oKx3iaLALOEwDX7RKYJH7Aa1z4qOJfS6sG427w28a8wsg0kPnwEz4QKEJkgIVMG9m6EOXdGYWW-UkNpLMUQb0ATZQLbRXSEm9hjoX68uXGAxwB-3iQOcfkisaiM3MSfcaweK88lPY4r_1bVYA2raZRjU4sSa6evD773iFMdycomKxaul_LLG2z8TbRDHeuOoj14Q8fOxagTx0kJ_Jwl3zWiXt0ZMqTStoCfkmJCs)
+    }
+.clipped-corner {
+    clip-path: polygon(0 0, 92% 0, 100% 8%, 100% 100%, 0 100%)
+    }
+.skewed-btn {
+    transform: skewx(-12deg)
+    }
+.skewed-btn-text {
+    transform: skewx(12deg)
+    }
+.neon-glow {
+    filter: drop-shadow(0 0 15px rgba(204, 17, 34, 0.3))
+    }
+body {
+    background-color: #0A0A0A;
+    color: #E6BDB9;
+    overflow-x: hidden
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body selection:bg-primary-container selection:text-white">
+<div class="film-grain"></div>
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-[#CC1122]/10 shadow-[0_0_20px_rgba(204,17,34,0.15)] h-20 flex justify-between items-center px-6">
+<div class="flex items-center gap-2">
+<img class="h-10 w-auto" data-alt="Finesse BJJ Academy logo featuring sharp typography and a minimalist combat-inspired emblem in crimson red" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCjQdRnUGBC_1kmu1QoOppXmfDZFrhjgKswOQhEwU4WNdC6jaI_nrrTVyoU_oSRFH-YWK4XA6sO3KEY8TFaIbMCIhrTy3fQftBt0lsiLBF-_YCXu3ctV3oZasUfYR7wAewWIYX_-HjInCoxEv4ioAVwUAXsCn-Hhpr3V6_zFRo6SGd38_dUEikUjHSDUEz4MQT1QTpT3vKadzDFr1SFZOhRMzcan8D-BOtjd2J4rI3H9xaXhZ-Zd_xWio-s8GP0PyxWZfMriSL6Oc"/>
+<span class="text-3xl font-black italic text-[#CC1122] tracking-tighter font-display">FINESSE BJJ</span>
+</div>
+<button class="text-[#CC1122]">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</nav>
+<main class="pt-20">
+<!-- Hero Section: THE WALL -->
+<section class="relative h-[707px] flex items-end px-6 pb-12 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover grayscale opacity-40" data-alt="Cinematic low angle shot of a weathered concrete wall in a dark Brazilian Jiu-Jitsu gym with high contrast shadows and red ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3K-XFqr_w_wpE-SatAwg7iIiIcre-j7RdmoV5Lz4gFDh9h-9aZ7csuCszikF_HfLs_bH8YdpFrykWb9_m6nkQjZHj7BmpXNOLAofdES0Hg9Ix3NUsrxi62H6Etyf0yr-a7Vhgvf6d6ghRjaJMm5MAqjDYa3ut4ygs5ip1jFaSaZj-zF2qqdu1ZSQLhn5O8tKa5gz4XBg-wlarhsqzKTat1TzjnShLnek-yzJRIHCOBGrd0L7VbVuIqqBpHk1s7mWbmNU6pE-qpP8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 w-full">
+<div class="inline-block bg-primary-container px-3 py-1 mb-4 text-xs font-display tracking-widest text-white">EST. 2024</div>
+<h1 class="text-7xl font-display leading-[0.85] text-white tracking-tighter uppercase mb-2">
+                    THE <span class="text-primary-container">WALL</span>
+</h1>
+<p class="text-lg font-serif italic text-on-surface-variant max-w-xs leading-tight">
+                    "Strength is the vessel, but technique is the current."
+                </p>
+</div>
+</section>
+<!-- Philosophy Section -->
+<section class="bg-[#1A1014] py-20 px-6 relative">
+<div class="flex flex-col gap-12">
+<div class="border-l-4 border-primary-container pl-6">
+<h2 class="text-5xl font-display text-white leading-none mb-4 tracking-tight">BRUTAL<br/>EFFICIENCY</h2>
+<p class="text-sm uppercase tracking-[0.2em] text-primary-container font-bold mb-4">The Finesse Protocol</p>
+<p class="text-on-surface-variant leading-relaxed">
+                        We don't teach hobbyist movement. We teach the science of human leverage under extreme duress. Our academy is forged in the belief that violence is a language, and we intend to make you fluent.
+                    </p>
+</div>
+<div class="relative py-12">
+<p class="text-4xl font-serif italic text-white/90 relative z-10 leading-snug">
+                        "In the void of the mats, there is no room for ego—only the absolute truth of the tap."
+                    </p>
+<span class="absolute -top-4 -left-4 text-8xl font-display text-primary-container opacity-10">CREED</span>
+</div>
+<div class="clipped-corner bg-surface-container p-8 border-l border-primary-container/30">
+<h3 class="text-2xl font-display text-white mb-4 italic">IRON &amp; SINEW</h3>
+<ul class="space-y-4 font-display text-xl tracking-wide">
+<li class="flex items-center gap-3">
+<span class="w-2 h-2 bg-primary-container"></span>
+                            PRESSURE TESTING
+                        </li>
+<li class="flex items-center gap-3">
+<span class="w-2 h-2 bg-primary-container"></span>
+                            ANATOMICAL DOMINANCE
+                        </li>
+<li class="flex items-center gap-3 text-primary-container">
+<span class="w-2 h-2 bg-white"></span>
+                            RELENTLESS FINESSE
+                        </li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Gallery Section -->
+<section class="bg-[#0A0A0A] py-20">
+<div class="px-6 mb-10">
+<h2 class="text-6xl font-display text-white leading-none tracking-tighter">THE <span class="text-primary-container">ARENA</span></h2>
+<div class="h-1 w-20 bg-primary-container mt-4"></div>
+</div>
+<div class="flex flex-col gap-1 px-4">
+<!-- Large Feature -->
+<div class="relative aspect-[4/5] overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="High-contrast black and white action shot of two athletes grappling on the mats, sweat flying in mid-air, dramatic top lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqGNusQ7iVeILUYWRwT0bPt9bvwd92-RZF4OEXgnzPRmsqWLX1lr_6mTFNzh_2MISJdo67K52RwX5sRNR9DyK0eAZiewBu7gHb6bwr0n1omJ0V9n-l28O1iaHf2d5tbDzgSqjO7y1_HhEbQ_PScdos_so0CyLW-S1khhxQ4lOFWkzHecEkRQErUetlTkSlJpC4D6OAjVWvz8sJss9sY9Kn_D0QPm5BbneG8-nYRGLKXpEmzYELrBWxOE5c3onYJFom76zzdZLKgP8"/>
+<div class="absolute inset-0 bg-primary-container/10 mix-blend-overlay"></div>
+<div class="absolute bottom-4 left-4 bg-black/80 p-2 backdrop-blur-sm">
+<span class="text-xs font-display tracking-widest text-white">LIVE SPARRING / 2024</span>
+</div>
+</div>
+<!-- Grid Row 1 -->
+<div class="grid grid-cols-2 gap-1">
+<div class="aspect-square relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale" data-alt="Close up shot of calloused hands adjusting a black BJJ belt, detailed texture of the weave, cinematic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdHbp0i6urDL0xAwDZ5MgZc7j7bdbqp6duiZAIMsNBdSNGCVKoDYO8vQo2H2S9LsmBQ9wiPojnaX0JYlYUsFOb1fyC7IS2VMl2HObTgV9vZ_txAEMQPUrDLjlGmLsI-Zlru3b-cVXsg7VJmr6__BC2Ljup7C3avpnrKtkI3A7U7mTWPE5r9P9vUkgfYOYlyhhf2l0HYl7qSUtbySIK3o2iE8xY2W-TiItz56QXQaaVhPjfVEjbsZC1EjYixpi2Tk6HTdKuT3NrY9g"/>
+</div>
+<div class="aspect-square relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Rows of athletes performing technical drills in a dark training hall, motion blur, red neon accents in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ4yHNoMOMs17nCkakdjKkx1Qe0Je-3Hw4dlMFPL6y1REVoxhPYwqRn8n8cH6FA2cvOK61K86Kxtps96yHnhHBArtDwlsO6o7DKW6npecQ13ZA1m357OD1_67MQO7YE60fn8fWZTIKL12AfuC0fe6x2IHcrcBqMMnXXRypi-NRrxvYudycbjLoGiqG1m8IlgR14nwPVvRDC4fu4fgytueE00r6CfLgpzbxpu3z0SNQvXEt8jJ_mPU1wHZ-sfZMxDl8pvs30-r-6E8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/40 to-transparent opacity-60"></div>
+</div>
+</div>
+<!-- Grid Row 2 -->
+<div class="grid grid-cols-2 gap-1">
+<div class="aspect-square relative overflow-hidden bg-surface-container flex items-center justify-center p-6 text-center">
+<h4 class="font-display text-2xl text-white leading-tight">MIND<br/>OVER<br/><span class="text-primary-container">MATTER</span></h4>
+</div>
+<div class="aspect-square relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale brightness-75" data-alt="Portrait of a focused female fighter with sweat on her face, cinematic lighting highlighting facial contours and determination" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3q-jCtuSeZMo0ZNqwsZF0REO8GSSk0R1Z6P-1iO_dIXgi2wyRUdVbQ01vWzpA0cgX6jLoCcmOr_qbv-_P_X_QoN1sMMAzqAS0DfhPCCuxTf1Fi4PrdIbAtJxDjg5xQscQDPuH08ajBfkzq7r5UBaORQPFsa0ypaLwr__9qWpCSJ4PhXwfR8_3rgHftlY1tkZFdOKeB38GojdhUG4Msot3GDLr2PaH0sIa1ZdksOQm7MQGcHzCeQq-_YrQznXoArdT-wAZXZ3fDRc"/>
+</div>
+</div>
+<!-- Large End -->
+<div class="relative aspect-video overflow-hidden mt-1">
+<img class="w-full h-full object-cover" data-alt="Wide shot of the empty academy mats at night, glowing red light from the perimeter, atmospheric and moody composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh72RGfH5ARJeW96_fFK4y6v2KdmE1Sa8O7ly7_BpY-CuTF-pSZz3z1HbpXI5CbBIajj4mdUxrM7jSKF0-l9kWmWKrcrrKo1p5r4VrGKhZl1NE1Rgyf53BR8aIBO3SICndzladbt3D5KjLBpgQO_Ldu9Xj9BBpdCYqZODk9BlfYqxtfBF7mCSaVa3rtztp1hGEj4TjbLeCchSuuvwDbn7o58w8bs1p0Piovg3k5LXSDMJRZm7lfq-56myw_MoYB--vvVPerKi5pWw"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#0A0A0A]"></div>
+</div>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section class="bg-[#1A1014] py-20 px-6 overflow-hidden">
+<h2 class="text-center font-display text-4xl text-white mb-12 tracking-tight">TESTIMONIES OF <span class="text-primary-container">TRIUMPH</span></h2>
+<div class="space-y-8">
+<!-- Card 1 -->
+<div class="clipped-corner bg-surface-container p-8 relative border-r-2 border-primary-container/40">
+<div class="material-symbols-outlined text-primary-container text-4xl mb-4">format_quote</div>
+<p class="text-on-surface leading-relaxed italic mb-6">
+                        "I came for the sport, I stayed for the transformation. Finesse didn't just teach me how to fight; they taught me how to breathe in the middle of a storm."
+                    </p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-primary-container rounded-none flex items-center justify-center font-display text-white">MK</div>
+<div>
+<p class="text-white font-display text-lg leading-none">MARCUS KANE</p>
+<p class="text-[10px] tracking-[0.2em] text-primary-container uppercase">PURPLE BELT / 3 YEARS</p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="clipped-corner bg-surface-container-high p-8 relative border-r-2 border-white/20">
+<div class="material-symbols-outlined text-white/40 text-4xl mb-4">format_quote</div>
+<p class="text-on-surface leading-relaxed italic mb-6">
+                        "The atmosphere is electric. It's aggressive, professional, and uncompromising. You won't find a better curriculum for modern submission grappling."
+                    </p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-white/20 flex items-center justify-center font-display text-white">SR</div>
+<div>
+<p class="text-white font-display text-lg leading-none">SARAH REED</p>
+<p class="text-[10px] tracking-[0.2em] text-on-surface-variant uppercase">BLUE BELT / 18 MONTHS</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-6 text-center bg-[#0A0A0A]">
+<h2 class="font-display text-6xl text-white leading-none mb-8 tracking-tighter">STOP<br/>SITTING BY.</h2>
+<div class="relative inline-block group">
+<div class="absolute -inset-1 bg-primary-container blur-xl opacity-20 group-hover:opacity-60 transition duration-1000"></div>
+<button class="relative skewed-btn bg-primary-container hover:bg-inverse-primary px-10 py-5 transition-all duration-300">
+<span class="skewed-btn-text text-white font-display text-2xl tracking-widest flex items-center gap-3">
+                        JOIN THE MATS
+                        <span class="material-symbols-outlined">bolt</span>
+</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0A0A0A] w-full py-12 px-8 border-t border-[#1A1014]">
+<div class="flex flex-col items-center gap-8 max-w-7xl mx-auto">
+<div class="flex flex-col items-center gap-4">
+<img class="h-12 w-auto grayscale" data-alt="Finesse BJJ Academy logo featuring sharp typography and a minimalist combat-inspired emblem in crimson red" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrRW5efWKaMH0UD7tQ3ao7fNSX19MhQWnoV3Jz0kLvo77rHa2PyKgsXBTKwv1lwlEEmXnGU3NOVqHCa7UvG8l21iiRTIu3rByTMz4hHiVb9c65P-OfU6nmTsi-L_afT4hPhz3A-bmZDS6_VpFzjB5ietOWrumkSNN-vlC-f9luKpL1RJNpmYX8Tb3urrpNbXTGunu4NUZYi9ky6f8GtKvnmhCbN3qlHj2kjrUA3X5XJ-so80E4TJuCSZcK44EUObmZmVgtLqzaEIg"/>
+<span class="text-[#CC1122] font-display text-3xl tracking-tighter italic">FINESSE BJJ</span>
+</div>
+<div class="flex gap-6">
+<a class="text-[#8B1A1A] hover:text-[#CC1122] transition-colors" href="#">
+<span class="material-symbols-outlined">circle</span>
+</a>
+<a class="text-[#8B1A1A] hover:text-[#CC1122] transition-colors" href="#">
+<span class="material-symbols-outlined">play_circle</span>
+</a>
+<a class="text-[#8B1A1A] hover:text-[#CC1122] transition-colors" href="#">
+<span class="material-symbols-outlined">camera</span>
+</a>
+</div>
+<nav class="flex flex-col items-center gap-4 text-center">
+<a class="font-label text-xs tracking-[0.2em] uppercase text-[#8B1A1A] hover:text-white transition-colors" href="#">PRIVACY POLICY</a>
+<a class="font-label text-xs tracking-[0.2em] uppercase text-[#8B1A1A] hover:text-white transition-colors" href="#">TERMS OF COMBAT</a>
+<a class="font-label text-xs tracking-[0.2em] uppercase text-[#8B1A1A] hover:text-white transition-colors" href="#">CONTACT US</a>
+</nav>
+<p class="font-label text-[10px] tracking-widest uppercase text-[#8B1A1A] text-center opacity-50">
+                © 2024 FINESSE BJJ ACADEMY. IRON &amp; SINEW.
+            </p>
+</div>
+</footer>
+<!-- Bottom Mobile Nav -->
+<div class="md:hidden fixed bottom-0 left-0 w-full h-16 bg-[#0A0A0A]/95 backdrop-blur-xl border-t border-white/5 flex items-center justify-around px-4 z-50">
+<a class="flex flex-col items-center text-primary-container" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[9px] font-display uppercase tracking-widest mt-1">HOME</span>
+</a>
+<a class="flex flex-col items-center text-white/40" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="text-[9px] font-display uppercase tracking-widest mt-1">DRILLS</span>
+</a>
+<div class="relative -top-6">
+<button class="w-14 h-14 bg-primary-container rounded-none rotate-45 flex items-center justify-center shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-white -rotate-45 text-3xl">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center text-white" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">photo_library</span>
+<span class="text-[9px] font-display uppercase tracking-widest mt-1">GALLERY</span>
+</a>
+<a class="flex flex-col items-center text-white/40" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[9px] font-display uppercase tracking-widest mt-1">ACCOUNT</span>
+</a>
+</div>
+<!-- Extra Space for Bottom Nav -->
+<div class="h-16"></div>
+</body></html>

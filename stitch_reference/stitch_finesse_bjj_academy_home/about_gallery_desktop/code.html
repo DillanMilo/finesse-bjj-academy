@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Cormorant+Garamond:ital,wght@1,400;1,600&amp;family=DM+Sans:wght@400;500;700&amp;family=Epilogue:wght@800;900&amp;family=Inter:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#c0001b",
+              "on-primary-container": "#ffdedb",
+              "on-secondary": "#680007",
+              "surface-container-low": "#1c1b1b",
+              "surface-bright": "#3a3939",
+              "secondary-fixed": "#ffdad6",
+              "on-tertiary": "#2f3131",
+              "surface-variant": "#353534",
+              "primary": "#ffb3ad",
+              "on-primary": "#68000a",
+              "on-surface-variant": "#e6bdb9",
+              "on-surface": "#e5e2e1",
+              "inverse-surface": "#e5e2e1",
+              "on-tertiary-fixed": "#1a1c1c",
+              "surface-dim": "#131313",
+              "on-primary-fixed": "#410004",
+              "error-container": "#93000a",
+              "error": "#ffb4ab",
+              "tertiary-fixed": "#e2e2e2",
+              "surface-tint": "#ffb3ad",
+              "on-tertiary-container": "#e5e6e6",
+              "secondary": "#ffb3ac",
+              "primary-container": "#cc1122",
+              "secondary-container": "#8e1c1c",
+              "surface-container": "#201f1f",
+              "secondary-fixed-dim": "#ffb3ac",
+              "primary-fixed": "#ffdad7",
+              "surface-container-lowest": "#0e0e0e",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-secondary-container": "#ff9e96",
+              "on-error": "#690005",
+              "inverse-on-surface": "#313030",
+              "on-secondary-fixed-variant": "#8a1a1a",
+              "outline-variant": "#5c3f3d",
+              "tertiary": "#c6c6c7",
+              "on-background": "#e5e2e1",
+              "on-error-container": "#ffdad6",
+              "primary-fixed-dim": "#ffb3ad",
+              "background": "#131313",
+              "on-primary-fixed-variant": "#930012",
+              "on-secondary-fixed": "#410003",
+              "surface-container-high": "#2a2a2a",
+              "outline": "#ad8885",
+              "tertiary-fixed-dim": "#c6c6c7",
+              "tertiary-container": "#656767",
+              "surface-container-highest": "#353534",
+              "surface": "#131313"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Inter"],
+              "label": ["Inter"],
+              "display": ["Bebas Neue"],
+              "serif": ["Cormorant Garamond"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .film-grain {
+            position: relative;
+        }
+        .film-grain::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .clip-angular {
+            clip-path: polygon(0 0, 92% 0, 100% 15%, 100% 100%, 0 100%);
+        }
+        .parallelogram {
+            transform: skewX(-12deg);
+        }
+        .parallelogram-content {
+            transform: skewX(12deg);
+        }
+        .text-shadow-glow {
+            text-shadow: 0 0 15px rgba(204, 17, 34, 0.6);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body selection:bg-primary-container selection:text-white overflow-x-hidden">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-[#CC1122]/10 shadow-[0_0_20px_rgba(204,17,34,0.15)] flex justify-between items-center px-8 h-20 w-full">
+<div class="flex items-center gap-4">
+<img alt="Logo" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQVEkxqGeRdeqhtyNgwW-1JOD2mM8u5CzbtUlS4XsVdFEEWl7dwfsd7gBiMRwGPpNl640WTEc-Di0kzXLqqNUUyWtTbxGhXZb9caLaC6zk-A2OYH72qYGbyArRwcnPHvpSS02OebC16Qu9-ci7PeD0GTw7gvNz07lCFWgu9zrgdmyhu8fbsRTE_AOqTZwP7ToyjnLxgbfzAg60pexlx6rMQZchCsUdSFHcVONu5_iFpUqkZmZz10p5RL2FE5J2ALbgKOvZJch0KV4"/>
+<span class="text-3xl font-black italic text-[#CC1122] tracking-tighter font-['Bebas_Neue'] uppercase">FINESSE BJJ</span>
+</div>
+<div class="hidden md:flex items-center gap-10 font-['Bebas_Neue'] tracking-tight uppercase">
+<a class="text-[#E6BDB9] hover:text-white transition-colors hover:brightness-125" href="#">ACADEMY</a>
+<a class="text-[#E6BDB9] hover:text-white transition-colors hover:brightness-125" href="#">PROGRAMS</a>
+<a class="text-[#CC1122] border-b-2 border-[#CC1122] pb-1 hover:brightness-125" href="#">GALLERY</a>
+<a class="text-[#E6BDB9] hover:text-white transition-colors hover:brightness-125" href="#">MEMBERSHIP</a>
+</div>
+<button class="parallelogram bg-primary-container text-white px-8 py-3 font-['Bebas_Neue'] tracking-widest text-lg hover:brightness-125 transition-all duration-300 active:scale-95 shadow-[0_0_15px_rgba(204,17,34,0.4)]">
+<span class="parallelogram-content block">JOIN THE MATS</span>
+</button>
+</nav>
+<!-- Hero Section -->
+<header class="relative h-screen flex items-center justify-center overflow-hidden film-grain">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-surface-container-lowest/50 z-10"></div>
+<img class="w-full h-full object-cover scale-105 filter grayscale-[0.2] contrast-[1.1]" data-alt="Cinematic wide shot of a high-end Brazilian Jiu Jitsu academy with black mats, dramatic overhead lighting, and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs5OwHiFi4BNKGaRVQ_HWgHMSS16yFTzlLHIbz8w4wfbQbLce2CJDIDVPb_zLpsPQDEUS4uH3q8ToqZCQJI7pGck2qPDNYRzIcncVkH0e1l3yH1foCOxsGtpjzmi3--Nj-CGQ9DontqoH04KY2j1GrE9T-2Z4alPJfEslZe78AQSUX-krToNU9CWAtrk2OBb4ovq1cd6CM0kBMtZc2obtoXxnrqXpTR6ja4LQiFT6p_pL7TiQj-WXirW5wQCgZIiNt2NLBSbK8Lvo"/>
+</div>
+<div class="relative z-20 text-center px-4 max-w-6xl mx-auto">
+<h1 class="font-display text-[12vw] md:text-[10rem] leading-[0.85] tracking-tighter text-white uppercase drop-shadow-2xl italic">
+                THE WALL OF <br/>
+<span class="text-primary-container text-shadow-glow">FINESSE</span>
+</h1>
+<p class="mt-8 font-serif italic text-2xl md:text-4xl text-on-surface-variant max-w-2xl mx-auto">
+                Where technical violence meets artistic precision.
+            </p>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="material-symbols-outlined text-primary-container text-4xl">keyboard_double_arrow_down</span>
+</div>
+</header>
+<!-- The Mission Section -->
+<section class="py-32 px-8 bg-surface-dim film-grain">
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+<div class="space-y-12">
+<div class="space-y-4">
+<h2 class="font-display text-6xl md:text-8xl text-white uppercase leading-none">FORGING PRECISION <br/> FROM <span class="text-primary-container">CHAOS</span></h2>
+</div>
+<div class="border-l-4 border-primary-container pl-8 space-y-6">
+<p class="font-serif italic text-3xl text-on-surface-variant leading-relaxed">
+                        "The mat is a laboratory where ego goes to die and character is rebuilt. We don't just teach techniques; we forge the mental steel required to thrive under pressure."
+                    </p>
+<p class="text-on-surface-variant font-body text-lg max-w-lg leading-relaxed">
+                        Finesse BJJ Academy was founded on the principle that absolute technical mastery is the only response to brute force. We specialize in the high-stakes chess match of the ground game.
+                    </p>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 border border-primary-container/20 translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500"></div>
+<div class="clip-angular overflow-hidden">
+<img class="w-full aspect-[4/5] object-cover filter contrast-125 brightness-75" data-alt="Intense close up of a BJJ practitioner's eyes behind a black belt, cinematic lighting with high contrast shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsKQKlQSyT6Q6WzRlpTNdPNAGNrXU-Q4_A_6s1xqXcZHK9DQY1lukVyZSJMxrS6ntujPMtD-jyNpBviyosuPxZzFOu7FnlbuM1j0K5sSDxrXZc4CqpT1-xwSJ36wo-nW4kNzY1aLolG4hzb-Df0Enc1Xv4jxMm0_EZzypI2H_eESBBroonghn6Xugj92GpmqaNAHPmFoyzdqJIkGIJ0NxAvXGhm5LjELhZ9eQMoKXSE38L2aZrI5lDaJwnY_oqVPOUvZH56aot6lI"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Cinematic Gallery -->
+<section class="py-24 bg-surface-container-lowest film-grain">
+<div class="max-w-7xl mx-auto px-8 mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<h2 class="font-display text-7xl text-white uppercase tracking-tighter">THE <span class="text-primary-container">ARCHIVE</span></h2>
+<div class="flex gap-4 font-display text-xl">
+<span class="px-4 py-1 bg-primary-container/20 border border-primary-container/40 text-primary-container">ALL SHOTS</span>
+<span class="px-4 py-1 text-on-surface-variant hover:text-white transition-colors cursor-pointer">GI</span>
+<span class="px-4 py-1 text-on-surface-variant hover:text-white transition-colors cursor-pointer">NO-GI</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 px-4 max-w-[1600px] mx-auto">
+<!-- Masonry-like Grid Layout -->
+<div class="md:col-span-8 group relative overflow-hidden clip-angular aspect-[16/9]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-75 contrast-125" data-alt="BJJ sparring session in a dark gym, motion blur on the movements, focused on the grip of the kimono" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCty6CGqrVLZVqkMKfwNpqDOBR-Q8RFBr5fhaS_Kvgd4J8vQX8MQf9TG8q9FZIuLfADBpcahRWybRFIG2S-hz-_ybd8hrapqFn_z3V9GhYIcgUesULMZZ_RTcdNYzX-OxNPXULBtjMQUiZe81vryP0O36Y9MAHM_J_UU29Sf8fu9NX0iyVNbPDelKln67Rj327RPY0md5MamyRehadeAjQjqD_3mODf2sU8SqRFEH62NvCer6VuzamxTnsnfi2CmQ-DjDUwBpb162w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity p-8 flex items-end">
+<span class="font-display text-3xl text-white">THE STRUGGLE</span>
+</div>
+</div>
+<div class="md:col-span-4 group relative overflow-hidden clip-angular aspect-[1/1]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-75 contrast-125" data-alt="Detailed shot of a worn black belt tied around a white gi, artistic lighting casting long shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsWTH69Qo0uPtYzaL6JBx7bLrsvoZafSKaa93GbvvOX7Hoa1uyXvoVnSX4Szj8_xcvg8i17NZGg2U9d6WOFnwqj-OFwTAH9wXoPxqsOH14myVTzrUCSFFUOlwCBv43L6P5HlGBpeoUyHiRRe6WyboYj2PI2WUFqcqk5rN6PH9yIKSL1jyMBJi7k7kKiMmmFrtU5mAhEHLlFrsuxR_pEIHYZBPg3zmSyYEnhRoN0l-PlbYfM6wUKEyi6f08xxiBw4YV-e-yDx7EPuo"/>
+</div>
+<div class="md:col-span-4 group relative overflow-hidden clip-angular aspect-[4/5]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-75 contrast-125" data-alt="Two athletes mid-takedown in no-gi training, high action focal point with dramatic sweat spray" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWHf1kcA7daq2h3b2tTH3pJhulMy8YdxffP0wUtqYEn5YhiWE02pw6wLij1rYBlKX7QIkrLHon0Q2ayZe7HXiO2z402u-eFawwXxclGuauFZgz_ZCGIht4ND0Xl_kaXrTuRCd3V5_0keLOl_GFgfFxdrupilsAIFzRuWYY_ovnSaGnnHmwmkbsiMH04X8RUyBKb7gcIQuD33juRqwtTNQBedcomrC71GLvam3zmY6YuVByBXJCa-LZoOl1LYYJIj_WiHPAj9titBg"/>
+</div>
+<div class="md:col-span-4 group relative overflow-hidden clip-angular aspect-[4/5]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-75 contrast-125" data-alt="Interior of a BJJ gym with rows of athletes bowing on the mats, cinematic symmetry" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3TuXPSISd-9mEy42SqRBXB1xFZCZjNCpKpT_r-jpqo0c9v9qYq8pWa8oWaZPeiQiHklnHFuKUXlxy_a9D5zTU_Ru-qk1m6oXtTHc8bXL5wWw-c6aHCUR-fA8Dglv2-p_bg9QUv01OSXTVD25LY0jz3Etbtc_gE6ztugn76csB55wMsRH3BhRtulunbyNXQ98F9YPoJAKbwa-IBpaIwUudbykZ42CPfzDIZs9zowXBmxDUaZPR0azSndT7D26DWlCip9ZrhRzam_A"/>
+</div>
+<div class="md:col-span-4 group relative overflow-hidden clip-angular aspect-[4/5]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-75 contrast-125" data-alt="Close up of chalked hands gripping a heavy punching bag in the background, focused on foreground textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArkQTUwMrBs5G2wBCQ9sXR9WnjRh2MIo1HAtZXn9Xjv1T7PPGo9NdAe65G7NtQsXthpIMF4XHpS_0kq3Xn_qFVip6SJkav4nup67lLGczelxLl8KpaXufmBjBN-IaCDhuURVz6_AlF20JkHtErEcvR1d-3UCXYeRLNBxIljwW7mnMFto_WXt5UppFmH4o1zgpDtnAS1h9lvWNDD9sZHV2oiiuMgTn_DRpJTsYZedVnkN1PSnVLOr5Jm3vvwWFXbqxm3hQzRtGlVSI"/>
+</div>
+</div>
+</section>
+<!-- Community Proof / Testimonials -->
+<section class="py-32 bg-surface-dim film-grain overflow-hidden relative">
+<div class="absolute top-0 right-0 opacity-5 -translate-y-1/4 translate-x-1/4 select-none pointer-events-none">
+<h3 class="font-display text-[25rem] text-primary-container leading-none">TESTIMONY</h3>
+</div>
+<div class="max-w-7xl mx-auto px-8 relative z-10">
+<h2 class="font-display text-6xl text-white mb-20 uppercase">VOICES FROM THE <span class="text-primary-container">TRENCHES</span></h2>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Testimonial 1 -->
+<div class="bg-surface-container-high p-10 clip-angular border-l-2 border-primary-container">
+<div class="flex items-center gap-2 mb-6">
+<div class="h-4 w-12 bg-black border-r-4 border-primary-container"></div>
+<span class="font-display text-primary-container tracking-widest">BLACK BELT</span>
+</div>
+<p class="font-serif italic text-xl text-on-surface mb-8">"I've trained at five different academies across the country. Nowhere else matches the intensity and technical depth of Finesse. They don't just teach you moves; they teach you the physics of dominance."</p>
+<div class="mt-auto">
+<p class="font-display text-2xl text-white uppercase">MARCUS VANCE</p>
+<p class="text-xs text-on-surface-variant tracking-[0.2em] uppercase">MEMBER SINCE 2018</p>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-surface-container p-10 clip-angular border-l-2 border-[#8B1A1A] md:translate-y-12">
+<div class="flex items-center gap-2 mb-6">
+<div class="h-4 w-12 bg-black border-r-4 border-[#8B1A1A]"></div>
+<span class="font-display text-[#8B1A1A] tracking-widest">PURPLE BELT</span>
+</div>
+<p class="font-serif italic text-xl text-on-surface mb-8">"The community here is a brotherhood. We push each other to the breaking point every single night, then we walk off the mats as better men and women."</p>
+<div class="mt-auto">
+<p class="font-display text-2xl text-white uppercase">SARAH JENKINS</p>
+<p class="text-xs text-on-surface-variant tracking-[0.2em] uppercase">COMPETITION TEAM</p>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-surface-container-high p-10 clip-angular border-l-2 border-primary-container">
+<div class="flex items-center gap-2 mb-6">
+<div class="h-4 w-12 bg-black border-r-4 border-primary-container"></div>
+<span class="font-display text-primary-container tracking-widest">BROWN BELT</span>
+</div>
+<p class="font-serif italic text-xl text-on-surface mb-8">"Finesse is not for everyone. It's for those who want to find their limits and shatter them. The curriculum is grueling, but the results are undeniable."</p>
+<div class="mt-auto">
+<p class="font-display text-2xl text-white uppercase">ELIAS THORNE</p>
+<p class="text-xs text-on-surface-variant tracking-[0.2em] uppercase">INSTRUCTOR</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="relative py-40 film-grain overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover filter brightness-[0.2] contrast-150" data-alt="Background of sweaty athletes during a hard BJJ session, dark and atmospheric with low key lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr-PIMYBipA1X42MutYDlLDP1NcRaBvyI15xKsIgKJz2KhlV3dEMgfMsbvXRRGz5h1OedV5iR1EVR_x0ML1qZkyf3JotPWr7GDx0bKGlhaIsLqNUDA7EHTr9vIfy0jmlGBeAI4bSr16ZgGzxzJSJClipqwQ9gxJJjraYj9UqOoMTrJDO6cAscAqTeekvsT3wfPeHmrhoBBokwG_4zYkeFkSxaJv48rZ2aiWWtYm44_-1IYr1BGub9ndNNdccqNkJys4j1lPbVr9io"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-8 text-center md:text-left">
+<div class="max-w-3xl space-y-8">
+<h2 class="font-display text-7xl md:text-9xl text-white uppercase leading-none italic">JOIN THE <br/><span class="text-primary-container text-shadow-glow">BROTHERHOOD</span></h2>
+<p class="font-serif italic text-3xl text-on-surface-variant">The mats are waiting. Your evolution begins the moment you step on them.</p>
+<div class="pt-8 flex flex-col sm:flex-row gap-6 justify-center md:justify-start">
+<button class="parallelogram bg-primary-container text-white px-12 py-5 font-['Bebas_Neue'] tracking-[0.2em] text-2xl hover:brightness-125 transition-all duration-300 shadow-[0_0_30px_rgba(204,17,34,0.5)] group">
+<span class="parallelogram-content block flex items-center gap-4">
+                            BOOK A TRIAL CLASS
+                            <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">bolt</span>
+</span>
+</button>
+<button class="parallelogram border-2 border-on-surface-variant/30 text-white px-12 py-5 font-['Bebas_Neue'] tracking-[0.2em] text-2xl hover:bg-white/10 transition-all duration-300">
+<span class="parallelogram-content block">VIEW SCHEDULE</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#0A0A0A] border-t border-[#1A1014] w-full py-16 px-8 film-grain">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-3">
+<img alt="Footer Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMzfee2lWwU8fVu5kgCAX4y517DCb0xtkb8aJ0UiOIWKleDRp-iCVeZBT6LgwCPqDcgujgqBNCHU_Lg9rqNcusf097Rt0zE_icF1AQ1B71bfVM3bWNz_-ZPsGfypoL3jPygz924wIqISPTX7VRHwdnyMCx2WwpBAlEjN5IthrvcNJAT2XMDZwn5cIcDxGHv1Cco5lW3bWRziqyqmgbMZpHrLfXnf1_kIEprrVCkCAqrMSybroG5k2tgAg6YIftH9tNtnoCPxTJjaw"/>
+<span class="text-[#CC1122] font-['Bebas_Neue'] text-3xl italic tracking-tighter">FINESSE BJJ</span>
+</div>
+<p class="text-[#E6BDB9]/60 font-serif italic text-sm text-center md:text-left">Technical Violence. Refined Precision. Absolute Dominance.</p>
+</div>
+<div class="flex flex-col items-center gap-6">
+<div class="flex gap-10 font-['DM_Sans'] text-xs tracking-widest uppercase">
+<a class="text-[#8B1A1A] hover:text-[#CC1122] transition-colors" href="#">PRIVACY POLICY</a>
+<a class="text-[#8B1A1A] hover:text-[#CC1122] transition-colors" href="#">TERMS OF COMBAT</a>
+<a class="text-[#8B1A1A] hover:text-[#CC1122] transition-colors" href="#">CONTACT US</a>
+</div>
+<p class="text-[#8B1A1A] font-['DM_Sans'] text-[10px] tracking-[0.3em] uppercase opacity-50">
+                    © 2024 FINESSE BJJ ACADEMY. IRON &amp; SINEW.
+                </p>
+</div>
+<div class="flex gap-6">
+<a class="w-12 h-12 flex items-center justify-center border border-[#CC1122]/20 text-[#CC1122] hover:bg-primary-container hover:text-white transition-all duration-300" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="w-12 h-12 flex items-center justify-center border border-[#CC1122]/20 text-[#CC1122] hover:bg-primary-container hover:text-white transition-all duration-300" href="#">
+<span class="material-symbols-outlined">play_circle</span>
+</a>
+</div>
+</div>
+</footer>
+</body></html>

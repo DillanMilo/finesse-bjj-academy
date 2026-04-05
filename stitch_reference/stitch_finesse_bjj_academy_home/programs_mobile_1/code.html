@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Programs | FINESSE BJJ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&amp;family=Cormorant+Garamond:ital,wght@1,400;1,600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffb3ad",
+                        "tertiary-container": "#656767",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-container": "#cc1122",
+                        "secondary": "#ffb3ac",
+                        "on-surface": "#e5e2e1",
+                        "on-primary-container": "#ffdedb",
+                        "surface-variant": "#353534",
+                        "primary-fixed": "#ffdad7",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#c6c6c7",
+                        "secondary-fixed": "#ffdad6",
+                        "on-secondary-fixed-variant": "#8a1a1a",
+                        "surface": "#131313",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-primary": "#c0001b",
+                        "surface-container": "#201f1f",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-secondary-container": "#ff9e96",
+                        "surface-tint": "#ffb3ad",
+                        "surface-container-highest": "#353534",
+                        "surface-bright": "#3a3939",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-secondary-fixed": "#410003",
+                        "surface-dim": "#131313",
+                        "inverse-on-surface": "#313030",
+                        "on-tertiary-container": "#e5e6e6",
+                        "on-primary-fixed": "#410004",
+                        "outline": "#ad8885",
+                        "secondary-fixed-dim": "#ffb3ac",
+                        "on-primary": "#68000a",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-error": "#690005",
+                        "secondary-container": "#8e1c1c",
+                        "on-surface-variant": "#e6bdb9",
+                        "outline-variant": "#5c3f3d",
+                        "on-primary-fixed-variant": "#930012",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb3ad",
+                        "on-tertiary": "#2f3131",
+                        "on-secondary": "#680007",
+                        "background": "#131313",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-background": "#e5e2e1",
+                        "error": "#ffb4ab"
+                    },
+                    fontFamily: {
+                        "headline": ["Bebas Neue"],
+                        "body": ["DM Sans"],
+                        "quote": ["Cormorant Garamond"],
+                        "label": ["DM Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .film-grain {
+            position: relative;
+        }
+        .film-grain::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .clip-corner {
+            clip-path: polygon(0 0, 92% 0, 100% 8%, 100% 100%, 0 100%);
+        }
+        .skew-button {
+            transform: skewX(-12deg);
+        }
+        .unskew-text {
+            transform: skewX(12deg);
+        }
+        .red-glow {
+            box-shadow: 0 0 30px rgba(204, 17, 34, 0.2);
+        }
+        .gradient-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #cc1122, transparent);
+            width: 100%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#0A0A0A] text-on-surface font-body overflow-x-hidden film-grain">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-6 py-4 bg-[#0A0A0A]/90 backdrop-blur-md z-50 border-b border-[#CC1122]/10 shadow-[0_4px_20px_rgba(204,17,34,0.15)]">
+<h1 class="font-['Bebas_Neue'] text-3xl italic tracking-widest text-[#CC1122]">FINESSE BJJ</h1>
+<button class="material-symbols-outlined text-white text-3xl" data-icon="menu">menu</button>
+</header>
+<!-- Hero Section -->
+<section class="relative h-[707px] flex flex-col justify-end p-6 pt-24 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent z-10"></div>
+<img alt="BJJ master in focus" class="w-full h-full object-cover" data-alt="Intense close-up of a Brazilian Jiu-Jitsu black belt tightening his belt in a dimly lit, atmospheric gym with dramatic shadows and red highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD35_7kZO_ZrOi2oCcmJzdSlKDhnG-vqe6mNRbdowtJSbt0sJ0J4eOcU7D6BKi5WMbQK7c7FpohSHj6eJmkAPNmfE_0AN7Nc5qGSGXRbR3UoBXAonwjMcSBv-9TuFB2rHBiqf14G058W9sd4cgOap0QkYYiXd4agG9S_vNKL4BCGsi5vC4uO3j0MIZrl-FygfNwdm5b1Lt1DOSpBwMjKpRsHufTEpVOFW3NJn1E29AKzt2c0YZ6AlGsY49G0JfFj5PJVlghCH3fpdg"/>
+</div>
+<div class="relative z-20 space-y-4">
+<span class="font-headline text-[#CC1122] text-xl tracking-widest uppercase block">The Academy Elite</span>
+<h2 class="font-headline text-7xl leading-[0.9] tracking-tighter uppercase text-white">
+                MASTER YOUR <br/> <span class="text-[#CC1122]">CRAFT</span>
+</h2>
+<p class="font-quote italic text-2xl text-on-surface-variant max-w-xs leading-tight">
+                "Technical prowess is the bridge between aggression and victory."
+            </p>
+<div class="pt-6">
+<button class="skew-button bg-primary-container text-on-primary-fixed px-8 py-4 flex items-center justify-center red-glow">
+<span class="unskew-text font-headline text-2xl tracking-tight uppercase">JOIN THE MATS</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Section Divider Tonal Shift -->
+<div class="h-16 bg-gradient-to-b from-[#0A0A0A] to-[#1A1014]"></div>
+<!-- Programs Grid -->
+<section class="bg-[#1A1014] px-6 py-12 space-y-16">
+<div class="space-y-2">
+<h3 class="font-headline text-5xl tracking-tighter uppercase">CURRICULUM</h3>
+<div class="w-12 h-1 bg-[#CC1122]"></div>
+</div>
+<!-- Program 1: Adult BJJ -->
+<div class="relative space-y-6 group">
+<div class="aspect-[4/5] w-full overflow-hidden clip-corner relative">
+<div class="absolute inset-0 bg-gradient-to-t from-[#1A1014] via-transparent to-transparent z-10"></div>
+<img alt="Adult BJJ session" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Two professional athletes engaged in a technical ground grappling sequence in a high-contrast cinematic setting with deep red accent lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwgsbn7sLblGgELTsxfSo57ACBUpEUoLMRLzzSu1sfnkPD4aLiuLrqRTs_43wu0OeVfY5pjfH18jqfv8WroNMBzlyCWy6OnN9VFvBNvuikRepd7r8D6WHHvH45DuGLGWGFQYscCfEidq5aI9KIUri3RTvuX7sDZhi8JZfNDK4EISw-D3PQ6odILMHNYUSzxFpcIcpREXRHi5T2vdO-tBibFJHylFin-VQsrDcN1K-RGE-gj5gZwVH0B5B2EV9Dmv02NlbtJUn2wl8"/>
+<div class="absolute top-4 right-4 z-20">
+<span class="bg-[#CC1122]/80 backdrop-blur-sm px-3 py-1 font-headline text-lg tracking-wider text-white uppercase">ADVANCED</span>
+</div>
+</div>
+<div class="space-y-2">
+<h4 class="font-headline text-4xl tracking-tight uppercase text-white">ADULT BJJ</h4>
+<p class="text-on-surface-variant font-body text-sm leading-relaxed">Fundamental and advanced techniques designed for the modern combatant. Focusing on pressure, leverage, and surgical execution.</p>
+<div class="gradient-line opacity-30 mt-4"></div>
+</div>
+</div>
+<!-- Program 2: Kids BJJ -->
+<div class="relative space-y-6 flex flex-col items-end text-right">
+<div class="aspect-[4/3] w-[90%] overflow-hidden clip-corner relative">
+<div class="absolute inset-0 bg-gradient-to-t from-[#1A1014] via-transparent to-transparent z-10"></div>
+<img alt="Kids BJJ class" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Group of focused children in white gis sitting on black mats, listening to an instructor in a modern martial arts studio with atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_TFjsE7V_43yFtaXhdDqzWFh-EdTiW8lXgvCqeux3obpTObcoNibH7sw8XGhvGRo81ourgQJLqcjq17B1X8VPjVF6K8BUl_dTkQDTfnQVcdKWeZ-I0CWI9LSaEdcUCHrROqLCMMSlUui89wuOV6zJVsjX8TSGUK9EhguQf8xXbqQTjp2A6omJZdhhnpTizGKRgFnFnxGdKokfGJLmLcl3kOBshQmWZCVpG1MwtJVRn-p8iHH2fklVbdAXfeAXTB2df2hP5beNZec"/>
+</div>
+<div class="space-y-2 w-full">
+<h4 class="font-headline text-4xl tracking-tight uppercase text-[#CC1122]">KIDS BJJ</h4>
+<p class="text-on-surface-variant font-body text-sm leading-relaxed">Building discipline, resilience, and confidence. Teaching the next generation the art of tactical defense.</p>
+<div class="gradient-line opacity-30 mt-4"></div>
+</div>
+</div>
+<!-- Program 3: Wrestling -->
+<div class="relative space-y-6">
+<div class="aspect-square w-full overflow-hidden clip-corner relative">
+<div class="absolute inset-0 bg-gradient-to-t from-[#1A1014] via-transparent to-transparent z-10"></div>
+<img alt="Wrestling practice" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Athletic man performing a high-intensity wrestling takedown against a dark, gritty background with sweat glistening under sharp spotlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4gA9ZtGeKHbUyg9pN5m33u8mHNRBmJSO3YlKtLkiICTyiT_8vinwtAJwCcaR_WLIO7XqCBGE5HD_zGs0uNeCGOWsLllfHMsYWEtzk-9_dW8FKl2KL6dBo1Q6OA-PlbCePyfMWxipitsIrnj_R9efZuKag9UXiacTKnAZSCbib61Pp6owfB_cz4-1_44MsIWpC6PCI7M9L3qMy9WMH5fUq5jeUoFY27etfe-pC9hQlfsd--xIQO9JzcmM5aXrIa-KONmegXbyQ_Yw"/>
+</div>
+<div class="space-y-2">
+<h4 class="font-headline text-4xl tracking-tight uppercase text-white">WRESTLING</h4>
+<p class="text-on-surface-variant font-body text-sm leading-relaxed">Dynamic takedowns and dominant positional control. The engine room of elite grappling performance.</p>
+<div class="gradient-line opacity-30 mt-4"></div>
+</div>
+</div>
+<!-- Program 4: Private Lessons -->
+<div class="bg-surface-container p-8 clip-corner border-l-2 border-[#CC1122] space-y-6">
+<h4 class="font-headline text-4xl tracking-tight uppercase text-white">PRIVATE <br/>LESSONS</h4>
+<p class="font-quote italic text-xl text-[#CC1122]">Hyper-personalized tactical coaching.</p>
+<p class="text-on-surface-variant text-sm">One-on-one sessions with our lead instructors to refine your specific game plan and eliminate technical flaws.</p>
+<button class="font-headline text-xl text-white flex items-center gap-2 group">
+                INQUIRE NOW 
+                <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Call to Action Section -->
+<section class="relative py-24 px-6 overflow-hidden">
+<div class="absolute inset-0 bg-[#0A0A0A] z-0"></div>
+<div class="absolute top-0 right-0 w-64 h-64 bg-[#CC1122]/10 blur-[120px] rounded-full"></div>
+<div class="relative z-10 text-center space-y-8">
+<h3 class="font-headline text-6xl leading-none tracking-tighter uppercase text-white">
+                NO EGO. <br/> JUST <span class="text-[#CC1122]">MATS.</span>
+</h3>
+<p class="text-on-surface-variant text-lg max-w-xs mx-auto">First session is on us. Witness the finesse in the aggression.</p>
+<div class="flex flex-col gap-4 items-center">
+<button class="skew-button w-full max-w-xs bg-primary-container text-on-primary-fixed py-5 red-glow">
+<span class="unskew-text font-headline text-3xl tracking-tight uppercase">START YOUR JOURNEY</span>
+</button>
+<p class="font-headline text-sm tracking-widest text-[#CC1122]/60 uppercase">SCHEDULE: MON-SAT 06:00 - 21:00</p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#1A1014] w-full py-12 border-t border-[#CC1122]/20 flex flex-col items-center gap-8 px-6 text-center">
+<div class="font-['Bebas_Neue'] text-3xl text-[#CC1122]">FINESSE BJJ</div>
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">PRIVACY</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">TERMS</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">CONTACT</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">LOCATION</a>
+</nav>
+<p class="font-['DM_Sans'] text-[10px] tracking-[0.1em] text-gray-600 leading-relaxed uppercase">
+            © 2024 FINESSE BJJ ACADEMY. ALL RIGHTS RESERVED. <br/> CINEMATIC AGGRESSION.
+        </p>
+</footer>
+<!-- Bottom Navigation Mobile -->
+<nav class="fixed bottom-0 w-full bg-[#0A0A0A]/95 backdrop-blur-xl border-t border-white/5 flex justify-around items-center py-4 z-50 md:hidden px-4">
+<a class="flex flex-col items-center gap-1 text-gray-500" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-headline tracking-widest uppercase">HOME</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[#CC1122]" href="#">
+<span class="material-symbols-outlined" data-icon="fitness_center" data-weight="fill">fitness_center</span>
+<span class="text-[10px] font-headline tracking-widest uppercase">PROGRAMS</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="text-[10px] font-headline tracking-widest uppercase">SCHEDULE</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-500" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-headline tracking-widest uppercase">ACADEMY</span>
+</a>
+</nav>
+<div class="h-20 md:hidden"></div>
+</body></html>

@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #0A0A0A;
+  --color-foreground: #E5E2E1;
+  --color-surface: #0A0A0A;
+  --color-surface-container: #1A1014;
+  --color-surface-container-low: #1C1B1B;
+  --color-surface-container-high: #2A2A2A;
+  --color-surface-container-highest: #353534;
+  --color-surface-container-lowest: #0E0E0E;
+
+  --color-primary-container: #CC1122;
+  --color-primary-container-hover: #E8222E;
+  --color-primary: #FFB3AD;
+  --color-on-primary: #68000A;
+  --color-on-primary-container: #FFDEDB;
+  --color-secondary-container: #8E1C1C;
+  --color-secondary: #FFB3AC;
+
+  --color-on-surface: #E5E2E1;
+  --color-on-surface-variant: #E6BDB9;
+  --color-on-background: #E5E2E1;
+  --color-outline: #AD8885;
+  --color-outline-variant: #5C3F3D;
+
+  --font-headline: "Bebas Neue", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+
+  --radius: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+}
+
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+}
+
+.clip-corner {
+  clip-path: polygon(0 0, 92% 0, 100% 8%, 100% 100%, 0 100%);
+}
+
+.parallelogram {
+  transform: skewX(-12deg);
+}
+
+.parallelogram-content {
+  transform: skewX(12deg);
+}
+
+.red-glow {
+  filter: drop-shadow(0 0 15px rgba(204, 17, 34, 0.4));
+}
+
+.gradient-divider {
+  background: linear-gradient(90deg, transparent, #CC1122, transparent);
+  height: 1px;
+  width: 100%;
+}
+
+::selection {
+  background-color: #CC1122;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CC1122;
+}
+
+body {
+  background: #0A0A0A;
+  color: #E5E2E1;
+  font-family: "DM Sans", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}

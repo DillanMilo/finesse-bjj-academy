@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Cormorant+Garamond:ital,wght@1,400;1,600&amp;family=DM+Sans:wght@400;500;700&amp;family=Epilogue:wght@800;900&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-container": "#8e1c1c",
+              "primary": "#ffb3ad",
+              "outline-variant": "#5c3f3d",
+              "surface-container": "#201f1f",
+              "on-error-container": "#ffdad6",
+              "primary-fixed": "#ffdad7",
+              "outline": "#ad8885",
+              "on-tertiary-container": "#e5e6e6",
+              "surface-container-low": "#1c1b1b",
+              "on-background": "#e5e2e1",
+              "tertiary-container": "#656767",
+              "tertiary-fixed": "#e2e2e2",
+              "inverse-primary": "#c0001b",
+              "inverse-on-surface": "#313030",
+              "primary-container": "#cc1122",
+              "surface-variant": "#353534",
+              "on-tertiary-fixed": "#1a1c1c",
+              "on-surface": "#e5e2e1",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-secondary-container": "#ff9e96",
+              "on-primary-fixed-variant": "#930012",
+              "error-container": "#93000a",
+              "surface-dim": "#131313",
+              "on-primary-fixed": "#410004",
+              "on-secondary-fixed-variant": "#8a1a1a",
+              "tertiary": "#c6c6c7",
+              "on-secondary": "#680007",
+              "on-primary": "#68000a",
+              "secondary-fixed": "#ffdad6",
+              "tertiary-fixed-dim": "#c6c6c7",
+              "on-error": "#690005",
+              "secondary-fixed-dim": "#ffb3ac",
+              "primary-fixed-dim": "#ffb3ad",
+              "surface-container-lowest": "#0e0e0e",
+              "on-tertiary": "#2f3131",
+              "on-primary-container": "#ffdedb",
+              "surface": "#131313",
+              "surface-container-high": "#2a2a2a",
+              "error": "#ffb4ab",
+              "background": "#131313",
+              "on-secondary-fixed": "#410003",
+              "inverse-surface": "#e5e2e1",
+              "secondary": "#ffb3ac",
+              "surface-container-highest": "#353534",
+              "surface-bright": "#3a3939",
+              "surface-tint": "#ffb3ad",
+              "on-surface-variant": "#e6bdb9"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Inter"],
+              "label": ["Inter"],
+              "bebas": ["Bebas Neue"],
+              "cormorant": ["Cormorant Garamond"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>body {
+    background-color: #0A0A0A
+    }
+.grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCGbu8rfXYGziT3RlPXyGe35lKzV8XVHUO_HkE52Zz0iR-2_hSzbFbbHJuP7bdBNTNCFkIvFywAU2_M5JCdZRY4YJFVWWkUBQDBCZuABCcUgFRKk19DkYo11ZQSE0U-nABlb9JBW2Rji92nU4Jmohlbl18hteL5Pz_1gDke_n97onvZGa0ox-oHNpgGfIkMpHH4uZ4NSJ9FrhfXAaxSbDDn62Q_usDOnSzfgbX_4WAqLNl3vpx0khAARo5mIedVWIjPsGVxs6PUL3s)
+    }
+.clipped-corner {
+    clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 0 100%)
+    }
+.skew-button {
+    transform: skewx(-12deg)
+    }
+.skew-button-text {
+    transform: skewx(12deg)
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }</style>
+</head>
+<body class="font-body text-on-surface selection:bg-primary-container selection:text-white overflow-x-hidden">
+<div class="grain"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md shadow-[0_0_30px_rgba(204,17,34,0.2)]">
+<div class="flex justify-between items-center w-full px-8 py-6 max-w-[1920px] mx-auto relative">
+<div class="flex items-center gap-4">
+<span class="text-3xl font-black italic tracking-tighter text-red-600 font-bebas">FINESSE BJJ</span>
+</div>
+<div class="hidden md:flex gap-10 font-bebas uppercase tracking-tighter text-xl">
+<a class="text-gray-400 hover:text-white transition-colors transition-all duration-300 ease-in-out" href="#">Programs</a>
+<a class="text-gray-400 hover:text-white transition-colors transition-all duration-300 ease-in-out" href="#">Trainers</a>
+<a class="text-gray-400 hover:text-white transition-colors transition-all duration-300 ease-in-out" href="#">Schedule</a>
+<a class="text-gray-400 hover:text-white transition-colors transition-all duration-300 ease-in-out" href="#">Pricing</a>
+<a class="text-red-600 border-b-2 border-red-600 pb-1 transition-all duration-300 ease-in-out" href="#">Contact</a>
+</div>
+<button class="skew-button bg-primary-container px-8 py-3 hover:brightness-125 hover:drop-shadow-[0_0_10px_#CC1122] transition-all duration-300">
+<span class="skew-button-text block font-bebas text-xl text-white tracking-widest">JOIN THE MATS</span>
+</button>
+<div class="bg-gradient-to-r from-transparent via-red-600 to-transparent h-[1px] w-full absolute bottom-0 left-0"></div>
+</div>
+</nav>
+<main class="pt-32 pb-20">
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto px-8 mb-24 grid lg:grid-cols-2 gap-16 items-center">
+<div class="relative">
+<h1 class="font-bebas text-8xl md:text-[10rem] leading-[0.85] tracking-tighter uppercase mb-6 text-white">
+                    CONTACT <br/><span class="text-primary-container">US</span>
+</h1>
+<p class="font-cormorant italic text-3xl text-on-surface-variant mb-12">"Finesse is the ultimate expression of mechanical advantage."</p>
+<div class="space-y-12">
+<div class="flex items-start gap-6">
+<span class="material-symbols-outlined text-primary-container text-4xl">location_on</span>
+<div>
+<h3 class="font-bebas text-2xl text-white tracking-widest uppercase mb-2">The Grounds</h3>
+<p class="text-on-surface-variant text-lg">21000 Holzwarth Rd<br/>Spring, TX 77388</p>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<span class="material-symbols-outlined text-primary-container text-4xl">call</span>
+<div>
+<h3 class="font-bebas text-2xl text-white tracking-widest uppercase mb-2">The Hotline</h3>
+<p class="text-on-surface-variant text-lg">(281) 555-0192</p>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<span class="material-symbols-outlined text-primary-container text-4xl">mail</span>
+<div>
+<h3 class="font-bebas text-2xl text-white tracking-widest uppercase mb-2">Direct Link</h3>
+<p class="text-on-surface-variant text-lg">combat@finessebjj.com</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary-container/10 blur-3xl rounded-full"></div>
+<div class="clipped-corner bg-surface-container-high p-8 md:p-12 relative border border-outline-variant/15">
+<h2 class="font-bebas text-5xl text-white mb-8 tracking-tighter">INQUIRE FOR COMBAT</h2>
+<form class="space-y-8">
+<div class="grid md:grid-cols-2 gap-8">
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary-container transition-all font-bebas tracking-widest placeholder:text-gray-600 text-white" placeholder="NAME" type="text"/>
+</div>
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary-container transition-all font-bebas tracking-widest placeholder:text-gray-600 text-white" placeholder="EMAIL" type="email"/>
+</div>
+</div>
+<div class="relative">
+<select class="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary-container transition-all font-bebas tracking-widest text-gray-600 appearance-none">
+<option>SELECT EXPERIENCE LEVEL</option>
+<option>WHITE BELT / NOVICE</option>
+<option>BLUE / PURPLE BELT</option>
+<option>BROWN / BLACK BELT</option>
+</select>
+</div>
+<div class="relative">
+<textarea class="w-full bg-transparent border-0 border-b border-outline-variant py-4 focus:ring-0 focus:border-primary-container transition-all font-bebas tracking-widest placeholder:text-gray-600 text-white resize-none" placeholder="MESSAGE / INTENT" rows="4"></textarea>
+</div>
+<button class="w-full skew-button bg-primary-container py-5 hover:brightness-125 transition-all group" type="submit">
+<span class="skew-button-text block font-bebas text-2xl text-white tracking-[0.2em]">INITIALIZE CONTACT</span>
+</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Map Section -->
+<section class="w-full px-8 max-w-[1920px] mx-auto mb-24">
+<div class="relative h-[600px] w-full overflow-hidden clipped-corner border border-outline-variant/10 shadow-[0_0_50px_rgba(204,17,34,0.1)]">
+<!-- Placeholder for cinematic dark map -->
+<div class="absolute inset-0 bg-surface-container-lowest grayscale contrast-125 brightness-50">
+<img alt="Map location of Spring, TX" class="w-full h-full object-cover opacity-40 mix-blend-overlay" data-alt="Cinematic dark bird's eye view of a stylized urban street grid at night with deep shadows and red light accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDL7xY0pP_RvA3jSh9tf96hpYuVcW3luhVwTuwnVxF9f0aEtZCtOeo4VQV-F1iCIWRH8KBGqynfa5PZEe5Bi0hWDWK0wmXG5QB7IehmBdW1vyaoVLuQUKbIMkLhp9ZDgnDZqhNRhbOvj-XcOVGZlFS2TTheqnQXYOCz0mP1eQbYGSwITpRqVbrust_d0I3j0VhcLbBSGTxCP7cwWRmlefQChW1UzAnocaRepsFugljP9bQ-2OnrpVou6eUfPnjx_VYA8gMB8Vbu2mI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background"></div>
+<div class="hidden" data-location="Spring, TX" style=""></div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative">
+<div class="absolute -inset-8 bg-primary-container blur-2xl opacity-40 animate-pulse"></div>
+<span class="material-symbols-outlined text-white text-7xl relative z-10 drop-shadow-[0_0_15px_#CC1122]">location_on</span>
+</div>
+</div>
+<div class="absolute bottom-12 left-12 bg-black/80 backdrop-blur-xl p-6 border-l-4 border-primary-container">
+<h4 class="font-bebas text-2xl text-white mb-1">FINESSE ACADEMY HQ</h4>
+<p class="text-on-surface-variant font-mono text-sm tracking-wider">COORD: 30.0799° N, 95.4172° W</p>
+</div>
+</div>
+</section>
+<!-- Social Grid Section -->
+<section class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<a class="group relative aspect-square overflow-hidden border border-outline-variant/20 hover:border-primary-container transition-all" href="#">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" data-alt="Intense close-up of a Brazilian Jiu-Jitsu match in a dark gym, focused on hands gripping a red gi collar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7TeWpSCQV5lHhAENkh3POlDYtr3RRGKHoQSyHzQS19yDl8J7N_gsULDBrLy4IVc6-UWkJvnynsyxehI9kFbGUMsqM-vyUh8irCeWJz4CZUf8BI-0BGQINNJgCgDAMfI0x4OQUPuxBSfMJ_ThHL6OEScis8xx8iL6polzOMnUPF1S-wXm7kodXE4k4kuJUYx26lV1q-S9SAYFMzvDK4lUtsYOp0vuWahR4P4V5IwxVxb_bnoSZXBnHQHwRI_-BQa9IkF4mtfDuPRI"/>
+<div class="absolute inset-0 bg-primary-container/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute bottom-4 left-4 font-bebas text-xl text-white">INSTAGRAM</div>
+</a>
+<a class="group relative aspect-square overflow-hidden border border-outline-variant/20 hover:border-primary-container transition-all" href="#">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" data-alt="Dramatic black and white action shot of a BJJ sweep maneuver on black mats under harsh spotlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFIuTZ3zYpuqd-s9RjWwnR9yrluVickrON8DFJgIjRpmI0q5HDxQ30gKV7h-cC7z-EzdihSkrpY3Tq8PLz595bSr9A-aWJO2EbLNfpULBjRGW1KaRD7Yb1BhBtwPzirCm2HHcaT6tFCRUiA1SyvJA8yA6jW490yGFAZ9YiyYT8C0uGBzhjiGzurYTvy-KLVVrS6LoZwJ9NAxfn8iK902kXSgDd-lEWewoippF46lUFezt0hxoHB1YabqE1YRgHnHVO8_wDUARyXaQ"/>
+<div class="absolute inset-0 bg-primary-container/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute bottom-4 left-4 font-bebas text-xl text-white">FACEBOOK</div>
+</a>
+<a class="group relative aspect-square overflow-hidden border border-outline-variant/20 hover:border-primary-container transition-all" href="#">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" data-alt="Wide cinematic shot of a Brazilian Jiu-Jitsu class bowing on the mats in a minimal dark industrial academy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf0Pbp_q3poNkvQvPps003mcp-OqkSTP6-gn8kM3jjSnBcgfmd_HjVR37ku7W-MOJPN5-LQBbkZUcgh7F3PNjqBzAfqVj69NDCLBZE4DAvJ3yll_iJ4EFuccPjX4iCHaOv9VeJfMROkY8bcKEBFhdGba6E-NdCfea_n2z-bQg3m6ZlJHnkgvOMlCAoYjhsJJOeZkezl7uWV6X5pDN0D-ZEN3bxpSM-ciw2FsjmeKT7HKxobY8i0djzEdFmrOqaEALTt0K5ZhMXxbk"/>
+<div class="absolute inset-0 bg-primary-container/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute bottom-4 left-4 font-bebas text-xl text-white">YOUTUBE</div>
+</a>
+<a class="group relative aspect-square overflow-hidden border border-outline-variant/20 hover:border-primary-container transition-all" href="#">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" data-alt="Detailed close up shot of a high quality heavy duty red BJJ belt with academy logo embroidery in dark room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe4XOWQm-iZQtMxDe6-q8csfUtq702KdiaLn6eJ5Y73X4emO7fyazoP7RA0_-FyefOriJQ8-vb-khUawmaOOYFmzSrM81StnB6Miguo3_QoiW4N0S31PTxjPOJPgmPt1tFILLXsVCutDUXX99WKDZpPbmmLCp6TBItpreF-v5plQzWHCZyKg2A_sCznD3frkKNCy9dxsMGAT1TWuTA1ZgaowlK0SpWv1tjE1y5GLX3VF7i2xmJbJuhbf4CYR1bqCGTljIxUqDVCAA"/>
+<div class="absolute inset-0 bg-primary-container/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute bottom-4 left-4 font-bebas text-xl text-white">TWITTER</div>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0A0A0A] border-t border-red-900/20 py-16 px-8 relative overflow-hidden">
+<div class="absolute inset-0 bg-[#1A1014] opacity-30 pointer-events-none"></div>
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 max-w-7xl mx-auto relative z-10">
+<div class="max-w-md">
+<span class="text-4xl font-black text-white italic font-bebas mb-6 block">FINESSE BJJ</span>
+<p class="font-cormorant italic text-xl text-gray-400">Forging precision from chaos. The premier destination for Brazilian Jiu-Jitsu in Spring, Texas.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-16">
+<div>
+<h5 class="font-bebas text-red-700 text-lg tracking-widest uppercase mb-6">Navigation</h5>
+<ul class="space-y-4 font-body text-sm tracking-widest uppercase text-gray-600">
+<li><a class="hover:text-red-500 transition-colors" href="#">Programs</a></li>
+<li><a class="hover:text-red-500 transition-colors" href="#">Schedule</a></li>
+<li><a class="hover:text-red-500 transition-colors" href="#">Pricing</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bebas text-red-700 text-lg tracking-widest uppercase mb-6">Social</h5>
+<ul class="space-y-4 font-body text-sm tracking-widest uppercase text-gray-600">
+<li><a class="hover:text-red-500 transition-colors" href="#">Instagram</a></li>
+<li><a class="hover:text-red-500 transition-colors" href="#">Facebook</a></li>
+<li><a class="hover:text-red-500 transition-colors" href="#">YouTube</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bebas text-red-700 text-lg tracking-widest uppercase mb-6">Legal</h5>
+<ul class="space-y-4 font-body text-sm tracking-widest uppercase text-gray-600">
+<li><a class="hover:text-red-500 transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-red-500 transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 items-center">
+<p class="font-body text-sm tracking-widest uppercase text-gray-600">© 2024 FINESSE BJJ ACADEMY. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-4">
+<div class="h-2 w-2 bg-red-600"></div>
+<div class="h-2 w-2 bg-red-900"></div>
+<div class="h-2 w-2 bg-zinc-800"></div>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&amp;family=Cormorant+Garamond:ital,wght@1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ffb3ad",
+              "tertiary-container": "#656767",
+              "surface-container-low": "#1c1b1b",
+              "primary-container": "#cc1122",
+              "secondary": "#ffb3ac",
+              "on-surface": "#e5e2e1",
+              "on-primary-container": "#ffdedb",
+              "surface-variant": "#353534",
+              "primary-fixed": "#ffdad7",
+              "on-error-container": "#ffdad6",
+              "tertiary": "#c6c6c7",
+              "secondary-fixed": "#ffdad6",
+              "on-secondary-fixed-variant": "#8a1a1a",
+              "surface": "#131313",
+              "surface-container-lowest": "#0e0e0e",
+              "inverse-primary": "#c0001b",
+              "surface-container": "#201f1f",
+              "tertiary-fixed-dim": "#c6c6c7",
+              "on-secondary-container": "#ff9e96",
+              "surface-tint": "#ffb3ad",
+              "surface-container-highest": "#353534",
+              "surface-bright": "#3a3939",
+              "on-tertiary-fixed": "#1a1c1c",
+              "on-secondary-fixed": "#410003",
+              "surface-dim": "#131313",
+              "inverse-on-surface": "#313030",
+              "on-tertiary-container": "#e5e6e6",
+              "on-primary-fixed": "#410004",
+              "outline": "#ad8885",
+              "secondary-fixed-dim": "#ffb3ac",
+              "on-primary": "#68000a",
+              "error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-error": "#690005",
+              "secondary-container": "#8e1c1c",
+              "on-surface-variant": "#e6bdb9",
+              "outline-variant": "#5c3f3d",
+              "on-primary-fixed-variant": "#930012",
+              "surface-container-high": "#2a2a2a",
+              "inverse-surface": "#e5e2e1",
+              "primary-fixed-dim": "#ffb3ad",
+              "on-tertiary": "#2f3131",
+              "on-secondary": "#680007",
+              "background": "#131313",
+              "tertiary-fixed": "#e2e2e2",
+              "on-background": "#e5e2e1",
+              "error": "#ffb4ab"
+            },
+            fontFamily: {
+              "headline": ["Bebas Neue"],
+              "body": ["DM Sans"],
+              "quote": ["Cormorant Garamond"],
+              "label": ["DM Sans"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>.film-grain {
+    position: relative
+    }
+.film-grain::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuC_MEHFP81j4zITbp2YuJzIVNm4M2tbddUz8vt0AWALzhUxhJu1eVvYQFeObpzRQ8P78RkwmC85kDqDjyz6Ilg60SXIdHFGHBeVzEzjxOmTFa0ifSjuI3ENV_lWf45ob0P_BmRLI5bygbOy7AXwEVhkF7zV4k0LkY8mI6DCRRYq9tIYFNFCloD0rh_fBDliyukc7hvfBuh2E0UO2nIxiskeLhGQc57lr27hKm0oZ7tLA6j02tdsoyaCZRMDzdE4bgxUjEyFpwPi2q4);
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 10
+    }
+.clipped-box {
+    clip-path: polygon(0 0, 92% 0, 100% 15%, 100% 100%, 0 100%)
+    }
+.skew-button {
+    transform: skewx(-12deg)
+    }
+.skew-text {
+    transform: skewx(12deg)
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }</style>
+</head>
+<body class="bg-surface-dim text-on-surface font-body selection:bg-primary-container selection:text-white film-grain">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-[#CC1122]/10 shadow-[0_4px_20px_rgba(204,17,34,0.15)] z-50">
+<div class="font-['Bebas_Neue'] text-3xl italic tracking-widest text-[#CC1122]">FINESSE BJJ</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-400 hover:text-white transition-colors" href="#">PROGRAMS</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-400 hover:text-white transition-colors" href="#">TRAINERS</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-[#CC1122] border-b-2 border-[#CC1122] pb-1" href="#">SCHEDULE</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-400 hover:text-white transition-colors" href="#">ACADEMY</a>
+</div>
+<button class="skew-button bg-primary-container px-6 py-2 transition-all hover:brightness-125 hover:shadow-[0_0_20px_rgba(204,17,34,0.5)] active:scale-95 duration-200">
+<span class="skew-text block font-headline text-white text-lg tracking-wider">JOIN THE MATS</span>
+</button>
+</nav>
+<main class="pt-24 pb-20">
+<!-- Hero Section -->
+<section class="relative h-[614px] flex items-end px-8 pb-16 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-surface-dim/40 to-transparent z-10"></div>
+<img class="w-full h-full object-cover grayscale opacity-50" data-alt="Cinematic high contrast black and white photo of a Brazilian Jiu Jitsu gym interior with moody lighting and heavy shadows on the mats" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy0UZjHCvtcvbuTRd2xmO5TVTWlDBjkYRtqsmU6j1pU7PAqqmjg8ul704hQH91B9xXpKhiYv_RxHDZHnJvm4zNOHaKoWjKiE1YUyWxoDfVUb-hW6R3LrlEy6aady99Zxv-xHpbW1_FekZvXeUxdE9lAvp7kQeE46S3_E8q8Z5pCRonS2nRqhAEwjDDm6-rzEKO-8WIw0xazLsuRRDUT4KRcsZb2iYvdcScBwkWscznirjOd7EUKyoGPdURXt546U1VOh3FVk2b_GU"/>
+</div>
+<div class="relative z-20 max-w-5xl">
+<h1 class="font-headline text-8xl md:text-[12rem] leading-[0.85] tracking-tighter uppercase text-white mb-4">
+                    CHOOSE YOUR <br/> <span class="text-primary-container drop-shadow-[0_0_30px_rgba(204,17,34,0.4)]">BATTLE</span>
+</h1>
+<p class="font-quote italic text-2xl md:text-3xl text-on-surface-variant max-w-xl">
+                    "The mat is a mirror. What you see there is what you are."
+                </p>
+</div>
+</section>
+<!-- Schedule Grid -->
+<section class="px-8 mt-12 max-w-[1600px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-baseline mb-12 gap-4">
+<h2 class="font-headline text-5xl tracking-tighter uppercase">Weekly Timetable</h2>
+<div class="flex gap-4">
+<span class="flex items-center gap-2 text-xs tracking-widest uppercase opacity-60">
+<span class="w-3 h-3 bg-primary-container shadow-[0_0_8px_rgba(204,17,34,0.8)]"></span>
+                        Active Session
+                    </span>
+</div>
+</div>
+<!-- Mobile View: List -->
+<div class="md:hidden space-y-8">
+<!-- Single Day Instance -->
+<div class="border-l-2 border-primary-container pl-4">
+<h3 class="font-headline text-3xl mb-4">MONDAY</h3>
+<div class="space-y-4">
+<div class="clipped-box bg-surface-container-high p-4 border-l-4 border-primary-container shadow-[0_0_15px_rgba(204,17,34,0.2)]">
+<span class="font-headline text-primary-container text-sm tracking-widest block mb-1">06:00 - 07:30</span>
+<h4 class="font-headline text-xl text-white">MORNING BJJ</h4>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest">All Levels • Gi</p>
+</div>
+<div class="clipped-box bg-surface-container p-4">
+<span class="font-headline text-gray-500 text-sm tracking-widest block mb-1">16:30 - 17:30</span>
+<h4 class="font-headline text-xl text-white">KIDS BJJ</h4>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest">Ages 6-12</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Desktop View: Grid -->
+<div class="hidden md:grid grid-cols-7 gap-2">
+<!-- Day Headers -->
+<div class="pb-6 text-center font-headline text-2xl tracking-widest text-on-surface-variant">MON</div>
+<div class="pb-6 text-center font-headline text-2xl tracking-widest text-on-surface-variant">TUE</div>
+<div class="pb-6 text-center font-headline text-2xl tracking-widest text-on-surface-variant">WED</div>
+<div class="pb-6 text-center font-headline text-2xl tracking-widest text-on-surface-variant">THU</div>
+<div class="pb-6 text-center font-headline text-2xl tracking-widest text-on-surface-variant">FRI</div>
+<div class="pb-6 text-center font-headline text-2xl tracking-widest text-on-surface-variant">SAT</div>
+<div class="pb-6 text-center font-headline text-2xl tracking-widest text-on-surface-variant">SUN</div>
+<!-- Column MON -->
+<div class="space-y-4">
+<div class="clipped-box bg-surface-container-high p-4 border-l-4 border-primary-container shadow-[0_0_20px_rgba(204,17,34,0.3)] border-primary-container">
+<span class="font-headline text-primary-container text-xs tracking-[0.2em] block mb-2">06:00 - 07:30</span>
+<h4 class="font-headline text-xl text-white leading-tight">MORNING BJJ</h4>
+<div class="mt-4 bg-primary-container/10 inline-block px-2 py-0.5 text-[10px] font-headline tracking-widest text-primary-container uppercase">ACTIVE</div>
+</div>
+<div class="clipped-box bg-surface-container p-4 hover:bg-surface-container-high transition-colors group">
+<span class="font-headline text-gray-500 text-xs tracking-[0.2em] block mb-2">16:30 - 17:30</span>
+<h4 class="font-headline text-xl text-white leading-tight group-hover:text-primary-container transition-colors">KIDS BJJ</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter mt-1">Foundation Basics</p>
+</div>
+<div class="clipped-box bg-surface-container p-4 hover:bg-surface-container-high transition-colors group">
+<span class="font-headline text-gray-500 text-xs tracking-[0.2em] block mb-2">18:30 - 20:00</span>
+<h4 class="font-headline text-xl text-white leading-tight group-hover:text-primary-container transition-colors">ADULT BJJ</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter mt-1">Fundamental Focus</p>
+</div>
+</div>
+<!-- Column TUE -->
+<div class="space-y-4">
+<div class="clipped-box bg-surface-container p-4 hover:bg-surface-container-high transition-colors group">
+<span class="font-headline text-gray-500 text-xs tracking-[0.2em] block mb-2">07:00 - 08:30</span>
+<h4 class="font-headline text-xl text-white leading-tight group-hover:text-primary-container transition-colors">WRESTLING</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter mt-1">Take-down Tech</p>
+</div>
+<div class="clipped-box bg-surface-container p-4 hover:bg-surface-container-high transition-colors group">
+<span class="font-headline text-gray-500 text-xs tracking-[0.2em] block mb-2">18:30 - 20:00</span>
+<h4 class="font-headline text-xl text-white leading-tight group-hover:text-primary-container transition-colors">ADVANCED BJJ</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter mt-1">Competition Prep</p>
+</div>
+</div>
+<!-- Column WED -->
+<div class="space-y-4">
+<div class="clipped-box bg-surface-container p-4 hover:bg-surface-container-high transition-colors group">
+<span class="font-headline text-gray-500 text-xs tracking-[0.2em] block mb-2">06:00 - 07:30</span>
+<h4 class="font-headline text-xl text-white leading-tight group-hover:text-primary-container transition-colors">MORNING BJJ</h4>
+</div>
+<div class="clipped-box bg-surface-container p-4 hover:bg-surface-container-high transition-colors group">
+<span class="font-headline text-gray-500 text-xs tracking-[0.2em] block mb-2">18:30 - 20:00</span>
+<h4 class="font-headline text-xl text-white leading-tight group-hover:text-primary-container transition-colors">ADULT BJJ</h4>
+</div>
+</div>
+<!-- Column THU -->
+<div class="space-y-4">
+<div class="clipped-box bg-surface-container p-4 hover:bg-surface-container-high transition-colors group">
+<span class="font-headline text-gray-500 text-xs tracking-[0.2em] block mb-2">18:30 - 20:00</span>
+<h4 class="font-headline text-xl text-white leading-tight group-hover:text-primary-container transition-colors">ADVANCED BJJ</h4>
+</div>
+<div class="clipped-box bg-surface-container p-4 hover:bg-surface-container-high transition-colors group">
+<span class="font-headline text-gray-500 text-xs tracking-[0.2em] block mb-2">20:00 - 21:00</span>
+<h4 class="font-headline text-xl text-white leading-tight group-hover:text-primary-container transition-colors">OPEN MAT</h4>
+</div>
+</div>
+<!-- Column FRI -->
+<div class="space-y-4">
+<div class="clipped-box bg-surface-container p-4 hover:bg-surface-container-high transition-colors group">
+<span class="font-headline text-gray-500 text-xs tracking-[0.2em] block mb-2">06:00 - 07:30</span>
+<h4 class="font-headline text-xl text-white leading-tight group-hover:text-primary-container transition-colors">MORNING BJJ</h4>
+</div>
+<div class="clipped-box bg-surface-container p-4 hover:bg-surface-container-high transition-colors group">
+<span class="font-headline text-gray-500 text-xs tracking-[0.2em] block mb-2">17:00 - 18:30</span>
+<h4 class="font-headline text-xl text-white leading-tight group-hover:text-primary-container transition-colors">WRESTLING</h4>
+</div>
+</div>
+<!-- Column SAT -->
+<div class="space-y-4">
+<div class="clipped-box bg-surface-container p-4 hover:bg-surface-container-high transition-colors group">
+<span class="font-headline text-gray-500 text-xs tracking-[0.2em] block mb-2">10:00 - 12:00</span>
+<h4 class="font-headline text-xl text-white leading-tight group-hover:text-primary-container transition-colors">COMP CLASS</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter mt-1">High Intensity</p>
+</div>
+</div>
+<!-- Column SUN -->
+<div class="space-y-4">
+<div class="clipped-box bg-surface-container-low p-4 opacity-50 border-dashed border border-outline-variant">
+<span class="font-headline text-gray-600 text-xs tracking-[0.2em] block mb-2">ALL DAY</span>
+<h4 class="font-headline text-xl text-gray-600 leading-tight italic">REST DAY</h4>
+</div>
+</div>
+</div>
+</section>
+<!-- Discipline Grid (Bento) -->
+<section class="px-8 mt-32 max-w-[1600px] mx-auto">
+<h2 class="font-headline text-4xl mb-12 tracking-tighter">OUR DISCIPLINES</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 h-[600px]">
+<div class="md:col-span-2 relative group overflow-hidden clipped-box bg-surface-container">
+<img class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-700" data-alt="Close up of a Brazilian Jiu Jitsu purple belt tied over a white gi, texture of the fabric and worn belt visible" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXGGcm3XuAPnmo8Zbqr4ZWI6YUk-OFX_y9wsGN768WA62cHkCt0J25cESHABOigdgm3qHNPSmRNdovzilcx90CM1OC6IZihQJka2T6fT86nBXAt7NZfsbHodOpFpc6N1dY1_ZTHCQtnmJQclyr7PwDRiXwCHCOBAeLH90jEvMmGzhY6OkG8_uJZhJZ6WiXtB8ZQbOeyFLDpI5-O3o68iJj7__CsTquS6zS28w3kDLwXA4xlZWCfbWHoC7U3yGMYuW4eDibzvNEKJ8"/>
+<div class="absolute bottom-6 left-6 z-20">
+<h3 class="font-headline text-4xl text-white">ADULT GI</h3>
+<p class="text-primary-container font-headline tracking-widest">FUNDAMENTALS</p>
+</div>
+</div>
+<div class="relative group overflow-hidden clipped-box bg-surface-container">
+<img class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-700" data-alt="Fighters in a high intensity wrestling match, focus on sweat and muscular tension, dramatic top down lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1wMMQx5-6moF7bfWLcceNGwL-g3ncm122z4jW7qOqL1aWpm-6btXkOt35PgFUVm6bs8IWqnL0fzWBTjI0atYu26yrJ6nmO3nXuH3x7eFI1kJee5Q3pL_z4C5rxP62sTigZ04DpE6O8tRF6K_bWFUow_-1M1etS32MrjJCUuCCpj_dRnLdkvaKnX2gDvfyNSkYFyzHtxjpMO_4_egoM8XQz6LqknDx1QJ6i8jCjAlxTe8PJhO880MC5nkBBH-Do1eOSitvUAiawm8"/>
+<div class="absolute bottom-6 left-6 z-20">
+<h3 class="font-headline text-3xl text-white">WRESTLING</h3>
+</div>
+</div>
+<div class="relative group overflow-hidden clipped-box bg-surface-container">
+<img class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-700" data-alt="Youth Brazilian Jiu Jitsu class with multiple kids on the mat in white and blue gis, sense of movement and energy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXWetCVHvwczxBVIzegLsxnDDdcVU7vySEng8WWsXuR3BG5UrwV9sDXA-AkvHQNe1xLpS2U-15zBXFV-8XfI8zlBpjBa3GggyamB60koQCNJ5Q6f48CvlbEkCeGYkBnzipSPjcATrhaiSoFaDWAtL3pq1JpZ_f_Cj7JK8qwbiLivjW9eOUkMIP3yc-LZg7m7zvEd0cQvRdsduJncy7KaAmA_pneeS3SAVhOmfj-EDNsj-YiaeMdJPIdPI2_9I7sJmUt97GOKrMaiE"/>
+<div class="absolute bottom-6 left-6 z-20">
+<h3 class="font-headline text-3xl text-white">KIDS PROGRAM</h3>
+</div>
+</div>
+<div class="md:col-span-2 relative group overflow-hidden clipped-box bg-surface-container">
+<img class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-700" data-alt="Athletes training in No-Gi Jiu Jitsu with black rash guards, focus on grappling technique and shadow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPZei-GTTB9P07Uq3W_azrRtWxLJwWF2HQ6XvIQuFxkbDfm4R5RldT3iU8-1mI89Ztzp_iv0FTWEyKEkCIBXqNkEyflYEHuToB8z-CwMIOKRDq1ib4EzSDG8wbxVTkyvtYHM3Vjw07mqhTTDqRLSvPSTdX8SNP-HT8itE46O56Px1k4Wfcfpga2JMc_ukIrXKvPhxc81d1xjmTvWh0Ox0mYPOMHV6gTIRvVd_ufOBI9QoZsHGid34g3Es2dNC_7VE1D_U2_Sb2PqQ"/>
+<div class="absolute bottom-6 left-6 z-20">
+<h3 class="font-headline text-4xl text-white">NO-GI BJJ</h3>
+<p class="text-primary-container font-headline tracking-widest">ADVANCED TACTICS</p>
+</div>
+</div>
+<div class="md:col-span-2 relative group overflow-hidden clipped-box bg-surface-container">
+<div class="absolute inset-0 bg-gradient-to-br from-[#CC1122]/40 to-black z-10"></div>
+<div class="absolute inset-0 flex flex-col justify-center items-center p-12 text-center z-20">
+<h3 class="font-headline text-4xl text-white mb-4">READY TO BEGIN?</h3>
+<p class="font-quote italic text-xl text-on-surface-variant mb-8 max-w-sm">"The hardest part of any journey is stepping through the door for the first time."</p>
+<button class="skew-button bg-white px-8 py-3 group">
+<span class="skew-text block font-headline text-black text-xl tracking-widest group-hover:scale-105 transition-transform">BOOK A TRIAL SESSION</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full flex flex-col items-center gap-6 px-4 py-12 border-t border-[#CC1122]/20 bg-[#1A1014] film-grain">
+<div class="font-['Bebas_Neue'] text-2xl text-[#CC1122]">FINESSE BJJ</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">PRIVACY</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">TERMS</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">CONTACT</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">LOCATION</a>
+</div>
+<div class="h-px w-24 bg-gradient-to-r from-transparent via-[#CC1122] to-transparent my-2"></div>
+<div class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-600 text-center">
+            © 2024 FINESSE BJJ ACADEMY. ALL RIGHTS RESERVED. CINEMATIC AGGRESSION.
+        </div>
+</footer>
+</body></html>

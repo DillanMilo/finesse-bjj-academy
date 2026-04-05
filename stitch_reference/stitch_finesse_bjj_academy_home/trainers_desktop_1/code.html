@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Cormorant+Garamond:ital,wght@1,400;1,600&amp;family=DM+Sans:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ffb3ad",
+              "tertiary-container": "#656767",
+              "surface-container-low": "#1c1b1b",
+              "primary-container": "#cc1122",
+              "secondary": "#ffb3ac",
+              "on-surface": "#e5e2e1",
+              "on-primary-container": "#ffdedb",
+              "surface-variant": "#353534",
+              "primary-fixed": "#ffdad7",
+              "on-error-container": "#ffdad6",
+              "tertiary": "#c6c6c7",
+              "secondary-fixed": "#ffdad6",
+              "on-secondary-fixed-variant": "#8a1a1a",
+              "surface": "#131313",
+              "surface-container-lowest": "#0e0e0e",
+              "inverse-primary": "#c0001b",
+              "surface-container": "#201f1f",
+              "tertiary-fixed-dim": "#c6c6c7",
+              "on-secondary-container": "#ff9e96",
+              "surface-tint": "#ffb3ad",
+              "surface-container-highest": "#353534",
+              "surface-bright": "#3a3939",
+              "on-tertiary-fixed": "#1a1c1c",
+              "on-secondary-fixed": "#410003",
+              "surface-dim": "#131313",
+              "inverse-on-surface": "#313030",
+              "on-tertiary-container": "#e5e6e6",
+              "on-primary-fixed": "#410004",
+              "outline": "#ad8885",
+              "secondary-fixed-dim": "#ffb3ac",
+              "on-primary": "#68000a",
+              "error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-error": "#690005",
+              "secondary-container": "#8e1c1c",
+              "on-surface-variant": "#e6bdb9",
+              "outline-variant": "#5c3f3d",
+              "on-primary-fixed-variant": "#930012",
+              "surface-container-high": "#2a2a2a",
+              "inverse-surface": "#e5e2e1",
+              "primary-fixed-dim": "#ffb3ad",
+              "on-tertiary": "#2f3131",
+              "on-secondary": "#680007",
+              "background": "#131313",
+              "tertiary-fixed": "#e2e2e2",
+              "on-background": "#e5e2e1",
+              "error": "#ffb4ab"
+            },
+            fontFamily: {
+              "headline": ["Bebas Neue", "sans-serif"],
+              "body": ["DM Sans", "sans-serif"],
+              "serif": ["Cormorant Garamond", "serif"],
+              "label": ["DM Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>.film-grain {
+    position: relative
+    }
+.film-grain::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCIxpuY-C6Jon9iOvzPeAllPX2mfq3No4ovI3ds68Om767s7MlCz0aypE52FMzCyzL0FHThyqN6gDCfJsXjeNyjrUlTRl2cv2cnNT3Un3oqogRMR-yAYAaiR_h27lahmtL3SdENRx2eeODxEAebYZZpSqDbxjLHiYYQWd6SQVtY2GC9Twtz4L4mm7qy5SZzgNQ9kqYglz5KLc0g62_CMQ_CCi2c2Yq-233XHxgb4Xi1uof6w5RXOFoG1dYB5myloFBxoiGVL-7wI7M);
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 10
+    }
+.clipped-box {
+    clip-path: polygon(0 0, 92% 0, 100% 8%, 100% 100%, 0 100%)
+    }
+.skew-button {
+    transform: skewx(-12deg)
+    }
+.skew-text {
+    transform: skewx(12deg)
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.text-glow {
+    text-shadow: 0 0 20px rgba(204, 17, 34, 0.4)
+    }</style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body selection:bg-primary-container selection:text-white">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-8 py-4 bg-[#0A0A0A]/90 backdrop-blur-md z-50 border-b border-[#CC1122]/10 shadow-[0_4px_20px_rgba(204,17,34,0.15)]">
+<div class="font-['Bebas_Neue'] text-3xl italic tracking-widest text-[#CC1122]">FINESSE BJJ</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-['Bebas_Neue'] uppercase tracking-tighter text-lg text-gray-400 hover:text-[#CC1122] hover:brightness-125 transition-all" href="#">PROGRAMS</a>
+<a class="font-['Bebas_Neue'] uppercase tracking-tighter text-lg text-[#CC1122] border-b-2 border-[#CC1122] pb-1" href="#">TRAINERS</a>
+<a class="font-['Bebas_Neue'] uppercase tracking-tighter text-lg text-gray-400 hover:text-[#CC1122] hover:brightness-125 transition-all" href="#">SCHEDULE</a>
+<a class="font-['Bebas_Neue'] uppercase tracking-tighter text-lg text-gray-400 hover:text-[#CC1122] hover:brightness-125 transition-all" href="#">ACADEMY</a>
+</nav>
+<button class="skew-button bg-primary-container px-6 py-2 transition-all active:scale-90 hover:brightness-125 shadow-[0_0_15px_rgba(204,17,34,0.3)]">
+<span class="skew-text block font-['Bebas_Neue'] text-xl tracking-wider text-on-primary-fixed">JOIN THE MATS</span>
+</button>
+</header>
+<main class="film-grain">
+<!-- Hero Section -->
+<section class="relative h-[819px] flex items-center justify-center overflow-hidden pt-20">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent z-10"></div>
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?q=80&amp;w=2070&amp;auto=format&amp;fit=crop')] bg-cover bg-center grayscale brightness-50" data-alt="dramatic wide shot of a brazilian jiu-jitsu academy with mats reflecting overhead lights in a dark cinematic arena style"></div>
+<div class="relative z-20 text-center px-4">
+<h1 class="font-headline text-[12vw] leading-none tracking-tighter text-white opacity-90 mb-4">
+                    THE <span class="text-[#CC1122] italic">ELITE</span>
+</h1>
+<p class="font-serif italic text-2xl md:text-3xl text-on-surface-variant max-w-2xl mx-auto">
+                    "Skill is the leverage of the soul. We do not just teach technique; we cultivate absolute finesse."
+                </p>
+</div>
+</section>
+<!-- Trainers Grid -->
+<section class="px-8 py-24 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+<!-- Head Coach: Luis Diaz -->
+<div class="group relative">
+<div class="clipped-box bg-surface-container-high overflow-hidden shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
+<div class="aspect-[4/5] relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="portrait of a focused athletic head coach with grey stubble in a black jiu-jitsu gi, dark moody studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvvGfUaD4VuZKUsk0qnNB6QSs2BbzhR2cmwGJL-K-eM6YQ-1Pezpgep2U3MCHqFnApP8efDw_Q8-C109wzBx1v4NeHqRZXTi3a0kcIyk5psc1aJdEGbahPjclmX2_QmDHXmdYICms94hWR023Lk51i4x7jonNjOkdIvMhkfHfxGW1PtjnfCCbNCEZd5yIaeu7A8sSiIVUSAnXvwqZqy-Tj1uZ5iw9npaYj8R0n6TIqbkR2vRiM2YZl8wrvVZCEADzMDyZfClFDy8Q"/>
+<div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black to-transparent w-full">
+<span class="bg-[#CC1122]/20 border border-[#CC1122]/40 px-3 py-1 font-headline text-sm tracking-widest text-[#CC1122] mb-4 inline-block">HEAD COACH</span>
+<h2 class="font-headline text-6xl text-white">LUIS DIAZ</h2>
+</div>
+</div>
+</div>
+<div class="mt-8 space-y-4">
+<p class="font-serif italic text-2xl text-[#CC1122] leading-tight">
+                            "In the depth of the struggle, finesse becomes your only language."
+                        </p>
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                            Founder and 3rd Degree Black Belt. With over two decades on the mats, Luis has developed a system that prioritizes technical economy over brute strength. His philosophy has shaped regional champions and world-class competitors.
+                        </p>
+<div class="h-px w-full bg-gradient-to-r from-transparent via-[#CC1122] to-transparent opacity-30 my-8"></div>
+</div>
+</div>
+<!-- Black Belt: Nathan Bates -->
+<div class="group relative lg:mt-32">
+<div class="clipped-box bg-surface-container-high overflow-hidden shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
+<div class="aspect-[4/5] relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="athletic black belt trainer performing a dynamic movement on the mats, high contrast black and white lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkXBcKFcoVz9sqLtldE2giIFhW9Zxo3L5Xhe3XYmnTzJQbNa4DG4WCHBcHWgRkk6OF8JrL8HRUf74H-wN2pYMX5leATqmHH-TUNBo2LuCUNynvQtyPun3GcUR8h58bkMXH8U1a7RZC8WZqi6O29AWTYclOjTaxQYyGsFl2sOxjXyfnqaUftIDcnUkTBlltWRVA7uhO9w3GIk2_uuIGsn9wCsVphqjcdGLUX1ortre4NtkvuB_vrVmlJUgNjdWS8hMUBI73S4nROGk"/>
+<div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black to-transparent w-full">
+<span class="bg-[#CC1122]/20 border border-[#CC1122]/40 px-3 py-1 font-headline text-sm tracking-widest text-[#CC1122] mb-4 inline-block">BLACK BELT</span>
+<h2 class="font-headline text-6xl text-white">NATHAN BATES</h2>
+</div>
+</div>
+</div>
+<div class="mt-8 space-y-4">
+<p class="font-serif italic text-2xl text-[#CC1122] leading-tight">
+                            "The mat is a mirror. It doesn't lie about your preparation or your heart."
+                        </p>
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                            An active competitor and analytical mastermind. Nathan specializes in modern guard systems and leg-lock entries. He brings a surgical precision to the academy's advanced program.
+                        </p>
+<div class="h-px w-full bg-gradient-to-r from-transparent via-[#CC1122] to-transparent opacity-30 my-8"></div>
+</div>
+</div>
+<!-- Brown Belt: Eric Synatschk -->
+<div class="group relative">
+<div class="clipped-box bg-surface-container-high overflow-hidden shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
+<div class="aspect-[4/5] relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="trainer with intense gaze in a dark gym setting, dramatic side lighting highlighting muscle definition and focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLYnRdnCUF42eA_dAq-CosobQBfRTz-F6RrCAGb-lf5DRLpW2NNrZgHnck4lPAzzf7XANeywDI5lbxog8_Q0HXT-gAa0kUopeM8A4xD6e8GEzK2T2BMNjZU9pLthglm05drvxIvFDy9bQIgg4tTSp0obyTIk_jbv_ua2Yx5Uw4ODEYw9dC_LCc_aVk8vmO1FPzrr4i5Nw4cNlyZf90gfNkBDLHwURzEsoEt1rXd1jOAWPu5QUqz3S4LFlLSufYLqSr2MOjNl5YAiE"/>
+<div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black to-transparent w-full">
+<span class="bg-[#CC1122]/20 border border-[#CC1122]/40 px-3 py-1 font-headline text-sm tracking-widest text-[#CC1122] mb-4 inline-block">BROWN BELT</span>
+<h2 class="font-headline text-6xl text-white">ERIC SYNATSCHK</h2>
+</div>
+</div>
+</div>
+<div class="mt-8 space-y-4">
+<p class="font-serif italic text-2xl text-[#CC1122] leading-tight">
+                            "Pressure is a privilege. It’s the catalyst for the evolution of the fighter."
+                        </p>
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                            Known for his relentless top pressure and fundamental mastery. Eric leads our foundations program, ensuring every new student builds their game on a bedrock of technical integrity.
+                        </p>
+<div class="h-px w-full bg-gradient-to-r from-transparent via-[#CC1122] to-transparent opacity-30 my-8"></div>
+</div>
+</div>
+<!-- Wrestling: Carlos Diaz -->
+<div class="group relative lg:mt-32">
+<div class="clipped-box bg-surface-container-high overflow-hidden shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
+<div class="aspect-[4/5] relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="two wrestlers in a high-intensity grapple, sweat and movement captured in a dramatic dark gym atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC4DZX4gdW_PgpTvMffbfSWqkJ9nD5zqoUaY-wj-HsDe2LP1RTOVF-QNBoZKaP0JU54gyxUNejzxfMVUPUjl5Y_UzbIzxVSedZt-7ECP_VCBcyOZsIhqMrUL_Z2OGq_R_fwgYBcrmMEnnbLXSMbcnjjQJ9Rg90QGnTLwpPZtDIBTNnUkA464vPkeP16bBi8pVGtOcMC0J-qKirqzGoPhwWcQbnVznJ1pKYih853lvLoRqkbFf-KpDd2ovM5SS6_uk5m6aWRA5j73w"/>
+<div class="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black to-transparent w-full">
+<span class="bg-[#CC1122]/20 border border-[#CC1122]/40 px-3 py-1 font-headline text-sm tracking-widest text-[#CC1122] mb-4 inline-block">WRESTLING COACH</span>
+<h2 class="font-headline text-6xl text-white">CARLOS DIAZ</h2>
+</div>
+</div>
+</div>
+<div class="mt-8 space-y-4">
+<p class="font-serif italic text-2xl text-[#CC1122] leading-tight">
+                            "The fight starts on the feet. If you can't dictate where it goes, you've already lost."
+                        </p>
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                            A former D1 standout, Carlos bridges the gap between traditional wrestling and Brazilian Jiu-Jitsu. His "Aggressive Takedown" curriculum is a cornerstone of our competition team's success.
+                        </p>
+<div class="h-px w-full bg-gradient-to-r from-transparent via-[#CC1122] to-transparent opacity-30 my-8"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="bg-surface-container py-32 px-8 text-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#CC1122]/40 to-transparent"></div>
+<h3 class="font-headline text-8xl md:text-[10rem] text-white opacity-5 mb-0 absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap">JOIN THE MATS</h3>
+<div class="relative z-10 max-w-3xl mx-auto">
+<h4 class="font-headline text-6xl text-white mb-6">READY TO EVOLVE?</h4>
+<p class="font-serif italic text-2xl text-on-surface-variant mb-12">Experience the cinematic aggression of Finesse BJJ. Your first week is on us.</p>
+<button class="skew-button bg-primary-container px-12 py-4 group transition-all hover:brightness-110 shadow-[0_0_40px_rgba(204,17,34,0.2)]">
+<span class="skew-text block font-headline text-3xl tracking-widest text-on-primary-fixed">START YOUR TRIAL</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#1A1014] w-full flex flex-col items-center gap-6 px-4 py-12 border-t border-[#CC1122]/20 film-grain">
+<div class="font-['Bebas_Neue'] text-3xl text-[#CC1122] tracking-[0.3em]">FINESSE BJJ</div>
+<nav class="flex gap-8">
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">PRIVACY</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">TERMS</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">CONTACT</a>
+<a class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-white transition-colors" href="#">LOCATION</a>
+</nav>
+<div class="font-['DM_Sans'] text-xs tracking-[0.2em] uppercase text-[#CC1122] opacity-60 text-center mt-4">
+            © 2024 FINESSE BJJ ACADEMY. ALL RIGHTS RESERVED. CINEMATIC AGGRESSION.
+        </div>
+</footer>
+</body></html>

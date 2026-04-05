@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip -l stitch_finesse_bjj_academy_home.zip)",
+      "Bash(unzip -o stitch_finesse_bjj_academy_home.zip -d stitch_reference)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)",
+      "Read(//private/tmp/**)",
+      "Bash(npx create-next-app@latest finesse-bjj-temp --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)",
+      "Bash(cp -r /tmp/finesse-bjj-temp/src .)",
+      "Bash(cp -r /tmp/finesse-bjj-temp/public .)",
+      "Bash(cp /tmp/finesse-bjj-temp/tailwind.config.ts .)",
+      "Bash(cp /tmp/finesse-bjj-temp/next.config.ts .)",
+      "Bash(cp /tmp/finesse-bjj-temp/tsconfig.json .)",
+      "Bash(cp /tmp/finesse-bjj-temp/next.config.ts /tmp/finesse-bjj-temp/tsconfig.json /tmp/finesse-bjj-temp/postcss.config.mjs /tmp/finesse-bjj-temp/package.json /tmp/finesse-bjj-temp/next-env.d.ts /tmp/finesse-bjj-temp/eslint.config.mjs .)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npx next:*)",
+      "Read(//tmp/**)",
+      "WebFetch(domain:finessebjj.com)",
+      "Bash(kill 2375)",
+      "Bash(xargs kill:*)",
+      "Bash(ls /Users/dillanmilosevich/Desktop/IDE/finesse-bjj-academy/src/app/*/page.tsx /Users/dillanmilosevich/Desktop/IDE/finesse-bjj-academy/src/app/*/*/page.tsx)",
+      "Bash(wait)",
+      "Bash(pkill -f \"next build\")",
+      "Bash(kill -9 18221 18284 20128)",
+      "Bash(killall -9 node)"
+    ]
+  }
+}

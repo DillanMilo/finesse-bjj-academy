@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Cormorant+Garamond:ital,wght@1,400;1,600&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-container": "#8e1c1c",
+              "primary": "#ffb3ad",
+              "outline-variant": "#5c3f3d",
+              "surface-container": "#201f1f",
+              "on-error-container": "#ffdad6",
+              "primary-fixed": "#ffdad7",
+              "outline": "#ad8885",
+              "on-tertiary-container": "#e5e6e6",
+              "surface-container-low": "#1c1b1b",
+              "on-background": "#e5e2e1",
+              "tertiary-container": "#656767",
+              "tertiary-fixed": "#e2e2e2",
+              "inverse-primary": "#c0001b",
+              "inverse-on-surface": "#313030",
+              "primary-container": "#cc1122",
+              "surface-variant": "#353534",
+              "on-tertiary-fixed": "#1a1c1c",
+              "on-surface": "#e5e2e1",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-secondary-container": "#ff9e96",
+              "on-primary-fixed-variant": "#930012",
+              "error-container": "#93000a",
+              "surface-dim": "#131313",
+              "on-primary-fixed": "#410004",
+              "on-secondary-fixed-variant": "#8a1a1a",
+              "tertiary": "#c6c6c7",
+              "on-secondary": "#680007",
+              "on-primary": "#68000a",
+              "secondary-fixed": "#ffdad6",
+              "tertiary-fixed-dim": "#c6c6c7",
+              "on-error": "#690005",
+              "secondary-fixed-dim": "#ffb3ac",
+              "primary-fixed-dim": "#ffb3ad",
+              "surface-container-lowest": "#0e0e0e",
+              "on-tertiary": "#2f3131",
+              "on-primary-container": "#ffdedb",
+              "surface": "#131313",
+              "surface-container-high": "#2a2a2a",
+              "error": "#ffb4ab",
+              "background": "#131313",
+              "on-secondary-fixed": "#410003",
+              "inverse-surface": "#e5e2e1",
+              "secondary": "#ffb3ac",
+              "surface-container-highest": "#353534",
+              "surface-bright": "#3a3939",
+              "surface-tint": "#ffb3ad",
+              "on-surface-variant": "#e6bdb9"
+            },
+            fontFamily: {
+              "headline": ["Bebas Neue"],
+              "body": ["DM Sans"],
+              "label": ["DM Sans"],
+              "serif": ["Cormorant Garamond"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .clipped-box {
+            clip-path: polygon(0 0, 92% 0, 100% 8%, 100% 100%, 0 100%);
+        }
+        .grain-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        .skew-btn {
+            transform: skewX(-12deg);
+        }
+        .skew-btn-text {
+            transform: skewX(12deg);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface font-body overflow-x-hidden">
+<div class="grain-overlay fixed inset-0 z-[60]"></div>
+<!-- TopNavBar (Shared Component) -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md transition-all duration-300 ease-in-out shadow-[0_0_30px_rgba(204,17,34,0.2)]">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-[1920px] mx-auto relative">
+<div class="text-3xl font-black italic tracking-tighter text-red-600 font-headline">
+                FINESSE BJJ
+            </div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-headline uppercase tracking-tighter leading-none text-gray-400 hover:text-white transition-colors" href="#">Programs</a>
+<a class="font-headline uppercase tracking-tighter leading-none text-gray-400 hover:text-white transition-colors" href="#">Trainers</a>
+<a class="font-headline uppercase tracking-tighter leading-none text-gray-400 hover:text-white transition-colors" href="#">Schedule</a>
+<a class="font-headline uppercase tracking-tighter leading-none text-gray-400 hover:text-white transition-colors" href="#">Pricing</a>
+<a class="font-headline uppercase tracking-tighter leading-none text-red-600 border-b-2 border-red-600 pb-1" href="#">Contact</a>
+<button class="skew-btn bg-primary-container px-6 py-2 hover:brightness-125 hover:drop-shadow-[0_0_10px_#CC1122] transition-all">
+<span class="skew-btn-text block font-headline text-on-primary-fixed uppercase tracking-widest text-lg">JOIN THE MATS</span>
+</button>
+</div>
+<div class="bg-gradient-to-r from-transparent via-red-600 to-transparent h-[1px] w-full absolute bottom-0 left-0"></div>
+</div>
+</nav>
+<main class="pt-24 pb-12">
+<!-- Hero Header -->
+<section class="px-6 mb-12">
+<h1 class="font-headline text-7xl md:text-9xl leading-[0.85] tracking-tighter uppercase mb-4 text-white">
+                LOCATE THE <br/><span class="text-primary-container">STRONGHOLD</span>
+</h1>
+<p class="font-serif italic text-2xl text-on-surface-variant max-w-md">
+                "Technical finesse forged in the crucible of absolute intensity."
+            </p>
+</section>
+<!-- Map Section (Asymmetric) -->
+<section class="mb-16 px-4 md:px-0">
+<div class="relative w-full aspect-[4/3] md:aspect-[21/9] overflow-hidden clipped-box bg-surface-container shadow-[20px_20px_0px_#CC112220]">
+<div class="absolute inset-0 bg-black/40 z-10 pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent z-10 pointer-events-none"></div>
+<!-- Map Placeholder -->
+<div class="w-full h-full grayscale brightness-50 contrast-125" data-alt="Dark stylized tactical map showing the urban grid of Spring Texas with a red waypoint marker in cinematic high contrast" data-location="Spring, TX" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBIgJPfravDEezrMP27RoO3ZufS1YHd3EpDxPJjJPiYOO4aHRMf4bEP3_B-wPYar0drIkcgQziRKmn0FuccX-nBOTgwuax9RRliRcqTFr3GjKVQuy7DOn2zmjd2b9rDaeEdWpTy7GchgEQLAi4kx5pt11muLJKsuGjkV6xBY4EyCupyV7qiGYeoyE2jhuqesHAxSXVjZ_o3WgTPqLq_Luyly0yDHQaekpgx30L_GjNOdGE-nuylUD1i2D9THmLCgCA_pK3gqxTSGLA'); background-size: cover; background-position: center;">
+</div>
+<!-- Location Overlay Chip -->
+<div class="absolute bottom-6 left-6 z-20">
+<div class="bg-primary-container/90 backdrop-blur-sm px-4 py-2 font-headline text-xl text-white tracking-widest uppercase inline-block">
+                        Spring, TX Academy
+                    </div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 px-6 max-w-7xl mx-auto">
+<!-- Contact Details -->
+<div class="space-y-12">
+<div>
+<h2 class="font-headline text-4xl text-white mb-6 tracking-tight uppercase">DIRECT CHANNELS</h2>
+<div class="space-y-6">
+<a class="group flex items-center gap-4 border-b border-outline-variant/30 pb-4 hover:border-primary-container transition-all" href="tel:+12815550192">
+<span class="material-symbols-outlined text-primary-container text-3xl group-hover:scale-110 transition-transform">call</span>
+<div>
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-bold">Primary Line</p>
+<p class="text-2xl font-headline tracking-widest text-white">(281) 555-0192</p>
+</div>
+</a>
+<a class="group flex items-center gap-4 border-b border-outline-variant/30 pb-4 hover:border-primary-container transition-all" href="mailto:hq@finessebjj.com">
+<span class="material-symbols-outlined text-primary-container text-3xl group-hover:scale-110 transition-transform">mail</span>
+<div>
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-bold">Intelligence Dept</p>
+<p class="text-2xl font-headline tracking-widest text-white">HQ@FINESSEBJJ.COM</p>
+</div>
+</a>
+</div>
+</div>
+<div class="clipped-box bg-surface-container p-8 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<img class="w-32 h-32 object-contain" data-alt="Finesse BJJ official academy logo emblem featuring sharp typography and aggressive combat motifs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkKiQV0SnUEpOne5W9gYgjQvfzLE23WCOnwFmALa61QR7F0VxlMNMWt4CxGvtrbWFsbxiUxgXlPqI9AqE_kjNcpd-dZd0-RDbuMsTlp5PZO4hzM6pVJM7OZ8r6qPfQSEuBYbr-bU3o7XsR52YGn4IqQSxqi1oDFThT5OcDADj7pvB_s-EeJkd3ifyYNd51GC_nq4b0ahOHbNkFmNzjEUH4CSn0mWAE86yEFaBAeugfJKdTVVmqNfy9IQkESBR3baI07vwQE894UFo"/>
+</div>
+<h2 class="font-headline text-4xl text-white mb-4 tracking-tight uppercase">THE HQ</h2>
+<p class="text-on-surface-variant mb-6 leading-relaxed">
+                        2104 Rayford Rd, Suite 100<br/>
+                        Spring, TX 77386
+                    </p>
+<button class="w-full skew-btn bg-white/5 border border-white/10 py-4 hover:bg-white/10 transition-all flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">directions</span>
+<span class="skew-btn-text font-headline text-white tracking-widest uppercase text-xl">LAUNCH NAVIGATION</span>
+</button>
+</div>
+</div>
+<!-- Contact Form -->
+<div class="relative">
+<div class="absolute -inset-4 bg-primary-container/5 blur-3xl rounded-full"></div>
+<div class="relative bg-surface-container-high/50 backdrop-blur-sm p-8 border-l border-primary-container/30">
+<h2 class="font-headline text-4xl text-white mb-8 tracking-tight uppercase">REQUEST ENROLLMENT</h2>
+<form class="space-y-8">
+<div class="relative">
+<input class="peer block w-full appearance-none border-0 border-b border-outline-variant bg-transparent py-2.5 px-0 text-white focus:border-primary-container focus:outline-none focus:ring-0" id="name" placeholder=" " type="text"/>
+<label class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform font-headline tracking-widest uppercase text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary-container" for="name">Full Name</label>
+</div>
+<div class="relative">
+<input class="peer block w-full appearance-none border-0 border-b border-outline-variant bg-transparent py-2.5 px-0 text-white focus:border-primary-container focus:outline-none focus:ring-0" id="email" placeholder=" " type="email"/>
+<label class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform font-headline tracking-widest uppercase text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary-container" for="email">Email Address</label>
+</div>
+<div class="relative">
+<select class="peer block w-full appearance-none border-0 border-b border-outline-variant bg-transparent py-2.5 px-0 text-white focus:border-primary-container focus:outline-none focus:ring-0 uppercase font-headline tracking-widest" id="program">
+<option class="bg-surface-container">Fundamental Gi</option>
+<option class="bg-surface-container">Advanced No-Gi</option>
+<option class="bg-surface-container">Private Selection</option>
+<option class="bg-surface-container">Youth Warriors</option>
+</select>
+<label class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform font-headline tracking-widest uppercase text-on-surface-variant duration-300" for="program">Target Discipline</label>
+</div>
+<div class="relative">
+<textarea class="peer block w-full appearance-none border-0 border-b border-outline-variant bg-transparent py-2.5 px-0 text-white focus:border-primary-container focus:outline-none focus:ring-0" id="message" placeholder=" " rows="3"></textarea>
+<label class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform font-headline tracking-widest uppercase text-on-surface-variant duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-primary-container" for="message">Combat Goals</label>
+</div>
+<button class="w-full group relative flex items-center justify-center py-6 bg-primary-container hover:brightness-125 transition-all skew-btn" type="submit">
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="skew-btn-text font-headline text-2xl text-on-primary-fixed uppercase tracking-[0.2em]">INITIALIZE CONTACT</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-[#0A0A0A] full-width py-16 px-8 border-t border-red-900/20 tonal-shift bg-[#1A1014]">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 max-w-7xl mx-auto">
+<div class="space-y-6">
+<div class="text-4xl font-black text-white italic font-headline">FINESSE BJJ</div>
+<div class="flex gap-6">
+<a class="text-gray-600 hover:text-red-500 transition-colors scale-105 transition-transform font-['DM_Sans'] text-sm tracking-widest uppercase" href="#">Instagram</a>
+<a class="text-gray-600 hover:text-red-500 transition-colors scale-105 transition-transform font-['DM_Sans'] text-sm tracking-widest uppercase" href="#">Facebook</a>
+<a class="text-gray-600 hover:text-red-500 transition-colors scale-105 transition-transform font-['DM_Sans'] text-sm tracking-widest uppercase" href="#">YouTube</a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-x-12 gap-y-4">
+<a class="text-gray-600 hover:text-red-500 transition-colors font-['DM_Sans'] text-sm tracking-widest uppercase" href="#">Programs</a>
+<a class="text-gray-600 hover:text-red-500 transition-colors font-['DM_Sans'] text-sm tracking-widest uppercase" href="#">Schedule</a>
+<a class="text-gray-600 hover:text-red-500 transition-colors font-['DM_Sans'] text-sm tracking-widest uppercase" href="#">Privacy Policy</a>
+<a class="text-gray-600 hover:text-red-500 transition-colors font-['DM_Sans'] text-sm tracking-widest uppercase" href="#">Terms of Service</a>
+</div>
+<div class="pt-8 border-t border-red-900/10 w-full md:border-none md:pt-0">
+<p class="text-gray-600 font-['DM_Sans'] text-xs tracking-widest uppercase">
+                    © 2024 FINESSE BJJ ACADEMY. ALL RIGHTS RESERVED.
+                </p>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation (Mobile Only) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0E0E0E]/90 backdrop-blur-xl border-t border-red-600/20">
+<div class="flex justify-around items-center py-4">
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-headline uppercase tracking-widest">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<span class="material-symbols-outlined">schedule</span>
+<span class="text-[10px] font-headline uppercase tracking-widest">Schedule</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-red-600" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="text-[10px] font-headline uppercase tracking-widest">Location</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-headline uppercase tracking-widest">Profile</span>
+</a>
+</div>
+</div>
+</body></html>

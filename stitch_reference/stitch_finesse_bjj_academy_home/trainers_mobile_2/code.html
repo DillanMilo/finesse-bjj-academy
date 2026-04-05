@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trainers | FINESSE BJJ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Cormorant+Garamond:ital,wght@1,400;1,600&amp;family=DM+Sans:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffb3ad",
+                        "tertiary-container": "#656767",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-container": "#cc1122",
+                        "secondary": "#ffb3ac",
+                        "on-surface": "#e5e2e1",
+                        "on-primary-container": "#ffdedb",
+                        "surface-variant": "#353534",
+                        "primary-fixed": "#ffdad7",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#c6c6c7",
+                        "secondary-fixed": "#ffdad6",
+                        "on-secondary-fixed-variant": "#8a1a1a",
+                        "surface": "#131313",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-primary": "#c0001b",
+                        "surface-container": "#201f1f",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-secondary-container": "#ff9e96",
+                        "surface-tint": "#ffb3ad",
+                        "surface-container-highest": "#353534",
+                        "surface-bright": "#3a3939",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-secondary-fixed": "#410003",
+                        "surface-dim": "#131313",
+                        "inverse-on-surface": "#313030",
+                        "on-tertiary-container": "#e5e6e6",
+                        "on-primary-fixed": "#410004",
+                        "outline": "#ad8885",
+                        "secondary-fixed-dim": "#ffb3ac",
+                        "on-primary": "#68000a",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-error": "#690005",
+                        "secondary-container": "#8e1c1c",
+                        "on-surface-variant": "#e6bdb9",
+                        "outline-variant": "#5c3f3d",
+                        "on-primary-fixed-variant": "#930012",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb3ad",
+                        "on-tertiary": "#2f3131",
+                        "on-secondary": "#680007",
+                        "background": "#131313",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-background": "#e5e2e1",
+                        "error": "#ffb4ab"
+                    },
+                    fontFamily: {
+                        "headline": ["Bebas Neue", "sans-serif"],
+                        "body": ["DM Sans", "sans-serif"],
+                        "quote": ["Cormorant Garamond", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDPRwbt2cVRkARTkjbt6b34ay-rPAt-KV5xBVAKwWXsOFAK4YDKf6_oPtOA68UbKFXcnTWiWdrjOcKsAPT1SKLKf7skHrw1KEZL-wd0pNvDC6JScayV7CyvTPkpT1ovObzM7QOCbBTNMCcS7BvAp00N_RPQyOs8cW9ZTYblYts85a_AGkQtJYd35mpDScdaQnHdReRdh9Sk3gFSDmwJ0LZzigz8ikNFesos8uZN1hfXWWR__ouwWXCitM2q1b-oFuTPAuH6YXt-_90);
+            opacity: 0.03
+        }
+        .clipped-corner {
+            clip-path: polygon(0 0, 92% 0, 100% 8%, 100% 100%, 0 100%)
+        }
+        .skew-button {
+            transform: skewx(-12deg)
+        }
+        .skew-text {
+            transform: skewx(12deg)
+        }
+        .gradient-line {
+            background: linear-gradient(90deg, transparent, #c12, transparent);
+            height: 1px;
+            width: 100%
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-background font-body selection:bg-primary-container selection:text-white">
+<div class="film-grain"></div>
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full flex justify-between items-center px-6 py-4 bg-[#0A0A0A]/90 backdrop-blur-md z-50 border-b border-[#CC1122]/10 shadow-[0_4px_20px_rgba(204,17,34,0.15)]">
+<img alt="FINESSE BJJ" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0uiIg_Gi9nxtE96PizA-h804dJVn008L-JZYzgNdmAXHa1PFJr1S4hYa3iolbQS6uYOdtnyYSLKbgZ94vMNFPqsOjYfyy2ett8xR1sIbAdzkqrygndcc8W-rQ2-LShYNi4IbqGHkgKxWMruIFgzuTt5QeottiJdh-Ar2kdifTQ7SAfjwETAb6tUIjU5OyjmPY-9mnHNP0xnLtptXiMbu9s7QZBCi2sWWl902q09tDhCaaxaV46y8vPxc4GnGUj5MPourLPvDKHud"/>
+<button class="material-symbols-outlined text-[#CC1122] scale-125">menu</button>
+</header>
+<main class="pt-20 pb-12 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="relative h-[353px] flex items-end px-6 pb-12 overflow-hidden bg-surface-dim">
+<div class="absolute inset-0 z-0">
+<img alt="Cinematic training" class="w-full h-full object-cover grayscale opacity-40" data-alt="Cinematic high-contrast shot of a Brazilian Jiu Jitsu black belt tightening his belt in a dark arena with dramatic red rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxxw-OdFQGMlqJiFhL_Xe_oyU5UtRTvdpSbPfZ6k-tlIDcMbCBLWTwuHixJ-LEkh0gRqaAYs030brObVLtiaftVk0jVRFRr1jsRLRrHXtYdPxDzJp3mYOPf1MnWUueJUVLkoCOGQ2LaH22A4P9pruWbgLPHBpNtfMsIxYfrd-eMLerwQd9cHT9Ik_mXpiRLuWZmBAEzXwCKKlZAEaQ5UYE_B2yJyedthlJWDg8rHc7DH1NoBPazZIYq6Fz973NDQAZzkJGkeDg8S8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 w-full">
+<div class="w-12 h-1 bg-primary-container mb-4"></div>
+<h1 class="font-headline text-7xl leading-[0.9] tracking-tighter uppercase">THE ELITE</h1>
+<p class="font-quote italic text-xl text-primary mt-2">Masters of the human chess game.</p>
+</div>
+</section>
+<!-- Trainers Stack -->
+<section class="px-6 flex flex-col gap-12 mt-8">
+<!-- Luis Diaz -->
+<div class="clipped-corner bg-surface-container-high p-6 flex flex-col gap-6 relative group border-l-2 border-primary-container/20">
+<div class="relative w-full aspect-[4/5] overflow-hidden">
+<img alt="Luis Diaz" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 transition-all duration-700" data-alt="Aggressive close-up portrait of a BJJ head coach with short hair and intensity in his eyes, dark shadows, moody atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo2nH6-5BINsbblzib30rOmRMG-Q0pJeq8i55XyDuA3pjVdy_PkCGrbdC4eynU1mcs0hn_4wZ-oUxcy5K-BkY1ZSUzhCFmSXTFNt3s4cjAkRt89HJlFBKjkeeUYZtrZCEaknDbvfZwQhCq3XmNsUaxLh_71FwBdud9WNAPMfsbEYYQk5Qk1UDRu0e1sHkrsVqr1zGnVHXKVmKdIsWDcvpIAgmmuiTAJdEOc7NehlghIoS7tukrQv4sWNWCXYTfFBCNmV3CFijfFF4"/>
+<div class="absolute top-4 right-4 bg-primary-container/90 px-3 py-1 font-headline text-lg tracking-wider text-white">HEAD COACH</div>
+</div>
+<div>
+<h2 class="font-headline text-5xl tracking-tighter text-on-surface">LUIS DIAZ</h2>
+<div class="gradient-line my-4 opacity-50"></div>
+<p class="font-quote text-2xl italic text-on-primary-container leading-relaxed">"Violence is the question. Technical finesse is the answer."</p>
+<p class="mt-4 text-on-surface-variant leading-relaxed text-sm uppercase tracking-widest font-bold">Black Belt 4th Degree</p>
+<p class="mt-2 text-on-surface-variant leading-relaxed">A veteran of the mats with over 20 years of technical dominance. Luis founded Finesse with a focus on surgical precision and pressure passing.</p>
+</div>
+</div>
+<!-- Nathan Bates -->
+<div class="clipped-corner bg-surface-container p-6 flex flex-col gap-6 relative group border-l-2 border-primary-container/10">
+<div class="relative w-full aspect-[4/5] overflow-hidden">
+<img alt="Nathan Bates" class="w-full h-full object-cover grayscale brightness-50 group-hover:brightness-75 transition-all duration-700" data-alt="Athletic man in a white BJJ gi standing in a dimly lit studio, sharp shadows, high contrast editorial style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMqRb9R8tJyJxfN_QsgehByDq7QUmM7A3VrtHYXrmpeTe8JAW7A4B3JdCoz_uj2yhfGrJ1K0etpemk8Bgod2wsPtTQ4ZU0OTt8-CWoCYrfUfFNn3UfBLMNrkA8v_hL_qzKk6pOo70Nxr8Xp5eSjDqqxZ_O07oYeHp8F-3UfaCQhM5XoVSJQ3sej30EcMhwxdi1Ly6rT7IoA9kHkSc4mvAL9NA2lk9NLZG1b2I3j5YkPJDQHZTocsvzQsJlxyC6QiCZHeKl6egviHk"/>
+<div class="absolute top-4 right-4 bg-primary-container/90 px-3 py-1 font-headline text-lg tracking-wider text-white">NO-GI SPECIALIST</div>
+</div>
+<div>
+<h2 class="font-headline text-5xl tracking-tighter text-on-surface">NATHAN BATES</h2>
+<div class="gradient-line my-4 opacity-30"></div>
+<p class="font-quote text-2xl italic text-on-primary-container leading-relaxed">"The mat does not lie. Your fatigue is your only enemy."</p>
+<p class="mt-4 text-on-surface-variant leading-relaxed text-sm uppercase tracking-widest font-bold">Leg Lock Expert</p>
+<p class="mt-2 text-on-surface-variant leading-relaxed">Nathan leads our No-Gi program with a modern, submission-oriented approach that prioritizes speed and structural isolation.</p>
+</div>
+</div>
+<!-- Eric Synatschk -->
+<div class="clipped-corner bg-surface-container-high p-6 flex flex-col gap-6 relative group border-l-2 border-primary-container/20">
+<div class="relative w-full aspect-[4/5] overflow-hidden">
+<img alt="Eric Synatschk" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 transition-all duration-700" data-alt="High intensity action shot of a BJJ instructor performing a throw, blurred background, cinematic motion" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7EnDbavmvZ6iGZ1h-KIxO-lOdGz2Xtygf4XENg1lMb2FHqlMtWp2GQ_UFc-l1_RBheJaFJpJGSGzVk8qCvtp5GFQIhDCQ0eAPkspYMQVYC1SIgGkeEE56m0EMi6Ih-wKbHYNn2TKj9eNUlsOeAIhPr18q7zTG8DotxsKp1Jf52XvltN7bwUX27fQVQtvbSa-KJbEyYraIb0-H4aOFm8u9Qj5jhapJ6ChiDevAjzt1rYQ1fs1Sso8trkQbaV1ka6DvFMH0BCF4vR4"/>
+<div class="absolute top-4 right-4 bg-primary-container/90 px-3 py-1 font-headline text-lg tracking-wider text-white">FOUNDATION</div>
+</div>
+<div>
+<h2 class="font-headline text-5xl tracking-tighter text-on-surface">ERIC SYNATSCHK</h2>
+<div class="gradient-line my-4 opacity-50"></div>
+<p class="font-quote text-2xl italic text-on-primary-container leading-relaxed">"Master the fundamentals, and the complex becomes simple."</p>
+<p class="mt-4 text-on-surface-variant leading-relaxed text-sm uppercase tracking-widest font-bold">Fundamentals Director</p>
+<p class="mt-2 text-on-surface-variant leading-relaxed">Eric’s systematic approach to the basics ensures every student builds an unbreakable foundation of defensive awareness and guard retention.</p>
+</div>
+</div>
+<!-- Carlos Diaz -->
+<div class="clipped-corner bg-surface-container p-6 flex flex-col gap-6 relative group border-l-2 border-primary-container/10">
+<div class="relative w-full aspect-[4/5] overflow-hidden">
+<img alt="Carlos Diaz" class="w-full h-full object-cover grayscale brightness-50 group-hover:brightness-75 transition-all duration-700" data-alt="Close up of a muscular man's hands wrapping hand wraps in a dark gym setting with red lighting accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXXvGpOUn7a63Hv_-f7WsLeVi4dilNaciqlSBInjwmwHVQ6ndW4K3WUaoQpkRnuK6fdGjVSzMEFMLIaBS2yo7d3YdPbIDVHeVnCptoqzxkTXT6WPisf8PwChZUbP5A-S-0HDAcbU0BVUkfCETN4GP4iUSijS5OrgTWRUB1ugMg_Fqe0jGYPR8EOYkM6kI8fGJkJuSk725yeqh9Lt9H4xK9jcscbnzl1bxg3pg6fGM0ztIImZ4dJLMy_4qySOCVDOAE8NEWQBPJsqU"/>
+<div class="absolute top-4 right-4 bg-primary-container/90 px-3 py-1 font-headline text-lg tracking-wider text-white">COMPETITION</div>
+</div>
+<div>
+<h2 class="font-headline text-5xl tracking-tighter text-on-surface">CARLOS DIAZ</h2>
+<div class="gradient-line my-4 opacity-30"></div>
+<p class="font-quote text-2xl italic text-on-primary-container leading-relaxed">"Winning is a habit. Finesse is the vehicle."</p>
+<p class="mt-4 text-on-surface-variant leading-relaxed text-sm uppercase tracking-widest font-bold">Comp Squad Lead</p>
+<p class="mt-2 text-on-surface-variant leading-relaxed">A high-level active competitor who brings the latest meta-strategies from the world stage directly to our academy mats.</p>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="mt-20 px-6 text-center">
+<h3 class="font-headline text-4xl tracking-tight mb-8">READY TO TRAIN WITH THE BEST?</h3>
+<button class="relative inline-flex items-center justify-center px-12 py-4 group overflow-hidden">
+<div class="absolute inset-0 bg-primary-container skew-button group-hover:brightness-125 transition-all shadow-[0_0_30px_rgba(204,17,34,0.4)]"></div>
+<span class="relative font-headline text-2xl text-white skew-text tracking-widest">JOIN THE MATS</span>
+</button>
+</section>
+</main>
+<!-- Footer Anchor -->
+<footer class="w-full flex flex-col items-center gap-6 px-4 py-12 border-t border-[#CC1122]/20 bg-[#1A1014]">
+<img alt="FINESSE BJJ" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0uiIg_Gi9nxtE96PizA-h804dJVn008L-JZYzgNdmAXHa1PFJr1S4hYa3iolbQS6uYOdtnyYSLKbgZ94vMNFPqsOjYfyy2ett8xR1sIbAdzkqrygndcc8W-rQ2-LShYNi4IbqGHkgKxWMruIFgzuTt5QeottiJdh-Ar2kdifTQ7SAfjwETAb6tUIjU5OyjmPY-9mnHNP0xnLtptXiMbu9s7QZBCi2sWWl902q09tDhCaaxaV46y8vPxc4GnGUj5MPourLPvDKHud"/>
+<div class="flex gap-4 text-gray-500 font-['DM_Sans'] text-xs tracking-[0.2em] uppercase">
+<a class="hover:text-white transition-colors" href="#">PRIVACY</a>
+<a class="hover:text-white transition-colors" href="#">TERMS</a>
+<a class="hover:text-white transition-colors" href="#">CONTACT</a>
+<a class="hover:text-white transition-colors" href="#">LOCATION</a>
+</div>
+<p class="text-gray-500 font-['DM_Sans'] text-[10px] tracking-[0.2em] uppercase text-center opacity-60">
+            © 2024 FINESSE BJJ ACADEMY. ALL RIGHTS RESERVED. CINEMATIC AGGRESSION.
+        </p>
+</footer>
+<!-- Mobile Navigation Shell -->
+<nav class="fixed bottom-0 w-full bg-surface-container-lowest/80 backdrop-blur-lg border-t border-white/5 flex justify-around items-center py-3 z-50 md:hidden">
+<div class="flex flex-col items-center text-gray-400">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold mt-1 uppercase tracking-tighter">Home</span>
+</div>
+<div class="flex flex-col items-center text-white">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="text-[10px] font-bold mt-1 uppercase tracking-tighter">Trainers</span>
+</div>
+<div class="flex flex-col items-center text-gray-400">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-bold mt-1 uppercase tracking-tighter">Schedule</span>
+</div>
+<div class="flex flex-col items-center text-gray-400">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-bold mt-1 uppercase tracking-tighter">Profile</span>
+</div>
+</nav>
+</body></html>
