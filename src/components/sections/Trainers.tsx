@@ -40,7 +40,7 @@ const trainers = [
     role: "",
     rank: "INSTRUCTOR",
     image: "/patty.JPG",
-    imageClass: "object-[25%_25%]",
+    imageClass: "object-[25%_25%] scale-[0.92]",
     quote:
       "Jiu-jitsu isn't just for everyone — it's for you. Step on the mat and surprise yourself.",
     bio: "Coach Patty is a dedicated instructor who brings passion and precision to every class. She creates a welcoming environment that empowers students of all backgrounds to push their limits and grow both on and off the mats.",
