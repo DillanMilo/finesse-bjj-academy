@@ -17,7 +17,7 @@ const trainers = [
   },
   {
     name: "NATHAN BATES",
-    role: "NO-GI SPECIALIST",
+    role: "COACH",
     rank: "BLACK BELT",
     image: "/nathan.JPG",
     imageClass: "",
@@ -37,13 +37,23 @@ const trainers = [
   },
   {
     name: "PATTY",
-    role: "",
+    role: "WOMEN'S INSTRUCTOR",
     rank: "INSTRUCTOR",
     image: "/patty.JPG",
     imageClass: "object-[25%_25%] scale-[0.85]",
     quote:
       "Jiu-jitsu isn't just for everyone — it's for you. Step on the mat and surprise yourself.",
     bio: "Coach Patty is a dedicated instructor who brings passion and precision to every class. She creates a welcoming environment that empowers students of all backgrounds to push their limits and grow both on and off the mats.",
+  },
+  {
+    name: "BODHI",
+    role: "KIDS CLASS ASSISTANT",
+    rank: "BLUE BELT",
+    image: "/Bodhi.JPG",
+    imageClass: "",
+    quote:
+      "Every kid who steps on the mat is learning more than just jiu-jitsu — they're building character.",
+    bio: "Bodhi is a dedicated blue belt who assists with the kids program at Finesse. His patience and enthusiasm make him a natural with younger students, helping them build confidence and a strong foundation in jiu-jitsu fundamentals.",
   },
 ];
 

@@ -55,7 +55,7 @@ function CountUp({
   );
 }
 
-// Text reveal component — clips text and slides it in
+// Text reveal component — fades and slides text in without clipping
 function TextReveal({
   children,
   direction = "left",
@@ -66,34 +66,39 @@ function TextReveal({
   delay?: number;
 }) {
   return (
-    <span className="block" style={{ clipPath: "inset(-10% -20% -10% -20%)" }}>
-      <motion.span
-        className="block"
-        initial={{
-          x: direction === "left" ? "-110%" : "110%",
-          filter: "blur(8px)",
-        }}
-        animate={{
-          x: "0%",
-          filter: "blur(0px)",
-        }}
-        transition={{
-          x: {
-            type: "spring",
-            damping: 30,
-            stiffness: 200,
-            delay,
-          },
-          filter: {
-            duration: 0.8,
-            delay: delay + 0.2,
-            ease: "easeOut",
-          },
-        }}
-      >
-        {children}
-      </motion.span>
-    </span>
+    <motion.span
+      className="block"
+      initial={{
+        opacity: 0,
+        x: direction === "left" ? -80 : 80,
+        filter: "blur(8px)",
+      }}
+      animate={{
+        opacity: 1,
+        x: 0,
+        filter: "blur(0px)",
+      }}
+      transition={{
+        x: {
+          type: "spring",
+          damping: 30,
+          stiffness: 200,
+          delay,
+        },
+        opacity: {
+          duration: 0.6,
+          delay,
+          ease: "easeOut",
+        },
+        filter: {
+          duration: 0.8,
+          delay: delay + 0.2,
+          ease: "easeOut",
+        },
+      }}
+    >
+      {children}
+    </motion.span>
   );
 }
 
@@ -136,12 +141,12 @@ export default function Hero() {
           </motion.div>
 
           {/* Heading with clip-reveal text animations */}
-          <h1 className="font-headline text-4xl min-[375px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tighter italic mb-8">
+          <h1 className="font-headline text-4xl min-[375px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tighter italic mb-8 -ml-4 md:-ml-8 lg:-ml-12">
             <TextReveal direction="left" delay={0.4}>
               <span className="text-white">MASTER THE ART</span>
             </TextReveal>
             <TextReveal direction="right" delay={0.6}>
-              <span className="bg-gradient-to-r from-[#CC1122] to-red-800 bg-clip-text text-transparent inline-block -translate-x-6 md:-translate-x-10">
+              <span className="bg-gradient-to-r from-[#CC1122] to-red-800 bg-clip-text text-transparent">
                 OF FINESSE
               </span>
             </TextReveal>
@@ -158,8 +163,8 @@ export default function Hero() {
               ease: "easeOut",
             }}
           >
-            &ldquo;The efficiency of technique over the brutality of strength.
-            This is the art of the complete grappler.&rdquo;
+            &ldquo;No experience needed, just the courage to start.
+            Come find out what you&rsquo;re capable of.&rdquo;
           </motion.p>
 
           {/* Buttons — staggered slide-up */}
