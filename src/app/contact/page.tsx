@@ -147,7 +147,7 @@ export default function ContactPage() {
           {/* Left Column */}
           <div ref={heroLeftRef}>
             <motion.h1
-              className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-[10rem] leading-[0.85] tracking-tighter italic mb-6"
+              className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[10rem] leading-[0.85] tracking-tighter italic mb-6"
               initial={{ opacity: 0, y: 40 }}
               animate={heroLeftInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, ease: "easeOut" }}

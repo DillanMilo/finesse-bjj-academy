@@ -24,7 +24,8 @@
       "Bash(pkill -f \"next build\")",
       "Bash(kill -9 18221 18284 20128)",
       "Bash(killall -9 node)",
-      "Bash(sips:*)"
+      "Bash(sips:*)",
+      "Bash(ls:*)"
     ]
   }
 }

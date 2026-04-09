@@ -33,7 +33,7 @@ export default function LeadPopup({ isOpen, onClose }: LeadPopupProps) {
           onClick={onClose}
         >
           <motion.div
-            className="relative max-w-lg w-full mx-4 bg-[#1A1014] border border-[#CC1122]/30 p-5 sm:p-6 md:p-8 lg:p-12 clip-corner"
+            className="relative max-w-lg w-full mx-4 max-h-[90dvh] overflow-y-auto bg-[#1A1014] border border-[#CC1122]/30 p-5 sm:p-6 md:p-8 lg:p-12 clip-corner"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}

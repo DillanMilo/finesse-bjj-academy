@@ -1,12 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Hero from "@/components/sections/Hero";
-import Programs from "@/components/sections/Programs";
-import Trainers from "@/components/sections/Trainers";
-import Testimonials from "@/components/sections/Testimonials";
-import Schedule from "@/components/sections/Schedule";
-import LatestNews from "@/components/sections/LatestNews";
-import FinalCTA from "@/components/sections/FinalCTA";
+
+const Programs = dynamic(() => import("@/components/sections/Programs"), { ssr: false });
+const Trainers = dynamic(() => import("@/components/sections/Trainers"), { ssr: false });
+const Testimonials = dynamic(() => import("@/components/sections/Testimonials"), { ssr: false });
+const Schedule = dynamic(() => import("@/components/sections/Schedule"), { ssr: false });
+const LatestNews = dynamic(() => import("@/components/sections/LatestNews"), { ssr: false });
+const FinalCTA = dynamic(() => import("@/components/sections/FinalCTA"), { ssr: false });
 
 export default function Home() {
   return (

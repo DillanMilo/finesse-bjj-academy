@@ -119,7 +119,7 @@ function MissionImage() {
 
   return (
     <div className="relative">
-      <div className="absolute -top-4 -left-4 w-full h-full border border-[#CC1122]/30 z-0" />
+      <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-full h-full border border-[#CC1122]/30 z-0" />
       <div ref={ref} className="relative z-10 w-full aspect-[4/5] overflow-hidden clip-corner">
         <motion.div
           className="w-full h-full bg-zinc-800 scale-[1.3] grayscale brightness-90"
