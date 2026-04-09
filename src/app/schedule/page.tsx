@@ -1,78 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useOpenLeadForm } from "@/lib/lead-form-context";
-
-/* ─── Schedule Data ─── */
-
-interface ClassSlot {
-  time: string;
-  title: string;
-  subtitle: string;
-  active?: boolean;
-}
-
-interface DaySchedule {
-  day: string;
-  classes: ClassSlot[];
-  rest?: boolean;
-}
-
-const schedule: DaySchedule[] = [
-  {
-    day: "MON",
-    classes: [
-      { time: "06:00 – 07:30", title: "Morning BJJ", subtitle: "All Levels", active: true },
-      { time: "16:30 – 17:30", title: "Kids BJJ", subtitle: "Ages 5–12" },
-      { time: "18:30 – 20:00", title: "Adult BJJ", subtitle: "All Levels" },
-    ],
-  },
-  {
-    day: "TUE",
-    classes: [
-      { time: "07:00 – 08:30", title: "Wrestling", subtitle: "All Levels" },
-      { time: "16:45 – 17:30", title: "Tiny Tots", subtitle: "Ages 4–7" },
-      { time: "18:30 – 20:00", title: "Advanced BJJ", subtitle: "Blue Belt & Above" },
-    ],
-  },
-  {
-    day: "WED",
-    classes: [
-      { time: "06:00 – 07:30", title: "Morning BJJ", subtitle: "All Levels" },
-      { time: "16:45 – 17:30", title: "Tiny Tots", subtitle: "Ages 4–7" },
-      { time: "18:30 – 20:00", title: "Adult BJJ", subtitle: "All Levels" },
-    ],
-  },
-  {
-    day: "THU",
-    classes: [
-      { time: "16:45 – 17:30", title: "Tiny Tots", subtitle: "Ages 4–7" },
-      { time: "18:30 – 20:00", title: "Advanced BJJ", subtitle: "Blue Belt & Above" },
-      { time: "20:00 – 21:00", title: "Open Mat", subtitle: "All Levels" },
-    ],
-  },
-  {
-    day: "FRI",
-    classes: [
-      { time: "06:00 – 07:30", title: "Morning BJJ", subtitle: "All Levels" },
-      { time: "17:00 – 18:30", title: "Wrestling", subtitle: "All Levels" },
-    ],
-  },
-  {
-    day: "SAT",
-    classes: [
-      { time: "10:00 – 12:00", title: "Comp Class", subtitle: "Competition Team" },
-      { time: "13:00 – 14:00", title: "Striking", subtitle: "All Levels" },
-    ],
-  },
-  {
-    day: "SUN",
-    classes: [],
-    rest: true,
-  },
-];
+import { schedule, isClassActive } from "@/lib/schedule";
 
 /* ─── Page ─── */
 
@@ -82,6 +14,13 @@ export default function SchedulePage() {
   const ctaRef = useRef<HTMLDivElement>(null);
   const ctaInView = useInView(ctaRef, { once: true, margin: "-100px" });
   const openLeadForm = useOpenLeadForm();
+
+  // Re-evaluate active class every 60 seconds
+  const [, setTick] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setTick((t) => t + 1), 60_000);
+    return () => clearInterval(id);
+  }, []);
 
   const heroParallaxRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: heroScrollY } = useScroll({
@@ -188,14 +127,14 @@ export default function SchedulePage() {
                       <div
                         key={`${day.day}-${cls.time}`}
                         className={`clip-corner p-4 transition-colors group ${
-                          cls.active
+                          isClassActive(day.dayIndex, cls.time)
                             ? "bg-[#2A2A2A] border-l-4 border-[#CC1122] shadow-[0_0_15px_rgba(204,17,34,0.2)]"
                             : "bg-[#201F1F] hover:bg-[#2A2A2A]"
                         }`}
                       >
                         <p
                           className={`font-headline text-xs tracking-[0.2em] mb-1 ${
-                            cls.active ? "text-[#CC1122]" : "text-zinc-500"
+                            isClassActive(day.dayIndex, cls.time) ? "text-[#CC1122]" : "text-zinc-500"
                           }`}
                         >
                           {cls.time}
@@ -244,14 +183,14 @@ export default function SchedulePage() {
                         <div
                           key={`${day.day}-${cls.time}-mobile`}
                           className={`clip-corner p-4 ${
-                            cls.active
+                            isClassActive(day.dayIndex, cls.time)
                               ? "bg-[#2A2A2A] border-l-4 border-[#CC1122] shadow-[0_0_15px_rgba(204,17,34,0.2)]"
                               : "bg-[#201F1F]"
                           }`}
                         >
                           <p
                             className={`font-headline text-xs tracking-[0.2em] mb-1 ${
-                              cls.active ? "text-[#CC1122]" : "text-zinc-500"
+                              isClassActive(day.dayIndex, cls.time) ? "text-[#CC1122]" : "text-zinc-500"
                             }`}
                           >
                             {cls.time}

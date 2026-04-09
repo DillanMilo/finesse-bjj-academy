@@ -1,51 +1,112 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
+import {
+  schedule,
+  getCurrentClass,
+  getNextClass,
+  type ActiveClassInfo,
+  type ClassSlot,
+} from "@/lib/schedule";
 
-const classes = [
-  {
-    label: "CURRENTLY TRAINING",
-    title: "ADVANCED NO-GI",
-    time: "18:00 - 19:30",
-    subtitle: "COACH DIAZ",
-    featured: true,
-  },
-  {
-    label: "UPCOMING",
-    title: "KIDS FUNDAMENTALS",
-    time: "16:30 - 17:30",
-    subtitle: "DAILY",
-    featured: false,
-  },
-  {
-    label: "MORNING SESSION",
-    title: "ALL LEVELS GI",
-    time: "06:00 - 07:00",
-    subtitle: "M/W/F",
-    featured: false,
-  },
-  {
-    label: "COMPETITION CLASS",
-    title: "SITUATION SPARRING",
-    time: "12:00 - 13:30",
-    subtitle: "SATURDAY",
-    featured: false,
-  },
-  {
-    label: "LITTLE WARRIORS",
-    title: "TINY TOTS",
-    time: "16:00 - 16:45",
-    subtitle: "DAILY",
-    featured: false,
-  },
-];
+interface DisplayClass {
+  label: string;
+  title: string;
+  time: string;
+  subtitle: string;
+  featured: boolean;
+}
+
+function buildDisplayClasses(): DisplayClass[] {
+  const current = getCurrentClass();
+  const next = getNextClass();
+
+  // Gather today's remaining classes + upcoming from other days (up to 5 total)
+  const now = new Date(
+    new Date().toLocaleString("en-US", { timeZone: "America/Chicago" })
+  );
+  const currentDay = now.getDay();
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+  const items: DisplayClass[] = [];
+
+  // If a class is currently in session, add it first as featured
+  if (current) {
+    items.push({
+      label: "CURRENTLY TRAINING",
+      title: current.classSlot.title.toUpperCase(),
+      time: current.classSlot.time,
+      subtitle: current.classSlot.subtitle,
+      featured: true,
+    });
+  }
+
+  // Collect upcoming classes across the week
+  for (let offset = 0; offset < 7 && items.length < 5; offset++) {
+    const checkDay = (currentDay + offset) % 7;
+    const daySchedule = schedule.find((d) => d.dayIndex === checkDay);
+    if (!daySchedule || daySchedule.rest) continue;
+
+    for (const cls of daySchedule.classes) {
+      if (items.length >= 5) break;
+
+      // Skip the currently active class (already added)
+      if (
+        current &&
+        current.dayIndex === checkDay &&
+        current.classSlot.time === cls.time
+      )
+        continue;
+
+      // If today, skip classes that already ended
+      if (offset === 0) {
+        const endMatch = cls.time.split("–")[1]?.trim();
+        if (endMatch) {
+          const [h, m] = endMatch.split(":").map(Number);
+          if (h * 60 + m <= currentMinutes) continue;
+        }
+      }
+
+      const isNext =
+        !current &&
+        next &&
+        next.dayIndex === checkDay &&
+        next.classSlot.time === cls.time;
+
+      items.push({
+        label: isNext
+          ? "UP NEXT"
+          : offset === 0
+            ? "TODAY"
+            : daySchedule.day,
+        title: cls.title.toUpperCase(),
+        time: cls.time,
+        subtitle: cls.subtitle,
+        featured: !!isNext,
+      });
+    }
+  }
+
+  // If nothing is active or upcoming (shouldn't happen), show a fallback
+  if (items.length === 0) {
+    items.push({
+      label: "NEXT SESSION",
+      title: "CHECK FULL SCHEDULE",
+      time: "—",
+      subtitle: "",
+      featured: false,
+    });
+  }
+
+  return items;
+}
 
 function ClassItem({
   item,
   index,
 }: {
-  item: (typeof classes)[number];
+  item: DisplayClass;
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -80,11 +141,7 @@ function ClassItem({
             {item.label}
           </span>
         </div>
-        <h3
-          className={`font-headline text-2xl sm:text-3xl md:text-4xl ${
-            item.featured ? "text-white" : "text-white"
-          }`}
-        >
+        <h3 className="font-headline text-2xl sm:text-3xl md:text-4xl text-white">
           {item.title}
         </h3>
       </div>
@@ -119,6 +176,14 @@ export default function Schedule() {
 
   const ctaRef = useRef<HTMLAnchorElement>(null);
   const ctaInView = useInView(ctaRef, { once: true, margin: "-100px" });
+
+  // Build display classes on client only, refresh every 60s
+  const [displayClasses, setDisplayClasses] = useState<DisplayClass[]>([]);
+  useEffect(() => {
+    setDisplayClasses(buildDisplayClasses());
+    const id = setInterval(() => setDisplayClasses(buildDisplayClasses()), 60_000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <section id="schedule" className="py-16 sm:py-24 md:py-32 bg-[#1A1014]">
@@ -162,8 +227,8 @@ export default function Schedule() {
 
           {/* Right column */}
           <div className="md:w-3/5 space-y-4">
-            {classes.map((item, i) => (
-              <ClassItem key={item.title} item={item} index={i} />
+            {displayClasses.map((item, i) => (
+              <ClassItem key={`${item.title}-${item.time}`} item={item} index={i} />
             ))}
           </div>
         </div>

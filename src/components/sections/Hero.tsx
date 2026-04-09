@@ -66,7 +66,7 @@ function TextReveal({
   delay?: number;
 }) {
   return (
-    <span className="block overflow-hidden px-1">
+    <span className="block" style={{ clipPath: "inset(-10% -20% -10% -20%)" }}>
       <motion.span
         className="block"
         initial={{
@@ -136,7 +136,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Heading with clip-reveal text animations */}
-          <h1 className="font-headline text-4xl min-[375px]:text-5xl sm:text-6xl md:text-7xl lg:text-9xl leading-[0.85] tracking-tighter italic mb-8">
+          <h1 className="font-headline text-4xl min-[375px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tighter italic mb-8">
             <TextReveal direction="left" delay={0.4}>
               <span className="text-white">MASTER THE ART</span>
             </TextReveal>
