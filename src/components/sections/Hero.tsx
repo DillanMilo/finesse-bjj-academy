@@ -141,7 +141,7 @@ export default function Hero() {
               <span className="text-white">MASTER THE ART</span>
             </TextReveal>
             <TextReveal direction="right" delay={0.6}>
-              <span className="bg-gradient-to-r from-[#CC1122] to-red-800 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#CC1122] to-red-800 bg-clip-text text-transparent inline-block -translate-x-6 md:-translate-x-10">
                 OF FINESSE
               </span>
             </TextReveal>
