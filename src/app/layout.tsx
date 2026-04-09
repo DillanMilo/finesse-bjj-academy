@@ -40,12 +40,34 @@ export const metadata: Metadata = {
     "self defense",
     "kids BJJ",
   ],
+  icons: {
+    icon: [
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "Finesse BJJ Academy | Premier Brazilian Jiu-Jitsu in Spring, TX",
     description:
       "Master the art of finesse at Spring, TX's premier BJJ academy. Book your free 20-minute consultation.",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 1200,
+        alt: "Finesse BJJ Academy Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Finesse BJJ Academy | Premier Brazilian Jiu-Jitsu in Spring, TX",
+    description:
+      "Master the art of finesse at Spring, TX's premier BJJ academy. Book your free 20-minute consultation.",
+    images: ["/og-image.png"],
   },
 };
 
