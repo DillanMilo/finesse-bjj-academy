@@ -6,8 +6,6 @@ import {
   schedule,
   getCurrentClass,
   getNextClass,
-  type ActiveClassInfo,
-  type ClassSlot,
 } from "@/lib/schedule";
 
 interface DisplayClass {
@@ -180,9 +178,14 @@ export default function Schedule() {
   // Build display classes on client only, refresh every 60s
   const [displayClasses, setDisplayClasses] = useState<DisplayClass[]>([]);
   useEffect(() => {
-    setDisplayClasses(buildDisplayClasses());
-    const id = setInterval(() => setDisplayClasses(buildDisplayClasses()), 60_000);
-    return () => clearInterval(id);
+    const refresh = () => setDisplayClasses(buildDisplayClasses());
+    const initialRefreshId = window.setTimeout(refresh, 0);
+    const refreshIntervalId = window.setInterval(refresh, 60_000);
+
+    return () => {
+      window.clearTimeout(initialRefreshId);
+      window.clearInterval(refreshIntervalId);
+    };
   }, []);
 
   return (

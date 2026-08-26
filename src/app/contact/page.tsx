@@ -4,14 +4,6 @@ import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { FormEvent, useState } from "react";
 
-/* ──────────────────────────── helpers ──────────────────────────── */
-
-function useReveal(margin: string = "-100px") {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: margin as `${number}px` });
-  return { ref, isInView };
-}
-
 const socials = [
   { label: "INSTAGRAM", href: "https://www.instagram.com/finessejiujitsu/" },
   { label: "FACEBOOK", href: "https://www.facebook.com/finessebjj" },

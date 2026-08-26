@@ -25,6 +25,7 @@ const cormorantGaramond = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://finesse-bjj-academy.vercel.app"),
   title: {
     default: "Finesse BJJ Academy | Premier Brazilian Jiu-Jitsu in Spring, TX",
     template: "%s | Finesse BJJ Academy",
