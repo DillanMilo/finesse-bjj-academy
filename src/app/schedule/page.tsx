@@ -2,7 +2,6 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import ParallaxPhoto from "@/components/motion/ParallaxPhoto";
 import Link from "next/link";
 import { useOpenLeadForm } from "@/lib/lead-form-context";
 import { schedule, isClassActive } from "@/lib/schedule";
@@ -27,10 +26,7 @@ export default function SchedulePage() {
     <main>
       {/* ─── Hero Banner ─── */}
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background placeholder + gradient */}
-        <ParallaxPhoto src="/photos/kids-class.webp" alt="" className="absolute inset-0" priority />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/50 to-transparent" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-[#1A1014] to-[#0A0A0A]" />
 
         <div className="relative z-10 text-center px-4 sm:px-6 md:px-8">
           <motion.h1
