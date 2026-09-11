@@ -1,16 +1,16 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import LayeredPortrait from "@/components/motion/LayeredPortrait";
+import { motion, useInView } from "framer-motion";
 
 const trainers = [
   {
     name: "LUIS DIAZ",
     role: "HEAD COACH",
     rank: "3RD DEGREE BLACK BELT",
-    image: "/luis.JPG",
-    imageClass: "",
+    image: "/Luis_clean.png",
+    background: "/photos/instructors/luis-background.webp",
     quote:
       "In the depth of the struggle, finesse becomes your only language.",
     bio: "Founder and 3rd Degree Black Belt. With over two decades on the mats, Luis has developed a system that prioritizes technical economy over brute strength. His philosophy has shaped regional champions and world-class competitors.",
@@ -19,8 +19,8 @@ const trainers = [
     name: "NATHAN BATES",
     role: "COACH",
     rank: "BLACK BELT",
-    image: "/nathan.JPG",
-    imageClass: "",
+    image: "/nathan_clean.png",
+    background: "/photos/instructors/nathan-background.webp",
     quote:
       "The mat is a mirror. It doesn\u2019t lie about your preparation or your heart.",
     bio: "An active competitor and analytical mastermind. Nathan specializes in modern guard systems and leg-lock entries. He brings a surgical precision to the academy\u2019s advanced program.",
@@ -29,8 +29,8 @@ const trainers = [
     name: "TY",
     role: "",
     rank: "COACH",
-    image: "/Ty.JPG",
-    imageClass: "",
+    image: "/ty_clean.png",
+    background: "/photos/instructors/ty-background.webp",
     quote:
       "Show up, work hard, and trust the process. The mats will take care of the rest.",
     bio: "Coach Ty brings energy and dedication to every session. His coaching style focuses on building confidence and developing well-rounded grapplers from day one.",
@@ -39,8 +39,8 @@ const trainers = [
     name: "PATTY",
     role: "WOMEN'S INSTRUCTOR",
     rank: "INSTRUCTOR",
-    image: "/patty.JPG",
-    imageClass: "object-[25%_25%] scale-[0.85]",
+    image: "/patty_clean.png",
+    background: "/photos/instructors/patty-background.webp",
     quote:
       "Jiu-jitsu isn't just for everyone — it's for you. Step on the mat and surprise yourself.",
     bio: "Coach Patty is a dedicated instructor who brings passion and precision to every class. She creates a welcoming environment that empowers students of all backgrounds to push their limits and grow both on and off the mats.",
@@ -49,8 +49,8 @@ const trainers = [
     name: "BODHI",
     role: "KIDS CLASS ASSISTANT",
     rank: "BLUE BELT",
-    image: "/Bodhi.JPG",
-    imageClass: "",
+    image: "/Bhodi_clean.png",
+    background: "/photos/instructors/bodhi-background.webp",
     quote:
       "Every kid who steps on the mat is learning more than just jiu-jitsu — they're building character.",
     bio: "Bodhi is a dedicated blue belt who assists with the kids program at Finesse. His patience and enthusiasm make him a natural with younger students, helping them build confidence and a strong foundation in jiu-jitsu fundamentals.",
@@ -65,15 +65,8 @@ function TrainerBlock({
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const photoRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const isReversed = index % 2 !== 0;
-
-  const { scrollYProgress } = useScroll({
-    target: photoRef,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
   return (
     <motion.div
@@ -92,26 +85,13 @@ function TrainerBlock({
         transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
         className="w-full md:w-1/2"
       >
-        <div ref={photoRef} className="relative overflow-hidden">
-          {/* Offset border frame */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            className={`absolute -top-2 sm:-top-4 ${
-              isReversed ? "-right-2 sm:-right-4" : "-left-2 sm:-left-4"
-            } w-full h-full border border-[#CC1122]/30 z-0`}
-          />
-          <motion.div style={{ y }} className="scale-[1.15]">
-            <Image
-              src={trainer.image}
-              alt={trainer.name}
-              width={800}
-              height={1000}
-              className={`relative z-10 w-full aspect-[4/5] object-cover grayscale brightness-90 ${trainer.imageClass || "object-top"}`}
-            />
-          </motion.div>
-        </div>
+        <LayeredPortrait
+          foreground={trainer.image}
+          background={trainer.background}
+          name={trainer.name}
+          closeUp={trainer.name === "PATTY"}
+          reversed={isReversed}
+        />
       </motion.div>
 
       {/* Info side */}
@@ -133,6 +113,7 @@ function TrainerBlock({
           {trainer.role ? `${trainer.role} \u2022 ` : ""}
           {trainer.rank}
         </motion.p>
+        {/* Instructor quotes: to be decided. Preserve copy until approved.
         <motion.blockquote
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -141,6 +122,7 @@ function TrainerBlock({
         >
           &ldquo;{trainer.quote}&rdquo;
         </motion.blockquote>
+        */}
         <motion.p
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -167,14 +149,14 @@ export default function Trainers() {
           initial={{ opacity: 0, y: 40 }}
           animate={headingInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tighter italic text-center mb-12 sm:mb-16 md:mb-24"
+          className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tighter italic text-center mb-32 sm:mb-40 md:mb-44"
         >
           <span className="text-white">YOUR </span>
           <span className="text-[#CC1122]">INSTRUCTORS</span>
         </motion.h2>
 
         {/* Trainer profiles */}
-        <div className="space-y-16 sm:space-y-24 md:space-y-32">
+        <div className="space-y-32 sm:space-y-40 md:space-y-44">
           {trainers.map((trainer, i) => (
             <TrainerBlock key={trainer.name} trainer={trainer} index={i} />
           ))}

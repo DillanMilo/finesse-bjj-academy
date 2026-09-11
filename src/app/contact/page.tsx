@@ -192,7 +192,7 @@ export default function ContactPage() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             >
               {/* Red glow behind form */}
-              <div className="absolute -inset-8 bg-[#CC1122]/8 blur-3xl rounded-full pointer-events-none" />
+              <div className="absolute inset-x-0 -inset-y-8 sm:-inset-8 bg-[#CC1122]/8 blur-3xl rounded-full pointer-events-none" />
 
               <div className="relative clip-corner bg-[#2A2A2A] p-5 sm:p-8 md:p-12 border border-[#5C3F3D]/15">
                 <motion.h2
@@ -312,7 +312,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── Gradient Divider ── */}
-      <div className="gradient-divider mx-4 sm:mx-6 md:mx-8" />
+      <div className="gradient-divider !w-auto mx-4 sm:mx-6 md:mx-8" />
 
       {/* ── Map Section ── */}
       <section className="w-full px-4 sm:px-6 md:px-8 max-w-[1920px] mx-auto py-16 md:py-24">
@@ -380,7 +380,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── Gradient Divider ── */}
-      <div className="gradient-divider mx-4 sm:mx-6 md:mx-8" />
+      <div className="gradient-divider !w-auto mx-4 sm:mx-6 md:mx-8" />
 
       {/* ── Social Grid ── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-20">

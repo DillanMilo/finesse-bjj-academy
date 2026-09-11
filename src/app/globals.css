@@ -90,6 +90,26 @@ body {
   font-family: "DM Sans", sans-serif;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .layered-portrait .portrait-layer { transform: none !important; }
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+/* Decorative scroll companion stays beneath navigation and dialogs. */
+.scroll-snake {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  z-index: 20;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  filter: drop-shadow(0 0 4px rgb(204 17 34 / 18%));
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-snake { display: none; }
 }

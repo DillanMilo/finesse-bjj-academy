@@ -38,6 +38,7 @@ export default function Navbar({ onOpenLeadForm }: NavbarProps) {
   }, [mobileOpen]);
 
   const isActive = (href: string) => {
+    if (href === "/#programs" && pathname.startsWith("/programs/")) return true;
     if (href.startsWith("/#")) return pathname === "/";
     return pathname === href;
   };
@@ -100,6 +101,8 @@ export default function Navbar({ onOpenLeadForm }: NavbarProps) {
               onClick={() => setMobileOpen((prev) => !prev)}
               className="relative z-50 flex flex-col items-center justify-center gap-[5px] lg:hidden h-11 w-11"
               aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-navigation"
             >
               <span
                 className={`block h-[2px] w-6 bg-[#E5E2E1] transition-all duration-300 ${
@@ -128,6 +131,7 @@ export default function Navbar({ onOpenLeadForm }: NavbarProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
+            id="mobile-navigation"
             className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 overflow-y-auto py-20 bg-black/95 backdrop-blur-lg lg:hidden"
           >
             {NAV_LINKS.map((link, i) => (

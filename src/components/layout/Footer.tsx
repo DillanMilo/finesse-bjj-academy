@@ -9,7 +9,11 @@ const programLinks = [
   { label: "Adult BJJ", href: "/programs/adult-bjj" },
   { label: "Kids BJJ", href: "/programs/kids-bjj" },
   { label: "Wrestling", href: "/programs/wrestling" },
+  { label: "Tiny Tots", href: "/schedule" },
+  { label: "Striking", href: "/programs/striking" },
   { label: "Private Lessons", href: "/contact" },
+  { label: "Women’s Program", href: "/programs/womens-program" },
+  { label: "Personalized Options", href: "/programs/personalized-options" },
 ];
 
 const academyLinks = [

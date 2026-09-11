@@ -35,7 +35,7 @@ function buildDisplayClasses(): DisplayClass[] {
       label: "CURRENTLY TRAINING",
       title: current.classSlot.title.toUpperCase(),
       time: current.classSlot.time,
-      subtitle: current.classSlot.subtitle,
+      subtitle: `${current.classSlot.subtitle} · ${current.classSlot.timingNote ?? ""}`,
       featured: true,
     });
   }
@@ -48,6 +48,7 @@ function buildDisplayClasses(): DisplayClass[] {
 
     for (const cls of daySchedule.classes) {
       if (items.length >= 5) break;
+      if (!cls.startTimeConfirmed) continue;
 
       // Skip the currently active class (already added)
       if (
@@ -56,6 +57,12 @@ function buildDisplayClasses(): DisplayClass[] {
         current.classSlot.time === cls.time
       )
         continue;
+
+      // Start-only sessions cannot be labeled live without a confirmed end time.
+      if (offset === 0 && !cls.endTimeConfirmed) {
+        const [h, m] = cls.time.split("–")[0].trim().split(":").map(Number);
+        if (h * 60 + m <= currentMinutes) continue;
+      }
 
       // If today, skip classes that already ended
       if (offset === 0) {
@@ -80,7 +87,7 @@ function buildDisplayClasses(): DisplayClass[] {
             : daySchedule.day,
         title: cls.title.toUpperCase(),
         time: cls.time,
-        subtitle: cls.subtitle,
+        subtitle: `${cls.subtitle} · ${cls.timingNote ?? ""}`,
         featured: !!isNext,
       });
     }
@@ -231,7 +238,7 @@ export default function Schedule() {
           {/* Right column */}
           <div className="md:w-3/5 space-y-4">
             {displayClasses.map((item, i) => (
-              <ClassItem key={`${item.title}-${item.time}`} item={item} index={i} />
+              <ClassItem key={`${item.label}-${item.title}-${item.time}`} item={item} index={i} />
             ))}
           </div>
         </div>

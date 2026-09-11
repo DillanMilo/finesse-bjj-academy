@@ -3,6 +3,9 @@
 import dynamic from "next/dynamic";
 import Hero from "@/components/sections/Hero";
 
+// Temporarily disabled; keep the component for future refinement.
+// const ScrollSnake = dynamic(() => import("@/components/motion/ScrollSnake"), { ssr: false });
+
 const Programs = dynamic(() => import("@/components/sections/Programs"), { ssr: false });
 const Trainers = dynamic(() => import("@/components/sections/Trainers"), { ssr: false });
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"), { ssr: false });
@@ -20,6 +23,7 @@ export default function Home() {
       <Schedule />
       <LatestNews />
       <FinalCTA />
+      {/* <ScrollSnake /> */}
     </main>
   );
 }

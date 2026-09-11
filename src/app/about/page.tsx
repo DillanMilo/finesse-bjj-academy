@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import ParallaxPhoto from "@/components/motion/ParallaxPhoto";
 import Image from "next/image";
 import Link from "next/link";
 import { useOpenLeadForm } from "@/lib/lead-form-context";
@@ -115,19 +116,7 @@ function RevealElement({
 }
 
 function MissionImage() {
-  const { ref, y } = useParallax(["-15%", "15%"]);
-
-  return (
-    <div className="relative">
-      <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-full h-full border border-[#CC1122]/30 z-0" />
-      <div ref={ref} className="relative z-10 w-full aspect-[4/5] overflow-hidden clip-corner">
-        <motion.div
-          className="w-full h-full bg-zinc-800 scale-[1.3] grayscale brightness-90"
-          style={{ y }}
-        />
-      </div>
-    </div>
-  );
+  return <ParallaxPhoto src="/photos/academy-1422.webp" alt="Finesse students and coaches seated together on the academy mats" className="w-full aspect-[4/3] clip-corner" sizes="(min-width: 768px) 50vw, 100vw" />;
 }
 
 function CtaBackground() {

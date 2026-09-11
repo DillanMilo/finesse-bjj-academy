@@ -1,7 +1,10 @@
 "use client";
 
+import PhotoGallery from "@/components/motion/PhotoGallery";
+import ParallaxPhoto from "@/components/motion/ParallaxPhoto";
+import { getProgramClassDetails } from "@/lib/schedule";
 import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useOpenLeadForm } from "@/lib/lead-form-context";
 
 const curriculum = [
@@ -27,16 +30,7 @@ const curriculum = [
   },
 ];
 
-const classDetails = [
-  {
-    label: "MORNING SESSION",
-    times: "Tue — 7:00 AM to 8:30 AM",
-  },
-  {
-    label: "EVENING SESSION",
-    times: "Fri — 5:00 PM to 6:30 PM",
-  },
-];
+const classDetails = getProgramClassDetails("wrestling");
 
 function SectionReveal({
   children,
@@ -90,25 +84,11 @@ function RevealElement({
 
 export default function WrestlingPage() {
   const openLeadForm = useOpenLeadForm();
-  const heroParallaxRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: heroScrollY } = useScroll({
-    target: heroParallaxRef,
-    offset: ["start end", "end start"],
-  });
-  const heroY = useTransform(heroScrollY, [0, 1], ["-15%", "15%"]);
-
-  const overviewParallaxRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: overviewScrollY } = useScroll({
-    target: overviewParallaxRef,
-    offset: ["start end", "end start"],
-  });
-  const overviewY = useTransform(overviewScrollY, [0, 1], ["-15%", "15%"]);
-
   return (
     <main>
       {/* ── Hero ── */}
-      <section ref={heroParallaxRef} className="relative h-[500px] flex items-end overflow-hidden">
-        <motion.div style={{ y: heroY }} className="absolute inset-0 scale-[1.3] bg-[#1A1014]" />
+      <section className="relative h-[500px] flex items-end overflow-hidden">
+        <ParallaxPhoto src="/photos/wrestling-1423.webp" alt="" className="absolute inset-0" priority />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" />
 
         <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 pb-12 md:pb-16">
@@ -181,9 +161,7 @@ export default function WrestlingPage() {
 
             <SectionReveal delay={0.2}>
               <div className="relative">
-                <div ref={overviewParallaxRef} className="overflow-hidden w-full aspect-[4/3]">
-                  <motion.div style={{ y: overviewY }} className="bg-[#1A1014] w-full h-full scale-[1.3]" />
-                </div>
+                <PhotoGallery photos={[{ src: "/photos/wrestling-1423.webp", alt: "Training partners practicing a standing clinch" }, { src: "/photos/wrestling.webp", alt: "Competition grapplers working for top control" }]} label="wrestling photo gallery" />
                 <div className="absolute top-4 left-4 w-full h-full border-2 border-[#CC1122]/40 -z-10" />
               </div>
             </SectionReveal>
@@ -235,7 +213,7 @@ export default function WrestlingPage() {
               <div className="space-y-6">
                 {classDetails.map((detail) => (
                   <div
-                    key={detail.label}
+                    key={`${detail.label}-${detail.times}`}
                     className="bg-[#1A1014] border-l-4 border-[#CC1122] p-6"
                   >
                     <span className="font-headline text-xl text-[#CC1122] block mb-1">
@@ -244,6 +222,7 @@ export default function WrestlingPage() {
                     <span className="font-body text-[#E6BDB9] text-lg">
                       {detail.times}
                     </span>
+                    <p className="text-sm text-[#E6BDB9] mt-2">{detail.note}</p>
                   </div>
                 ))}
               </div>

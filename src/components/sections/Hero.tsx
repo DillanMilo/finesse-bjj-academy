@@ -109,7 +109,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 to-black grayscale opacity-40" />
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 to-black" />
       <div className="absolute inset-0 bg-[#0A0A0A]/70" />
 
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 z-10 pt-24 md:pt-28 pb-32 md:pb-36">

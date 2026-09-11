@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import ParallaxPhoto from "@/components/motion/ParallaxPhoto";
 import Link from "next/link";
 import { useOpenLeadForm } from "@/lib/lead-form-context";
 import { schedule, isClassActive } from "@/lib/schedule";
@@ -22,19 +23,12 @@ export default function SchedulePage() {
     return () => clearInterval(id);
   }, []);
 
-  const heroParallaxRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: heroScrollY } = useScroll({
-    target: heroParallaxRef,
-    offset: ["start end", "end start"],
-  });
-  const heroY = useTransform(heroScrollY, [0, 1], ["-15%", "15%"]);
-
   return (
     <main>
       {/* ─── Hero Banner ─── */}
-      <section ref={heroParallaxRef} className="relative h-[500px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
         {/* Background placeholder + gradient */}
-        <motion.div style={{ y: heroY }} className="absolute inset-0 scale-[1.3] bg-gradient-to-br from-zinc-900 via-zinc-800 to-black" />
+        <ParallaxPhoto src="/photos/kids-class.webp" alt="" className="absolute inset-0" priority />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/50 to-transparent" />
 
@@ -92,10 +86,11 @@ export default function SchedulePage() {
             </motion.div>
           </div>
 
+          <p className="text-[#E6BDB9] mb-6">All times Central. Some timings are awaiting confirmation. Check the note on each class and confirm with the academy before attending.</p>
           <div className="gradient-divider mb-12" />
 
           {/* ─── Desktop Grid ─── */}
-          <div className="hidden md:grid grid-cols-7 gap-2">
+          <div className="hidden xl:grid grid-cols-7 gap-2">
             {schedule.map((day, dayIdx) => (
               <motion.div
                 key={day.day}
@@ -134,7 +129,7 @@ export default function SchedulePage() {
                       >
                         <p
                           className={`font-headline text-xs tracking-[0.2em] mb-1 ${
-                            isClassActive(day.dayIndex, cls.time) ? "text-[#CC1122]" : "text-zinc-500"
+                            isClassActive(day.dayIndex, cls.time) ? "text-[#CC1122]" : "text-zinc-400"
                           }`}
                         >
                           {cls.time}
@@ -145,6 +140,7 @@ export default function SchedulePage() {
                         <p className="text-[10px] text-[#E6BDB9] uppercase tracking-widest mt-1">
                           {cls.subtitle}
                         </p>
+                        <p className="text-xs text-[#E6BDB9] mt-2">{cls.timingNote}</p>
                       </div>
                     ))}
                   </div>
@@ -154,7 +150,7 @@ export default function SchedulePage() {
           </div>
 
           {/* ─── Mobile List ─── */}
-          <div className="md:hidden flex flex-col gap-8">
+          <div className="xl:hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {schedule.map((day, dayIdx) => (
               <motion.div
                 key={day.day}
@@ -190,7 +186,7 @@ export default function SchedulePage() {
                         >
                           <p
                             className={`font-headline text-xs tracking-[0.2em] mb-1 ${
-                              isClassActive(day.dayIndex, cls.time) ? "text-[#CC1122]" : "text-zinc-500"
+                              isClassActive(day.dayIndex, cls.time) ? "text-[#CC1122]" : "text-zinc-400"
                             }`}
                           >
                             {cls.time}
@@ -201,6 +197,7 @@ export default function SchedulePage() {
                           <p className="text-[10px] text-[#E6BDB9] uppercase tracking-widest mt-1">
                             {cls.subtitle}
                           </p>
+                          <p className="text-xs text-[#E6BDB9] mt-2">{cls.timingNote}</p>
                         </div>
                       ))}
                     </div>
