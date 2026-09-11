@@ -159,9 +159,9 @@ export default function Programs() {
     <section id="programs" className="py-16 sm:py-24 md:py-32 bg-[#0A0A0A]">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
         {/* Header */}
-        <div ref={headerRef} className="flex flex-col md:flex-row justify-between items-end mb-10 sm:mb-14 md:mb-20">
+        <div ref={headerRef} className="flex flex-col md:flex-row justify-between items-center md:items-end mb-10 sm:mb-14 md:mb-20">
           <motion.h2
-            className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tighter italic"
+            className="max-w-full shrink-0 px-[0.15em] text-center md:text-left font-headline text-5xl sm:text-6xl md:text-6xl lg:text-8xl tracking-tighter italic leading-tight"
             initial={{ opacity: 0, y: 40 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: "easeOut" }}
