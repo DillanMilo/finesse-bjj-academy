@@ -26,9 +26,7 @@ const cormorantGaramond = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "https://finesse-private-8k4q2m-dillans-projects-f662840b.vercel.app"
+    "https://finesse-private-8k4q2m-dillans-projects-f662840b.vercel.app"
   ),
   title: {
     default: "Finesse BJJ Academy | Premier Brazilian Jiu-Jitsu in Spring, TX",
