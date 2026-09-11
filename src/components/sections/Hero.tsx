@@ -141,12 +141,12 @@ export default function Hero() {
           </motion.div>
 
           {/* Heading with clip-reveal text animations */}
-          <h1 className="font-headline text-4xl min-[375px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.85] tracking-tighter italic mb-8 -ml-4 md:-ml-8 lg:-ml-12">
+          <h1 className="font-headline text-4xl min-[375px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1] tracking-tighter italic mb-8">
             <TextReveal direction="left" delay={0.4}>
-              <span className="text-white">MASTER THE ART</span>
+              <span className="inline-block px-[0.2em] text-white">MASTER THE ART</span>
             </TextReveal>
             <TextReveal direction="right" delay={0.6}>
-              <span className="bg-gradient-to-r from-[#CC1122] to-red-800 bg-clip-text text-transparent">
+              <span className="inline-block px-[0.2em] bg-gradient-to-r from-[#CC1122] to-red-800 bg-clip-text text-transparent">
                 OF FINESSE
               </span>
             </TextReveal>

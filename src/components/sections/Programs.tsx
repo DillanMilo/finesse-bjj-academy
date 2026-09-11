@@ -161,7 +161,7 @@ export default function Programs() {
         {/* Header */}
         <div ref={headerRef} className="flex flex-col md:flex-row justify-between items-center md:items-end mb-10 sm:mb-14 md:mb-20">
           <motion.h2
-            className="max-w-full shrink-0 px-[0.15em] text-center md:text-left font-headline text-5xl sm:text-6xl md:text-6xl lg:text-8xl tracking-tighter italic leading-tight"
+            className="w-full md:w-auto max-w-full shrink-0 px-[0.2em] text-center md:text-left font-headline text-[clamp(3.5rem,12vw,4.25rem)] md:text-6xl lg:text-8xl tracking-tighter italic leading-tight"
             initial={{ opacity: 0, y: 40 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: "easeOut" }}
