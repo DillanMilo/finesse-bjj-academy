@@ -25,7 +25,11 @@ const cormorantGaramond = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://finesse-bjj-academy.vercel.app"),
+  metadataBase: new URL(
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "https://finesse-private-8k4q2m-dillans-projects-f662840b.vercel.app"
+  ),
   title: {
     default: "Finesse BJJ Academy | Premier Brazilian Jiu-Jitsu in Spring, TX",
     template: "%s | Finesse BJJ Academy",
@@ -56,7 +60,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/og-image.png",
+        url: "/finesse-share-logo.png",
         width: 1200,
         height: 1200,
         alt: "Finesse BJJ Academy Logo",
@@ -68,7 +72,7 @@ export const metadata: Metadata = {
     title: "Finesse BJJ Academy | Premier Brazilian Jiu-Jitsu in Spring, TX",
     description:
       "Master the art of finesse at Spring, TX's premier BJJ academy. Book your free 20-minute consultation.",
-    images: ["/og-image.png"],
+    images: ["/finesse-share-logo.png"],
   },
 };
 
