@@ -23,7 +23,6 @@ export default function MerchStore() {
           <h2 id="store-heading" className="font-headline italic text-6xl sm:text-7xl lg:text-8xl leading-none">WEAR THE<br/><span className="text-[#CC1122]">FINESSE.</span></h2>
           <p className="text-zinc-300 text-lg leading-relaxed mt-6 max-w-lg">Represent your academy beyond the mats. Explore Finesse merchandise in our BSN SPORTS team store.</p>
           <a href={finesseStore.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-5 mt-8 bg-[#CC1122] px-7 py-4 font-headline text-2xl tracking-wider text-white hover:bg-[#a90e1c] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">SHOP THE FINESSE STORE <span aria-hidden="true">↗</span></a>
-          <p className="text-xs text-zinc-400 mt-3">Opens the BSN SPORTS shop in a new tab.</p>
         </div>
         <a href={finesseStore.url} target="_blank" rel="noopener noreferrer" aria-label="Browse Finesse merchandise at BSN SPORTS (opens in a new tab)" className="block border border-white/15 bg-[#0a0a0a] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
           <div className="relative aspect-[421/298]">

@@ -25,8 +25,8 @@ export default function FinalCTA() {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <span className="text-white block">FREE 20-MIN</span>
-          <span className="text-[#CC1122] block">CONSULTATION</span>
+          <span className="text-white block">FREE</span>
+          <span className="text-[#CC1122] block">TRIAL</span>
         </motion.h2>
 
         <motion.p
@@ -49,7 +49,7 @@ export default function FinalCTA() {
             className="-skew-x-12 bg-[#CC1122] px-8 sm:px-12 md:px-16 py-4 sm:py-6 shadow-[0_0_30px_rgba(204,17,34,0.4)] hover:brightness-125 transition-all"
           >
             <span className="skew-x-12 inline-block font-headline text-xl sm:text-2xl md:text-4xl tracking-widest text-white uppercase">
-              BOOK YOUR CONSULTATION
+              BOOK YOUR TRIAL
             </span>
           </button>
         </motion.div>

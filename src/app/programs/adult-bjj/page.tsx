@@ -263,7 +263,7 @@ export default function AdultBJJPage() {
                       FIRST VISIT
                     </span>
                     <span className="font-body text-[#E6BDB9]">
-                      Free 20-minute consultation
+                      Free trial
                     </span>
                   </div>
                 </div>
@@ -288,7 +288,7 @@ export default function AdultBJJPage() {
           <RevealElement delay={0.15}>
             <p className="font-serif text-xl md:text-2xl italic text-[#E6BDB9] max-w-2xl mx-auto mb-12">
               Step on the mats and discover what you&apos;re capable of. Book
-              your free 20-minute consultation.
+              your free trial.
             </p>
           </RevealElement>
 
@@ -298,7 +298,7 @@ export default function AdultBJJPage() {
               className="-skew-x-12 bg-[#CC1122] px-6 sm:px-8 md:px-12 lg:px-16 py-4 md:py-6 shadow-[0_0_30px_rgba(204,17,34,0.4)] hover:brightness-125 transition-all"
             >
               <span className="skew-x-12 inline-block font-headline text-base sm:text-xl md:text-2xl lg:text-4xl tracking-widest text-white uppercase">
-                BOOK YOUR CONSULTATION
+                BOOK YOUR TRIAL
               </span>
             </button>
           </RevealElement>

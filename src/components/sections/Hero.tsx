@@ -185,7 +185,7 @@ export default function Hero() {
                 className="-skew-x-12 bg-[#CC1122] px-6 sm:px-10 py-4 shadow-[0_0_30px_rgba(204,17,34,0.4)] hover:shadow-[0_0_40px_rgba(204,17,34,0.6)] transition-shadow duration-300 w-full md:w-auto"
               >
                 <span className="skew-x-12 inline-block font-headline text-base sm:text-xl md:text-2xl tracking-widest text-white">
-                  BOOK FREE CONSULTATION
+                  BOOK FREE TRIAL
                 </span>
               </button>
             </motion.div>

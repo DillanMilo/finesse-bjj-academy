@@ -286,7 +286,7 @@ export default function WrestlingPage() {
 
           <RevealElement delay={0.15}>
             <p className="font-serif text-xl md:text-2xl italic text-[#E6BDB9] max-w-2xl mx-auto mb-12">
-              The takedown game starts here. Book your free 20-minute consultation.
+              The takedown game starts here. Book your free trial.
             </p>
           </RevealElement>
 
@@ -296,7 +296,7 @@ export default function WrestlingPage() {
               className="-skew-x-12 bg-[#CC1122] px-6 sm:px-8 md:px-12 lg:px-16 py-4 md:py-6 shadow-[0_0_30px_rgba(204,17,34,0.4)] hover:brightness-125 transition-all"
             >
               <span className="skew-x-12 inline-block font-headline text-base sm:text-xl md:text-2xl lg:text-4xl tracking-widest text-white uppercase">
-                BOOK YOUR CONSULTATION
+                BOOK YOUR TRIAL
               </span>
             </button>
           </RevealElement>

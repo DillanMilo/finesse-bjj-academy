@@ -29,7 +29,7 @@ export default function StrikingProgram() {
             <p className="font-serif text-2xl sm:text-3xl italic text-[#E6BDB9] mb-8">Find your rhythm. Develop your technique.</p>
             <p className="text-[#E6BDB9] leading-relaxed max-w-lg mb-8">Explore striking alongside your grappling, or make it your starting point at Finesse. The schedule includes all-levels sessions and a separate kids striking class.</p>
             <div className="flex flex-wrap gap-4 items-center">
-              <button onClick={openLeadForm} className="bg-[#CC1122] hover:bg-red-700 px-6 py-4 font-headline text-xl tracking-wider">BOOK A CONSULTATION</button>
+              <button onClick={openLeadForm} className="bg-[#CC1122] hover:bg-red-700 px-6 py-4 font-headline text-xl tracking-wider">BOOK A TRIAL</button>
               <a href="#striking-classes" className="font-headline text-xl tracking-wider py-4 text-[#E6BDB9] hover:text-white">VIEW CLASSES ↓</a>
             </div>
           </div>
@@ -69,7 +69,7 @@ export default function StrikingProgram() {
       </section>
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid md:grid-cols-2 gap-10">
         <div><h2 className="font-headline text-4xl sm:text-5xl italic mb-6">BEFORE YOUR FIRST CLASS</h2><p className="text-[#E6BDB9] leading-relaxed">Contact the academy to confirm the session that suits you, what to wear, and any gloves or protective equipment required. For kids striking, confirm age eligibility and class details with the team before attending.</p></div>
-        <div className="bg-[#1A1014] p-6 sm:p-8 border border-[#CC1122]/20 clip-corner"><h3 className="font-headline text-3xl mb-4">START WITH A CONVERSATION</h3><p className="text-[#E6BDB9] leading-relaxed mb-6">Book a free 20-minute consultation to discuss your experience, goals, and next steps.</p><button onClick={openLeadForm} className="bg-[#CC1122] hover:bg-red-700 px-6 py-4 font-headline text-xl tracking-wider">BOOK YOUR CONSULTATION</button></div>
+        <div className="bg-[#1A1014] p-6 sm:p-8 border border-[#CC1122]/20 clip-corner"><h3 className="font-headline text-3xl mb-4">START WITH A FREE TRIAL</h3><p className="text-[#E6BDB9] leading-relaxed mb-6">Book a free trial to discuss your experience, goals, and next steps.</p><button onClick={openLeadForm} className="bg-[#CC1122] hover:bg-red-700 px-6 py-4 font-headline text-xl tracking-wider">BOOK YOUR TRIAL</button></div>
       </section>
     </main>
   );

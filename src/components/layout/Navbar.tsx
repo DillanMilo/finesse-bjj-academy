@@ -95,7 +95,7 @@ export default function Navbar({ onOpenLeadForm }: NavbarProps) {
               className="hidden lg:block -skew-x-12 bg-[#CC1122] px-4 py-2 xl:px-5 transition-all hover:brightness-110 hover:shadow-[0_0_20px_rgba(204,17,34,0.4)]"
             >
               <span className="skew-x-12 inline-block font-headline text-sm tracking-wider text-white">
-                FREE CONSULT
+                FREE TRIAL
               </span>
             </button>
 
@@ -164,7 +164,7 @@ export default function Navbar({ onOpenLeadForm }: NavbarProps) {
               className="-skew-x-12 bg-[#CC1122] px-8 py-3 mt-4 transition-all hover:brightness-110"
             >
               <span className="skew-x-12 inline-block font-headline text-lg tracking-wider text-white">
-                FREE CONSULT
+                FREE TRIAL
               </span>
             </motion.button>
           </motion.div>

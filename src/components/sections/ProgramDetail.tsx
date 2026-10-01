@@ -17,7 +17,7 @@ const content = {
     paragraphs: [
       "A dedicated space for women to learn Brazilian Jiu-Jitsu, ask questions, and grow alongside supportive training partners. Start with the fundamentals and build confidence one session at a time.",
       "Our women’s no-gi fundamentals class focuses on learning the positions, movement, and techniques that form a foundation for grappling. You don’t need previous martial arts experience to take the first step.",
-      "Book a free consultation to meet the team, talk about your goals, and find out what to expect from your first class.",
+      "Book a free trial to meet the team, talk about your goals, and find out what to expect from your first class.",
     ],
     pillars: [
       { title: "BUILD YOUR FOUNDATION", text: "Get comfortable with basic positions, movement, and the language of jiu-jitsu." },
@@ -25,7 +25,7 @@ const content = {
       { title: "FIND YOUR CONFIDENCE", text: "Develop your skills at your own pace and discover what you enjoy about training." },
     ],
     cta: "TAKE YOUR FIRST STEP",
-    ctaText: "Meet the team and talk through your first class in a free 20-minute consultation.",
+    ctaText: "Meet the team and talk through your first class in a free trial.",
   },
   personalized: {
     eyebrow: "BUILT AROUND YOU",
@@ -36,7 +36,7 @@ const content = {
     paragraphs: [
       "Bring your training goals together with a personalized mix of private coaching, nutrition guidance, and strength training. The starting point is you: your experience, your priorities, and the time you have available.",
       "You might want more individual attention on the mats, support with your everyday nutrition habits, or strength work that complements your jiu-jitsu. We’ll discuss which options make sense together and where to begin.",
-      "Use your consultation to explore the right combination, available coaching, session frequency, and pricing before choosing your program.",
+      "Use your trial to explore the right combination, available coaching, session frequency, and pricing before choosing your program.",
     ],
     pillars: [
       { title: "PRIVATE COACHING", text: "Focused one-on-one attention for the techniques, positions, and questions you want to work on." },
@@ -44,7 +44,7 @@ const content = {
       { title: "STRENGTH TRAINING", text: "Explore strength and conditioning as part of your broader training plan, matched to your starting point." },
     ],
     cta: "LET’S BUILD YOUR PLAN",
-    ctaText: "Tell us what you want to work toward. Start with a free 20-minute consultation.",
+    ctaText: "Tell us what you want to work toward. Start with a free trial.",
   },
 };
 
@@ -112,15 +112,15 @@ export default function ProgramDetail({ variant }: { variant: Variant }) {
             </> : <ol className="space-y-5 text-[#E6BDB9] leading-relaxed list-decimal pl-5"><li>Tell us about your goals, experience, and weekly routine.</li><li>Discuss the combination of coaching, nutrition support, and strength training that suits you.</li><li>Agree on the details with the team and take your first step.</li></ol>}
           </div>
           <div className="bg-[#1A1014] border border-[#CC1122]/20 p-6 sm:p-8 clip-corner">
-            <h3 className="font-headline text-3xl mb-4">{variant === "women" ? "NEW TO JIU-JITSU?" : "START WITH A CONVERSATION"}</h3>
-            <p className="text-[#E6BDB9] leading-relaxed">{variant === "women" ? "You’re welcome to start with the basics. Contact us before your first visit to confirm what to bring and get answers to your questions." : "Every plan begins with a discussion of your needs. Ask about coaching availability, the scope of each option, and pricing during your consultation."}</p>
+            <h3 className="font-headline text-3xl mb-4">{variant === "women" ? "NEW TO JIU-JITSU?" : "START WITH A FREE TRIAL"}</h3>
+            <p className="text-[#E6BDB9] leading-relaxed">{variant === "women" ? "You’re welcome to start with the basics. Contact us before your first visit to confirm what to bring and get answers to your questions." : "Every plan begins with a discussion of your needs. Ask about coaching availability, the scope of each option, and pricing during your trial."}</p>
           </div>
         </div>
       </section>
       <section className="py-16 md:py-24 text-center bg-[#1A1014] px-6">
         <h2 className="font-headline text-4xl sm:text-6xl lg:text-7xl italic mb-6">{page.cta}</h2>
         <p className="text-[#E6BDB9] max-w-xl mx-auto mb-8 leading-relaxed">{page.ctaText}</p>
-        <button onClick={openLeadForm} className="bg-[#CC1122] px-6 sm:px-10 py-4 font-headline text-xl tracking-wider text-white hover:bg-red-700">BOOK YOUR CONSULTATION</button>
+        <button onClick={openLeadForm} className="bg-[#CC1122] px-6 sm:px-10 py-4 font-headline text-xl tracking-wider text-white hover:bg-red-700">BOOK YOUR TRIAL</button>
       </section>
     </main>
   );

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | Finesse BJJ Academy",
   },
   description:
-    "Master the art of finesse at Spring, TX's premier BJJ academy. Adult & Kids Brazilian Jiu-Jitsu, Wrestling, and more. Book your free 20-minute consultation.",
+    "Master the art of finesse at Spring, TX's premier BJJ academy. Adult & Kids Brazilian Jiu-Jitsu, Wrestling, and more. Book your free trial.",
   keywords: [
     "BJJ",
     "Brazilian Jiu-Jitsu",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Finesse BJJ Academy | Premier Brazilian Jiu-Jitsu in Spring, TX",
     description:
-      "Master the art of finesse at Spring, TX's premier BJJ academy. Book your free 20-minute consultation.",
+      "Master the art of finesse at Spring, TX's premier BJJ academy. Book your free trial.",
     type: "website",
     locale: "en_US",
     images: [
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Finesse BJJ Academy | Premier Brazilian Jiu-Jitsu in Spring, TX",
     description:
-      "Master the art of finesse at Spring, TX's premier BJJ academy. Book your free 20-minute consultation.",
+      "Master the art of finesse at Spring, TX's premier BJJ academy. Book your free trial.",
     images: ["/finesse-share-logo.png"],
   },
 };

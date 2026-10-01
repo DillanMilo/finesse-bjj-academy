@@ -72,7 +72,7 @@ export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: Le
 
             {/* Heading */}
             <h2 id="lead-popup-title" className="font-headline text-2xl sm:text-3xl md:text-4xl tracking-tighter italic mb-2 text-white">
-              {mode === "trial" ? "SCHEDULE YOUR FREE TRIAL" : "BOOK YOUR FREE CONSULTATION"}
+              BOOK YOUR FREE TRIAL
             </h2>
             <p className="font-serif text-base sm:text-lg italic text-[#E6BDB9] mb-6 sm:mb-8">
               {mode === "trial" ? "Start with a beginner-friendly kids’ class. Ages 8–14." : "Your journey starts here."}
@@ -103,11 +103,11 @@ export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: Le
                 className="-skew-x-12 bg-[#CC1122] py-3 sm:py-4 mt-4 shadow-[0_0_30px_rgba(204,17,34,0.4)] hover:brightness-110 transition-all"
               >
                 <span className="skew-x-12 inline-block font-headline text-base sm:text-lg md:text-xl tracking-widest text-white">
-                  BOOK MY CONSULTATION
+                  BOOK MY FREE TRIAL
                 </span>
               </button>
               <p className="text-zinc-600 text-sm text-center mt-4">
-                No commitment. No pressure. Just a 20-minute conversation about your goals.
+                No commitment. No pressure. Take your first step on the mats.
               </p>
             </form>}
           </motion.div>

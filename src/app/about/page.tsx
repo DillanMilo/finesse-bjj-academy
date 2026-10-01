@@ -429,7 +429,7 @@ export default function AboutPage() {
               className="-skew-x-12 bg-[#CC1122] px-6 sm:px-8 md:px-12 py-4 md:py-5 shadow-[0_0_30px_rgba(204,17,34,0.4)] hover:brightness-125 transition-all"
             >
               <span className="skew-x-12 inline-block font-headline text-base sm:text-lg md:text-2xl tracking-widest text-white uppercase">
-                BOOK A FREE CONSULTATION
+                BOOK A FREE TRIAL
               </span>
             </button>
 
