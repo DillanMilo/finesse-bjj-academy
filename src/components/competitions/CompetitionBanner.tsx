@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 
 export default function CompetitionBanner() {
@@ -9,6 +9,7 @@ export default function CompetitionBanner() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const inView = useInView(ref, { margin: "100px" });
   const reducedMotion = useReducedMotion();
+  const [hasPlayback, setHasPlayback] = useState(false);
   const shouldPlay = inView && !reducedMotion;
 
   useEffect(() => {
@@ -20,8 +21,22 @@ export default function CompetitionBanner() {
 
   return (
     <section ref={ref} id="team-banner" className="relative isolate overflow-hidden bg-[#CC1122] text-white px-6 py-14 md:py-20 lg:py-28 xl:py-32">
-      <div aria-hidden="true" className="absolute inset-0 -z-20 bg-cover bg-center" style={{ backgroundImage: "url('/videos/finesse-team-rolling-poster.jpg')" }}>
-        <video ref={videoRef} src={inView && !reducedMotion ? "/videos/finesse-team-rolling-10s.mp4" : undefined} poster="/videos/finesse-team-rolling-poster.jpg" muted loop playsInline preload="none" onCanPlay={() => { if (shouldPlay) void videoRef.current?.play().catch(() => {}); }} className="h-full w-full object-cover" />
+      <div aria-hidden="true" className="absolute inset-0 -z-20 bg-cover bg-center" style={{ backgroundImage: "url('/videos/finesse-team-rolling-static.jpg')" }}>
+        <video
+          ref={videoRef}
+          src={inView && !reducedMotion ? "/videos/finesse-team-rolling-10s.mp4" : undefined}
+          poster="/videos/finesse-team-rolling-static.jpg"
+          muted
+          loop
+          playsInline
+          preload="none"
+          onCanPlay={() => { if (shouldPlay) void videoRef.current?.play().catch(() => {}); }}
+          onPlaying={() => setHasPlayback(true)}
+          onPause={() => setHasPlayback(false)}
+          onEmptied={() => setHasPlayback(false)}
+          onError={() => setHasPlayback(false)}
+          className={`h-full w-full object-cover transition-opacity duration-300 motion-reduce:transition-none ${hasPlayback && !reducedMotion ? "opacity-100" : "opacity-0"}`}
+        />
       </div>
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[#CC1122]/70" />
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-black/35 via-transparent to-black/20" />
