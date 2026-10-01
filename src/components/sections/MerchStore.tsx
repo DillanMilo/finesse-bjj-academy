@@ -1,5 +1,6 @@
 "use client";
 
+import ArrowIcon from "@/components/ui/ArrowIcon";
 import Image from "next/image";
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -22,14 +23,14 @@ export default function MerchStore() {
           <p className="text-[#FFB3AD] text-xs font-bold tracking-[.25em] mb-4">FINESSE JIU JITSU / TEAM STORE</p>
           <h2 id="store-heading" className="font-headline italic text-6xl sm:text-7xl lg:text-8xl leading-none">WEAR THE<br/><span className="text-[#CC1122]">FINESSE.</span></h2>
           <p className="text-zinc-300 text-lg leading-relaxed mt-6 max-w-lg">Represent your academy beyond the mats. Explore Finesse merchandise in our BSN SPORTS team store.</p>
-          <a href={finesseStore.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-5 mt-8 bg-[#CC1122] px-7 py-4 font-headline text-2xl tracking-wider text-white hover:bg-[#a90e1c] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">SHOP THE FINESSE STORE <span aria-hidden="true">↗</span></a>
+          <a href={finesseStore.url} target="_blank" rel="noopener noreferrer" className="inline-flex max-w-full items-center gap-3 mt-8 bg-[#CC1122] px-7 py-4 font-headline text-2xl tracking-wider text-white hover:bg-[#a90e1c] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"><span>SHOP THE FINESSE STORE</span><ArrowIcon /></a>
         </div>
         <a href={finesseStore.url} target="_blank" rel="noopener noreferrer" aria-label="Browse Finesse merchandise at BSN SPORTS (opens in a new tab)" className="block border border-white/15 bg-[#0a0a0a] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
           <div className="relative aspect-[421/298]">
           {/* Keep flyer artwork uncropped so any product details stay legible. */}
-          {flyerFailed ? <div className="absolute inset-0 flex flex-col items-center justify-center p-8 bg-gradient-to-br from-[#30131b] to-black"><Image src="/logo.png" alt="" width={180} height={180} className="h-36 w-auto mb-5"/><span className="font-headline text-4xl sm:text-5xl text-white">ONE TEAM. YOUR GEAR.</span><span className="text-[#FFB3AD] text-sm mt-3 tracking-widest">EXPLORE THE STORE ↗</span></div> : <Image src={finesseStore.flyer} alt="Finesse Jiu Jitsu team store merchandise flyer" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-contain" onError={() => setFlyerFailed(true)} />}
+          {flyerFailed ? <div className="absolute inset-0 flex flex-col items-center justify-center p-8 bg-gradient-to-br from-[#30131b] to-black"><Image src="/logo.png" alt="" width={180} height={180} className="h-36 w-auto mb-5"/><span className="font-headline text-4xl sm:text-5xl text-white">ONE TEAM. YOUR GEAR.</span><span className="text-[#FFB3AD] text-sm mt-3 tracking-widest">EXPLORE THE STORE <ArrowIcon /></span></div> : <Image src={finesseStore.flyer} alt="Finesse Jiu Jitsu team store merchandise flyer" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-contain" onError={() => setFlyerFailed(true)} />}
           </div>
-          <span className="flex justify-between gap-4 bg-black/90 px-5 py-3 text-xs text-zinc-300 tracking-widest"><span>FINESSE TEAM MERCH</span><span>BSN SPORTS ↗</span></span>
+          <span className="flex justify-between gap-4 bg-black/90 px-5 py-3 text-xs text-zinc-300 tracking-widest"><span>FINESSE TEAM MERCH</span><span className="inline-flex items-center gap-1">BSN SPORTS <ArrowIcon className="h-3 w-3" /></span></span>
         </a>
       </motion.div>
     </section>

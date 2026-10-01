@@ -1,5 +1,6 @@
 "use client";
 
+import ArrowIcon from "@/components/ui/ArrowIcon";
 import Link from "next/link";
 import ParallaxPhoto from "@/components/motion/ParallaxPhoto";
 import DnaHelix from "@/components/motion/DnaHelix";
@@ -64,7 +65,7 @@ export default function ProgramDetail({ variant }: { variant: Variant }) {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/70 to-[#0A0A0A]/20" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 pt-32 pb-12 md:pb-16">
-          <Link href="/#programs" className="inline-block text-sm text-[#E6BDB9] py-3 mb-6 hover:text-white">← All programs</Link>
+          <Link href="/#programs" className="inline-block text-sm text-[#E6BDB9] py-3 mb-6 hover:text-white"><ArrowIcon direction="left" className="h-4 w-4" /> All programs</Link>
           <p className="font-headline text-sm text-[#E6BDB9] tracking-widest mb-4">{page.eyebrow}</p>
           <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tighter italic leading-none text-white mb-6">{page.title}</h1>
           <p className="font-serif text-xl sm:text-2xl italic text-[#E6BDB9] max-w-xl">{page.intro}</p>
@@ -108,7 +109,7 @@ export default function ProgramDetail({ variant }: { variant: Variant }) {
             <h2 className="font-headline text-4xl sm:text-5xl italic mb-6">{variant === "women" ? "FIND YOUR CLASS" : "HOW TO GET STARTED"}</h2>
             {variant === "women" ? <>
               {womenClasses.map(slot => <div key={`${slot.day}-${slot.time}`} className="border-l-4 border-[#CC1122] bg-[#1A1014] p-6 mb-4"><p className="font-headline text-2xl">{slot.title} · {slot.subtitle}</p><p className="text-[#E6BDB9] mt-2">{slot.day} · {slot.time} Central Time</p><p className="text-sm text-[#E6BDB9] mt-2">{slot.timingNote}</p></div>)}
-              <Link href="/schedule" className="inline-block py-3 text-[#CC1122] font-headline text-xl tracking-wider">VIEW FULL SCHEDULE →</Link>
+              <Link href="/schedule" className="inline-block py-3 text-[#CC1122] font-headline text-xl tracking-wider">VIEW FULL SCHEDULE <ArrowIcon direction="right" /></Link>
             </> : <ol className="space-y-5 text-[#E6BDB9] leading-relaxed list-decimal pl-5"><li>Tell us about your goals, experience, and weekly routine.</li><li>Discuss the combination of coaching, nutrition support, and strength training that suits you.</li><li>Agree on the details with the team and take your first step.</li></ol>}
           </div>
           <div className="bg-[#1A1014] border border-[#CC1122]/20 p-6 sm:p-8 clip-corner">

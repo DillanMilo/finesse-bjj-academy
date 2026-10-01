@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ArrowIcon from "@/components/ui/ArrowIcon";
 import { useEffect, useRef, useState } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 
@@ -44,9 +45,7 @@ export default function CompetitionBanner() {
         <div><p className="text-xs font-bold tracking-[.25em] mb-3">ON THE MATS. IN YOUR CORNER.</p><h2 className="font-headline text-5xl md:text-7xl">ONE TEAM. EVERY MATCH.</h2><p className="mt-3 max-w-xl text-white/90">Upcoming competitions, team results, and the moments we share. Find your next event or come cheer on Finesse.</p></div>
         <Link href="/competitions" className="inline-flex max-w-full items-center gap-3 bg-black text-white px-7 py-4 font-headline text-xl tracking-wider self-start md:self-center">
           <span>EXPLORE THE COMPETITION HUB</span>
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" className="h-5 w-5 shrink-0">
-            <path d="M4 20 20 4M8 4h12v12" />
-          </svg>
+          <ArrowIcon />
         </Link>
       </div>
     </section>

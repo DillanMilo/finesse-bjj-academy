@@ -1,5 +1,6 @@
 "use client";
 
+import ArrowIcon from "@/components/ui/ArrowIcon";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -76,7 +77,7 @@ function TestimonialCard({
             </div>
           </div>
         </div>
-        <a href={googleReviewsUrl} target="_blank" rel="noopener noreferrer" aria-label={`Read Google reviews including ${testimonial.name}’s review`} className="inline-block mt-6 text-sm text-[#FFB3AD] underline underline-offset-4 hover:text-white transition-colors">Read Google reviews ↗</a>
+        <a href={googleReviewsUrl} target="_blank" rel="noopener noreferrer" aria-label={`Read Google reviews including ${testimonial.name}’s review`} className="inline-block mt-6 text-sm text-[#FFB3AD] underline underline-offset-4 hover:text-white transition-colors">Read Google reviews <ArrowIcon className="h-4 w-4" /></a>
       </div>
     </motion.div>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import ArrowIcon from "@/components/ui/ArrowIcon";
 import Link from "next/link";
 import ParallaxPhoto from "@/components/motion/ParallaxPhoto";
 import { useOpenLeadForm } from "@/lib/lead-form-context";
@@ -23,14 +24,14 @@ export default function StrikingProgram() {
         <div className="absolute inset-0 bg-gradient-to-br from-[#40131b]/50 via-transparent to-transparent" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div>
-            <Link href="/#programs" className="inline-block py-3 mb-6 text-sm text-[#E6BDB9] hover:text-white">← All programs</Link>
+            <Link href="/#programs" className="inline-block py-3 mb-6 text-sm text-[#E6BDB9] hover:text-white"><ArrowIcon direction="left" className="h-4 w-4" /> All programs</Link>
             <p className="font-headline text-sm tracking-widest text-[#CC1122] mb-4">COMBAT STRIKING</p>
             <h1 className="font-headline text-7xl sm:text-8xl lg:text-9xl italic tracking-tighter leading-none mb-6">BUILD YOUR<br /><span className="text-[#CC1122]">STAND-UP.</span></h1>
             <p className="font-serif text-2xl sm:text-3xl italic text-[#E6BDB9] mb-8">Find your rhythm. Develop your technique.</p>
             <p className="text-[#E6BDB9] leading-relaxed max-w-lg mb-8">Explore striking alongside your grappling, or make it your starting point at Finesse. The schedule includes all-levels sessions and a separate kids striking class.</p>
             <div className="flex flex-wrap gap-4 items-center">
               <button onClick={openLeadForm} className="bg-[#CC1122] hover:bg-red-700 px-6 py-4 font-headline text-xl tracking-wider">BOOK A TRIAL</button>
-              <a href="#striking-classes" className="font-headline text-xl tracking-wider py-4 text-[#E6BDB9] hover:text-white">VIEW CLASSES ↓</a>
+              <a href="#striking-classes" className="font-headline text-xl tracking-wider py-4 text-[#E6BDB9] hover:text-white">VIEW CLASSES <ArrowIcon direction="down" /></a>
             </div>
           </div>
           <div className="border border-[#CC1122]/20 bg-gradient-to-r from-[#1A1014] via-black to-[#1A1014] clip-corner flex justify-center">
@@ -64,7 +65,7 @@ export default function StrikingProgram() {
               <p className="text-sm text-[#E6BDB9] mt-3">{slot.timingNote}</p>
             </article>)}
           </div>
-          <Link href="/schedule" className="inline-block py-3 mt-6 font-headline text-xl text-[#CC1122] tracking-wider">FULL ACADEMY SCHEDULE →</Link>
+          <Link href="/schedule" className="inline-block py-3 mt-6 font-headline text-xl text-[#CC1122] tracking-wider">FULL ACADEMY SCHEDULE <ArrowIcon direction="right" /></Link>
         </div>
       </section>
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid md:grid-cols-2 gap-10">

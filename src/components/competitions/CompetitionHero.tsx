@@ -1,3 +1,4 @@
+import ArrowIcon from "@/components/ui/ArrowIcon";
 import ParallaxPhoto from "@/components/motion/ParallaxPhoto";
 import Link from "next/link";
 
@@ -19,7 +20,7 @@ export default function CompetitionHero() {
           Your next challenge. Your team in your corner. From the first match to the final podium, we show up together.
         </p>
         <div className="hub-hero-actions flex flex-wrap gap-4 mt-8">
-          <Link href="#events" className="hub-button">EXPLORE EVENTS ↗</Link>
+          <Link href="#events" className="hub-button">EXPLORE EVENTS <ArrowIcon /></Link>
           <Link href="#experience" className="hub-button-outline">NEW TO COMPETING?</Link>
         </div>
       </div>
