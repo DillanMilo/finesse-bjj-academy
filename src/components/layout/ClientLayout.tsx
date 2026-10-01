@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { LeadFormProvider } from "@/lib/lead-form-context";
+import { LeadFormProvider, TrialFormProvider } from "@/lib/lead-form-context";
 
 const LeadPopup = dynamic(() => import("../ui/LeadPopup"), { ssr: false });
 const POPUP_SEEN_KEY = "finesse:consultation-seen";
@@ -18,6 +19,8 @@ export default function ClientLayout({
 }) {
   const [isLeadPopupOpen, setIsLeadPopupOpen] = useState(false);
   const popupSeen = useRef(false);
+  const pathname = usePathname();
+  const [leadMode, setLeadMode] = useState<"consultation" | "trial">("consultation");
 
   useEffect(() => {
     let delay = POPUP_DELAY_MS;
@@ -43,12 +46,14 @@ export default function ClientLayout({
         return;
       }
       popupSeen.current = true;
+      setLeadMode(pathname === "/programs/kids-bjj" ? "trial" : "consultation");
       setIsLeadPopupOpen(true);
     }, delay);
     return () => clearTimeout(timer);
-  }, []);
+  }, [pathname]);
 
-  const openLeadForm = () => {
+  const openForm = (mode: "consultation" | "trial") => {
+    setLeadMode(mode);
     popupSeen.current = true;
     try {
       sessionStorage.setItem(POPUP_SEEN_KEY, "1");
@@ -57,14 +62,18 @@ export default function ClientLayout({
     }
     setIsLeadPopupOpen(true);
   };
+  const openLeadForm = () => openForm("consultation");
+  const openTrialForm = () => openForm("trial");
   const closeLeadForm = () => setIsLeadPopupOpen(false);
 
   return (
     <LeadFormProvider value={openLeadForm}>
+      <TrialFormProvider value={openTrialForm}>
       <Navbar onOpenLeadForm={openLeadForm} />
       {children}
       <Footer />
-      <LeadPopup isOpen={isLeadPopupOpen} onClose={closeLeadForm} />
+      <LeadPopup isOpen={isLeadPopupOpen} onClose={closeLeadForm} mode={leadMode} />
+      </TrialFormProvider>
     </LeadFormProvider>
   );
 }

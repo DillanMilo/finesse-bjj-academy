@@ -11,6 +11,8 @@ const NAV_LINKS = [
   { label: "TRAINERS", href: "/#trainers" },
   { label: "SCHEDULE", href: "/schedule" },
   { label: "ABOUT", href: "/about" },
+  { label: "COMPETITION HUB", href: "/competitions" },
+  { label: "STORE", href: "/#store" },
   { label: "NEWS", href: "/news" },
   { label: "CONTACT", href: "/contact" },
 ];
@@ -40,7 +42,7 @@ export default function Navbar({ onOpenLeadForm }: NavbarProps) {
   const isActive = (href: string) => {
     if (href === "/#programs" && pathname.startsWith("/programs/")) return true;
     if (href.startsWith("/#")) return pathname === "/";
-    return pathname === href;
+    return pathname === href || pathname.startsWith(`${href}/`);
   };
 
   return (

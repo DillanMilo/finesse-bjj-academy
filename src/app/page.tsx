@@ -1,6 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import CompetitionBanner from "@/components/competitions/CompetitionBanner";
+import MerchStore from "@/components/sections/MerchStore";
 import Hero from "@/components/sections/Hero";
 
 // Temporarily disabled; keep the component for future refinement.
@@ -18,9 +20,11 @@ export default function Home() {
     <main>
       <Hero />
       <Programs />
+      <CompetitionBanner />
       <Trainers />
       <Testimonials />
       <Schedule />
+      <MerchStore />
       <LatestNews />
       <FinalCTA />
       {/* <ScrollSnake /> */}

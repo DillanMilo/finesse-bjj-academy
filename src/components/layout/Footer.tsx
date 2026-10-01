@@ -20,6 +20,7 @@ const academyLinks = [
   { label: "About Us", href: "/about" },
   { label: "Schedule", href: "/schedule" },
   { label: "Contact", href: "/contact" },
+  { label: "Store", href: "/#store" },
   { label: "News", href: "/news" },
   { label: "Terms of Service", href: "#terms" },
 ];
@@ -206,6 +207,31 @@ export default function Footer() {
         </motion.div>
       </div>
 
+      <figure
+        id="scripture"
+        className="mx-auto mt-14 max-w-3xl scroll-mt-28 px-6 text-center sm:mt-20"
+      >
+        <div aria-hidden="true" className="mx-auto mb-6 h-px w-12 bg-red-600" />
+        <blockquote
+          cite="https://www.biblegateway.com/passage/?search=1+Corinthians+16%3A13&version=NIV"
+          className="font-body text-xl leading-relaxed text-zinc-300 sm:text-2xl"
+        >
+          &ldquo;Be on your guard; stand firm in the faith;
+          <br className="hidden sm:block" />{" "}
+          <span className="text-white">be courageous; be strong.</span>&rdquo;
+        </blockquote>
+        <figcaption className="mt-5 font-body text-xs uppercase tracking-[0.2em] text-red-400">
+          <a
+            href="https://www.biblegateway.com/passage/?search=1+Corinthians+16%3A13&version=NIV"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block py-2 transition-colors hover:text-white"
+          >
+            1 Corinthians 16:13 · NIV
+          </a>
+        </figcaption>
+      </figure>
+
       {/* Bottom bar */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -228,6 +254,11 @@ export default function Footer() {
         </div>
         <p className="mt-4 text-center font-body text-[11px] text-zinc-700">
           Designed by Creative Currents LLC
+        </p>
+        <p className="mx-auto mt-3 max-w-2xl text-center font-body text-[10px] leading-relaxed text-zinc-600">
+          Scripture taken from the Holy Bible, New International Version®,
+          NIV®. Copyright © 1973, 1978, 1984, 2011 by Biblica, Inc.® Used by
+          permission. All rights reserved worldwide.
         </p>
       </motion.div>
     </footer>

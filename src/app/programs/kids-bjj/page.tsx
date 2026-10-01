@@ -5,7 +5,7 @@ import ParallaxPhoto from "@/components/motion/ParallaxPhoto";
 import { getProgramClassDetails } from "@/lib/schedule";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useOpenLeadForm } from "@/lib/lead-form-context";
+import { useOpenTrialForm } from "@/lib/lead-form-context";
 
 const curriculum = [
   {
@@ -83,7 +83,7 @@ function RevealElement({
 }
 
 export default function KidsBJJPage() {
-  const openLeadForm = useOpenLeadForm();
+  const openTrialForm = useOpenTrialForm();
   return (
     <main>
       {/* ── Hero ── */}
@@ -271,7 +271,7 @@ export default function KidsBJJPage() {
                       FIRST VISIT
                     </span>
                     <span className="font-body text-[#E6BDB9]">
-                      Free 20-minute consultation
+                      Free trial for beginners ages 8–14
                     </span>
                   </div>
                 </div>
@@ -295,17 +295,17 @@ export default function KidsBJJPage() {
 
           <RevealElement delay={0.15}>
             <p className="font-serif text-xl md:text-2xl italic text-[#E6BDB9] max-w-2xl mx-auto mb-12">
-              Give them the gift of confidence. Book a free 20-minute consultation.
+              Give them the gift of confidence. Choose a beginner-friendly free trial for ages 8–14.
             </p>
           </RevealElement>
 
           <RevealElement delay={0.3}>
             <button
-              onClick={openLeadForm}
+              onClick={openTrialForm}
               className="-skew-x-12 bg-[#CC1122] px-6 sm:px-8 md:px-12 lg:px-16 py-4 md:py-6 shadow-[0_0_30px_rgba(204,17,34,0.4)] hover:brightness-125 transition-all"
             >
               <span className="skew-x-12 inline-block font-headline text-base sm:text-xl md:text-2xl lg:text-4xl tracking-widest text-white uppercase">
-                BOOK A CONSULTATION
+                SCHEDULE YOUR FREE TRIAL
               </span>
             </button>
           </RevealElement>

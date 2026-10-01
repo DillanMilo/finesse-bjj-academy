@@ -3,31 +3,27 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
+// Manually selected excerpts, checked directly on Google Maps on September 30, 2026.
+const googleReviewsUrl = "https://www.google.com/maps/search/?api=1&query=Finesse+BJJ&query_place_id=ChIJFVGJ-vrNQIYRSMNGSG_SXLw";
 const testimonials = [
   {
-    quote:
-      "Finesse changed my life. Not just the fitness, but the mindset. The level of detail in instruction here is unmatched in Texas.",
-    name: "JOHN D.",
-    belt: "PURPLE BELT",
-    initials: "JD",
+    quote: "They are patient, encouraging, and genuinely care about helping everyone improve. … It’s been an amazing experience for our whole family.",
+    name: "Karel Rosabal",
+    initials: "KR",
     offsetClass: "md:translate-y-8",
     featured: false,
   },
   {
-    quote:
-      "As a professional athlete, I need coaching that understands elite performance. Finesse provides a world-class environment.",
-    name: "MIKE K.",
-    belt: "BLUE BELT",
-    initials: "MK",
+    quote: "It's nice that everyone is willing to help each other out with techniques. All around good vibes and good people.",
+    name: "Lauren Diaz",
+    initials: "LD",
     offsetClass: "",
     featured: true,
   },
   {
-    quote:
-      "The culture here is incredible. It\u2019s challenging, it\u2019s disciplined, but it\u2019s built on mutual respect. The best gym I\u2019ve ever joined.",
-    name: "SARAH R.",
-    belt: "WHITE BELT (2 STRIPES)",
-    initials: "SR",
+    quote: "The coaches are extremely talented and knowledgeable instructors who clearly care about your learning and progress.",
+    name: "Melizza Hernandez",
+    initials: "MH",
     offsetClass: "md:translate-y-16",
     featured: false,
   },
@@ -59,7 +55,7 @@ function TestimonialCard({
         }`}
       >
         {/* Stars */}
-        <div className="text-[#CC1122] mb-6 text-xl tracking-wider">
+        <div aria-label="5 out of 5 stars" className="text-[#CC1122] mb-6 text-xl tracking-wider">
           {"★★★★★"}
         </div>
 
@@ -76,10 +72,11 @@ function TestimonialCard({
           <div>
             <div className="font-bold text-white">{testimonial.name}</div>
             <div className="text-[#CC1122] text-sm font-headline tracking-widest">
-              {testimonial.belt}
+              GOOGLE REVIEW · EXCERPT
             </div>
           </div>
         </div>
+        <a href={googleReviewsUrl} target="_blank" rel="noopener noreferrer" aria-label={`Read Google reviews including ${testimonial.name}’s review`} className="inline-block mt-6 text-sm text-[#FFB3AD] underline underline-offset-4 hover:text-white transition-colors">Read Google reviews ↗</a>
       </div>
     </motion.div>
   );
@@ -95,7 +92,7 @@ export default function Testimonials() {
         {/* Header */}
         <motion.h2
           ref={headerRef}
-          className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tighter italic mb-12 sm:mb-16 md:mb-24"
+          className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-8xl tracking-tighter italic mb-5"
           initial={{ opacity: 0, y: 40 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: "easeOut" }}
@@ -103,6 +100,8 @@ export default function Testimonials() {
           <span className="text-white">REAL </span>
           <span className="text-[#CC1122]">RESULTS</span>
         </motion.h2>
+
+        <p className="text-zinc-400 max-w-2xl mb-12 sm:mb-16 md:mb-24">Selected excerpts from five-star Google reviews, in reviewers’ own words.</p>
 
         {/* Testimonial Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12">

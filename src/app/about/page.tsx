@@ -1,5 +1,6 @@
 "use client";
 
+import TrialBox from "@/components/sections/TrialBox";
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import ParallaxPhoto from "@/components/motion/ParallaxPhoto";
@@ -329,6 +330,8 @@ export default function AboutPage() {
       </Section>
 
       <div className="gradient-divider" />
+
+      <TrialBox />
 
       {/* ─── GALLERY SECTION ─── */}
       <Section className="py-16 sm:py-20 md:py-24 bg-[#0E0E0E]">

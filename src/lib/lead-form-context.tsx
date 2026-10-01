@@ -10,3 +10,9 @@ export function useOpenLeadForm() {
   const open = useContext(LeadFormContext);
   return open ?? (() => {});
 }
+
+const TrialFormContext = createContext<(() => void) | null>(null);
+export const TrialFormProvider = TrialFormContext.Provider;
+export function useOpenTrialForm() {
+  return useContext(TrialFormContext) ?? (() => {});
+}

@@ -1,5 +1,6 @@
 "use client";
 
+import TrialBox from "@/components/sections/TrialBox";
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
@@ -204,6 +205,8 @@ export default function SchedulePage() {
           </div>
         </div>
       </section>
+
+      <TrialBox />
 
       {/* ─── CTA ─── */}
       <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[#0A0A0A] relative overflow-hidden">

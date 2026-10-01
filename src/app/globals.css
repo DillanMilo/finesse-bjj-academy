@@ -113,3 +113,49 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .scroll-snake { display: none; }
 }
+
+.competition-hub { background: #0c0c0c; }
+.hub-section { max-width: 1280px; margin: 0 auto; padding: 72px 24px; }
+.hub-eyebrow { color: #FFB3AD; font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; margin-bottom: 14px; }
+.hub-button, .hub-button-outline { display: inline-block; padding: 15px 25px; font-family: var(--font-headline); font-size: 20px; letter-spacing: .06em; }
+.hub-button { background: #CC1122; color: white; }
+.hub-button-outline { border: 1px solid #ffffff60; }
+.hub-button:hover { background: #E8222E; }
+.hub-button-outline:hover { border-color: #CC1122; }
+.competition-hub section[id], #free-trial { scroll-margin-top: 90px; }
+@media (max-width: 640px) { .hub-section { padding: 48px 20px; } }
+
+/* The hero entrance starts with the HTML/CSS, without waiting for hydration. */
+@keyframes hub-rise {
+  from { opacity: 0; transform: translateY(105%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hub-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes hub-settle {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hub-photo-settle {
+  from { opacity: .35; transform: scale(1.045); }
+  to { opacity: 1; transform: scale(1); }
+}
+.hub-hero-photo { animation: hub-photo-settle 1.6s ease-out both; }
+.hub-hero-kicker { animation: hub-fade .5s ease-out .1s both; }
+.hub-hero-step { animation: hub-rise .85s cubic-bezier(.22,1,.36,1) .2s both; }
+.hub-hero-team { animation: hub-fade .85s ease-out .7s both; text-shadow: 0 0 48px rgb(204 17 34 / 18%); }
+.hub-hero-copy { animation: hub-settle .7s cubic-bezier(.22,1,.36,1) 1s both; }
+.hub-hero-actions { animation: hub-settle .65s cubic-bezier(.22,1,.36,1) 1.15s both; }
+.hub-hero-mark { animation: hub-fade .8s ease-out 1.3s both; }
+.hub-button, .hub-button-outline { transition: background-color .2s, border-color .2s, box-shadow .2s; }
+.hub-button:hover { box-shadow: 0 0 28px rgb(204 17 34 / 25%); }
+.hub-hero-actions a:focus-visible { animation: none; outline: 2px solid white; outline-offset: 5px; }
+.hub-hero-actions:focus-within { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hub-hero-photo, .hub-hero-kicker, .hub-hero-step, .hub-hero-team,
+  .hub-hero-copy, .hub-hero-actions, .hub-hero-mark { animation: none; }
+  .hub-reveal { opacity: 1 !important; transform: none !important; }
+  .competition-hub *, .competition-hub *::before, .competition-hub *::after { transition: none !important; }
+}

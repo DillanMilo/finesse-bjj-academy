@@ -2,13 +2,15 @@
 
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import TrialSessionForm from "./TrialSessionForm";
 
 interface LeadPopupProps {
   isOpen: boolean;
   onClose: () => void;
+  mode?: "consultation" | "trial";
 }
 
-export default function LeadPopup({ isOpen, onClose }: LeadPopupProps) {
+export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: LeadPopupProps) {
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -25,7 +27,7 @@ export default function LeadPopup({ isOpen, onClose }: LeadPopupProps) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -33,6 +35,10 @@ export default function LeadPopup({ isOpen, onClose }: LeadPopupProps) {
           onClick={onClose}
         >
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="lead-popup-title"
+            onKeyDown={(e) => { if (e.key === "Escape") onClose(); }}
             className="relative max-w-lg w-full mx-4 max-h-[90dvh] overflow-y-auto bg-[#1A1014] border border-[#CC1122]/30 p-5 sm:p-6 md:p-8 lg:p-12 clip-corner"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -57,21 +63,23 @@ export default function LeadPopup({ isOpen, onClose }: LeadPopupProps) {
             {/* Close button */}
             <button
               onClick={onClose}
+              autoFocus
+              aria-label="Close booking pop-up"
               className="absolute top-2 right-2 sm:top-4 sm:right-4 text-zinc-400 hover:text-white transition-colors text-xl min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               &#x2715;
             </button>
 
             {/* Heading */}
-            <h2 className="font-headline text-2xl sm:text-3xl md:text-4xl tracking-tighter italic mb-2 text-white">
-              BOOK YOUR FREE CONSULTATION
+            <h2 id="lead-popup-title" className="font-headline text-2xl sm:text-3xl md:text-4xl tracking-tighter italic mb-2 text-white">
+              {mode === "trial" ? "SCHEDULE YOUR FREE TRIAL" : "BOOK YOUR FREE CONSULTATION"}
             </h2>
             <p className="font-serif text-base sm:text-lg italic text-[#E6BDB9] mb-6 sm:mb-8">
-              Your journey starts here.
+              {mode === "trial" ? "Start with a beginner-friendly kids’ class. Ages 8–14." : "Your journey starts here."}
             </p>
 
             {/* Form */}
-            <form
+            {mode === "trial" ? <TrialSessionForm idPrefix="trial-popup" /> : <form
               className="flex flex-col gap-4"
               onSubmit={(e) => e.preventDefault()}
             >
@@ -101,7 +109,7 @@ export default function LeadPopup({ isOpen, onClose }: LeadPopupProps) {
               <p className="text-zinc-600 text-sm text-center mt-4">
                 No commitment. No pressure. Just a 20-minute conversation about your goals.
               </p>
-            </form>
+            </form>}
           </motion.div>
         </motion.div>
       )}

@@ -14,7 +14,7 @@ export interface DaySchedule {
   rest?: boolean;
 }
 
-// Updated from the four Current Schedule notes supplied September 9, 2026.
+// Updated from the September 9 schedule notes and Luis’s September 30 screenshot clarifications.
 // These are correction notes, not a complete timetable. Retained times are explicitly
 // marked for confirmation. See docs/schedule-audit-2026-09-10.md for source limits.
 export const schedule: DaySchedule[] = [
@@ -25,7 +25,7 @@ export const schedule: DaySchedule[] = [
       { time: "06:00 – 07:00", title: "Adults NoGi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
       { time: "10:00 – 11:00", title: "Adults NoGi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
       { time: "16:45", title: "Kids 6–7 Gi", subtitle: "Ages 6–7 · Advanced", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "17:30 – 18:30", title: "Kids 8–14 Gi", subtitle: "Ages 8–14 · All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
+      { time: "17:30 – 18:30", title: "Kids 8–14 Gi", subtitle: "Ages 8–14 · Beginners welcome", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
       { time: "18:30 – 20:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
       { time: "19:00", title: "Striking", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "End time needs confirmation" },
     ],
@@ -48,7 +48,7 @@ export const schedule: DaySchedule[] = [
       { time: "06:00 – 07:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
       { time: "10:00 – 11:00", title: "Adults NoGi", subtitle: "All Levels", timingNote: "Existing time; awaiting confirmation" },
       { time: "16:45", title: "Kids 6–7 NoGi", subtitle: "Ages 6–7 · Advanced", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "17:30 – 18:30", title: "Kids 8–14 NoGi", subtitle: "Ages 8–14 · All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
+      { time: "17:30 – 18:30", title: "Kids 8–14 NoGi", subtitle: "Ages 8–14 · Beginners welcome", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
       { time: "18:30 – 20:00", title: "Adults NoGi", subtitle: "All Levels", timingNote: "Existing time; awaiting confirmation" },
     ],
   },
@@ -59,7 +59,7 @@ export const schedule: DaySchedule[] = [
       { time: "10:00 – 11:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
       { time: "16:00 – 16:45", title: "Tiny Dragons Gi", subtitle: "Ages 4–5 · Fundamentals", timingNote: "Existing time; awaiting confirmation" },
       { time: "16:45 – 17:30", title: "Kids 6–7 Gi", subtitle: "Ages 6–7", timingNote: "Existing time; awaiting confirmation" },
-      { time: "17:30 – 18:30", title: "Advanced NoGi", subtitle: "Advanced", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
+      { time: "17:30 – 18:30", title: "Kids Advanced NoGi", subtitle: "Ages 8–14 · Advanced", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
       { time: "18:30 – 20:00", title: "Competition Training", subtitle: "Competition", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
     ],
   },
@@ -69,7 +69,7 @@ export const schedule: DaySchedule[] = [
     classes: [
       { time: "06:00 – 07:00", title: "Adults NoGi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
       { time: "10:00 – 11:00", title: "Women’s NoGi", subtitle: "Fundamentals", timingNote: "Existing time; awaiting confirmation" },
-      { time: "17:30 – 18:30", title: "Kids 8–14 Gi", subtitle: "Ages 8–14 · All Levels", timingNote: "Existing time; awaiting confirmation" },
+      { time: "17:30 – 18:30", title: "Kids 8–14 Gi", subtitle: "Ages 8–14 · Beginners welcome", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
       { time: "18:30 – 20:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
       { time: "19:00", title: "Striking", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "End time needs confirmation" },
     ],
@@ -177,7 +177,7 @@ export function getProgramClassDetails(program: "adult" | "kids" | "wrestling") 
   return schedule.flatMap(day => day.classes.filter(slot => {
     if (program === "wrestling") return slot.title.includes("Wrestling");
     if (program === "kids") return slot.title.startsWith("Kids") && !/Wrestling|Striking/.test(slot.title);
-    return (slot.title.startsWith("Adults") && !slot.title.includes("Wrestling")) || slot.title === "Advanced NoGi" || slot.title === "Competition Training";
+    return (slot.title.startsWith("Adults") && !slot.title.includes("Wrestling")) || slot.title === "Competition Training";
   }).map(slot => ({
     label: `${day.day} · ${slot.title} · ${slot.subtitle}`,
     times: `${slot.time} Central Time`,
