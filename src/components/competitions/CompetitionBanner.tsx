@@ -42,7 +42,12 @@ export default function CompetitionBanner() {
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-black/35 via-transparent to-black/20" />
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-8">
         <div><p className="text-xs font-bold tracking-[.25em] mb-3">ON THE MATS. IN YOUR CORNER.</p><h2 className="font-headline text-5xl md:text-7xl">ONE TEAM. EVERY MATCH.</h2><p className="mt-3 max-w-xl text-white/90">Upcoming competitions, team results, and the moments we share. Find your next event or come cheer on Finesse.</p></div>
-        <Link href="/competitions" className="bg-black text-white px-7 py-4 font-headline text-xl tracking-wider self-start md:self-center">EXPLORE THE COMPETITION HUB ↗</Link>
+        <Link href="/competitions" className="inline-flex max-w-full items-center gap-3 bg-black text-white px-7 py-4 font-headline text-xl tracking-wider self-start md:self-center">
+          <span>EXPLORE THE COMPETITION HUB</span>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" className="h-5 w-5 shrink-0">
+            <path d="M4 20 20 4M8 4h12v12" />
+          </svg>
+        </Link>
       </div>
     </section>
   );
