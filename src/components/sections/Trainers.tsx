@@ -13,7 +13,7 @@ const trainers = [
     background: "/photos/instructors/luis-background.webp",
     quote:
       "In the depth of the struggle, finesse becomes your only language.",
-    bio: "Founder and 3rd Degree Black Belt. With over two decades on the mats, Luis has developed a system that prioritizes technical economy over brute strength. His philosophy has shaped regional champions and world-class competitors.",
+    bio: "Finesse founder, 3rd Degree Black Belt, and active competitor, Coach Luis has spent most of his life on the mats. An absolute animal in competition, he pairs relentless intensity with sharp technique and technical economy. He brings that same drive to his coaching, helping students build the skill, confidence, and competitive fire to meet their next challenge.",
   },
   {
     name: "NATHAN BATES",
@@ -33,7 +33,7 @@ const trainers = [
     background: "/photos/instructors/ty-background.webp",
     quote:
       "Show up, work hard, and trust the process. The mats will take care of the rest.",
-    bio: "Coach Ty brings energy and dedication to every session. His coaching style focuses on building confidence and developing well-rounded grapplers from day one.",
+    bio: "A veteran of the mats as both a competitor and referee, Coach Ty knows the game from every angle. He brings surgical precision to his coaching and keeps the energy high with music, laughter, and plenty of smiles. Friendly, approachable, and always ready to help, Ty makes hard training feel like the best part of your day.",
   },
   {
     name: "PATTY",
