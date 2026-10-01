@@ -19,7 +19,7 @@ export default function CompetitionBanner() {
   }, [shouldPlay]);
 
   return (
-    <section ref={ref} id="team-banner" className="relative isolate overflow-hidden bg-[#CC1122] text-white px-6 py-14 md:py-20">
+    <section ref={ref} id="team-banner" className="relative isolate overflow-hidden bg-[#CC1122] text-white px-6 py-14 md:py-20 lg:py-28 xl:py-32">
       <div aria-hidden="true" className="absolute inset-0 -z-20 bg-cover bg-center" style={{ backgroundImage: "url('/videos/finesse-team-rolling-poster.jpg')" }}>
         <video ref={videoRef} src={inView && !reducedMotion ? "/videos/finesse-team-rolling-10s.mp4" : undefined} poster="/videos/finesse-team-rolling-poster.jpg" muted loop playsInline preload="none" onCanPlay={() => { if (shouldPlay) void videoRef.current?.play().catch(() => {}); }} className="h-full w-full object-cover" />
       </div>
