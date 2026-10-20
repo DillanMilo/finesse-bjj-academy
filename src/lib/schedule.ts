@@ -176,7 +176,7 @@ export function isClassActive(dayIndex: number, timeRange: string): boolean {
 export function getProgramClassDetails(program: "adult" | "kids" | "wrestling") {
   return schedule.flatMap(day => day.classes.filter(slot => {
     if (program === "wrestling") return slot.title.includes("Wrestling");
-    if (program === "kids") return slot.title.startsWith("Kids") && !/Wrestling|Striking/.test(slot.title);
+    if (program === "kids") return (slot.title.startsWith("Kids") || slot.title === "Tiny Dragons Gi") && !/Wrestling|Striking/.test(slot.title);
     return (slot.title.startsWith("Adults") && !slot.title.includes("Wrestling")) || slot.title === "Competition Training";
   }).map(slot => ({
     label: `${day.day} · ${slot.title} · ${slot.subtitle}`,

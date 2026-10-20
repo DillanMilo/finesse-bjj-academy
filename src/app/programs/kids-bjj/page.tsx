@@ -138,7 +138,7 @@ export default function KidsBJJPage() {
               </h2>
               <div className="space-y-5 text-[#E6BDB9] font-body leading-relaxed text-lg">
                 <p>
-                  Our Kids BJJ program is designed for children in the 6–7 and 8–14 age groups. We blend the technical side of Brazilian Jiu-Jitsu with
+                  Our Kids BJJ program is designed for children in the 4–5, 6–7, and 8–14 age groups. We blend the technical side of Brazilian Jiu-Jitsu with
                   age-appropriate games, drills, and challenges that keep young
                   athletes engaged while they develop real grappling skill.
                 </p>
@@ -156,10 +156,10 @@ export default function KidsBJJPage() {
                   safe, positive environment where kids thrive.
                 </p>
                 <p>
-                  We also offer our Tiny Tots program for children ages 4–5,
-                  introducing them to martial arts through fun, age-appropriate
-                  activities that build coordination, confidence, and discipline
-                  from the very start.
+                  Our youngest students, ages 4–5, are part of the Kids program
+                  too. Their Tiny Dragons Gi classes introduce martial arts
+                  through fun, age-appropriate activities that build
+                  coordination, confidence, and discipline from the very start.
                 </p>
               </div>
             </SectionReveal>
@@ -251,7 +251,7 @@ export default function KidsBJJPage() {
                       AGES
                     </span>
                     <span className="font-body text-[#E6BDB9]">
-                      6–7 and 8–14 years old
+                      4–5, 6–7, and 8–14 years old
                     </span>
                   </div>
                   <div className="h-px bg-[#CC1122]/10" />

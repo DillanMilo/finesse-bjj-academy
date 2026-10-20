@@ -319,6 +319,19 @@ export default function AboutPage() {
                   white belt to black belt, the standard never drops.
                 </p>
               </RevealElement>
+
+              <RevealElement delay={0.4}>
+                <figure className="mt-10">
+                  <div aria-hidden="true" className="mb-5 h-px w-12 bg-[#CC1122]" />
+                  <blockquote className="font-serif text-xl md:text-2xl italic text-[#E6BDB9] leading-relaxed">
+                    &ldquo;As iron sharpens iron, so one person sharpens
+                    another.&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-4 font-headline text-sm tracking-[0.2em] text-[#CC1122]">
+                    PROVERBS 27:17
+                  </figcaption>
+                </figure>
+              </RevealElement>
             </div>
 
             {/* right column: placeholder image with offset red border */}

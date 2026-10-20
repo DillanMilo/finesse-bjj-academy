@@ -36,7 +36,7 @@ const programs = [
     image: "/photos/kids-coaching-1427.webp",
     alt: "A coach guiding two young students through a grappling drill",
     description:
-      "Building discipline, confidence, and respect through specialized grappling training for children in the 6–7 and 8–14 age groups.",
+      "Building discipline, confidence, and respect through specialized grappling training for children in the 4–5, 6–7, and 8–14 age groups.",
     href: "/programs/kids-bjj",
   },
   {
@@ -47,15 +47,6 @@ const programs = [
     description:
       "Explosive takedowns and top control. Essential wrestling techniques adapted specifically for the submission game.",
     href: "/programs/wrestling",
-  },
-  {
-    badge: "AGES 4–5",
-    title: "TINY TOTS",
-    image: "/photos/kids-friends.webp",
-    alt: "Five young Finesse students smiling together",
-    description:
-      "Introduction to martial arts for our youngest warriors. Building coordination, confidence, and discipline through fun, age-appropriate grappling games and exercises.",
-    href: "/schedule",
   },
   {
     badge: "COMBAT STRIKING",
@@ -93,12 +84,18 @@ const programs = [
   },
 ];
 
+// Seven cards leave one on the last row at both 2 and 3 columns; centre it at column width.
+const lastCardClass =
+  "sm:col-span-2 sm:justify-self-center sm:w-[calc((100%-2rem)/2)] md:w-[calc((100%-2.5rem)/2)] lg:col-span-1 lg:col-start-2 lg:w-auto lg:justify-self-stretch";
+
 function ProgramCard({
   program,
   index,
+  className = "",
 }: {
   program: (typeof programs)[number];
   index: number;
+  className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -109,7 +106,7 @@ function ProgramCard({
       initial={{ opacity: 0, y: 60 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
       transition={{ duration: 0.7, ease: "easeOut", delay: (index % 3) * 0.12 }}
-      className="group h-full clip-corner bg-[#1A1014] p-1 hover:-translate-y-2 transition-transform duration-300"
+      className={`${className} group h-full clip-corner bg-[#1A1014] p-1 hover:-translate-y-2 transition-transform duration-300`}
     >
       <div className="flex flex-col h-full bg-[#0A0A0A] p-5 sm:p-6 md:p-8 border border-[#CC1122]/10">
         <span className="inline-block font-headline text-sm bg-[#CC1122]/20 text-[#CC1122] px-3 py-1 mb-6">
@@ -181,7 +178,7 @@ export default function Programs() {
         {/* Card Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
           {programs.map((program, i) => (
-            <ProgramCard key={program.title} program={program} index={i} />
+            <ProgramCard key={program.title} program={program} index={i} className={i === programs.length - 1 ? lastCardClass : ""} />
           ))}
         </div>
       </div>
