@@ -1,6 +1,8 @@
 import { CONTACT } from "@/lib/constants";
 
-export type FormStatus = "idle" | "sending" | "sent" | "failed";
+/** "duplicate": the server already has a free trial request for this email. */
+export type SendResult = "sent" | "duplicate" | "failed";
+export type FormStatus = "idle" | "sending" | SendResult;
 
 export const HONEYPOT_FIELD = "website";
 
@@ -22,6 +24,8 @@ export interface ContactFormPayload {
   source: string;
   /** Date.now() when the form mounted; the server rejects sends that come too fast. */
   startedAt: number;
+  /** Cloudflare Turnstile token; empty when Turnstile is off. */
+  turnstileToken?: string;
   [HONEYPOT_FIELD]?: string;
 }
 
@@ -43,17 +47,18 @@ function markTrialRequested() {
   }
 }
 
-/** Posts a form to /api/contact. Resolves true only when the server confirms the email was handled. */
-export async function sendContactForm(payload: ContactFormPayload): Promise<boolean> {
+/** Posts a form to /api/contact. "sent" only when the server confirms the email was handled. */
+export async function sendContactForm(payload: ContactFormPayload): Promise<SendResult> {
   try {
     const res = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-    if (res.ok && payload.kind === "trial") markTrialRequested();
-    return res.ok;
+    const duplicate = res.status === 409 && payload.kind === "trial";
+    if (duplicate || (res.ok && payload.kind === "trial")) markTrialRequested();
+    return res.ok ? "sent" : duplicate ? "duplicate" : "failed";
   } catch {
-    return false;
+    return "failed";
   }
 }

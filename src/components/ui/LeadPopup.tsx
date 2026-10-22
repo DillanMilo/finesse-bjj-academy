@@ -1,9 +1,10 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TrialSessionForm from "./TrialSessionForm";
 import HoneypotField from "./HoneypotField";
+import TurnstileWidget, { type TurnstileHandle } from "./TurnstileWidget";
 import { FORM_FAILURE_MESSAGE, HONEYPOT_FIELD, sendContactForm, TRIAL_ALREADY_REQUESTED_MESSAGE, type FormStatus } from "@/lib/contact-form";
 import { useFormStartedAt, useTrialRequested } from "@/lib/use-contact-form";
 
@@ -17,6 +18,7 @@ export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: Le
   const [status, setStatus] = useState<FormStatus>("idle");
   const trialRequested = useTrialRequested();
   const startedAt = useFormStartedAt(isOpen);
+  const turnstile = useRef<TurnstileHandle>(null);
 
   function handleClose() {
     if (status !== "sending") setStatus("idle");
@@ -28,17 +30,19 @@ export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: Le
     const form = e.currentTarget;
     const data = new FormData(form);
     setStatus("sending");
-    const ok = await sendContactForm({
+    const result = await sendContactForm({
       kind: "trial",
       source: "Book your free trial pop-up",
       name: String(data.get("name") ?? ""),
       email: String(data.get("email") ?? ""),
       phone: String(data.get("phone") ?? ""),
       startedAt: startedAt.current,
+      turnstileToken: turnstile.current?.token(),
       [HONEYPOT_FIELD]: String(data.get(HONEYPOT_FIELD) ?? ""),
     });
-    if (ok) form.reset();
-    setStatus(ok ? "sent" : "failed");
+    turnstile.current?.reset();
+    if (result === "sent") form.reset();
+    setStatus(result);
   }
 
   // Prevent body scroll when modal is open
@@ -109,7 +113,7 @@ export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: Le
             </p>
 
             {/* Form */}
-            {mode === "trial" ? <TrialSessionForm idPrefix="trial-popup" /> : trialRequested && status !== "sent" ? (
+            {mode === "trial" ? <TrialSessionForm idPrefix="trial-popup" /> : (trialRequested && status !== "sent") || status === "duplicate" ? (
               <p role="status" className="border-l-2 border-[#CC1122] pl-4 text-sm text-white">
                 {TRIAL_ALREADY_REQUESTED_MESSAGE}
               </p>
@@ -147,6 +151,7 @@ export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: Le
                 placeholder="Phone Number"
                 className="bg-transparent border-b border-[#5C3F3D] focus:border-[#CC1122] py-3 text-white placeholder:text-zinc-600 font-body outline-none transition-colors"
               />
+              <TurnstileWidget ref={turnstile} />
               <button
                 type="submit"
                 disabled={status === "sending"}

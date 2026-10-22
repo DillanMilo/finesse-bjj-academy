@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { CONTACT } from "@/lib/constants";
 import { HONEYPOT_FIELD } from "@/lib/contact-form";
 
@@ -15,6 +16,9 @@ const EXPERIENCE_LABELS: Record<string, string> = {
 
 const RATE_LIMIT = { max: 5, windowMs: 10 * 60_000 } as const;
 const DAILY_SEND_CAP = 60;
+const SHARED_DAILY_SEND_CAP = 90;
+const TRIAL_LOCK_SECONDS = 365 * 24 * 60 * 60;
+const UPSTASH_TIMEOUT_MS = 2_000;
 const MIN_FILL_MS = 2_000;
 const MAX_FORM_AGE_MS = 24 * 60 * 60_000;
 const MAX_LINKS = 3;
@@ -62,7 +66,88 @@ function originMatchesHost(request: Request) {
   }
 }
 
-/** Counts this request against the IP and reports whether it is over the limit. */
+/**
+ * Optional shared store (Upstash Redis REST pipeline). Returns one result per command, or null when
+ * Upstash isn't configured or fails, so callers fall back to the in-memory checks.
+ */
+async function upstash(commands: (string | number)[][]): Promise<unknown[] | null> {
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return null;
+  try {
+    const res = await fetch(`${url.replace(/\/+$/, "")}/pipeline`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify(commands.map((command) => command.map(String))),
+      signal: AbortSignal.timeout(UPSTASH_TIMEOUT_MS),
+    });
+    if (!res.ok) throw new Error(`status ${res.status}`);
+    const replies: unknown = await res.json();
+    if (!Array.isArray(replies) || replies.length !== commands.length) throw new Error("unexpected reply");
+    return replies.map((reply: { result?: unknown; error?: string } | null) => {
+      if (!reply || reply.error) throw new Error(reply?.error ?? "empty reply");
+      return reply.result;
+    });
+  } catch (error) {
+    console.error("[api/contact] Upstash failed, using in-memory checks:", error instanceof Error ? error.message : error);
+    return null;
+  }
+}
+
+/** Shared per-IP limit when Upstash is set, otherwise this instance's memory. Counts this request. */
+async function isRateLimitedShared(ip: string, now: number) {
+  const key = `rl:${ip}:${Math.floor(now / RATE_LIMIT.windowMs)}`;
+  const replies = await upstash([["INCR", key], ["EXPIRE", key, RATE_LIMIT.windowMs / 1000]]);
+  if (typeof replies?.[0] !== "number") return isRateLimited(ip, now);
+  return replies[0] > RATE_LIMIT.max;
+}
+
+/** Shared daily cap when Upstash is set, otherwise this instance's cap. Returns false once it is used up. */
+async function reserveDailySendShared(now: number) {
+  const key = `sends:${new Date(now).toISOString().slice(0, 10)}`;
+  const replies = await upstash([["INCR", key], ["EXPIRE", key, 2 * 24 * 60 * 60]]);
+  if (typeof replies?.[0] !== "number") return reserveDailySend(now);
+  if (replies[0] <= SHARED_DAILY_SEND_CAP) return true;
+  console.error(`[api/contact] Shared daily send cap of ${SHARED_DAILY_SEND_CAP} reached.`);
+  return false;
+}
+
+/** Once-per-email trial lock. "taken" means this email already has one; "skipped" means no store (or it failed). */
+async function claimTrialLock(key: string): Promise<"claimed" | "taken" | "skipped"> {
+  const replies = await upstash([["SET", key, "1", "NX", "EX", TRIAL_LOCK_SECONDS]]);
+  if (!replies) return "skipped";
+  return replies[0] === "OK" ? "claimed" : "taken";
+}
+
+/** Cloudflare Turnstile. Runs only when both keys are set; fails closed if Cloudflare can't be reached. */
+async function passesTurnstile(token: unknown, ip: string) {
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!siteKey && !secret) return true;
+  if (!siteKey || !secret) {
+    console.warn(`[api/contact] Turnstile check skipped. Missing env: ${siteKey ? "TURNSTILE_SECRET_KEY" : "NEXT_PUBLIC_TURNSTILE_SITE_KEY"}`);
+    return true;
+  }
+  if (typeof token !== "string" || !token || token.length > 2048) return false;
+  const form = new URLSearchParams({ secret, response: token });
+  if (ip) form.set("remoteip", ip);
+  try {
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      body: form,
+      signal: AbortSignal.timeout(5_000),
+    });
+    const result = (await res.json()) as { success?: boolean; "error-codes"?: string[] };
+    if (result.success === true) return true;
+    console.warn(`[api/contact] Turnstile rejected the token: ${result["error-codes"]?.join(", ") || res.status}`);
+    return false;
+  } catch (error) {
+    console.error("[api/contact] Turnstile verification failed:", error instanceof Error ? error.message : error);
+    return false;
+  }
+}
+
+/** Counts this request against the IP and reports whether it is over the limit (this instance only). */
 function isRateLimited(ip: string, now: number) {
   for (const [key, times] of recentRequests) {
     if (times[times.length - 1] <= now - RATE_LIMIT.windowMs) recentRequests.delete(key);
@@ -81,7 +166,10 @@ function isRateLimited(ip: string, now: number) {
 function reserveDailySend(now: number) {
   const day = new Date(now).toISOString().slice(0, 10);
   if (dailySends.day !== day) dailySends = { day, count: 0 };
-  if (dailySends.count >= DAILY_SEND_CAP) return false;
+  if (dailySends.count >= DAILY_SEND_CAP) {
+    console.error(`[api/contact] Daily send cap of ${DAILY_SEND_CAP} reached on this instance.`);
+    return false;
+  }
   dailySends.count += 1;
   return true;
 }
@@ -92,7 +180,8 @@ export async function POST(request: Request) {
   if (!originMatchesHost(request)) return fail(403, "Invalid form submission.");
 
   const now = Date.now();
-  if (isRateLimited(firstHeaderValue(request, "x-forwarded-for") || "unknown", now)) {
+  const ip = firstHeaderValue(request, "x-forwarded-for");
+  if (await isRateLimitedShared(ip || "unknown", now)) {
     return fail(429, "Too many attempts. Please try again later.");
   }
 
@@ -131,6 +220,7 @@ export async function POST(request: Request) {
   if (!EMAIL_PATTERN.test(fields.email)) return fail(400, "Please enter a valid email address.");
   if (fields.experience && !EXPERIENCE_LABELS[fields.experience]) return fail(400, "Please check the experience field.");
   if ((fields.message.match(LINK_PATTERN)?.length ?? 0) > MAX_LINKS) return fail(400, "Please remove some links from your message.");
+  if (!(await passesTurnstile(body.turnstileToken, ip))) return fail(400, "Please try again.");
 
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.CONTACT_FROM_EMAIL;
@@ -140,8 +230,17 @@ export async function POST(request: Request) {
     console.error(`[api/contact] Email sending is not configured. Missing env: ${missing}`);
     return fail(503, FAILURE_MESSAGE);
   }
-  if (!reserveDailySend(now)) {
-    console.error(`[api/contact] Daily send cap of ${DAILY_SEND_CAP} reached on this instance.`);
+
+  // Trial lock before the daily cap so a repeat email doesn't use up a send. Released if nothing gets sent.
+  const trialKey = kind === "trial" ? `trial:${createHash("sha256").update(fields.email.toLowerCase()).digest("hex")}` : "";
+  const trialLock = trialKey ? await claimTrialLock(trialKey) : "skipped";
+  if (trialLock === "taken") return fail(409, "A free trial was already requested with this email.");
+  const releaseTrialLock = async () => {
+    if (trialLock === "claimed") await upstash([["DEL", trialKey]]);
+  };
+
+  if (!(await reserveDailySendShared(now))) {
+    await releaseTrialLock();
     return fail(503, FAILURE_MESSAGE);
   }
 
@@ -170,10 +269,12 @@ export async function POST(request: Request) {
     });
     if (!res.ok) {
       console.error(`[api/contact] Resend returned ${res.status}: ${(await res.text()).slice(0, 500)}`);
+      await releaseTrialLock();
       return fail(502, FAILURE_MESSAGE);
     }
   } catch (error) {
     console.error("[api/contact] Resend request failed:", error instanceof Error ? error.message : error);
+    await releaseTrialLock();
     return fail(502, FAILURE_MESSAGE);
   }
 

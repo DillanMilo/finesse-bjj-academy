@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { FormEvent, useState } from "react";
 import HoneypotField from "@/components/ui/HoneypotField";
+import TurnstileWidget, { type TurnstileHandle } from "@/components/ui/TurnstileWidget";
 import { CONTACT } from "@/lib/constants";
 import { FORM_FAILURE_MESSAGE, HONEYPOT_FIELD, sendContactForm, type FormStatus } from "@/lib/contact-form";
 import { useFormStartedAt } from "@/lib/use-contact-form";
@@ -24,6 +25,7 @@ export default function ContactPage() {
   });
   const [status, setStatus] = useState<FormStatus>("idle");
   const startedAt = useFormStartedAt();
+  const turnstile = useRef<TurnstileHandle>(null);
 
   /* ── scroll refs ── */
   const heroLeftRef = useRef<HTMLDivElement>(null);
@@ -47,15 +49,17 @@ export default function ContactPage() {
     e.preventDefault();
     const honeypot = new FormData(e.currentTarget).get(HONEYPOT_FIELD);
     setStatus("sending");
-    const ok = await sendContactForm({
+    const result = await sendContactForm({
       kind: "enquiry",
       source: "Contact page",
       ...formData,
       startedAt: startedAt.current,
+      turnstileToken: turnstile.current?.token(),
       [HONEYPOT_FIELD]: String(honeypot ?? ""),
     });
-    if (ok) setFormData({ name: "", email: "", experience: "", message: "" });
-    setStatus(ok ? "sent" : "failed");
+    turnstile.current?.reset();
+    if (result === "sent") setFormData({ name: "", email: "", experience: "", message: "" });
+    setStatus(result);
   }
 
   const contactItems = [
@@ -328,6 +332,7 @@ export default function ContactPage() {
                     animate={heroRightInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
                   >
+                    <TurnstileWidget ref={turnstile} className="mb-6" />
                     <button
                       type="submit"
                       disabled={status === "sending"}
