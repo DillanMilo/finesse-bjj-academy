@@ -13,6 +13,18 @@ const EXPERIENCE_LABELS: Record<string, string> = {
   "brown-black": "Brown / black belt",
 };
 
+const RATE_LIMIT = { max: 5, windowMs: 10 * 60_000 } as const;
+const DAILY_SEND_CAP = 60;
+const MIN_FILL_MS = 2_000;
+const MAX_FORM_AGE_MS = 24 * 60 * 60_000;
+const MAX_LINKS = 3;
+const LINK_PATTERN = /https?:\/\/(?:www\.)?|www\./gi;
+const FAILURE_MESSAGE = "The form could not be sent right now.";
+
+// Best-effort, per-instance memory: each Vercel instance keeps its own counts and they reset on cold start.
+const recentRequests = new Map<string, number[]>();
+let dailySends = { day: "", count: 0 };
+
 type Field = keyof typeof LIMITS;
 
 function fail(status: number, error: string) {
@@ -35,7 +47,55 @@ function escapeHtml(text: string) {
     .replace(/'/g, "&#39;");
 }
 
+function firstHeaderValue(request: Request, name: string) {
+  return request.headers.get(name)?.split(",")[0].trim() || "";
+}
+
+function originMatchesHost(request: Request) {
+  const host = firstHeaderValue(request, "x-forwarded-host") || firstHeaderValue(request, "host");
+  const source = request.headers.get("origin") || request.headers.get("referer");
+  if (!host || !source) return false;
+  try {
+    return new URL(source).host === host;
+  } catch {
+    return false;
+  }
+}
+
+/** Counts this request against the IP and reports whether it is over the limit. */
+function isRateLimited(ip: string, now: number) {
+  for (const [key, times] of recentRequests) {
+    if (times[times.length - 1] <= now - RATE_LIMIT.windowMs) recentRequests.delete(key);
+  }
+  const times = (recentRequests.get(ip) ?? []).filter((time) => time > now - RATE_LIMIT.windowMs);
+  if (times.length >= RATE_LIMIT.max) {
+    recentRequests.set(ip, times);
+    return true;
+  }
+  times.push(now);
+  recentRequests.set(ip, times);
+  return false;
+}
+
+/** Reserves one send from this instance's daily cap. Returns false once the cap is used up. */
+function reserveDailySend(now: number) {
+  const day = new Date(now).toISOString().slice(0, 10);
+  if (dailySends.day !== day) dailySends = { day, count: 0 };
+  if (dailySends.count >= DAILY_SEND_CAP) return false;
+  dailySends.count += 1;
+  return true;
+}
+
 export async function POST(request: Request) {
+  const contentType = request.headers.get("content-type")?.split(";")[0].trim().toLowerCase();
+  if (contentType !== "application/json") return fail(415, "Invalid form submission.");
+  if (!originMatchesHost(request)) return fail(403, "Invalid form submission.");
+
+  const now = Date.now();
+  if (isRateLimited(firstHeaderValue(request, "x-forwarded-for") || "unknown", now)) {
+    return fail(429, "Too many attempts. Please try again later.");
+  }
+
   let body: Record<string, unknown>;
   try {
     const raw = await request.text();
@@ -52,6 +112,10 @@ export async function POST(request: Request) {
     return Response.json({ ok: true });
   }
 
+  const startedAt = body.startedAt;
+  const formAge = typeof startedAt === "number" && Number.isFinite(startedAt) ? now - startedAt : NaN;
+  if (!(formAge >= MIN_FILL_MS && formAge <= MAX_FORM_AGE_MS)) return fail(400, "Please try again.");
+
   const kind = body.kind === "trial" ? "trial" : body.kind === "enquiry" ? "enquiry" : null;
   const fields = {} as Record<Field, string>;
   for (const field of Object.keys(LIMITS) as Field[]) {
@@ -66,6 +130,7 @@ export async function POST(request: Request) {
   if (!fields.name) return fail(400, "Please enter your name.");
   if (!EMAIL_PATTERN.test(fields.email)) return fail(400, "Please enter a valid email address.");
   if (fields.experience && !EXPERIENCE_LABELS[fields.experience]) return fail(400, "Please check the experience field.");
+  if ((fields.message.match(LINK_PATTERN)?.length ?? 0) > MAX_LINKS) return fail(400, "Please remove some links from your message.");
 
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.CONTACT_FROM_EMAIL;
@@ -73,10 +138,14 @@ export async function POST(request: Request) {
   if (!apiKey || !from) {
     const missing = [!apiKey && "RESEND_API_KEY", !from && "CONTACT_FROM_EMAIL"].filter(Boolean).join(", ");
     console.error(`[api/contact] Email sending is not configured. Missing env: ${missing}`);
-    return fail(503, "The form could not be sent right now.");
+    return fail(503, FAILURE_MESSAGE);
+  }
+  if (!reserveDailySend(now)) {
+    console.error(`[api/contact] Daily send cap of ${DAILY_SEND_CAP} reached on this instance.`);
+    return fail(503, FAILURE_MESSAGE);
   }
 
-  const subject = kind === "trial" ? `New free trial request: ${fields.name}` : `New website enquiry: ${fields.name}`;
+  const subject = kind === "trial" ? `[TRIAL] New free trial request: ${fields.name}` : `New website enquiry: ${fields.name}`;
   const rows: [string, string][] = [
     ["Name", fields.name],
     ["Email", fields.email],
@@ -101,11 +170,11 @@ export async function POST(request: Request) {
     });
     if (!res.ok) {
       console.error(`[api/contact] Resend returned ${res.status}: ${(await res.text()).slice(0, 500)}`);
-      return fail(502, "The form could not be sent right now.");
+      return fail(502, FAILURE_MESSAGE);
     }
   } catch (error) {
     console.error("[api/contact] Resend request failed:", error instanceof Error ? error.message : error);
-    return fail(502, "The form could not be sent right now.");
+    return fail(502, FAILURE_MESSAGE);
   }
 
   return Response.json({ ok: true });

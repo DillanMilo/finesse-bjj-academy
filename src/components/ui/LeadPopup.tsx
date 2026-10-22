@@ -4,7 +4,8 @@ import { FormEvent, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TrialSessionForm from "./TrialSessionForm";
 import HoneypotField from "./HoneypotField";
-import { FORM_FAILURE_MESSAGE, HONEYPOT_FIELD, sendContactForm, type FormStatus } from "@/lib/contact-form";
+import { FORM_FAILURE_MESSAGE, HONEYPOT_FIELD, sendContactForm, TRIAL_ALREADY_REQUESTED_MESSAGE, type FormStatus } from "@/lib/contact-form";
+import { useFormStartedAt, useTrialRequested } from "@/lib/use-contact-form";
 
 interface LeadPopupProps {
   isOpen: boolean;
@@ -14,6 +15,8 @@ interface LeadPopupProps {
 
 export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: LeadPopupProps) {
   const [status, setStatus] = useState<FormStatus>("idle");
+  const trialRequested = useTrialRequested();
+  const startedAt = useFormStartedAt(isOpen);
 
   function handleClose() {
     if (status !== "sending") setStatus("idle");
@@ -31,6 +34,7 @@ export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: Le
       name: String(data.get("name") ?? ""),
       email: String(data.get("email") ?? ""),
       phone: String(data.get("phone") ?? ""),
+      startedAt: startedAt.current,
       [HONEYPOT_FIELD]: String(data.get(HONEYPOT_FIELD) ?? ""),
     });
     if (ok) form.reset();
@@ -105,7 +109,11 @@ export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: Le
             </p>
 
             {/* Form */}
-            {mode === "trial" ? <TrialSessionForm idPrefix="trial-popup" /> : <form
+            {mode === "trial" ? <TrialSessionForm idPrefix="trial-popup" /> : trialRequested && status !== "sent" ? (
+              <p role="status" className="border-l-2 border-[#CC1122] pl-4 text-sm text-white">
+                {TRIAL_ALREADY_REQUESTED_MESSAGE}
+              </p>
+            ) : <form
               className="relative flex flex-col gap-4"
               onSubmit={handleSubmit}
             >
@@ -151,7 +159,7 @@ export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: Le
               {(status === "sent" || status === "failed") && (
                 <p role="status" className="border-l-2 border-[#CC1122] pl-4 text-sm text-white">
                   {status === "sent"
-                    ? "Thanks, your request has been sent. The academy will be in touch to confirm your free trial."
+                    ? "Request received. We'll reach out to confirm your free trial. We look forward to meeting you on the mat."
                     : FORM_FAILURE_MESSAGE}
                 </p>
               )}

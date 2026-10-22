@@ -6,6 +6,7 @@ import { FormEvent, useState } from "react";
 import HoneypotField from "@/components/ui/HoneypotField";
 import { CONTACT } from "@/lib/constants";
 import { FORM_FAILURE_MESSAGE, HONEYPOT_FIELD, sendContactForm, type FormStatus } from "@/lib/contact-form";
+import { useFormStartedAt } from "@/lib/use-contact-form";
 
 const socials = [
   { label: "INSTAGRAM", href: "https://www.instagram.com/finessejiujitsu/" },
@@ -22,6 +23,7 @@ export default function ContactPage() {
     message: "",
   });
   const [status, setStatus] = useState<FormStatus>("idle");
+  const startedAt = useFormStartedAt();
 
   /* ── scroll refs ── */
   const heroLeftRef = useRef<HTMLDivElement>(null);
@@ -49,6 +51,7 @@ export default function ContactPage() {
       kind: "enquiry",
       source: "Contact page",
       ...formData,
+      startedAt: startedAt.current,
       [HONEYPOT_FIELD]: String(honeypot ?? ""),
     });
     if (ok) setFormData({ name: "", email: "", experience: "", message: "" });
@@ -337,7 +340,7 @@ export default function ContactPage() {
                     {(status === "sent" || status === "failed") && (
                       <p role="status" className="mt-6 border-l-2 border-[#CC1122] pl-4 font-body text-sm text-[#E6BDB9]">
                         {status === "sent"
-                          ? "Thanks, your message has been sent. The academy will be in touch soon."
+                          ? "Message received. Thanks for reaching out to Finesse. We'll be in touch soon."
                           : FORM_FAILURE_MESSAGE}
                       </p>
                     )}

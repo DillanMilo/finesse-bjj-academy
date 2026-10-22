@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { LeadFormProvider, TrialFormProvider } from "@/lib/lead-form-context";
+import { hasRequestedTrial } from "@/lib/contact-form";
 
 const LeadPopup = dynamic(() => import("../ui/LeadPopup"), { ssr: false });
 const POPUP_SEEN_KEY = "finesse:consultation-seen";
@@ -24,6 +25,8 @@ export default function ClientLayout({
 
   useEffect(() => {
     let delay = POPUP_DELAY_MS;
+    // Visitors who already requested a trial only see the pop-up when they open it themselves.
+    if (hasRequestedTrial()) return;
     try {
       if (sessionStorage.getItem(POPUP_SEEN_KEY)) {
         popupSeen.current = true;
@@ -38,7 +41,7 @@ export default function ClientLayout({
       return;
     }
     const timer = setTimeout(() => {
-      if (popupSeen.current) return;
+      if (popupSeen.current || hasRequestedTrial()) return;
       try {
         if (sessionStorage.getItem(POPUP_SEEN_KEY)) return;
         sessionStorage.setItem(POPUP_SEEN_KEY, "1");
