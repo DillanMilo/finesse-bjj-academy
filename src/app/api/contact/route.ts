@@ -119,7 +119,11 @@ async function claimTrialLock(key: string): Promise<"claimed" | "taken" | "skipp
   return replies[0] === "OK" ? "claimed" : "taken";
 }
 
-/** Cloudflare Turnstile. Runs only when both keys are set; fails closed if Cloudflare can't be reached. */
+/**
+ * Cloudflare Turnstile. Runs only when both keys are set. A rejected token fails, but if Cloudflare
+ * itself can't be reached or errors, the send is allowed (the other spam checks still run), so an
+ * outage never loses a real enquiry.
+ */
 async function passesTurnstile(token: unknown, ip: string) {
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const secret = process.env.TURNSTILE_SECRET_KEY;
@@ -137,13 +141,17 @@ async function passesTurnstile(token: unknown, ip: string) {
       body: form,
       signal: AbortSignal.timeout(5_000),
     });
+    if (!res.ok) {
+      console.error(`[api/contact] Turnstile unavailable (HTTP ${res.status}); allowing send.`);
+      return true;
+    }
     const result = (await res.json()) as { success?: boolean; "error-codes"?: string[] };
     if (result.success === true) return true;
     console.warn(`[api/contact] Turnstile rejected the token: ${result["error-codes"]?.join(", ") || res.status}`);
     return false;
   } catch (error) {
-    console.error("[api/contact] Turnstile verification failed:", error instanceof Error ? error.message : error);
-    return false;
+    console.error("[api/contact] Turnstile unreachable; allowing send:", error instanceof Error ? error.message : error);
+    return true;
   }
 }
 

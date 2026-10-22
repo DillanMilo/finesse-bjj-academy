@@ -27,7 +27,7 @@ Both are off until their env vars are set, so the site works the same without th
 
 ### Cloudflare Turnstile (bot check)
 - With `NEXT_PUBLIC_TURNSTILE_SITE_KEY` set, each form shows a small Turnstile widget just above the submit button (`src/components/ui/TurnstileWidget.tsx`, script loaded with `next/script`). The widget resets after every send attempt.
-- With `TURNSTILE_SECRET_KEY` also set, the route checks the token with Cloudflare's `siteverify` before sending. If Cloudflare can't be reached the send is refused (400), so the visitor sees the normal "please call or email" message.
+- With `TURNSTILE_SECRET_KEY` also set, the route checks the token with Cloudflare's `siteverify` before sending. A rejected token returns 400. If Cloudflare itself can't be reached or errors, the send is allowed and logged (the other spam checks still run), so an outage never loses a real enquiry (Dillan's decision, 2026-10-22).
 - If only one of the two keys is set, the route skips the check and logs a warning. Set both together.
 
 ### Upstash Redis (trial lock by email, shared limits)
