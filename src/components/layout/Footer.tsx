@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
+import { CONTACT } from "@/lib/constants";
 
 const programLinks = [
   { label: "Adult BJJ", href: "/programs/adult-bjj" },
@@ -198,8 +199,8 @@ export default function Footer() {
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
               </svg>
-              <a href="mailto:info@finessebjj.com" className="transition-colors hover:text-red-500 break-all">
-                info@finessebjj.com
+              <a href={`mailto:${CONTACT.email}`} className="transition-colors hover:text-red-500 break-all">
+                {CONTACT.email}
               </a>
             </li>
           </ul>

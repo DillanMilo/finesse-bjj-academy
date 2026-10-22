@@ -3,6 +3,9 @@
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { FormEvent, useState } from "react";
+import HoneypotField from "@/components/ui/HoneypotField";
+import { CONTACT } from "@/lib/constants";
+import { FORM_FAILURE_MESSAGE, HONEYPOT_FIELD, sendContactForm, type FormStatus } from "@/lib/contact-form";
 
 const socials = [
   { label: "INSTAGRAM", href: "https://www.instagram.com/finessejiujitsu/" },
@@ -18,6 +21,7 @@ export default function ContactPage() {
     experience: "",
     message: "",
   });
+  const [status, setStatus] = useState<FormStatus>("idle");
 
   /* ── scroll refs ── */
   const heroLeftRef = useRef<HTMLDivElement>(null);
@@ -37,8 +41,18 @@ export default function ContactPage() {
   });
   const mapY = useTransform(mapScrollY, [0, 1], ["-15%", "15%"]);
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const honeypot = new FormData(e.currentTarget).get(HONEYPOT_FIELD);
+    setStatus("sending");
+    const ok = await sendContactForm({
+      kind: "enquiry",
+      source: "Contact page",
+      ...formData,
+      [HONEYPOT_FIELD]: String(honeypot ?? ""),
+    });
+    if (ok) setFormData({ name: "", email: "", experience: "", message: "" });
+    setStatus(ok ? "sent" : "failed");
   }
 
   const contactItems = [
@@ -122,10 +136,10 @@ export default function ContactPage() {
       title: "EMAIL",
       content: (
         <a
-          href="mailto:info@finessebjj.com"
+          href={`mailto:${CONTACT.email}`}
           className="font-body text-[#E6BDB9] text-sm tracking-wide hover:text-[#CC1122] transition-colors duration-300"
         >
-          info@finessebjj.com
+          {CONTACT.email}
         </a>
       ),
     },
@@ -205,6 +219,7 @@ export default function ContactPage() {
                 </motion.h2>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
+                  <HoneypotField />
                   {/* Name + Email row */}
                   <motion.div
                     className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8"
@@ -214,6 +229,11 @@ export default function ContactPage() {
                   >
                     <input
                       type="text"
+                      name="name"
+                      required
+                      maxLength={100}
+                      autoComplete="name"
+                      aria-label="Name"
                       placeholder="NAME"
                       value={formData.name}
                       onChange={(e) =>
@@ -223,6 +243,11 @@ export default function ContactPage() {
                     />
                     <input
                       type="email"
+                      name="email"
+                      required
+                      maxLength={254}
+                      autoComplete="email"
+                      aria-label="Email"
                       placeholder="EMAIL"
                       value={formData.email}
                       onChange={(e) =>
@@ -239,6 +264,8 @@ export default function ContactPage() {
                     transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
                   >
                     <select
+                      name="experience"
+                      aria-label="Experience level"
                       value={formData.experience}
                       onChange={(e) =>
                         setFormData({ ...formData, experience: e.target.value })
@@ -279,6 +306,9 @@ export default function ContactPage() {
                     transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
                   >
                     <textarea
+                      name="message"
+                      maxLength={5000}
+                      aria-label="Message"
                       placeholder="MESSAGE / INTENT"
                       rows={4}
                       value={formData.message}
@@ -297,12 +327,20 @@ export default function ContactPage() {
                   >
                     <button
                       type="submit"
-                      className="w-full -skew-x-12 bg-[#CC1122] py-5 shadow-[0_0_30px_rgba(204,17,34,0.4)] hover:shadow-[0_0_40px_rgba(204,17,34,0.6)] transition-all duration-300 hover:bg-[#E8222E]"
+                      disabled={status === "sending"}
+                      className="w-full -skew-x-12 bg-[#CC1122] py-5 shadow-[0_0_30px_rgba(204,17,34,0.4)] hover:shadow-[0_0_40px_rgba(204,17,34,0.6)] transition-all duration-300 hover:bg-[#E8222E] disabled:opacity-60"
                     >
                       <span className="skew-x-12 inline-block font-headline text-xl md:text-2xl tracking-widest text-white">
-                        SEND MESSAGE
+                        {status === "sending" ? "SENDING…" : "SEND MESSAGE"}
                       </span>
                     </button>
+                    {(status === "sent" || status === "failed") && (
+                      <p role="status" className="mt-6 border-l-2 border-[#CC1122] pl-4 font-body text-sm text-[#E6BDB9]">
+                        {status === "sent"
+                          ? "Thanks, your message has been sent. The academy will be in touch soon."
+                          : FORM_FAILURE_MESSAGE}
+                      </p>
+                    )}
                   </motion.div>
                 </form>
               </div>
