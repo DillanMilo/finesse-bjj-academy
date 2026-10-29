@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { CONTACT } from "@/lib/constants";
 import { competitions, isUpcoming } from "@/lib/competitions";
 import { HONEYPOT_FIELD } from "@/lib/contact-form";
-import { escapeHtml, supportConfirmationEmail, trialConfirmationEmail, type EmailContent } from "@/lib/emails";
+import { academyNotificationEmail, supportConfirmationEmail, trialConfirmationEmail, type EmailContent } from "@/lib/emails";
 
 // Single server-side send path for every website form (contact page, lead pop-up, trial form,
 // competition support RSVP). Sends through Resend's REST API with fetch, so no extra npm package is needed.
@@ -272,22 +272,20 @@ export async function POST(request: Request) {
     kind === "trial" ? `[TRIAL] New free trial request: ${fields.name}`
     : event ? `[SUPPORT] ${fields.name} is coming to ${event.name}${guests ? ` (+${guests} guest${guests === 1 ? "" : "s"})` : ""}`
     : `New website enquiry: ${fields.name}`;
-  const rows: [string, string][] = [
-    ["Name", fields.name],
-    ["Email", fields.email],
-    ["Phone", fields.phone],
-    ["Trial class", fields.trialClass],
-    ["Supporting at", event ? `${event.name} · ${event.date}` : ""],
-    ["Guests", event ? String(guests) : ""],
-    ["Experience", fields.experience ? EXPERIENCE_LABELS[fields.experience] : ""],
-    ["Message", fields.message],
-    ["Sent from", fields.source],
-  ].filter((row): row is [string, string] => row[1] !== "");
-
-  const html = `<h2>${escapeHtml(subject)}</h2><table cellpadding="6" style="border-collapse:collapse">${rows
-    .map(([label, value]) => `<tr><td style="vertical-align:top"><strong>${label}</strong></td><td style="white-space:pre-wrap">${escapeHtml(value)}</td></tr>`)
-    .join("")}</table><p>Reply to this email to answer ${escapeHtml(fields.name)} directly.</p>`;
-  const text = `${subject}\n\n${rows.map(([label, value]) => `${label}: ${value}`).join("\n")}\n\nReply to this email to answer ${fields.name} directly.`;
+  const { html, text } = academyNotificationEmail({
+    kind,
+    subject,
+    name: fields.name,
+    email: fields.email,
+    phone: fields.phone,
+    highlight: fields.trialClass ? ["TRIAL CLASS", fields.trialClass] : event ? ["SUPPORTING AT", `${event.name} · ${event.date}`] : undefined,
+    details: [
+      ["Guests", event ? (guests ? `+${guests}` : "Just them") : ""],
+      ["Experience", fields.experience ? EXPERIENCE_LABELS[fields.experience] : ""],
+    ].filter((row): row is [string, string] => row[1] !== ""),
+    message: fields.message,
+    source: fields.source || "website form",
+  });
 
   if (!(await sendEmail(apiKey, { from, to, replyTo: fields.email, subject, html, text }))) {
     await releaseTrialLock();
