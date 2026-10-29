@@ -3,27 +3,8 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import { posts } from "@/lib/posts";
 
-const posts = [
-  {
-    title: "Building Confidence in Kids through Jiu Jitsu Training",
-    category: "Kids",
-    excerpt:
-      "Discover how Brazilian Jiu-Jitsu helps children develop unshakeable confidence, resilience, and self-esteem both on and off the mats.",
-  },
-  {
-    title: "Enhance Your Child's Focus and Attention with Martial Arts",
-    category: "Kids",
-    excerpt:
-      "Learn how martial arts training can improve your child's concentration, academic performance, and ability to focus under pressure.",
-  },
-  {
-    title: "Boost Your Child's Grades with Kids Jiu Jitsu",
-    category: "Kids",
-    excerpt:
-      "Studies show that kids who train martial arts perform better in school. Find out why Jiu-Jitsu is the ultimate academic booster.",
-  },
-];
 
 function NewsCard({
   post,
@@ -64,7 +45,7 @@ function NewsCard({
 
         {/* Read more link */}
         <Link
-          href="#"
+          href={`/news/${post.slug}`}
           className="mt-5 inline-flex items-center gap-2 font-headline text-xs tracking-widest text-[#CC1122] transition-all group-hover:gap-3"
         >
           READ MORE

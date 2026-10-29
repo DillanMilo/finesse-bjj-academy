@@ -1,49 +1,19 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import TrialSessionForm from "./TrialSessionForm";
-import HoneypotField from "./HoneypotField";
-import TurnstileWidget, { type TurnstileHandle } from "./TurnstileWidget";
-import { FORM_FAILURE_MESSAGE, HONEYPOT_FIELD, sendContactForm, TRIAL_ALREADY_REQUESTED_MESSAGE, type FormStatus } from "@/lib/contact-form";
-import { useFormStartedAt, useTrialRequested } from "@/lib/use-contact-form";
+import TrialSessionForm, { type Audience } from "./TrialSessionForm";
 
 interface LeadPopupProps {
   isOpen: boolean;
   onClose: () => void;
-  mode?: "consultation" | "trial";
+  /** Which class list the picker opens on. */
+  audience?: Audience;
 }
 
-export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: LeadPopupProps) {
-  const [status, setStatus] = useState<FormStatus>("idle");
-  const trialRequested = useTrialRequested();
-  const startedAt = useFormStartedAt(isOpen);
-  const turnstile = useRef<TurnstileHandle>(null);
-
-  function handleClose() {
-    if (status !== "sending") setStatus("idle");
-    onClose();
-  }
-
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    setStatus("sending");
-    const result = await sendContactForm({
-      kind: "trial",
-      source: "Book your free trial pop-up",
-      name: String(data.get("name") ?? ""),
-      email: String(data.get("email") ?? ""),
-      phone: String(data.get("phone") ?? ""),
-      startedAt: startedAt.current,
-      turnstileToken: turnstile.current?.token(),
-      [HONEYPOT_FIELD]: String(data.get(HONEYPOT_FIELD) ?? ""),
-    });
-    turnstile.current?.reset();
-    if (result === "sent") form.reset();
-    setStatus(result);
-  }
+/** The one free trial pop-up: navbar, footer, page buttons and the timed prompt all open this. */
+export default function LeadPopup({ isOpen, onClose, audience }: LeadPopupProps) {
+  const handleClose = onClose;
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -109,69 +79,13 @@ export default function LeadPopup({ isOpen, onClose, mode = "consultation" }: Le
               BOOK YOUR FREE TRIAL
             </h2>
             <p className="font-serif text-base sm:text-lg italic text-[#E6BDB9] mb-6 sm:mb-8">
-              {mode === "trial" ? "Start with a beginner-friendly kids’ class. Ages 8–14." : "Your journey starts here."}
+              Kids, teens &amp; adults welcome. Pick a beginner-friendly class.
             </p>
 
-            {/* Form */}
-            {mode === "trial" ? <TrialSessionForm idPrefix="trial-popup" /> : (trialRequested && status !== "sent") || status === "duplicate" ? (
-              <p role="status" className="border-l-2 border-[#CC1122] pl-4 text-sm text-white">
-                {TRIAL_ALREADY_REQUESTED_MESSAGE}
-              </p>
-            ) : <form
-              className="relative flex flex-col gap-4"
-              onSubmit={handleSubmit}
-            >
-              <HoneypotField />
-              <input
-                type="text"
-                name="name"
-                required
-                maxLength={100}
-                autoComplete="name"
-                aria-label="Your Name"
-                placeholder="Your Name"
-                className="bg-transparent border-b border-[#5C3F3D] focus:border-[#CC1122] py-3 text-white placeholder:text-zinc-600 font-body outline-none transition-colors"
-              />
-              <input
-                type="email"
-                name="email"
-                required
-                maxLength={254}
-                autoComplete="email"
-                aria-label="Email Address"
-                placeholder="Email Address"
-                className="bg-transparent border-b border-[#5C3F3D] focus:border-[#CC1122] py-3 text-white placeholder:text-zinc-600 font-body outline-none transition-colors"
-              />
-              <input
-                type="tel"
-                name="phone"
-                maxLength={40}
-                autoComplete="tel"
-                aria-label="Phone Number"
-                placeholder="Phone Number"
-                className="bg-transparent border-b border-[#5C3F3D] focus:border-[#CC1122] py-3 text-white placeholder:text-zinc-600 font-body outline-none transition-colors"
-              />
-              <TurnstileWidget ref={turnstile} />
-              <button
-                type="submit"
-                disabled={status === "sending"}
-                className="-skew-x-12 bg-[#CC1122] py-3 sm:py-4 mt-4 shadow-[0_0_30px_rgba(204,17,34,0.4)] hover:brightness-110 transition-all disabled:opacity-60"
-              >
-                <span className="skew-x-12 inline-block font-headline text-base sm:text-lg md:text-xl tracking-widest text-white">
-                  {status === "sending" ? "SENDING…" : "BOOK MY FREE TRIAL"}
-                </span>
-              </button>
-              {(status === "sent" || status === "failed") && (
-                <p role="status" className="border-l-2 border-[#CC1122] pl-4 text-sm text-white">
-                  {status === "sent"
-                    ? "Request received. We'll reach out to confirm your free trial. We look forward to meeting you on the mat."
-                    : FORM_FAILURE_MESSAGE}
-                </p>
-              )}
-              <p className="text-zinc-600 text-sm text-center mt-4">
-                No commitment. No pressure. Take your first step on the mats.
-              </p>
-            </form>}
+            <TrialSessionForm idPrefix="trial-popup" defaultAudience={audience} />
+            <p className="text-zinc-500 text-sm text-center mt-5">
+              No commitment. No pressure. Take your first step on the mats.
+            </p>
           </motion.div>
         </motion.div>
       )}

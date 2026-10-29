@@ -1,4 +1,10 @@
-# Competition hub local concept
+# Competition hub
+
+## Live setup (October 29, 2026)
+
+Sample events, sample results and the concept banner are gone. Events live in `src/lib/competitions.ts` and time themselves (Central Time): UPCOMING before the day, a pulsing COMPETITION DAY badge on the day (with a Follow Live Brackets link to Smoothcomp), then the card drops off the hub. A past event only returns under Results & Recaps if a `recap`, `results` or `gallery` is added; the tab is hidden when there are none. Pages re-render hourly (`revalidate = 3600`). Smoothcomp has no public API, so brackets and full results are linked, not embedded. Each upcoming event page has a supporter RSVP form (see docs/contact-forms.md).
+
+## History (concept phase)
 
 This concept uses illustrative events, dates, results, and existing academy photos. The user approved publishing the reviewed version on October 1, 2026. Nothing is submitted by the trial or support controls; their on-page preview notices remain visible.
 

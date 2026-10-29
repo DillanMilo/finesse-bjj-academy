@@ -12,6 +12,8 @@ const LeadPopup = dynamic(() => import("../ui/LeadPopup"), { ssr: false });
 const POPUP_SEEN_KEY = "finesse:consultation-seen";
 const VISIT_STARTED_KEY = "finesse:visit-started";
 const POPUP_DELAY_MS = 12000;
+// Pages about adult training open the trial picker on teen & adult classes; everything else starts on kids.
+const ADULT_PAGES = /adult|wrestling|striking|womens|personalized/;
 
 export default function ClientLayout({
   children,
@@ -21,7 +23,6 @@ export default function ClientLayout({
   const [isLeadPopupOpen, setIsLeadPopupOpen] = useState(false);
   const popupSeen = useRef(false);
   const pathname = usePathname();
-  const [leadMode, setLeadMode] = useState<"consultation" | "trial">("consultation");
 
   useEffect(() => {
     let delay = POPUP_DELAY_MS;
@@ -49,14 +50,12 @@ export default function ClientLayout({
         return;
       }
       popupSeen.current = true;
-      setLeadMode(pathname === "/programs/kids-bjj" ? "trial" : "consultation");
       setIsLeadPopupOpen(true);
     }, delay);
     return () => clearTimeout(timer);
   }, [pathname]);
 
-  const openForm = (mode: "consultation" | "trial") => {
-    setLeadMode(mode);
+  const openForm = () => {
     popupSeen.current = true;
     try {
       sessionStorage.setItem(POPUP_SEEN_KEY, "1");
@@ -65,17 +64,15 @@ export default function ClientLayout({
     }
     setIsLeadPopupOpen(true);
   };
-  const openLeadForm = () => openForm("consultation");
-  const openTrialForm = () => openForm("trial");
   const closeLeadForm = () => setIsLeadPopupOpen(false);
 
   return (
-    <LeadFormProvider value={openLeadForm}>
-      <TrialFormProvider value={openTrialForm}>
-      <Navbar onOpenLeadForm={openLeadForm} />
+    <LeadFormProvider value={openForm}>
+      <TrialFormProvider value={openForm}>
+      <Navbar onOpenLeadForm={openForm} />
       {children}
       <Footer />
-      <LeadPopup isOpen={isLeadPopupOpen} onClose={closeLeadForm} mode={leadMode} />
+      <LeadPopup isOpen={isLeadPopupOpen} onClose={closeLeadForm} audience={ADULT_PAGES.test(pathname) ? "adults" : "kids"} />
       </TrialFormProvider>
     </LeadFormProvider>
   );
