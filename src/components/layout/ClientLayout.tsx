@@ -9,6 +9,7 @@ import { LeadFormProvider, TrialFormProvider } from "@/lib/lead-form-context";
 import { hasRequestedTrial } from "@/lib/contact-form";
 
 const LeadPopup = dynamic(() => import("../ui/LeadPopup"), { ssr: false });
+const TrialNudge = dynamic(() => import("../ui/TrialNudge"), { ssr: false });
 const POPUP_SEEN_KEY = "finesse:consultation-seen";
 const VISIT_STARTED_KEY = "finesse:visit-started";
 const POPUP_DELAY_MS = 12000;
@@ -21,6 +22,8 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   const [isLeadPopupOpen, setIsLeadPopupOpen] = useState(false);
+  // The timed prompt is a small invitation; the full form only opens when the visitor accepts it.
+  const [isNudgeOpen, setIsNudgeOpen] = useState(false);
   const popupSeen = useRef(false);
   const pathname = usePathname();
 
@@ -50,7 +53,7 @@ export default function ClientLayout({
         return;
       }
       popupSeen.current = true;
-      setIsLeadPopupOpen(true);
+      setIsNudgeOpen(true);
     }, delay);
     return () => clearTimeout(timer);
   }, [pathname]);
@@ -62,6 +65,7 @@ export default function ClientLayout({
     } catch {
       // Manual booking remains available when browser storage is disabled.
     }
+    setIsNudgeOpen(false);
     setIsLeadPopupOpen(true);
   };
   const closeLeadForm = () => setIsLeadPopupOpen(false);
@@ -72,6 +76,7 @@ export default function ClientLayout({
       <Navbar onOpenLeadForm={openForm} />
       {children}
       <Footer />
+      <TrialNudge isOpen={isNudgeOpen && !isLeadPopupOpen} onAccept={openForm} onDismiss={() => setIsNudgeOpen(false)} audience={ADULT_PAGES.test(pathname) ? "adults" : "kids"} />
       <LeadPopup isOpen={isLeadPopupOpen} onClose={closeLeadForm} audience={ADULT_PAGES.test(pathname) ? "adults" : "kids"} />
       </TrialFormProvider>
     </LeadFormProvider>
