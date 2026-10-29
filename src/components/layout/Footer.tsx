@@ -252,8 +252,20 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <p className="mt-4 text-center font-body text-[11px] text-zinc-700">
-          Designed by Creative Currents LLC
+        <p className="mt-5 text-center font-body text-[11px] tracking-wide text-zinc-600">
+          Designed &amp; built by{" "}
+          <a
+            href="https://dillanmilo.com"
+            target="_blank"
+            rel="noopener"
+            className="group inline-flex items-center gap-1 font-headline text-sm tracking-wider text-zinc-300 transition-colors hover:text-white"
+          >
+            <span className="relative">
+              DILLANMILO<span className="text-[#CC1122]">.COM</span>
+              <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-50 bg-[#CC1122] transition-transform duration-300 group-hover:scale-x-100" />
+            </span>
+            <span aria-hidden className="text-[#CC1122] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">&#8599;</span>
+          </a>
         </p>
         <p className="mx-auto mt-3 max-w-2xl text-center font-body text-[10px] leading-relaxed text-zinc-600">
           Scripture taken from the Holy Bible, New International Version®,
