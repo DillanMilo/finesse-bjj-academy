@@ -39,7 +39,10 @@ export function greetingName(name: string) {
   return /^[\p{L}\p{M}'’-]+$/u.test(first) ? first : "";
 }
 
-function layout({ preheader, eyebrow, title, intro, content }: { preheader: string; eyebrow: string; title: string; intro: string; content: string }) {
+const DEFAULT_NOTE = "Questions or need to change something? Just reply to this email.";
+
+/** `team` emails go to the academy inbox, so they skip the address block meant for visitors. */
+function layout({ preheader, eyebrow, title, intro, content, note = DEFAULT_NOTE, team = false }: { preheader: string; eyebrow: string; title: string; intro: string; content: string; note?: string; team?: boolean }) {
   return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><title>${title.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()}</title></head>
 <body style="margin:0;padding:0;background:#0A0A0A;">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;">${preheader}</div>
@@ -51,12 +54,12 @@ function layout({ preheader, eyebrow, title, intro, content }: { preheader: stri
 <tr><td style="padding:10px 32px 0;${HEADLINE}font-size:44px;line-height:46px;color:#ffffff;">${title}</td></tr>
 <tr><td style="padding:18px 32px 0;${BODY}font-size:16px;line-height:25px;color:#d4d4d8;">${intro}</td></tr>
 ${content}
-<tr><td style="padding:36px 32px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #2a2023;"><tr><td style="padding-top:22px;${BODY}font-size:14px;line-height:22px;color:#a1a1aa;">
+${team ? "" : `<tr><td style="padding:36px 32px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #2a2023;"><tr><td style="padding-top:22px;${BODY}font-size:14px;line-height:22px;color:#a1a1aa;">
 <strong style="color:#ffffff;">Finesse BJJ Academy</strong><br>
 <a href="${MAPS_URL}" style="color:#a1a1aa;text-decoration:underline;">${CONTACT.address}</a><br>
 <a href="tel:${CONTACT.phone.replace(/[^\d+]/g, "")}" style="color:#a1a1aa;text-decoration:none;">${CONTACT.phone}</a> · <a href="mailto:${CONTACT.email}" style="color:#a1a1aa;text-decoration:none;">${CONTACT.email}</a>
-</td></tr></table></td></tr>
-<tr><td style="padding:22px 32px 30px;${BODY}font-size:12px;line-height:18px;color:#71717a;">Questions or need to change something? Just reply to this email.</td></tr>
+</td></tr></table></td></tr>`}
+<tr><td style="padding:${team ? 30 : 22}px 32px 30px;${BODY}font-size:12px;line-height:18px;color:#71717a;">${note}</td></tr>
 </table></td></tr></table></body></html>`;
 }
 
@@ -109,5 +112,51 @@ ${detailRow("YOUR CREW", party)}
       content,
     }),
     text: `${first ? `${first}, thank` : "Thank"} you for coming out to support the Finesse team.\n\nThe event: ${event}\n${date} · ${location}\nYour crew: ${party}\n\nWe'll share the team meetup time and spot before the event. Bring your voice and wear your Finesse colors.\n\nFinesse BJJ Academy\n${CONTACT.address}\n${CONTACT.phone} · ${CONTACT.email}\n\nQuestions? Just reply to this email.`,
+  };
+}
+
+export type NotificationKind = "trial" | "support" | "enquiry";
+
+const NOTIFICATION_COPY: Record<NotificationKind, { eyebrow: string; intro: (first: string) => string }> = {
+  trial: { eyebrow: "NEW FREE TRIAL REQUEST", intro: (first) => `${first} just booked a free trial on the website. Reach out to confirm their spot. They've already been emailed what to bring.` },
+  support: { eyebrow: "NEW TEAM SUPPORTER", intro: (first) => `${first} is coming out to support the team. They've been emailed a confirmation and are waiting on meetup details.` },
+  enquiry: { eyebrow: "NEW WEBSITE ENQUIRY", intro: (first) => `${first} sent a message through the website.` },
+};
+
+function button(href: string, label: string, primary: boolean) {
+  return `<td style="padding:0 10px 10px 0;"><a href="${href}" style="display:inline-block;padding:13px 22px;${HEADLINE}font-size:17px;letter-spacing:0.5px;text-decoration:none;color:#ffffff;background:${primary ? RED : "transparent"};border:2px solid ${RED};">${label}</a></td>`;
+}
+
+/**
+ * The email the academy gets for every website form. Every visitor value passes through escapeHtml.
+ * `highlight` is the one thing to act on (trial class, event); `details` are the rest of the fields.
+ */
+export function academyNotificationEmail({ kind, subject, name, email, phone, highlight, details, message, source }: { kind: NotificationKind; subject: string; name: string; email: string; phone: string; highlight?: [string, string]; details: [string, string][]; message: string; source: string }): EmailContent {
+  const copy = NOTIFICATION_COPY[kind];
+  const first = escapeHtml(name.split(" ")[0]);
+  const tel = phone.replace(/[^\d+]/g, "");
+  const contactRows: [string, string][] = [
+    ["EMAIL", `<a href="mailto:${escapeHtml(email)}" style="color:#ffffff;text-decoration:underline;">${escapeHtml(email)}</a>`],
+    ...(phone ? [["PHONE", tel ? `<a href="tel:${tel}" style="color:#ffffff;text-decoration:none;">${escapeHtml(phone)}</a>` : escapeHtml(phone)] as [string, string]] : []),
+    ...details.map(([label, value]) => [label.toUpperCase(), escapeHtml(value)] as [string, string]),
+  ];
+  const table = contactRows.map(([label, value]) => `<tr><td width="110" valign="top" style="padding:11px 0;border-bottom:1px solid #2a2023;${BODY}font-size:11px;font-weight:700;letter-spacing:2px;color:#E6BDB9;">${label}</td><td style="padding:11px 0;border-bottom:1px solid #2a2023;${BODY}font-size:15px;line-height:22px;color:#ffffff;">${value}</td></tr>`).join("");
+  const content = `${highlight ? detailRow(highlight[0], escapeHtml(highlight[1])) : ""}
+<tr><td style="padding:22px 32px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">${table}</table></td></tr>
+${message ? `<tr><td style="padding:24px 32px 0;"><div style="${BODY}font-size:11px;font-weight:700;letter-spacing:2px;color:#E6BDB9;padding-bottom:8px;">MESSAGE</div><div style="${BODY}font-size:15px;line-height:24px;color:#d4d4d8;white-space:pre-wrap;background:#1A1014;padding:16px 20px;">${escapeHtml(message)}</div></td></tr>` : ""}
+<tr><td style="padding:28px 32px 0;"><table role="presentation" cellpadding="0" cellspacing="0"><tr>${button(`mailto:${escapeHtml(email)}`, `EMAIL ${first.toUpperCase()}`, true)}${tel ? button(`tel:${tel}`, "CALL", false) : ""}</tr></table></td></tr>`;
+  const lines = [["Name", name], ["Email", email], ["Phone", phone], ...(highlight ? [highlight] : []), ...details, ["Message", message]].filter(([, value]) => value);
+  return {
+    subject,
+    html: layout({
+      preheader: escapeHtml(subject),
+      eyebrow: copy.eyebrow,
+      title: escapeHtml(name.toUpperCase()),
+      intro: copy.intro(first),
+      content,
+      note: `Sent from the ${escapeHtml(source)} on the Finesse website. Hit Reply to answer ${first} directly.`,
+      team: true,
+    }),
+    text: `${subject}\n\n${lines.map(([label, value]) => `${label}: ${value}`).join("\n")}\n\nSent from: ${source}\nReply to this email to answer ${name} directly.`,
   };
 }
