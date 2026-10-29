@@ -1,6 +1,6 @@
 # Finesse BJJ launch cutover
 
-Prepared October 29, 2026. **Do not execute the DNS changes until Dillan authorizes launch.** Spark is deferred by the client. No GoDaddy routing record has been changed during this preparation.
+Prepared October 29, 2026. **Executed after Dillan explicitly authorized immediate launch.** The new public site is live. See `docs/launch-completed-2026-10-29.md` for the applied records, verification and remaining limits. The preparation instructions and original values below are retained as historical context and rollback guidance. Spark remains deferred.
 
 ## Git handoff
 
