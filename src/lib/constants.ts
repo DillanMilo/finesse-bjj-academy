@@ -119,7 +119,7 @@ export const STATS = [
 ] as const;
 
 export const CONTACT = {
-  address: "17711 Kuykendahl Rd, Unit A, Spring, TX 77379",
+  address: "18300 Strack Dr, Suite 300, Spring, TX 77379",
   phone: "(346) 418-2999",
   email: "info@finessebjj.com",
 } as const;
