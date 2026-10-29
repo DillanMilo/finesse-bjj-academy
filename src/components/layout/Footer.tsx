@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { CONTACT } from "@/lib/constants";
+import ArrowIcon from "@/components/ui/ArrowIcon";
 
 const programLinks = [
   { label: "Adult BJJ", href: "/programs/adult-bjj" },
@@ -264,7 +265,7 @@ export default function Footer() {
               DILLANMILO<span className="text-[#CC1122]">.COM</span>
               <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-50 bg-[#CC1122] transition-transform duration-300 group-hover:scale-x-100" />
             </span>
-            <span aria-hidden className="text-[#CC1122] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">&#8599;</span>
+            <ArrowIcon className="h-3.5 w-3.5 text-[#CC1122] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </p>
         <p className="mx-auto mt-3 max-w-2xl text-center font-body text-[10px] leading-relaxed text-zinc-600">
