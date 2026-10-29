@@ -1,0 +1,69 @@
+{
+  "deployment": "https://finesse-private-8k4q2m-5gba0brej-dillans-projects-f662840b.vercel.app",
+  "run": "573315a9",
+  "results": [
+    {
+      "case": "enquiry",
+      "status": 200,
+      "expected": 200,
+      "response": {
+        "ok": true
+      }
+    },
+    {
+      "case": "trial",
+      "status": 200,
+      "expected": 200,
+      "response": {
+        "ok": true
+      }
+    },
+    {
+      "case": "duplicate",
+      "status": 409,
+      "expected": 409,
+      "response": {
+        "ok": false,
+        "error": "A free trial was already requested with this email."
+      }
+    },
+    {
+      "case": "support",
+      "status": 200,
+      "expected": 200,
+      "response": {
+        "ok": true
+      }
+    }
+  ],
+  "configuration": {
+    "scope": "Isolated protected test deployment",
+    "realSavedProductionResendAndRedis": true,
+    "turnstile": "Official public Cloudflare dummy test keys",
+    "recipients": "Synthetic delivered+...@resend.dev only",
+    "businessDomainsAssigned": false
+  },
+  "messages": [
+    {
+      "id": "01a1899a-ec04-7b6e-a6b2-dfbbd9ff9066",
+      "status": "Delivered"
+    },
+    {
+      "id": "01a1899a-f091-71ef-b326-115d7475d4d8",
+      "status": "Delivered"
+    },
+    {
+      "id": "01a1899a-f0da-7b5f-a4dc-93fd48b1406a",
+      "status": "Delivered"
+    },
+    {
+      "id": "01a1899a-fc47-7a00-9ea4-b9f3ad6f7a39",
+      "status": "Delivered"
+    },
+    {
+      "id": "01a1899a-fc98-7534-9a0c-c6fffc57830c",
+      "status": "Delivered"
+    }
+  ],
+  "deliveryEvidence": "Read directly in the signed-in Resend Emails dashboard on 2026-10-29"
+}

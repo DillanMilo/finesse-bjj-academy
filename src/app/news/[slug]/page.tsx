@@ -1,3 +1,4 @@
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 import ArrowIcon from "@/components/ui/ArrowIcon";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +10,8 @@ export function generateStaticParams() { return posts.map(post => ({ slug: post.
 export async function generateMetadata({ params }: { params: Promise<{slug: string}> }) {
   const post = getPost((await params).slug);
   if (!post) return {};
-  return { title: post.title, description: post.excerpt, alternates: { canonical: `/news/${post.slug}` }, openGraph: { type: "article", title: post.title, description: post.excerpt, publishedTime: post.date, images: [post.image] } };
+  const metadata = pageMetadata(`/news/${post.slug}`, post.title, post.excerpt);
+  return { ...metadata, openGraph: { ...metadata.openGraph, type: "article", publishedTime: post.date, images: [{ url: post.image, alt: post.imageAlt }] } };
 }
 function Block({ text }: { text: string }) {
   if (text.startsWith("## ")) return <h2 className="mt-12 mb-4 font-headline text-3xl sm:text-4xl italic tracking-tighter text-white">{text.slice(3)}</h2>;
@@ -19,7 +21,7 @@ function Block({ text }: { text: string }) {
 export default async function PostPage({ params }: { params: Promise<{slug: string}> }) {
   const post = getPost((await params).slug);
   if (!post) notFound();
-  const jsonLd = { "@context": "https://schema.org", "@type": "BlogPosting", headline: post.title, description: post.excerpt, datePublished: post.date, image: post.image, author: { "@type": "Organization", name: "Finesse BJJ Academy" }, publisher: { "@type": "Organization", name: "Finesse BJJ Academy" } };
+  const jsonLd = { "@context": "https://schema.org", "@type": "BlogPosting", headline: post.title, description: post.excerpt, datePublished: post.date, mainEntityOfPage: `${SITE_URL}/news/${post.slug}`, image: new URL(post.image, SITE_URL).href, author: { "@type": "Organization", name: "Finesse BJJ Academy" }, publisher: { "@type": "Organization", name: "Finesse BJJ Academy" } };
   return <main className="min-h-screen bg-[#0A0A0A] pt-32 pb-24 px-4 sm:px-6 md:px-8">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
     <article className="mx-auto max-w-3xl">

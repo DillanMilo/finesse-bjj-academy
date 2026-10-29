@@ -1,3 +1,4 @@
+import { trackEvent } from "@/lib/analytics";
 import { CONTACT } from "@/lib/constants";
 
 /** "duplicate": the server already has a free trial request for this email. */
@@ -59,6 +60,7 @@ export async function sendContactForm(payload: ContactFormPayload): Promise<Send
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
+    if (res.ok) trackEvent(payload.kind === "support" ? "team_support_rsvp" : "generate_lead", { form_type: payload.kind });
     const duplicate = res.status === 409 && payload.kind === "trial";
     if (duplicate || (res.ok && payload.kind === "trial")) markTrialRequested();
     return res.ok ? "sent" : duplicate ? "duplicate" : "failed";

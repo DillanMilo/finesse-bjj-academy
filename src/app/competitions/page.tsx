@@ -1,3 +1,4 @@
+import { pageMetadata, staticPages } from "@/lib/seo";
 import ArrowIcon from "@/components/ui/ArrowIcon";
 import CompetitionHero from "@/components/competitions/CompetitionHero";
 import HubReveal from "@/components/competitions/HubReveal";
@@ -6,7 +7,8 @@ import HubEvents from "@/components/competitions/HubEvents";
 import { competitionPhase, competitions, hasRecap } from "@/lib/competitions";
 // Re-render hourly so cards switch to Competition Day and drop off afterwards.
 export const revalidate = 3600;
-export const metadata = { title: "Competition Hub | Finesse BJJ", description: "Compete, support the team, and relive the moments with Finesse BJJ." };
+const seoPage = staticPages.find(([path]) => path === "/competitions")!;
+export const metadata = pageMetadata(seoPage[0], seoPage[1], seoPage[2]);
 const phased = () => competitions.map(event => ({ ...event, phase: competitionPhase(event) }));
 export default function CompetitionsPage() {
   return <main className="competition-hub pt-16"><CompetitionHero/><nav aria-label="Competition hub sections" className="border-b border-white/15"><div className="max-w-7xl mx-auto flex flex-wrap gap-7 px-6 py-5 font-headline text-lg tracking-wider"><a href="#events">EVENTS & RESULTS</a><a href="#experience">THE EXPERIENCE</a><a href="#team">SUPPORT THE TEAM</a></div></nav><HubEvents upcoming={phased().filter(event => event.phase !== "past")} past={phased().filter(event => event.phase === "past" && hasRecap(event)).reverse()}/>

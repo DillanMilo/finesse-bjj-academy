@@ -1,0 +1,425 @@
+{
+  "deployment": "https://finesse-private-8k4q2m-gpn1t3dqj-dillans-projects-f662840b.vercel.app",
+  "pages": [
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Brazilian Jiu-Jitsu in Spring, TX | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/about",
+      "status": 200,
+      "title": "About Our Academy | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/about",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/adult/best-jiu-jitsu-classes-in-spring-texas-gi-and-no-gi-training-for-all-ages",
+      "status": 200,
+      "title": "Best Jiu Jitsu Classes in Spring, Texas: Gi and No Gi Training for All Ages | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/adult/best-jiu-jitsu-classes-in-spring-texas-gi-and-no-gi-training-for-all-ages",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/adult/starting-your-journey-brazilian-jiu-jitsu-for-beginners",
+      "status": 200,
+      "title": "Starting Your Journey: Brazilian Jiu Jitsu for Beginners | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/adult/starting-your-journey-brazilian-jiu-jitsu-for-beginners",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/adult/top-reasons-adults-should-try-wrestling-in-spring-tx",
+      "status": 200,
+      "title": "Top Reasons Adults Should Try Wrestling in Spring, TX | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/adult/top-reasons-adults-should-try-wrestling-in-spring-tx",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/adult/why-brazilian-jiu-jitsu-is-great-for-the-whole-family",
+      "status": 200,
+      "title": "Why Brazilian Jiu Jitsu is Great for the Whole Family | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/adult/why-brazilian-jiu-jitsu-is-great-for-the-whole-family",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/adult/why-brazilian-jiu-jitsu-is-growing-in-popularity-in-spring-tx",
+      "status": 200,
+      "title": "Why Brazilian Jiu Jitsu is Growing in Popularity in Spring, TX | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/adult/why-brazilian-jiu-jitsu-is-growing-in-popularity-in-spring-tx",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/adult/why-finesse-bjj-is-the-top-choice-for-bjj-training-in-spring-tx",
+      "status": 200,
+      "title": "Why Finesse BJJ is the Top Choice for BJJ Training in Spring, TX | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/adult/why-finesse-bjj-is-the-top-choice-for-bjj-training-in-spring-tx",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/adult/your-guide-to-finding-the-best-bjj-gyms-near-you",
+      "status": 200,
+      "title": "Your Guide to Finding the Best BJJ Gyms Near You | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/adult/your-guide-to-finding-the-best-bjj-gyms-near-you",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/competitions",
+      "status": 200,
+      "title": "Competition Hub | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/competitions",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/competitions/naga-houston-2026-10",
+      "status": 200,
+      "title": "NAGA Houston Grappling Championship | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/competitions/naga-houston-2026-10",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/contact",
+      "status": 200,
+      "title": "Contact and Directions | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/contact",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/kids/boost-your-childs-grades-with-kids-jiu-jitsu-in-spring-tx",
+      "status": 200,
+      "title": "Boost Your Child\u2019s Grades with Kids Jiu Jitsu in Spring, TX | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/kids/boost-your-childs-grades-with-kids-jiu-jitsu-in-spring-tx",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/kids/building-confidence-in-kids-through-jiu-jitsu-training-in-spring-tx",
+      "status": 200,
+      "title": "Building Confidence in Kids through Jiu Jitsu Training in Spring, TX | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/kids/building-confidence-in-kids-through-jiu-jitsu-training-in-spring-tx",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/kids/enhance-your-childs-focus-and-attention-with-martial-arts-in-spring-tx",
+      "status": 200,
+      "title": "Enhance Your Child\u2019s Focus and Attention with Martial Arts in Spring, TX | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/kids/enhance-your-childs-focus-and-attention-with-martial-arts-in-spring-tx",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/kids/finding-the-best-kids-bjj-classes-near-you",
+      "status": 200,
+      "title": "Finding the Best Kids BJJ Classes Near You | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/kids/finding-the-best-kids-bjj-classes-near-you",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/kids/how-kids-martial-arts-in-spring-tx-can-help-prevent-bullying",
+      "status": 200,
+      "title": "How Kids Martial Arts in Spring, TX Can Help Prevent Bullying\u201d | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/kids/how-kids-martial-arts-in-spring-tx-can-help-prevent-bullying",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/kids/how-kids-wrestling-in-spring-tx-builds-confidence",
+      "status": 200,
+      "title": "How Kids Wrestling in Spring, TX Builds Confidence | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/kids/how-kids-wrestling-in-spring-tx-builds-confidence",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/kids/the-benefits-of-kids-martial-arts-in-spring-tx",
+      "status": 200,
+      "title": "The Benefits of Kids Martial Arts in Spring, TX | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/kids/the-benefits-of-kids-martial-arts-in-spring-tx",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/news",
+      "status": 200,
+      "title": "Academy News and Training Guides | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/news",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/news/archive",
+      "status": 200,
+      "title": "Article Archive",
+      "canonical": "https://finessebjj.com/news/archive",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/news/first-adult-bjj-class",
+      "status": 200,
+      "title": "Never Trained Before? What Your First Adult BJJ Class Actually Looks Like",
+      "canonical": "https://finessebjj.com/news/first-adult-bjj-class",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/news/what-your-child-learns-on-the-mat",
+      "status": 200,
+      "title": "More Than Takedowns: What Your Child Really Learns on the Mat",
+      "canonical": "https://finessebjj.com/news/what-your-child-learns-on-the-mat",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "title": "Website Privacy Notice | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/privacy",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/programs/adult-bjj",
+      "status": 200,
+      "title": "Adult Brazilian Jiu-Jitsu | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/programs/adult-bjj",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/programs/kids-bjj",
+      "status": 200,
+      "title": "Kids Brazilian Jiu-Jitsu | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/programs/kids-bjj",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/programs/personalized-options",
+      "status": 200,
+      "title": "Personalized Training Options | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/programs/personalized-options",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/programs/striking",
+      "status": 200,
+      "title": "Striking | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/programs/striking",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/programs/womens-program",
+      "status": 200,
+      "title": "Women\u2019s Program | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/programs/womens-program",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/programs/wrestling",
+      "status": 200,
+      "title": "Wrestling | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/programs/wrestling",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/schedule",
+      "status": 200,
+      "title": "Class Schedule | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/schedule",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/terms",
+      "status": 200,
+      "title": "Website Terms and Information | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/terms",
+      "schemas": 1,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/boost-your-childs-growth-with-jiu-jitsu-benefits-for-ages-5-7",
+      "status": 200,
+      "title": "Boost Your Child\u2019s Growth with Jiu-Jitsu: Benefits for Ages 5-7 | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/boost-your-childs-growth-with-jiu-jitsu-benefits-for-ages-5-7",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/cultivating-humility-and-respect-through-the-art-of-jiu-jitsu",
+      "status": 200,
+      "title": "Cultivating Humility and Respect through the Art of Jiu-Jitsu | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/cultivating-humility-and-respect-through-the-art-of-jiu-jitsu",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/cultivating-patience-through-jiu-jitsu-the-journey-to-mastery",
+      "status": 200,
+      "title": "Cultivating Patience through Jiu-Jitsu: The Journey to Mastery | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/cultivating-patience-through-jiu-jitsu-the-journey-to-mastery",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/discover-the-power-of-jiu-jitsu-building-physical-and-mental-strength-for-beginners",
+      "status": 200,
+      "title": "Discover the Power of Jiu-Jitsu: Building Physical and Mental Strength for Beginners | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/discover-the-power-of-jiu-jitsu-building-physical-and-mental-strength-for-beginners",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/embracing-personal-responsibility-through-jiu-jitsu-owning-your-actions",
+      "status": 200,
+      "title": "Embracing Personal Responsibility through Jiu-Jitsu: Owning Your Actions | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/embracing-personal-responsibility-through-jiu-jitsu-owning-your-actions",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/empower-yourself-with-jiu-jitsu-a-path-to-self-defense-and-personal-growth",
+      "status": 200,
+      "title": "Empower Yourself with Jiu-Jitsu: A Path to Self-Defense and Personal Growth | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/empower-yourself-with-jiu-jitsu-a-path-to-self-defense-and-personal-growth",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/enhancing-adaptability-through-jiu-jitsu-mastering-lifes-challenges",
+      "status": 200,
+      "title": "Enhancing Adaptability Through Jiu-Jitsu: Mastering Life\u2019s Challenges | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/enhancing-adaptability-through-jiu-jitsu-mastering-lifes-challenges",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/experience-elite-bjj-training-in-spring-texas-classes-for-all-skill-levels",
+      "status": 200,
+      "title": "Experience Elite BJJ Training in Spring, Texas: Classes for All Skill Levels | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/experience-elite-bjj-training-in-spring-texas-classes-for-all-skill-levels",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/finesse-official",
+      "status": 200,
+      "title": "Finesse Official | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/finesse-official",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/grand-opening-january-9th",
+      "status": 200,
+      "title": "Grand Opening January 9th | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/grand-opening-january-9th",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/jiu-jitsu-a-gateway-to-a-healthy-and-active-lifestyle",
+      "status": 200,
+      "title": "Jiu-Jitsu: A Gateway to a Healthy and Active Lifestyle | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/jiu-jitsu-a-gateway-to-a-healthy-and-active-lifestyle",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/jiu-jitsu-shaping-young-minds-by-pushing-boundaries",
+      "status": 200,
+      "title": "Jiu-Jitsu: Shaping Young Minds by Pushing Boundaries | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/jiu-jitsu-shaping-young-minds-by-pushing-boundaries",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/jiu-jitsu-vs-karate-the-eternal-battle-of-explaining-the-difference",
+      "status": 200,
+      "title": "Jiu-Jitsu vs. Karate: The Eternal Battle of Explaining the Difference | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/jiu-jitsu-vs-karate-the-eternal-battle-of-explaining-the-difference",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/join-our-jiu-jitsu-community-in-spring-tx-programs-for-adults-and-kids",
+      "status": 200,
+      "title": "Join Our Jiu Jitsu Community in Spring, TX: Programs for Adults and Kids | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/join-our-jiu-jitsu-community-in-spring-tx-programs-for-adults-and-kids",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/new-location-coming-soon",
+      "status": 200,
+      "title": "Check Out Our New Training Facility! | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/new-location-coming-soon",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/perseverance-the-unbeatable-force-in-jiu-jitsu",
+      "status": 200,
+      "title": "Perseverance: The Unbeatable Force in Jiu-Jitsu | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/perseverance-the-unbeatable-force-in-jiu-jitsu",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/the-unexpected-perk-of-jiu-jitsu-becoming-a-laundry-wizard",
+      "status": 200,
+      "title": "The Unexpected Perk of Jiu-Jitsu: Becoming a Laundry Wizard | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/the-unexpected-perk-of-jiu-jitsu-becoming-a-laundry-wizard",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/unleash-the-power-of-jiu-jitsu-a-calorie-burning-workout-like-no-other",
+      "status": 200,
+      "title": "Unleash the Power of Jiu-Jitsu: A Calorie-Burning Workout Like No Other | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/unleash-the-power-of-jiu-jitsu-a-calorie-burning-workout-like-no-other",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/unleashing-the-power-of-discipline-and-focus-through-jiu-jitsu",
+      "status": 200,
+      "title": "Unleashing the Power of Discipline and Focus through Jiu-Jitsu | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/unleashing-the-power-of-discipline-and-focus-through-jiu-jitsu",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    },
+    {
+      "route": "/uncategorized/unlock-your-childs-potential-at-our-jiu-jitsu-school-growth-through-challenge",
+      "status": 200,
+      "title": "Unlock Your Child\u2019s Potential at Our Jiu-Jitsu School: Growth Through Challenge | Finesse BJJ Academy",
+      "canonical": "https://finessebjj.com/uncategorized/unlock-your-childs-potential-at-our-jiu-jitsu-school-growth-through-challenge",
+      "schemas": 2,
+      "hostingRobots": "noindex"
+    }
+  ],
+  "internalDestinations": 70,
+  "redirects": 11,
+  "notFoundChecks": 3,
+  "seconds": 39.5
+}

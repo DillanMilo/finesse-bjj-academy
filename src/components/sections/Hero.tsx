@@ -201,6 +201,7 @@ export default function Hero() {
               }}
               className="w-full md:w-auto"
             >
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- Preserve this existing full-page navigation and its animation lifecycle. */}
               <a
                 href="/schedule"
                 className="-skew-x-12 border border-[#CC1122]/50 px-6 sm:px-10 py-4 hover:bg-[#CC1122]/10 transition-colors duration-300 w-full md:w-auto block"

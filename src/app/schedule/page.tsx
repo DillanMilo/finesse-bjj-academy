@@ -83,7 +83,7 @@ export default function SchedulePage() {
             </motion.div>
           </div>
 
-          <p className="text-[#E6BDB9] mb-6">All times Central. Some timings are awaiting confirmation. Check the note on each class and confirm with the academy before attending.</p>
+          <p className="text-[#E6BDB9] mb-6">All times Central. Contact the academy with any questions about a class.</p>
           <div className="gradient-divider mb-12" />
 
           {/* ─── Desktop Grid ─── */}

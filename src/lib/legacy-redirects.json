@@ -1,0 +1,27 @@
+[
+  {
+    "source": "/adult/best-jiu-jitsu-classes-in-spring-texas-gi-and-no-gi-training-for-all-ages-cloned",
+    "destination": "/adult/best-jiu-jitsu-classes-in-spring-texas-gi-and-no-gi-training-for-all-ages",
+    "permanent": true
+  },
+  {
+    "source": "/programs",
+    "destination": "/#programs",
+    "permanent": true
+  },
+  {
+    "source": "/kids-program",
+    "destination": "/programs/kids-bjj",
+    "permanent": true
+  },
+  {
+    "source": "/class-schedule",
+    "destination": "/schedule",
+    "permanent": true
+  },
+  {
+    "source": "/2023/05/discover-the-power-of-jiu-jitsu-building-physical-and-mental-strength-for-beginners",
+    "destination": "/uncategorized/discover-the-power-of-jiu-jitsu-building-physical-and-mental-strength-for-beginners",
+    "permanent": true
+  }
+]

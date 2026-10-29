@@ -15,71 +15,71 @@ export interface DaySchedule {
 }
 
 // Updated from the September 9 schedule notes and Luis’s September 30 screenshot clarifications.
-// These are correction notes, not a complete timetable. Retained times are explicitly
-// marked for confirmation. See docs/schedule-audit-2026-09-10.md for source limits.
+// Dillan confirmed client approval of the listed timetable on October 29, 2026.
+// Start-only entries still have no invented end time. See docs/schedule-audit-2026-09-10.md for historical sources.
 export const schedule: DaySchedule[] = [
   {
     day: "MON",
     dayIndex: 1,
     classes: [
-      { time: "06:00 – 07:00", title: "Adults NoGi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "10:00 – 11:00", title: "Adults NoGi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "16:45", title: "Kids 6–7 Gi", subtitle: "Ages 6–7 · Advanced", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "17:30 – 18:30", title: "Kids 8–14 Gi", subtitle: "Ages 8–14 · Beginners welcome", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "18:30 – 20:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "19:00", title: "Striking", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "End time needs confirmation" },
+      { time: "06:00 – 07:00", title: "Adults NoGi", subtitle: "All Levels", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "10:00 – 11:00", title: "Adults NoGi", subtitle: "All Levels", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "16:45", title: "Kids 6–7 Gi", subtitle: "Ages 6–7 · Advanced", startTimeConfirmed: true, timingNote: "Contact the academy for this session’s end time." },
+      { time: "17:30 – 18:30", title: "Kids 8–14 Gi", subtitle: "Ages 8–14 · Beginners welcome", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "18:30 – 20:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "19:00", title: "Striking", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Contact the academy for this session’s end time." },
     ],
   },
   {
     day: "TUE",
     dayIndex: 2,
     classes: [
-      { time: "10:00 – 11:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "16:00 – 16:45", title: "Tiny Dragons Gi", subtitle: "Ages 4–5 · Fundamentals", timingNote: "Existing time; awaiting confirmation" },
-      { time: "16:45 – 17:30", title: "Kids 6–7 Gi", subtitle: "Ages 6–7", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "17:30 – 18:30", title: "Kids 8–14 Wrestling", subtitle: "Ages 8–14", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "18:30 – 20:00", title: "Adults Advanced NoGi", subtitle: "Advanced", timingNote: "Existing time; awaiting confirmation" },
+      { time: "10:00 – 11:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "16:00 – 16:45", title: "Tiny Dragons Gi", subtitle: "Ages 4–5 · Fundamentals", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "16:45 – 17:30", title: "Kids 6–7 Gi", subtitle: "Ages 6–7", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "17:30 – 18:30", title: "Kids 8–14 Wrestling", subtitle: "Ages 8–14", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "18:30 – 20:00", title: "Adults Advanced NoGi", subtitle: "Advanced", startTimeConfirmed: true, endTimeConfirmed: true },
     ],
   },
   {
     day: "WED",
     dayIndex: 3,
     classes: [
-      { time: "06:00 – 07:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "10:00 – 11:00", title: "Adults NoGi", subtitle: "All Levels", timingNote: "Existing time; awaiting confirmation" },
-      { time: "16:45", title: "Kids 6–7 NoGi", subtitle: "Ages 6–7 · Advanced", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "17:30 – 18:30", title: "Kids 8–14 NoGi", subtitle: "Ages 8–14 · Beginners welcome", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "18:30 – 20:00", title: "Adults NoGi", subtitle: "All Levels", timingNote: "Existing time; awaiting confirmation" },
+      { time: "06:00 – 07:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "10:00 – 11:00", title: "Adults NoGi", subtitle: "All Levels", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "16:45", title: "Kids 6–7 NoGi", subtitle: "Ages 6–7 · Advanced", startTimeConfirmed: true, timingNote: "Contact the academy for this session’s end time." },
+      { time: "17:30 – 18:30", title: "Kids 8–14 NoGi", subtitle: "Ages 8–14 · Beginners welcome", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "18:30 – 20:00", title: "Adults NoGi", subtitle: "All Levels", startTimeConfirmed: true, endTimeConfirmed: true },
     ],
   },
   {
     day: "THU",
     dayIndex: 4,
     classes: [
-      { time: "10:00 – 11:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "16:00 – 16:45", title: "Tiny Dragons Gi", subtitle: "Ages 4–5 · Fundamentals", timingNote: "Existing time; awaiting confirmation" },
-      { time: "16:45 – 17:30", title: "Kids 6–7 Gi", subtitle: "Ages 6–7", timingNote: "Existing time; awaiting confirmation" },
-      { time: "17:30 – 18:30", title: "Kids Advanced NoGi", subtitle: "Ages 8–14 · Advanced", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "18:30 – 20:00", title: "Competition Training", subtitle: "Competition", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
+      { time: "10:00 – 11:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "16:00 – 16:45", title: "Tiny Dragons Gi", subtitle: "Ages 4–5 · Fundamentals", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "16:45 – 17:30", title: "Kids 6–7 Gi", subtitle: "Ages 6–7", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "17:30 – 18:30", title: "Kids Advanced NoGi", subtitle: "Ages 8–14 · Advanced", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "18:30 – 20:00", title: "Competition Training", subtitle: "Competition", startTimeConfirmed: true, endTimeConfirmed: true },
     ],
   },
   {
     day: "FRI",
     dayIndex: 5,
     classes: [
-      { time: "06:00 – 07:00", title: "Adults NoGi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "10:00 – 11:00", title: "Women’s NoGi", subtitle: "Fundamentals", timingNote: "Existing time; awaiting confirmation" },
-      { time: "17:30 – 18:30", title: "Kids 8–14 Gi", subtitle: "Ages 8–14 · Beginners welcome", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "18:30 – 20:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Start confirmed; end time needs confirmation" },
-      { time: "19:00", title: "Striking", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "End time needs confirmation" },
+      { time: "06:00 – 07:00", title: "Adults NoGi", subtitle: "All Levels", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "10:00 – 11:00", title: "Women’s NoGi", subtitle: "Fundamentals", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "17:30 – 18:30", title: "Kids 8–14 Gi", subtitle: "Ages 8–14 · Beginners welcome", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "18:30 – 20:00", title: "Adults Gi", subtitle: "All Levels", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "19:00", title: "Striking", subtitle: "All Levels", startTimeConfirmed: true, timingNote: "Contact the academy for this session’s end time." },
     ],
   },
   {
     day: "SAT",
     dayIndex: 6,
     classes: [
-      { time: "11:00 – 12:30", title: "Adults & Teens Wrestling", subtitle: "All Levels", timingNote: "Existing time; awaiting confirmation" },
-      { time: "12:15", title: "Kids Striking", subtitle: "Kids", startTimeConfirmed: true, timingNote: "End time needs confirmation" },
+      { time: "11:00 – 12:30", title: "Adults & Teens Wrestling", subtitle: "All Levels", startTimeConfirmed: true, endTimeConfirmed: true },
+      { time: "12:15", title: "Kids Striking", subtitle: "Kids", startTimeConfirmed: true, timingNote: "Contact the academy for this session’s end time." },
     ],
   },
   {
@@ -181,6 +181,6 @@ export function getProgramClassDetails(program: "adult" | "kids" | "wrestling") 
   }).map(slot => ({
     label: `${day.day} · ${slot.title} · ${slot.subtitle}`,
     times: `${slot.time} Central Time`,
-    note: slot.timingNote + (slot.title === "Advanced NoGi" || slot.title === "Competition Training" ? "; confirm age eligibility with the academy" : ""),
+    note: [slot.timingNote, slot.title === "Advanced NoGi" || slot.title === "Competition Training" ? "Confirm age eligibility with the academy" : ""].filter(Boolean).join("; "),
   })));
 }

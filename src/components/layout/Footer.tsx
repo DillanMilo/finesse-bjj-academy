@@ -1,5 +1,7 @@
 "use client";
 
+import { AnalyticsPreferences } from "@/components/analytics/Analytics";
+
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +25,7 @@ const academyLinks = [
   { label: "Contact", href: "/contact" },
   { label: "Store", href: "/#store" },
   { label: "News", href: "/news" },
-  { label: "Terms of Service", href: "#terms" },
+  { label: "Terms of Service", href: "/terms" },
 ];
 
 export default function Footer() {
@@ -104,18 +106,7 @@ export default function Footer() {
                 <path d="M23.498 6.186a2.994 2.994 0 0 0-2.112-2.12C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.386.52A2.994 2.994 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a2.994 2.994 0 0 0 2.112 2.12c1.881.52 9.386.52 9.386.52s7.505 0 9.386-.52a2.994 2.994 0 0 0 2.112-2.12C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.546 15.568V8.432L15.818 12 9.546 15.568z" />
               </svg>
             </a>
-            {/* TikTok */}
-            <a
-              href="https://tiktok.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="TikTok"
-              className="flex items-center justify-center min-h-[44px] min-w-[44px] text-zinc-500 transition-colors hover:text-red-500"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1 0-5.78 2.84 2.84 0 0 1 .82.12V9.01a6.27 6.27 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.27 6.34 6.34 0 0 0 9.31 21.6a6.34 6.34 0 0 0 6.34-6.33V9.38a8.16 8.16 0 0 0 4.78 1.53V7.48a4.85 4.85 0 0 1-.84-.79z" />
-              </svg>
-            </a>
+
           </div>
         </motion.div>
 
@@ -244,13 +235,14 @@ export default function Footer() {
           <p className="font-body text-xs text-zinc-600">
             &copy; 2026 FINESSE BJJ ACADEMY. ALL RIGHTS RESERVED.
           </p>
-          <div className="flex items-center gap-6 font-body text-xs text-zinc-600">
-            <a href="#privacy" className="transition-colors hover:text-red-500 py-2 sm:py-0">
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 font-body text-xs text-zinc-600">
+            <Link href="/privacy" className="transition-colors hover:text-red-500 py-2 sm:py-0">
               Privacy Policy
-            </a>
-            <a href="#terms" className="transition-colors hover:text-red-500 py-2 sm:py-0">
+            </Link>
+            <Link href="/terms" className="transition-colors hover:text-red-500 py-2 sm:py-0">
               Terms
-            </a>
+            </Link>
+            <AnalyticsPreferences />
           </div>
         </div>
         <p className="mt-5 text-center font-body text-[11px] tracking-wide text-zinc-600">

@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
+import { pageMetadata, staticPages } from "@/lib/seo";
 import ProgramDetail from "@/components/sections/ProgramDetail";
 
-export const metadata: Metadata = {
-  title: "Personalized Options | Finesse BJJ Academy",
-  description: "Explore a personalized mix of private coaching, nutrition guidance, and strength training at Finesse BJJ in Spring, TX. Start with a trial.",
-};
+const seoPage = staticPages.find(([path]) => path === "/programs/personalized-options")!;
+export const metadata = pageMetadata(seoPage[0], seoPage[1], seoPage[2]);
 
 export default function PersonalizedOptionsPage() {
   return <ProgramDetail variant="personalized" />;

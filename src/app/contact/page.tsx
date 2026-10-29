@@ -13,7 +13,6 @@ const socials = [
   { label: "INSTAGRAM", href: "https://www.instagram.com/finessejiujitsu/" },
   { label: "FACEBOOK", href: "https://www.facebook.com/finessebjj" },
   { label: "YOUTUBE", href: "https://www.youtube.com/@finessejiujitsuTX" },
-  { label: "TIKTOK", href: "https://tiktok.com" },
 ];
 
 export default function ContactPage() {

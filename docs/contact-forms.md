@@ -64,7 +64,26 @@ Names only are in `.env.example`. Redeploy after changing them.
 
 ## Resend domain verification
 1. In Resend, add the domain `finessebjj.com`. Resend shows the DNS records to add.
-2. Add those records in GoDaddy (where finessebjj.com DNS lives). The Resend records use the `send` subdomain (an MX and a TXT/SPF record on `send.finessebjj.com`) plus a DKIM TXT record (`resend._domainkey`).
+2. Add the exact records shown by Resend in GoDaddy (where finessebjj.com DNS lives). The domain created on October 29, 2026 requests a DKIM TXT record at `resend._domainkey`, a CNAME at `rsend` pointing to `rsend.forge.rmta.net`, and a CNAME at `send` pointing to `send.forge.rmta.net`. Use the current dashboard values rather than assuming an MX/SPF setup.
 3. **Do not change or remove the existing Microsoft 365 MX or SPF records on the root domain.** That is what delivers info@finessebjj.com mail. The Resend records live on their own subdomain and do not conflict.
 4. Wait for Resend to show the domain as Verified, then set `CONTACT_FROM_EMAIL` to an address on it.
 5. Test: submit each form on the preview and confirm the email lands in the info@finessebjj.com inbox (check Junk the first time) and that Reply goes to the visitor.
+
+### Provisioning status — October 29, 2026
+
+- `finessebjj.com` is **Verified** in the Finesse Resend account in North Virginia. Sending is enabled; receiving is off. The dashboard confirms the domain is ready to send emails.
+- `CONTACT_FROM_EMAIL` is saved in Vercel Production and Preview as `Finesse BJJ Website <website@finessebjj.com>`.
+- `RESEND_API_KEY` is saved as a Secret in Vercel Production and Preview. The key named `Finesse website — Vercel` has sending access only, with the `All domains` scope available when it was created during verification. No secret is stored in this repository.
+- The user completed GoDaddy's identity check and saved the three email DNS records. The zone contains 27 records, and public DNS returns the exact DKIM value plus both CNAME targets.
+- No deployment, domain attachment, website DNS change, or Microsoft 365 record change has been made. The website A record remains `160.153.0.68`; its `www` alias remains `finessebjj.com`.
+- Isolated tests invoked the actual `/api/contact` handler locally with real Resend requests. Enquiry, trial, and competition-support paths each returned HTTP 200. All five messages (three academy notifications plus trial and support confirmations) were accepted by Resend and show **Delivered** in its test service. Reply-to values were checked in both directions. Those five tests used only synthetic `delivered+...@resend.dev` recipients. Turnstile and Upstash were off in the isolated test process; their deployed behavior was not tested here.
+- At Dillan's explicit request, one separate real email was sent from `website@finessebjj.com` to `info@finessebjj.com` at 2:45 PM Central on October 29. Subject: `[TEST] Finesse website email delivery check`. Resend email ID: `01a18931-d030-705b-943c-f75c14828a8a`. Resend reports **Delivered**; the recipient still needs to confirm whether it appeared in Inbox or Junk. A temporary sending-only key restricted to `finessebjj.com` was used and revoked immediately afterward; its temporary local secret file was removed. The Vercel production/preview key was not changed.
+- A new deployment is required to pick up the saved Vercel environment variables. No deployment was made for this setup. Browser-to-deployment form checks remain for a future authorized private deployment before launch.
+
+### Local pre-launch regression checks (October 29, 2026)
+
+Added `npm test` and isolated fixture-based browser/API smoke checks. Enquiry, trial, support, duplicate, validation, rate-limit and provider-error cases pass. A clean pinned Next.js 16.4.1 build passed; the clean-build API also validated Cloudflare's documented dummy test token. These new tests used only example.test recipients and fixture Redis; they did not send additional real inbox messages. The browser analytics integration records successful enquiries/trials as generate_lead and keeps team support responses separate, subject to consent and the production hostname guard. See docs/prelaunch-readiness-2026-10-29.md for production-only verification still required.
+
+### Subsequent cloud preparation (October 29, 2026)
+
+The earlier provisioning-only notes above are historical. Vercel deployments and domain preparation were subsequently authorized and completed, while public GoDaddy routing stayed unchanged. An isolated protected deployment exercised the saved Production Resend key and shared Redis: enquiry/trial/support succeeded, duplicate trial returned 409, and five synthetic messages showed Delivered. It used official dummy Turnstile keys and synthetic academy recipients only; the normal release contains neither test substitution. See `docs/launch-provider-checks.json` and `docs/launch-cutover.md`. A later explicit instruction authorizes committing/pushing the launch preparation and verifying the resulting Git deployment; it does not authorize DNS cutover or another real-inbox test.

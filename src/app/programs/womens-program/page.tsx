@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
+import { pageMetadata, staticPages } from "@/lib/seo";
 import ProgramDetail from "@/components/sections/ProgramDetail";
 
-export const metadata: Metadata = {
-  title: "Women’s Program | Finesse BJJ Academy",
-  description: "Explore women’s no-gi fundamentals at Finesse BJJ in Spring, TX. Learn technique, build confidence, and meet supportive training partners.",
-};
+const seoPage = staticPages.find(([path]) => path === "/programs/womens-program")!;
+export const metadata = pageMetadata(seoPage[0], seoPage[1], seoPage[2]);
 
 export default function WomensProgramPage() {
   return <ProgramDetail variant="women" />;

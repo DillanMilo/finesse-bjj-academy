@@ -1,0 +1,35 @@
+{
+  "releaseId": "dpl_9DVqLChEJGg2RsMdfsBnuAsmm3i3",
+  "sourceDigest": "8611baa0b2cfd4e7c5c53425f5dc79bd613796157799b3f95c121137ee4a73df",
+  "aliases": [
+    {
+      "alias": "finessebjj.com",
+      "deploymentId": "dpl_9DVqLChEJGg2RsMdfsBnuAsmm3i3",
+      "redirect": null,
+      "redirectStatusCode": null
+    },
+    {
+      "alias": "www.finessebjj.com",
+      "deploymentId": "dpl_9DVqLChEJGg2RsMdfsBnuAsmm3i3",
+      "redirect": "finessebjj.com",
+      "redirectStatusCode": 308
+    }
+  ],
+  "productionProtection": "prod_deployment_urls_and_all_previews",
+  "authoritativeDnsUnchanged": {
+    "apexA": "160.153.0.68",
+    "apexAAAA": null,
+    "wwwCNAME": "finessebjj.com",
+    "mx": "0 finessebjj-com.mail.protection.outlook.com",
+    "nameservers": [
+      "ns71.domaincontrol.com",
+      "ns72.domaincontrol.com"
+    ]
+  },
+  "postCutoverVerification": [
+    "HTTPS certificate activation",
+    "Real-domain host/path redirects",
+    "Production Turnstile and real form delivery",
+    "GA ingestion after consent and property sharing"
+  ]
+}

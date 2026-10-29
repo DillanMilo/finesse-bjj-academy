@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import ArrowIcon from "@/components/ui/ArrowIcon";
 import ParallaxPhoto from "@/components/motion/ParallaxPhoto";
 import Image from "next/image";
@@ -10,7 +11,7 @@ export const dynamicParams = false;
 // Re-render hourly so the page switches to competition day, then to its recap.
 export const revalidate = 3600;
 export function generateStaticParams() { return competitions.map(event => ({ slug: event.slug })); }
-export async function generateMetadata({ params }: { params: Promise<{slug: string}> }) { const {slug} = await params; const event = competitions.find(event => event.slug === slug); return { title: event?.name ?? "Competition", description: event ? `${event.date} · ${event.location}. ${event.description}` : undefined }; }
+export async function generateMetadata({ params }: { params: Promise<{slug: string}> }) { const {slug} = await params; const event = competitions.find(event => event.slug === slug); return event ? pageMetadata(`/competitions/${event.slug}`, event.name, `${event.date} · ${event.location}. ${event.description}`) : {}; }
 export default async function EventPage({ params }: { params: Promise<{slug: string}> }) {
   const {slug} = await params;
   const event = competitions.find(event => event.slug === slug);

@@ -1,0 +1,8 @@
+.env*
+node_modules
+.next
+.git
+.claude
+docs
+tests
+scripts

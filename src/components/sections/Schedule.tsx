@@ -35,7 +35,7 @@ function buildDisplayClasses(): DisplayClass[] {
       label: "CURRENTLY TRAINING",
       title: current.classSlot.title.toUpperCase(),
       time: current.classSlot.time,
-      subtitle: `${current.classSlot.subtitle} · ${current.classSlot.timingNote ?? ""}`,
+      subtitle: [current.classSlot.subtitle, current.classSlot.timingNote].filter(Boolean).join(" · "),
       featured: true,
     });
   }
@@ -87,7 +87,7 @@ function buildDisplayClasses(): DisplayClass[] {
             : daySchedule.day,
         title: cls.title.toUpperCase(),
         time: cls.time,
-        subtitle: `${cls.subtitle} · ${cls.timingNote ?? ""}`,
+        subtitle: [cls.subtitle, cls.timingNote].filter(Boolean).join(" · "),
         featured: !!isNext,
       });
     }

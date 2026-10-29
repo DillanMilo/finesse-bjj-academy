@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
+import { pageMetadata, staticPages } from "@/lib/seo";
 import StrikingProgram from "@/components/sections/StrikingProgram";
 
-export const metadata: Metadata = {
-  title: "Striking",
-  description: "Explore striking at Finesse BJJ in Spring, TX. View all-levels and kids class times and book a trial.",
-};
+const seoPage = staticPages.find(([path]) => path === "/programs/striking")!;
+export const metadata = pageMetadata(seoPage[0], seoPage[1], seoPage[2]);
 
 export default function StrikingPage() {
   return <StrikingProgram />;
