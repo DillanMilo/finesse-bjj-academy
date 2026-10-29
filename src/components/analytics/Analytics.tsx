@@ -74,11 +74,11 @@ export default function Analytics({ production }: { production: boolean }) {
   const showChoice = preferencesOpen || (production && consent === null);
   return <>
     {enabled && <Script id="finesse-ga" src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" onReady={initialize} />}
-    {showChoice && <aside aria-label="Analytics cookie preferences" className="fixed bottom-4 left-4 right-4 z-[100] mx-auto max-w-2xl border border-white/20 bg-[#111] p-5 text-sm text-zinc-300 shadow-2xl">
-      <p>Allow optional Google Analytics cookies to help us understand visits and training enquiries? Forms work with either choice. <Link href="/privacy" className="underline text-white">Privacy notice</Link></p>
-      <div className="mt-4 flex flex-wrap gap-3">
-        <button type="button" className="border border-white/40 px-4 py-2 text-white" onClick={() => { saveConsent("denied"); setPreferencesOpen(false); }}>Decline analytics</button>
-        <button type="button" className="bg-[#CC1122] px-4 py-2 text-white" onClick={() => { saveConsent("granted"); setPreferencesOpen(false); }}>Allow analytics</button>
+    {showChoice && <aside aria-label="Analytics cookie preferences" className="fixed bottom-3 left-3 right-3 z-[100] max-w-sm border border-white/20 bg-[#111] p-3 text-xs leading-relaxed text-zinc-300 shadow-2xl">
+      <p>Allow Google Analytics cookies to measure visits and enquiries? <Link href="/privacy" className="underline text-white">Privacy notice</Link></p>
+      <div className="mt-2 flex gap-2">
+        <button type="button" className="min-h-11 flex-1 border border-white/40 px-3 py-2 text-white" onClick={() => { saveConsent("denied"); setPreferencesOpen(false); }}>Decline analytics</button>
+        <button type="button" className="min-h-11 flex-1 bg-[#CC1122] px-3 py-2 text-white" onClick={() => { saveConsent("granted"); setPreferencesOpen(false); }}>Allow analytics</button>
       </div>
     </aside>}
   </>;
