@@ -1,12 +1,16 @@
 import { createHash } from "node:crypto";
 import { CONTACT } from "@/lib/constants";
+import { competitions, isUpcoming } from "@/lib/competitions";
 import { HONEYPOT_FIELD } from "@/lib/contact-form";
+import { escapeHtml, supportConfirmationEmail, trialConfirmationEmail, type EmailContent } from "@/lib/emails";
 
-// Single server-side send path for every website form (contact page, lead pop-up, trial form).
-// Sends through Resend's REST API with fetch, so no extra npm package is needed.
+// Single server-side send path for every website form (contact page, lead pop-up, trial form,
+// competition support RSVP). Sends through Resend's REST API with fetch, so no extra npm package is needed.
+// Trial and support requests also get a confirmation email back to the visitor (best effort).
 
 const MAX_BODY_BYTES = 20_000;
-const LIMITS = { name: 100, email: 254, phone: 40, experience: 40, message: 5000, trialClass: 200, source: 60 } as const;
+const LIMITS = { name: 100, email: 254, phone: 40, experience: 40, message: 5000, trialClass: 200, source: 60, event: 80, guests: 2 } as const;
+const MAX_GUESTS = 20;
 const EMAIL_PATTERN = /^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/;
 const EXPERIENCE_LABELS: Record<string, string> = {
   white: "White belt / novice",
@@ -40,15 +44,6 @@ function clean(value: unknown, field: Field): string | null {
   if (typeof value !== "string") return null;
   const trimmed = value.trim();
   return trimmed.length > LIMITS[field] ? null : trimmed;
-}
-
-function escapeHtml(text: string) {
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
 }
 
 function firstHeaderValue(request: Request, name: string) {
@@ -182,6 +177,23 @@ function reserveDailySend(now: number) {
   return true;
 }
 
+/** One email through Resend. Returns false (and logs why) if it wasn't accepted. */
+async function sendEmail(apiKey: string, { from, to, replyTo, subject, html, text }: EmailContent & { from: string; to: string; replyTo: string }) {
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ from, to: [to], reply_to: replyTo, subject, html, text }),
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (res.ok) return true;
+    console.error(`[api/contact] Resend returned ${res.status}: ${(await res.text()).slice(0, 500)}`);
+  } catch (error) {
+    console.error("[api/contact] Resend request failed:", error instanceof Error ? error.message : error);
+  }
+  return false;
+}
+
 export async function POST(request: Request) {
   const contentType = request.headers.get("content-type")?.split(";")[0].trim().toLowerCase();
   if (contentType !== "application/json") return fail(415, "Invalid form submission.");
@@ -213,7 +225,7 @@ export async function POST(request: Request) {
   const formAge = typeof startedAt === "number" && Number.isFinite(startedAt) ? now - startedAt : NaN;
   if (!(formAge >= MIN_FILL_MS && formAge <= MAX_FORM_AGE_MS)) return fail(400, "Please try again.");
 
-  const kind = body.kind === "trial" ? "trial" : body.kind === "enquiry" ? "enquiry" : null;
+  const kind = body.kind === "trial" || body.kind === "enquiry" || body.kind === "support" ? body.kind : null;
   const fields = {} as Record<Field, string>;
   for (const field of Object.keys(LIMITS) as Field[]) {
     const value = clean(body[field], field);
@@ -227,6 +239,10 @@ export async function POST(request: Request) {
   if (!fields.name) return fail(400, "Please enter your name.");
   if (!EMAIL_PATTERN.test(fields.email)) return fail(400, "Please enter a valid email address.");
   if (fields.experience && !EXPERIENCE_LABELS[fields.experience]) return fail(400, "Please check the experience field.");
+  const event = kind === "support" ? competitions.find((item) => item.slug === fields.event && isUpcoming(item)) : undefined;
+  if (kind === "support" && !event) return fail(400, "Please check the event field.");
+  const guests = fields.guests ? Number(fields.guests) : 0;
+  if (!Number.isInteger(guests) || guests < 0 || guests > MAX_GUESTS) return fail(400, "Please check the guests field.");
   if ((fields.message.match(LINK_PATTERN)?.length ?? 0) > MAX_LINKS) return fail(400, "Please remove some links from your message.");
   if (!(await passesTurnstile(body.turnstileToken, ip))) return fail(400, "Please try again.");
 
@@ -252,12 +268,17 @@ export async function POST(request: Request) {
     return fail(503, FAILURE_MESSAGE);
   }
 
-  const subject = kind === "trial" ? `[TRIAL] New free trial request: ${fields.name}` : `New website enquiry: ${fields.name}`;
+  const subject =
+    kind === "trial" ? `[TRIAL] New free trial request: ${fields.name}`
+    : event ? `[SUPPORT] ${fields.name} is coming to ${event.name}${guests ? ` (+${guests} guest${guests === 1 ? "" : "s"})` : ""}`
+    : `New website enquiry: ${fields.name}`;
   const rows: [string, string][] = [
     ["Name", fields.name],
     ["Email", fields.email],
     ["Phone", fields.phone],
     ["Trial class", fields.trialClass],
+    ["Supporting at", event ? `${event.name} · ${event.date}` : ""],
+    ["Guests", event ? String(guests) : ""],
     ["Experience", fields.experience ? EXPERIENCE_LABELS[fields.experience] : ""],
     ["Message", fields.message],
     ["Sent from", fields.source],
@@ -268,22 +289,18 @@ export async function POST(request: Request) {
     .join("")}</table><p>Reply to this email to answer ${escapeHtml(fields.name)} directly.</p>`;
   const text = `${subject}\n\n${rows.map(([label, value]) => `${label}: ${value}`).join("\n")}\n\nReply to this email to answer ${fields.name} directly.`;
 
-  try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ from, to: [to], reply_to: fields.email, subject, html, text }),
-      signal: AbortSignal.timeout(10_000),
-    });
-    if (!res.ok) {
-      console.error(`[api/contact] Resend returned ${res.status}: ${(await res.text()).slice(0, 500)}`);
-      await releaseTrialLock();
-      return fail(502, FAILURE_MESSAGE);
-    }
-  } catch (error) {
-    console.error("[api/contact] Resend request failed:", error instanceof Error ? error.message : error);
+  if (!(await sendEmail(apiKey, { from, to, replyTo: fields.email, subject, html, text }))) {
     await releaseTrialLock();
     return fail(502, FAILURE_MESSAGE);
+  }
+
+  // The academy has the request, so a failed confirmation never fails the form. It shares the daily cap.
+  const confirmation =
+    kind === "trial" ? trialConfirmationEmail({ name: fields.name, trialClass: fields.trialClass })
+    : event ? supportConfirmationEmail({ name: fields.name, event: event.name, date: event.date, location: event.location, guests })
+    : null;
+  if (confirmation && (await reserveDailySendShared(Date.now()))) {
+    await sendEmail(apiKey, { from, to: fields.email, replyTo: to, ...confirmation });
   }
 
   return Response.json({ ok: true });

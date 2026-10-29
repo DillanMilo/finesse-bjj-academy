@@ -14,13 +14,17 @@ const TRIAL_REQUESTED_KEY = "finesse-trial-requested";
 export const TRIAL_REQUESTED_EVENT = "finesse-trial-requested";
 
 export interface ContactFormPayload {
-  kind: "trial" | "enquiry";
+  kind: "trial" | "enquiry" | "support";
   name: string;
   email: string;
   phone?: string;
   experience?: string;
   message?: string;
   trialClass?: string;
+  /** Competition slug, for kind "support". */
+  event?: string;
+  /** Number of guests coming along, for kind "support". */
+  guests?: string;
   source: string;
   /** Date.now() when the form mounted; the server rejects sends that come too fast. */
   startedAt: number;

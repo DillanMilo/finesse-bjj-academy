@@ -3,63 +3,8 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import { posts } from "@/lib/posts";
 
-const posts = [
-  {
-    title: "Building Confidence in Kids through Jiu Jitsu Training",
-    category: "Kids",
-    excerpt:
-      "Discover how Brazilian Jiu-Jitsu helps children develop unshakeable confidence, resilience, and self-esteem both on and off the mats.",
-  },
-  {
-    title: "Enhance Your Child's Focus and Attention with Martial Arts",
-    category: "Kids",
-    excerpt:
-      "Learn how martial arts training can improve your child's concentration, academic performance, and ability to focus under pressure.",
-  },
-  {
-    title: "Boost Your Child's Grades with Kids Jiu Jitsu",
-    category: "Kids",
-    excerpt:
-      "Studies show that kids who train martial arts perform better in school. Find out why Jiu-Jitsu is the ultimate academic booster.",
-  },
-  {
-    title: "How Kids Martial Arts Can Help Prevent Bullying",
-    category: "Kids",
-    excerpt:
-      "Jiu-Jitsu provides children with the confidence and skills to stand up to bullying without resorting to violence.",
-  },
-  {
-    title: "Why Brazilian Jiu Jitsu is Great for the Whole Family",
-    category: "Adult",
-    excerpt:
-      "From kids to parents, BJJ offers a unique bonding experience that strengthens families while building individual discipline.",
-  },
-  {
-    title: "Starting Your Journey: BJJ for Beginners",
-    category: "Adult",
-    excerpt:
-      "Everything you need to know before your first class. From what to wear to what to expect on the mats.",
-  },
-  {
-    title: "Your Guide to Finding the Best BJJ Gyms Near You",
-    category: "Adult",
-    excerpt:
-      "Not all gyms are created equal. Here's what to look for when choosing the right BJJ academy for your training.",
-  },
-  {
-    title: "Finding the Best Kids BJJ Classes Near You",
-    category: "Kids",
-    excerpt:
-      "A parent's guide to evaluating kids martial arts programs and finding the perfect fit for your child.",
-  },
-  {
-    title: "Top Reasons Adults Should Try Wrestling",
-    category: "Adult",
-    excerpt:
-      "Wrestling isn't just for high school athletes. Discover why adding wrestling to your BJJ training can transform your game.",
-  },
-];
 
 function BlogCard({ post, index }: { post: (typeof posts)[number]; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -94,7 +39,7 @@ function BlogCard({ post, index }: { post: (typeof posts)[number]; index: number
 
         {/* Read more link */}
         <Link
-          href="#"
+          href={`/news/${post.slug}`}
           className="mt-5 inline-flex items-center gap-2 font-headline text-xs tracking-widest text-[#CC1122] transition-all group-hover:gap-3"
         >
           READ MORE
