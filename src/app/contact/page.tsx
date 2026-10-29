@@ -83,7 +83,7 @@ export default function ContactPage() {
       title: "LOCATION",
       content: (
         <p className="font-body text-[#E6BDB9] text-sm tracking-wide leading-relaxed">
-          17711 Kuykendahl Rd, Unit A,
+          18300 Strack Dr, Suite 300,
           <br />
           Spring, TX 77379
         </p>

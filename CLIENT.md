@@ -10,7 +10,7 @@
 
 ## 1. Business Overview
 
-**Finesse BJJ Academy** is a Brazilian Jiu-Jitsu and wrestling gym located at **17711 Kuykendahl Rd, Unit A, Spring, TX 77379**. The gym is owned and operated by Luis Diaz, with Patty handling operations and communications.
+**Finesse BJJ Academy** is a Brazilian Jiu-Jitsu and wrestling gym located at **18300 Strack Dr, Suite 300, Spring, TX 77379**. The gym is owned and operated by Luis Diaz, with Patty handling operations and communications.
 
 **Phone:** (346) 418-2999  
 **Email:** info@finessebjj.com  
@@ -284,7 +284,7 @@ The final website build **MUST** follow the approved design direction from two k
 ## 14. Contact & Location
 
 **Finesse BJJ Academy**  
-17711 Kuykendahl Rd, Unit A  
+18300 Strack Dr, Suite 300  
 Spring, TX 77379  
 
 **Phone:** (346) 418-2999  

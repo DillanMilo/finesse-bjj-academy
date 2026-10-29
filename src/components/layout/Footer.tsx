@@ -174,7 +174,7 @@ export default function Footer() {
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" />
               </svg>
               <span>
-                17711 Kuykendahl Rd, Unit A,
+                18300 Strack Dr, Suite 300,
                 <br />
                 Spring, TX 77379
               </span>

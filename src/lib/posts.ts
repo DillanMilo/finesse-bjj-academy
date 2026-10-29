@@ -81,7 +81,7 @@ export const posts: Post[] = [
       "## The people are the best part",
       "The hardest part of jiu-jitsu is walking through the door. After that, you'll find a room full of teachers, nurses, engineers, parents, and students who all started exactly where you are. Your training partners become the people who push you, look out for you, and celebrate every stripe with you.",
       "## Ready for your first class?",
-      "We run all-levels adult classes early in the morning, mid-morning, and in the evening, so there's a time that fits around work and family. Our academy is at 17711 Kuykendahl Rd in Spring, Texas.",
+      "We run all-levels adult classes early in the morning, mid-morning, and in the evening, so there's a time that fits around work and family. Our academy is at 18300 Strack Dr, Suite 300, in Spring, Texas.",
       "Book your free trial, pick a class, and bring your water bottle, your towel, and your energy. We'll see you on the mat.",
     ],
   },
