@@ -25,6 +25,8 @@ export interface SheetEvent {
   /** Where competitors register with the organizer. */
   registerUrl?: string;
   registrationNote?: string;
+  /** How supporters get tickets, e.g. "Talk to Coach Ty to get your tickets." */
+  ticketNote?: string;
   /** Members can only come to cheer, e.g. a coach's super fight. */
   supportOnly?: boolean;
 }

@@ -65,7 +65,7 @@ export default function CompetitionSignupForm({ events }: { events: SheetEvent[]
     const competing = role === "competing";
     return <Card><Celebration
       title={competing ? "YOU’RE ON THE LIST." : "YOU’RE IN OUR CORNER."}
-      message={competing ? "The coaches can see your sign-up now. Make sure you’re registered with the organizer too. Let’s get you ready." : "The coaches can see you’re coming. We’ll share the team meetup time and spot before the event. Wear your Finesse colors!"}
+      message={competing ? "The coaches can see your sign-up now. Make sure you’re registered with the organizer too. Let’s get you ready." : `The coaches can see you’re coming. We’ll share the team meetup time and spot before the event.${event.ticketNote ? ` ${event.ticketNote}` : ""} Wear your Finesse colors!`}
       event={event} calendarNote={competing ? "competing" : "supporting"}
       summary={[["Competition", event.name], ["Date", event.date], [competing ? "You’re" : "Your crew", competing ? "Competing" : guests ? `You + ${guests}` : "Just you"], ["Name", name]]}
       onAgain={startAgain} againLabel="SIGN UP SOMEONE ELSE" /></Card>;
