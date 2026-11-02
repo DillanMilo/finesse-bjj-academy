@@ -5,7 +5,7 @@ const TEST_NOW = Date.parse('2026-10-29T18:00:00Z');
 class TestDate extends Date { constructor(...args) { super(...(args.length ? args : [TEST_NOW])); } static now() { return TEST_NOW; } }
 const ROUTES = {
   competition: { file: 'src/app/api/competition-signup/route.ts', env: 'FINESSE_COMPETITION_SHEET_URL', url: 'https://script.example.test/competition/exec', payload: { event: 'naga-houston-2026-10', role: 'supporting', guests: '2' } },
-  promotion: { file: 'src/app/api/promotion-checkin/route.ts', env: 'FINESSE_PROMOTION_SHEET_URL', url: 'https://script.example.test/promotion/exec', payload: { event: 'belt-promotion-2026-11-18', belt: 'Blue', stripes: '2', attending: 'yes' } },
+  promotion: { file: 'src/app/api/promotion-checkin/route.ts', env: 'FINESSE_PROMOTION_SHEET_URL', url: 'https://script.example.test/promotion/exec', payload: { event: 'belt-promotion-2026-11-19', belt: 'Blue', stripes: '2', attending: 'yes' } },
 };
 function setup(which, options = {}) {
   const route = ROUTES[which], posts = [];
@@ -33,7 +33,7 @@ test('each form adds one row with the secret and the expected columns', async ()
   const p = setup('promotion');
   assert.equal((await p.request({ contact: '+1 346 418 2999' })).status, 200);
   assert.deepEqual(p.posts[0].headers, ['Name', 'Phone or email', 'Promotion', 'Event date', 'Belt', 'Attending', 'Stripes']);
-  assert.deepEqual(p.posts[0].values, ['Fixture Member', "'+1 346 418 2999", 'Belt Promotion', '2026-11-18', 'Blue', 'Yes', '2']);
+  assert.deepEqual(p.posts[0].values, ['Fixture Member', "'+1 346 418 2999", 'Belt Promotion', '2026-11-19', 'Blue', 'Yes', '2']);
   assert.equal((await p.request({ belt: 'Grey/Black', stripes: '0' })).status, 200);
   assert.deepEqual(p.posts[1].values.slice(4), ['Grey/Black', 'Yes', '0']);
   assert.equal((await p.request({ belt: 'Black', stripes: '6' })).status, 200);

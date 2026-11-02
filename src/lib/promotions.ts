@@ -19,10 +19,10 @@ export interface PromotionEvent {
 
 export const promotions: PromotionEvent[] = [
   {
-    slug: "belt-promotion-2026-11-18",
+    slug: "belt-promotion-2026-11-19",
     name: "Belt Promotion",
-    isoDate: "2026-11-18",
-    date: "Wednesday, November 18, 2026",
+    isoDate: "2026-11-19",
+    date: "Thursday, November 19, 2026",
   },
 ];
 
