@@ -32,6 +32,8 @@ export interface Competition {
   /** Registration page; also where brackets and live results are posted (e.g. Smoothcomp). */
   registerUrl?: string;
   registrationNote?: string;
+  /** How supporters get tickets, shown on the event page and after they RSVP. */
+  ticketNote?: string;
   /** Members come to cheer only (e.g. a coach's super fight): the sign-up form skips "competing or cheering?". */
   supportOnly?: boolean;
   /** Key times from the organizer, shown on the event page. */
@@ -66,6 +68,7 @@ export const competitions: Competition[] = [
     description: "Coach Ty steps in for a super fight at Submission Hunter Pro 105. Come pack the stands, wear your Finesse colors, and make some noise for our coach.",
     audience: "Family, friends & the whole team · General admission $60",
     schedule: [["Sun, Nov 15 · 1:30 PM", "Doors open. No re-entry, so plan to stay."]],
+    ticketNote: "General admission is $60. Talk to Coach Ty to get your tickets.",
     supportOnly: true,
   },
   {
@@ -119,5 +122,5 @@ export function hasRecap(event: Competition) {
 
 /** What the sign-up form needs to show a competition. */
 export function signupEvent(event: Competition): SheetEvent {
-  return { slug: event.slug, name: event.name, isoDate: event.isoDate, date: event.date, time: event.time, startTime: event.startTime, endTime: event.endTime, location: event.address ?? event.location, registerUrl: event.registerUrl ?? event.url, registrationNote: event.registrationNote, supportOnly: event.supportOnly };
+  return { slug: event.slug, name: event.name, isoDate: event.isoDate, date: event.date, time: event.time, startTime: event.startTime, endTime: event.endTime, location: event.address ?? event.location, registerUrl: event.registerUrl ?? event.url, registrationNote: event.registrationNote, ticketNote: event.ticketNote, supportOnly: event.supportOnly };
 }
