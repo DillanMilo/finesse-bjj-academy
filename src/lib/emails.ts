@@ -96,30 +96,10 @@ export function trialConfirmationEmail({ name, trialClass }: { name: string; tri
   };
 }
 
-export function supportConfirmationEmail({ name, event, date, location, guests }: { name: string; event: string; date: string; location: string; guests: number }): EmailContent {
-  const first = greetingName(name);
-  const party = guests > 0 ? `You + ${guests} guest${guests === 1 ? "" : "s"}` : "Just you";
-  const content = `${detailRow("THE EVENT", `${escapeHtml(event)}<br><span style="${BODY}font-style:normal;font-size:15px;color:#d4d4d8;">${escapeHtml(date)} · ${escapeHtml(location)}</span>`)}
-${detailRow("YOUR CREW", party)}
-<tr><td style="padding:26px 32px 0;${BODY}font-size:15px;line-height:24px;color:#d4d4d8;">We'll share the team meetup time and spot before the event. Bring your voice, wear your Finesse colors, and stay for as many matches as you can. Our athletes hear every cheer.</td></tr>`;
-  return {
-    subject: `You're in our corner: ${event}`,
-    html: layout({
-      preheader: `Thanks for coming to support the team at ${event}.`,
-      eyebrow: "TEAM SUPPORT CONFIRMED",
-      title: "YOU'RE IN<br><span style=\"color:" + RED + ";\">OUR CORNER.</span>",
-      intro: `${first ? `${escapeHtml(first)}, thank` : "Thank"} you for coming out to support the Finesse team. Every voice in the stands counts.`,
-      content,
-    }),
-    text: `${first ? `${first}, thank` : "Thank"} you for coming out to support the Finesse team.\n\nThe event: ${event}\n${date} · ${location}\nYour crew: ${party}\n\nWe'll share the team meetup time and spot before the event. Bring your voice and wear your Finesse colors.\n\nFinesse BJJ Academy\n${CONTACT.address}\n${CONTACT.phone} · ${CONTACT.email}\n\nQuestions? Just reply to this email.`,
-  };
-}
-
-export type NotificationKind = "trial" | "support" | "enquiry";
+export type NotificationKind = "trial" | "enquiry";
 
 const NOTIFICATION_COPY: Record<NotificationKind, { eyebrow: string; intro: (first: string) => string }> = {
   trial: { eyebrow: "NEW FREE TRIAL REQUEST", intro: (first) => `${first} just booked a free trial on the website. Reach out to confirm their spot. They've already been emailed what to bring.` },
-  support: { eyebrow: "NEW TEAM SUPPORTER", intro: (first) => `${first} is coming out to support the team. They've been emailed a confirmation and are waiting on meetup details.` },
   enquiry: { eyebrow: "NEW WEBSITE ENQUIRY", intro: (first) => `${first} sent a message through the website.` },
 };
 
@@ -129,7 +109,7 @@ function button(href: string, label: string, primary: boolean) {
 
 /**
  * The email the academy gets for every website form. Every visitor value passes through escapeHtml.
- * `highlight` is the one thing to act on (trial class, event); `details` are the rest of the fields.
+ * `highlight` is the one thing to act on (the trial class); `details` are the rest of the fields.
  */
 export function academyNotificationEmail({ kind, subject, name, email, phone, highlight, details, message, source }: { kind: NotificationKind; subject: string; name: string; email: string; phone: string; highlight?: [string, string]; details: [string, string][]; message: string; source: string }): EmailContent {
   const copy = NOTIFICATION_COPY[kind];

@@ -1,0 +1,34 @@
+import { isUpcoming } from "@/lib/competitions";
+import { BELTS, promotions } from "@/lib/promotions";
+import { handleSheetSubmission, isPhoneOrEmail, text } from "@/lib/sheet-submission";
+
+// Promotion check-ins: one row per member in the "Promotion check-ins" Google Sheet (docs/google-sheets-setup.md).
+
+export async function POST(request: Request) {
+  return handleSheetSubmission(request, {
+    scriptUrlEnv: "FINESSE_PROMOTION_SHEET_URL",
+    label: "api/promotion-checkin",
+    validate(body) {
+      const name = text(body.name, 100);
+      const contact = text(body.contact, 254);
+      const event = promotions.find((item) => item.slug === body.event && isUpcoming(item));
+      const belt = BELTS.find((item) => item === body.belt);
+      const attending = body.attending === "yes" || body.attending === "no" ? body.attending : null;
+      if (!name) return { error: "Please enter your name." };
+      if (!contact || !isPhoneOrEmail(contact)) return { error: "Please enter a phone number or email." };
+      if (!event) return { error: "Please choose a promotion." };
+      if (!belt) return { error: "Please choose your belt." };
+      if (!attending) return { error: "Please say whether you're attending." };
+      return {
+        row: [
+          ["Name", name],
+          ["Phone or email", contact],
+          ["Promotion", event.name],
+          ["Event date", event.isoDate],
+          ["Belt", belt],
+          ["Attending", attending === "yes" ? "Yes" : "No"],
+        ],
+      };
+    },
+  });
+}

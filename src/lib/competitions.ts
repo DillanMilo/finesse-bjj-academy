@@ -1,6 +1,8 @@
 // Competitions the team is attending. Add new events here; check details on the organizer's page first.
 // Timing is automatic (Central Time): "upcoming" before the day, "today" on competition day, then the
 // event drops off the hub. It only comes back under Results & Recaps if you add a recap or results below.
+import type { SheetEvent } from "@/lib/sheet-forms";
+
 export interface Competition {
   slug: string;
   name: string;
@@ -25,6 +27,8 @@ export interface Competition {
   /** Registration page; also where brackets and live results are posted (e.g. Smoothcomp). */
   registerUrl?: string;
   registrationNote?: string;
+  /** Members come to cheer only (e.g. a coach's super fight): the sign-up form skips "competing or cheering?". */
+  supportOnly?: boolean;
   /** Key times from the organizer, shown on the event page. */
   schedule?: [string, string][];
   /** Coach's recap, one paragraph per entry. Shown once the event is over. */
@@ -37,6 +41,25 @@ export interface Competition {
 export type CompetitionPhase = "upcoming" | "today" | "past";
 
 export const competitions: Competition[] = [
+  {
+    slug: "submission-hunter-pro-105-2026-11",
+    name: "Submission Hunter Pro 105",
+    organizer: "Super fight · Coach Ty",
+    isoDate: "2026-11-15",
+    date: "Sunday, November 15, 2026",
+    month: "NOV",
+    day: "15",
+    time: "Doors open 1:30 PM",
+    location: "Imagen Venues Escapade, Houston, TX",
+    address: "11903 Eastex Fwy, Houston, TX 77039",
+    image: "/photos/instructors/ty-background.webp",
+    imagePosition: "50% 45%",
+    imageAlt: "The Finesse BJJ logo on the academy's mat wall",
+    description: "Coach Ty steps in for a super fight at Submission Hunter Pro 105. Come pack the stands, wear your Finesse colors, and make some noise for our coach.",
+    audience: "Family, friends & the whole team · General admission $60",
+    schedule: [["Sun, Nov 15 · 1:30 PM", "Doors open. No re-entry, so plan to stay."]],
+    supportOnly: true,
+  },
   {
     slug: "naga-houston-2026-10",
     name: "NAGA Houston Grappling Championship",
@@ -71,17 +94,22 @@ function centralDate(now: Date) {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "America/Chicago" }).format(now);
 }
 
-export function competitionPhase(event: Competition, now = new Date()): CompetitionPhase {
+export function competitionPhase(event: Pick<Competition, "isoDate">, now = new Date()): CompetitionPhase {
   const today = centralDate(now);
   return event.isoDate > today ? "upcoming" : event.isoDate === today ? "today" : "past";
 }
 
 /** Upcoming or happening today (Central Time). */
-export function isUpcoming(event: Competition, now = new Date()) {
+export function isUpcoming(event: Pick<Competition, "isoDate">, now = new Date()) {
   return competitionPhase(event, now) !== "past";
 }
 
 /** Past events only stay listed once a recap or results have been added. */
 export function hasRecap(event: Competition) {
   return Boolean(event.recap?.length || event.results?.length || event.gallery?.length);
+}
+
+/** What the sign-up form needs to show a competition. */
+export function signupEvent(event: Competition): SheetEvent {
+  return { slug: event.slug, name: event.name, isoDate: event.isoDate, date: event.date, time: event.time, location: event.address ?? event.location, registerUrl: event.registerUrl ?? event.url, registrationNote: event.registrationNote, supportOnly: event.supportOnly };
 }
