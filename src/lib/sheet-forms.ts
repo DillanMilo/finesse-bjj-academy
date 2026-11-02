@@ -43,6 +43,8 @@ export interface PromotionCheckinPayload {
   /** Promotion slug from src/lib/promotions.ts. */
   event: string;
   belt: string;
+  /** Stripes on the belt ("0" to "4"; degrees "0" to "6" on a black belt). */
+  stripes: string;
   attending: "yes" | "no";
   startedAt: number;
   [HONEYPOT_FIELD]?: string;

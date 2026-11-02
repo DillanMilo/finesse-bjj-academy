@@ -5,7 +5,7 @@ const TEST_NOW = Date.parse('2026-10-29T18:00:00Z');
 class TestDate extends Date { constructor(...args) { super(...(args.length ? args : [TEST_NOW])); } static now() { return TEST_NOW; } }
 const ROUTES = {
   competition: { file: 'src/app/api/competition-signup/route.ts', env: 'FINESSE_COMPETITION_SHEET_URL', url: 'https://script.example.test/competition/exec', payload: { event: 'naga-houston-2026-10', role: 'supporting', guests: '2' } },
-  promotion: { file: 'src/app/api/promotion-checkin/route.ts', env: 'FINESSE_PROMOTION_SHEET_URL', url: 'https://script.example.test/promotion/exec', payload: { event: 'belt-promotion-2026-11-18', belt: 'Blue', attending: 'yes' } },
+  promotion: { file: 'src/app/api/promotion-checkin/route.ts', env: 'FINESSE_PROMOTION_SHEET_URL', url: 'https://script.example.test/promotion/exec', payload: { event: 'belt-promotion-2026-11-18', belt: 'Blue', stripes: '2', attending: 'yes' } },
 };
 function setup(which, options = {}) {
   const route = ROUTES[which], posts = [];
@@ -32,8 +32,11 @@ test('each form adds one row with the secret and the expected columns', async ()
   assert.deepEqual(c.posts[1].values.slice(4), ['Competing', '0']);
   const p = setup('promotion');
   assert.equal((await p.request({ contact: '+1 346 418 2999' })).status, 200);
-  assert.deepEqual(p.posts[0].headers, ['Name', 'Phone or email', 'Promotion', 'Event date', 'Belt', 'Attending']);
-  assert.deepEqual(p.posts[0].values, ['Fixture Member', "'+1 346 418 2999", 'Belt Promotion', '2026-11-18', 'Blue', 'Yes']);
+  assert.deepEqual(p.posts[0].headers, ['Name', 'Phone or email', 'Promotion', 'Event date', 'Belt', 'Attending', 'Stripes']);
+  assert.deepEqual(p.posts[0].values, ['Fixture Member', "'+1 346 418 2999", 'Belt Promotion', '2026-11-18', 'Blue', 'Yes', '2']);
+  assert.equal((await p.request({ belt: 'Grey/Black', stripes: '0' })).status, 200);
+  assert.deepEqual(p.posts[1].values.slice(4), ['Grey/Black', 'Yes', '0']);
+  assert.equal((await p.request({ belt: 'Black', stripes: '6' })).status, 200);
 });
 test('formula-looking names are stored as plain text', async () => {
   const c = setup('competition');
@@ -54,7 +57,7 @@ test('missing env answers "not configured" without calling Google', async () => 
 test('validation, origin, timing and honeypot guards add no row', async () => {
   const cases = {
     competition: [[{ name: '' }, 400], [{ contact: 'not contact' }, 400], [{ contact: '12345' }, 400], [{ event: 'missing' }, 400], [{ role: 'judge' }, 400], [{ event: 'submission-hunter-pro-105-2026-11', role: 'competing' }, 400], [{ guests: '21' }, 400], [{ name: 'x'.repeat(101) }, 400]],
-    promotion: [[{ event: 'missing' }, 400], [{ belt: 'Red' }, 400], [{ attending: 'maybe' }, 400], [{ contact: 'a@b' }, 400]],
+    promotion: [[{ event: 'missing' }, 400], [{ belt: 'Red' }, 400], [{ stripes: undefined }, 400], [{ stripes: '5' }, 400], [{ stripes: '-1' }, 400], [{ stripes: 2 }, 400], [{ belt: 'Black', stripes: '7' }, 400], [{ attending: 'maybe' }, 400], [{ contact: 'a@b' }, 400]],
   };
   for (const which of Object.keys(ROUTES)) {
     for (const [payload, status] of [...cases[which], [{ startedAt: TEST_NOW }, 400], [{ website: 'bot.example' }, 200]]) {

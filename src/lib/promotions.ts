@@ -23,8 +23,25 @@ export const promotions: PromotionEvent[] = [
   },
 ];
 
-/** Belts a member can be wearing at a promotion, kids' belts first. */
-export const BELTS = ["White", "Grey", "Yellow", "Orange", "Green", "Blue", "Purple", "Brown", "Black"] as const;
+/** Belts a member can be wearing at a promotion: white, the IBJJF kids' belts (under 16), then teen and adult belts. */
+export const BELTS = [
+  "White",
+  "Grey/White", "Grey", "Grey/Black", "Yellow/White", "Yellow", "Yellow/Black",
+  "Orange/White", "Orange", "Orange/Black", "Green/White", "Green", "Green/Black",
+  "Blue", "Purple", "Brown", "Black",
+] as const;
+export type Belt = (typeof BELTS)[number];
+
+/** Most stripes a belt can carry: four on every belt, up to six degrees on a black belt. */
+export function maxStripes(belt: Belt) {
+  return belt === "Black" ? 6 : 4;
+}
+
+/** "No stripes", "1 stripe", "3 degrees" (black belts count degrees). */
+export function stripeLabel(belt: Belt, stripes: number) {
+  const unit = belt === "Black" ? "degree" : "stripe";
+  return stripes === 0 ? `No ${unit}s` : `${stripes} ${unit}${stripes === 1 ? "" : "s"}`;
+}
 
 /** What the check-in form needs to show a promotion. Promotions are held at the academy. */
 export function checkinEvent(event: PromotionEvent): SheetEvent {
