@@ -71,13 +71,13 @@ function centralDate(now: Date) {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "America/Chicago" }).format(now);
 }
 
-export function competitionPhase(event: Competition, now = new Date()): CompetitionPhase {
+export function competitionPhase(event: Pick<Competition, "isoDate">, now = new Date()): CompetitionPhase {
   const today = centralDate(now);
   return event.isoDate > today ? "upcoming" : event.isoDate === today ? "today" : "past";
 }
 
 /** Upcoming or happening today (Central Time). */
-export function isUpcoming(event: Competition, now = new Date()) {
+export function isUpcoming(event: Pick<Competition, "isoDate">, now = new Date()) {
   return competitionPhase(event, now) !== "past";
 }
 
