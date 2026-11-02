@@ -10,6 +10,7 @@ import { hasRequestedTrial } from "@/lib/contact-form";
 
 const LeadPopup = dynamic(() => import("../ui/LeadPopup"), { ssr: false });
 const TrialNudge = dynamic(() => import("../ui/TrialNudge"), { ssr: false });
+const PromotionBadge = dynamic(() => import("../ui/PromotionBadge"), { ssr: false });
 const POPUP_SEEN_KEY = "finesse:consultation-seen";
 const VISIT_STARTED_KEY = "finesse:visit-started";
 const POPUP_DELAY_MS = 12000;
@@ -80,6 +81,7 @@ export default function ClientLayout({
       {children}
       <Footer />
       <TrialNudge isOpen={isNudgeOpen && !isLeadPopupOpen} onAccept={openForm} onDismiss={() => setIsNudgeOpen(false)} audience={ADULT_PAGES.test(pathname) ? "adults" : "kids"} />
+      <PromotionBadge hidden={isNudgeOpen || isLeadPopupOpen || pathname === "/promotion-check-in"} />
       <LeadPopup isOpen={isLeadPopupOpen} onClose={closeLeadForm} audience={ADULT_PAGES.test(pathname) ? "adults" : "kids"} />
       </TrialFormProvider>
     </LeadFormProvider>

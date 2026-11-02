@@ -1,7 +1,10 @@
+import { CONTACT } from "@/lib/constants";
+import type { SheetEvent } from "@/lib/sheet-forms";
+
 // Belt promotion events members can check in for (/promotion-check-in). Add new events here.
 // Timing works like competitions (Central Time): an event can be checked in for up to and including its day.
-// FIN-SHEETS-1102: the entry below is a SAMPLE so the form can be previewed. Replace it with the real
-// promotion date before linking the page anywhere.
+// While one is upcoming, a "Belt promotion" button shows in the bottom-right corner of every page
+// (PromotionBadge). It disappears by itself the day after the promotion.
 export interface PromotionEvent {
   slug: string;
   name: string;
@@ -13,12 +16,17 @@ export interface PromotionEvent {
 
 export const promotions: PromotionEvent[] = [
   {
-    slug: "belt-promotion-sample",
-    name: "Belt Promotion (sample)",
-    isoDate: "2026-12-12",
-    date: "Saturday, December 12, 2026",
+    slug: "belt-promotion-2026-11-18",
+    name: "Belt Promotion",
+    isoDate: "2026-11-18",
+    date: "Wednesday, November 18, 2026",
   },
 ];
 
 /** Belts a member can be wearing at a promotion, kids' belts first. */
 export const BELTS = ["White", "Grey", "Yellow", "Orange", "Green", "Blue", "Purple", "Brown", "Black"] as const;
+
+/** What the check-in form needs to show a promotion. Promotions are held at the academy. */
+export function checkinEvent(event: PromotionEvent): SheetEvent {
+  return { ...event, location: `Finesse BJJ Academy, ${CONTACT.address}` };
+}

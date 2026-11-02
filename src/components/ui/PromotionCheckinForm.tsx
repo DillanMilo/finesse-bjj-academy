@@ -22,7 +22,7 @@ const BELT_GROUPS: [string, Belt[]][] = [["Everyone starts here", ["White"]], ["
 function stepsFor(eventCount: number): Step[] {
   return ["attending", ...(eventCount > 1 ? ["event" as const] : []), "belt", "details"];
 }
-export default function PromotionCheckinForm({ events }: { events: SheetEvent[] }) {
+export default function PromotionCheckinForm({ events, onSent }: { events: SheetEvent[]; onSent?: (slug: string) => void }) {
   const [step, setStep] = useState<Step>("attending");
   const [attending, setAttending] = useState<Attending | null>(null);
   const [eventSlug, setEventSlug] = useState(events.length === 1 ? events[0].slug : "");
@@ -43,7 +43,9 @@ export default function PromotionCheckinForm({ events }: { events: SheetEvent[] 
     if (!isPhoneOrEmail(contact.trim())) { setContactError(true); return; }
     const data = new FormData(e.currentTarget);
     setStatus("sending");
-    setStatus(await sendSheetForm("/api/promotion-checkin", { name, contact: contact.trim(), event: event.slug, belt, attending, startedAt: startedAt.current, [HONEYPOT_FIELD]: String(data.get(HONEYPOT_FIELD) ?? "") }));
+    const result = await sendSheetForm("/api/promotion-checkin", { name, contact: contact.trim(), event: event.slug, belt, attending, startedAt: startedAt.current, [HONEYPOT_FIELD]: String(data.get(HONEYPOT_FIELD) ?? "") });
+    if (result === "sent") onSent?.(event.slug);
+    setStatus(result);
   }
   function startAgain() {
     setStep("attending"); setAttending(null); setBelt(null); setName(""); setContact(""); setStatus("idle");
