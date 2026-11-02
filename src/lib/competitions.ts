@@ -23,6 +23,8 @@ export interface Competition {
   imageAlt: string;
   /** Organizer's full event flyer (portrait), shown on the event page. */
   flyer?: string;
+  /** The flyer's width / height, so it shows uncropped. Defaults to NAGA's 1000 / 1534. */
+  flyerAspect?: string;
   description: string;
   audience: string;
   /** Organizer's official event page. */
@@ -56,9 +58,11 @@ export const competitions: Competition[] = [
     startTime: "13:30",
     location: "Imagen Venues Escapade, Houston, TX",
     address: "11903 Eastex Fwy, Houston, TX 77039",
-    image: "/photos/instructors/ty-background.webp",
-    imagePosition: "50% 45%",
-    imageAlt: "The Finesse BJJ logo on the academy's mat wall",
+    image: "/photos/submission-hunter-pro-105-poster.webp",
+    imagePosition: "50% 8%",
+    imageAlt: "Submission Hunter Pro 105 fight poster: Ty Hazel vs Rodrigo Rivas",
+    flyer: "/photos/submission-hunter-pro-105-poster.webp",
+    flyerAspect: "1280 / 1600",
     description: "Coach Ty steps in for a super fight at Submission Hunter Pro 105. Come pack the stands, wear your Finesse colors, and make some noise for our coach.",
     audience: "Family, friends & the whole team · General admission $60",
     schedule: [["Sun, Nov 15 · 1:30 PM", "Doors open. No re-entry, so plan to stay."]],
