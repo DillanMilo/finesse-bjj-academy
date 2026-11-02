@@ -53,7 +53,7 @@ test('missing env answers "not configured" without calling Google', async () => 
 });
 test('validation, origin, timing and honeypot guards add no row', async () => {
   const cases = {
-    competition: [[{ name: '' }, 400], [{ contact: 'not contact' }, 400], [{ contact: '12345' }, 400], [{ event: 'missing' }, 400], [{ role: 'judge' }, 400], [{ guests: '21' }, 400], [{ name: 'x'.repeat(101) }, 400]],
+    competition: [[{ name: '' }, 400], [{ contact: 'not contact' }, 400], [{ contact: '12345' }, 400], [{ event: 'missing' }, 400], [{ role: 'judge' }, 400], [{ event: 'submission-hunter-pro-105-2026-11', role: 'competing' }, 400], [{ guests: '21' }, 400], [{ name: 'x'.repeat(101) }, 400]],
     promotion: [[{ event: 'missing' }, 400], [{ belt: 'Red' }, 400], [{ attending: 'maybe' }, 400], [{ contact: 'a@b' }, 400]],
   };
   for (const which of Object.keys(ROUTES)) {

@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       if (!name) return { error: "Please enter your name." };
       if (!contact || !isPhoneOrEmail(contact)) return { error: "Please enter a phone number or email." };
       if (!event) return { error: "Please choose a competition." };
-      if (!role) return { error: "Please choose competing or supporting." };
+      if (!role || (role === "competing" && event.supportOnly)) return { error: "Please choose competing or supporting." };
       if (!Number.isInteger(guests) || guests < 0 || guests > MAX_GUESTS) return { error: "Please check the guests field." };
       return {
         row: [

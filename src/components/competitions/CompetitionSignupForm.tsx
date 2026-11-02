@@ -8,16 +8,23 @@ import { isPhoneOrEmail, sendSheetForm, type SheetEvent } from "@/lib/sheet-form
 import { useFormStartedAt } from "@/lib/use-contact-form";
 // FIN-SHEETS-1102: headings and helper text are placeholders for Quill to approve.
 // One question per screen. Used on /competitions/sign-up (every upcoming competition) and on each
-// competition's page (just that one, so the "which competition" step is skipped).
+// competition's page (just that one, so the "which competition" step is skipped). Supporter-only events
+// (e.g. a coach's super fight) skip "competing or cheering?" and are only offered to people cheering.
 type Role = "competing" | "supporting";
 type Step = "role" | "event" | "guests" | "details";
 const MAX_GUESTS = 10;
-function stepsFor(role: Role | null, eventCount: number): Step[] {
-  return ["role", ...(eventCount > 1 ? ["event" as const] : []), ...(role === "supporting" ? ["guests" as const] : []), "details"];
+function eventChoices(events: SheetEvent[], role: Role | null) {
+  return role === "competing" ? events.filter(event => !event.supportOnly) : events;
+}
+function stepsFor(events: SheetEvent[], role: Role | null): Step[] {
+  const canCompete = events.some(event => !event.supportOnly);
+  return [...(canCompete ? ["role" as const] : []), ...(eventChoices(events, role).length > 1 ? ["event" as const] : []), ...(role === "supporting" ? ["guests" as const] : []), "details"];
 }
 export default function CompetitionSignupForm({ events }: { events: SheetEvent[] }) {
-  const [step, setStep] = useState<Step>("role");
-  const [role, setRole] = useState<Role | null>(null);
+  const canCompete = events.some(event => !event.supportOnly);
+  const initialRole: Role | null = canCompete ? null : "supporting";
+  const [role, setRole] = useState<Role | null>(initialRole);
+  const [step, setStep] = useState<Step>(stepsFor(events, initialRole)[0]);
   const [eventSlug, setEventSlug] = useState(events.length === 1 ? events[0].slug : "");
   const [guests, setGuests] = useState(0);
   const [name, setName] = useState("");
@@ -27,11 +34,19 @@ export default function CompetitionSignupForm({ events }: { events: SheetEvent[]
   // Restarts the timer each time the form is shown again ("sign up someone else").
   const startedAt = useFormStartedAt(status !== "sent");
   const event = events.find(item => item.slug === eventSlug);
-  const steps = stepsFor(role, events.length);
+  const steps = stepsFor(events, role);
   const index = steps.indexOf(step);
   function goNext(nextRole = role) {
-    const order = stepsFor(nextRole, events.length);
+    const order = stepsFor(events, nextRole);
     setStep(order[order.indexOf(step) + 1]);
+  }
+  function chooseRole(next: Role) {
+    setRole(next);
+    // Keep the chosen competition only if it fits the new answer; pick it for them if there's just one.
+    const choices = eventChoices(events, next);
+    if (choices.length === 1) setEventSlug(choices[0].slug);
+    else if (!choices.some(item => item.slug === eventSlug)) setEventSlug("");
+    goNext(next);
   }
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,7 +57,7 @@ export default function CompetitionSignupForm({ events }: { events: SheetEvent[]
     setStatus(await sendSheetForm("/api/competition-signup", { name, contact: contact.trim(), event: event.slug, role, guests: String(role === "supporting" ? guests : 0), startedAt: startedAt.current, [HONEYPOT_FIELD]: String(data.get(HONEYPOT_FIELD) ?? "") }));
   }
   function startAgain() {
-    setStep("role"); setRole(null); setGuests(0); setName(""); setContact(""); setStatus("idle");
+    setStep(stepsFor(events, initialRole)[0]); setRole(initialRole); setGuests(0); setName(""); setContact(""); setStatus("idle");
     if (events.length > 1) setEventSlug("");
   }
   if (events.length === 0) return <Card><p className="border-l-2 border-white pl-5 text-white/90">No upcoming competitions are listed right now. Ask your coach which competition the team is targeting next.</p></Card>;
@@ -59,12 +74,12 @@ export default function CompetitionSignupForm({ events }: { events: SheetEvent[]
   const screens: Record<Step, { title: string; hint?: string; body: ReactNode }> = {
     role: { title: "COMPETING OR CHEERING?", hint: events.length === 1 ? `${events[0].name} · ${events[0].date}` : "Either way, you’re with the team.", body:
       <div className="grid sm:grid-cols-2 gap-4">
-        <ChoiceCard selected={role === "competing"} onClick={() => { setRole("competing"); goNext("competing"); }} title="I’M COMPETING" sub="Put me on the team list." />
-        <ChoiceCard selected={role === "supporting"} onClick={() => { setRole("supporting"); goNext("supporting"); }} title="I’M CHEERING" sub="Count me in the stands." />
+        <ChoiceCard selected={role === "competing"} onClick={() => chooseRole("competing")} title="I’M COMPETING" sub="Put me on the team list." />
+        <ChoiceCard selected={role === "supporting"} onClick={() => chooseRole("supporting")} title="I’M CHEERING" sub="Count me in the stands." />
       </div> },
     event: { title: "WHICH COMPETITION?", body:
-      <div className="grid gap-3">{events.map(item => <ChoiceCard key={item.slug} selected={eventSlug === item.slug} onClick={() => { setEventSlug(item.slug); goNext(); }} title={item.name} sub={[item.date, item.location].filter(Boolean).join(" · ")} />)}</div> },
-    guests: { title: "WHO’S COMING WITH YOU?", hint: "Family and friends are welcome. The louder the better.", body: <>
+      <div className="grid gap-3">{eventChoices(events, role).map(item => <ChoiceCard key={item.slug} selected={eventSlug === item.slug} onClick={() => { setEventSlug(item.slug); goNext(); }} title={item.name} sub={[item.date, item.location].filter(Boolean).join(" · ")} />)}</div> },
+    guests: { title: "WHO’S COMING WITH YOU?", hint: `${index === 0 && event ? `${event.name} · ${event.date}. ` : ""}Family and friends are welcome. The louder the better.`, body: <>
       <div className="flex items-center justify-between gap-4 border-2 border-white/45 p-4">
         <button type="button" onClick={() => setGuests(n => Math.max(0, n - 1))} disabled={guests === 0} aria-label="One fewer guest" className="h-14 w-14 shrink-0 bg-black font-headline text-4xl disabled:opacity-40">−</button>
         <p className="text-center" aria-live="polite"><span className="block font-headline text-5xl leading-none">{guests === 0 ? "JUST ME" : `ME + ${guests}`}</span><span className="text-sm text-white/85">{guests === 0 ? "No guests" : `${guests} guest${guests === 1 ? "" : "s"}`}</span></p>

@@ -27,6 +27,8 @@ export interface Competition {
   /** Registration page; also where brackets and live results are posted (e.g. Smoothcomp). */
   registerUrl?: string;
   registrationNote?: string;
+  /** Members come to cheer only (e.g. a coach's super fight): the sign-up form skips "competing or cheering?". */
+  supportOnly?: boolean;
   /** Key times from the organizer, shown on the event page. */
   schedule?: [string, string][];
   /** Coach's recap, one paragraph per entry. Shown once the event is over. */
@@ -39,6 +41,25 @@ export interface Competition {
 export type CompetitionPhase = "upcoming" | "today" | "past";
 
 export const competitions: Competition[] = [
+  {
+    slug: "submission-hunter-pro-105-2026-11",
+    name: "Submission Hunter Pro 105",
+    organizer: "Super fight · Coach Ty",
+    isoDate: "2026-11-15",
+    date: "Sunday, November 15, 2026",
+    month: "NOV",
+    day: "15",
+    time: "Doors open 1:30 PM",
+    location: "Imagen Venues Escapade, Houston, TX",
+    address: "11903 Eastex Fwy, Houston, TX 77039",
+    image: "/photos/instructors/ty-background.webp",
+    imagePosition: "50% 45%",
+    imageAlt: "The Finesse BJJ logo on the academy's mat wall",
+    description: "Coach Ty steps in for a super fight at Submission Hunter Pro 105. Come pack the stands, wear your Finesse colors, and make some noise for our coach.",
+    audience: "Family, friends & the whole team · General admission $60",
+    schedule: [["Sun, Nov 15 · 1:30 PM", "Doors open. No re-entry, so plan to stay."]],
+    supportOnly: true,
+  },
   {
     slug: "naga-houston-2026-10",
     name: "NAGA Houston Grappling Championship",
@@ -90,5 +111,5 @@ export function hasRecap(event: Competition) {
 
 /** What the sign-up form needs to show a competition. */
 export function signupEvent(event: Competition): SheetEvent {
-  return { slug: event.slug, name: event.name, isoDate: event.isoDate, date: event.date, time: event.time, location: event.address ?? event.location, registerUrl: event.registerUrl ?? event.url, registrationNote: event.registrationNote };
+  return { slug: event.slug, name: event.name, isoDate: event.isoDate, date: event.date, time: event.time, location: event.address ?? event.location, registerUrl: event.registerUrl ?? event.url, registrationNote: event.registrationNote, supportOnly: event.supportOnly };
 }

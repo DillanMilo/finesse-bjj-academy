@@ -20,6 +20,8 @@ export interface SheetEvent {
   /** Where competitors register with the organizer. */
   registerUrl?: string;
   registrationNote?: string;
+  /** Members can only come to cheer, e.g. a coach's super fight. */
+  supportOnly?: boolean;
 }
 
 export interface CompetitionSignupPayload {
