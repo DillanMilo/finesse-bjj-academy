@@ -1,4 +1,7 @@
 import { HONEYPOT_FIELD } from "@/lib/contact-form";
+import { isPhoneOrEmail } from "@/lib/sheet-forms";
+
+export { isPhoneOrEmail };
 
 // Server side of the Google Sheets forms. Each route validates its own fields, then this posts one row
 // to a Google Apps Script web app (URL from env) that appends it to the sheet. No Google credentials
@@ -10,8 +13,6 @@ const RATE_LIMIT = { max: 5, windowMs: 10 * 60_000 } as const;
 const MIN_FILL_MS = 2_000;
 const MAX_FORM_AGE_MS = 24 * 60 * 60_000;
 const SCRIPT_TIMEOUT_MS = 10_000;
-const EMAIL_PATTERN = /^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/;
-const PHONE_PATTERN = /^\+?[\d\s().-]+$/;
 // Sheets treats text starting with these as a formula, so such values are stored as plain text.
 const FORMULA_START = /^[=+\-@\t\r]/;
 const FAILURE_MESSAGE = "The form could not be sent right now.";
@@ -62,13 +63,6 @@ export function text(value: unknown, max: number): string | null {
   if (typeof value !== "string") return null;
   const trimmed = value.trim().replace(/\s+/g, " ");
   return trimmed.length > max ? null : trimmed;
-}
-
-/** A phone number (7 to 15 digits) or an email address. */
-export function isPhoneOrEmail(value: string) {
-  if (value.includes("@")) return value.length <= 254 && EMAIL_PATTERN.test(value);
-  const digits = value.replace(/\D/g, "").length;
-  return PHONE_PATTERN.test(value) && digits >= 7 && digits <= 15;
 }
 
 function sheetSafe(value: string) {

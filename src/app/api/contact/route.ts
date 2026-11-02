@@ -1,16 +1,15 @@
 import { createHash } from "node:crypto";
 import { CONTACT } from "@/lib/constants";
-import { competitions, isUpcoming } from "@/lib/competitions";
 import { HONEYPOT_FIELD } from "@/lib/contact-form";
-import { academyNotificationEmail, supportConfirmationEmail, trialConfirmationEmail, type EmailContent } from "@/lib/emails";
+import { academyNotificationEmail, trialConfirmationEmail, type EmailContent } from "@/lib/emails";
 
-// Single server-side send path for every website form (contact page, lead pop-up, trial form,
-// competition support RSVP). Sends through Resend's REST API with fetch, so no extra npm package is needed.
-// Trial and support requests also get a confirmation email back to the visitor (best effort).
+// Single server-side send path for the emailed website forms (contact page, lead pop-up, trial form).
+// Sends through Resend's REST API with fetch, so no extra npm package is needed. Trial requests also get a
+// confirmation email back to the visitor (best effort). Competition sign-ups and promotion check-ins go to
+// Google Sheets instead (src/lib/sheet-submission.ts), so they don't use the Resend send limit.
 
 const MAX_BODY_BYTES = 20_000;
-const LIMITS = { name: 100, email: 254, phone: 40, experience: 40, message: 5000, trialClass: 200, source: 60, event: 80, guests: 2 } as const;
-const MAX_GUESTS = 20;
+const LIMITS = { name: 100, email: 254, phone: 40, experience: 40, message: 5000, trialClass: 200, source: 60 } as const;
 const EMAIL_PATTERN = /^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/;
 const EXPERIENCE_LABELS: Record<string, string> = {
   white: "White belt / novice",
@@ -225,7 +224,7 @@ export async function POST(request: Request) {
   const formAge = typeof startedAt === "number" && Number.isFinite(startedAt) ? now - startedAt : NaN;
   if (!(formAge >= MIN_FILL_MS && formAge <= MAX_FORM_AGE_MS)) return fail(400, "Please try again.");
 
-  const kind = body.kind === "trial" || body.kind === "enquiry" || body.kind === "support" ? body.kind : null;
+  const kind = body.kind === "trial" || body.kind === "enquiry" ? body.kind : null;
   const fields = {} as Record<Field, string>;
   for (const field of Object.keys(LIMITS) as Field[]) {
     const value = clean(body[field], field);
@@ -239,10 +238,6 @@ export async function POST(request: Request) {
   if (!fields.name) return fail(400, "Please enter your name.");
   if (!EMAIL_PATTERN.test(fields.email)) return fail(400, "Please enter a valid email address.");
   if (fields.experience && !EXPERIENCE_LABELS[fields.experience]) return fail(400, "Please check the experience field.");
-  const event = kind === "support" ? competitions.find((item) => item.slug === fields.event && isUpcoming(item)) : undefined;
-  if (kind === "support" && !event) return fail(400, "Please check the event field.");
-  const guests = fields.guests ? Number(fields.guests) : 0;
-  if (!Number.isInteger(guests) || guests < 0 || guests > MAX_GUESTS) return fail(400, "Please check the guests field.");
   if ((fields.message.match(LINK_PATTERN)?.length ?? 0) > MAX_LINKS) return fail(400, "Please remove some links from your message.");
   if (!(await passesTurnstile(body.turnstileToken, ip))) return fail(400, "Please try again.");
 
@@ -270,7 +265,6 @@ export async function POST(request: Request) {
 
   const subject =
     kind === "trial" ? `[TRIAL] New free trial request: ${fields.name}`
-    : event ? `[SUPPORT] ${fields.name} is coming to ${event.name}${guests ? ` (+${guests} guest${guests === 1 ? "" : "s"})` : ""}`
     : `New website enquiry: ${fields.name}`;
   const { html, text } = academyNotificationEmail({
     kind,
@@ -278,9 +272,8 @@ export async function POST(request: Request) {
     name: fields.name,
     email: fields.email,
     phone: fields.phone,
-    highlight: fields.trialClass ? ["TRIAL CLASS", fields.trialClass] : event ? ["SUPPORTING AT", `${event.name} · ${event.date}`] : undefined,
+    highlight: fields.trialClass ? ["TRIAL CLASS", fields.trialClass] : undefined,
     details: [
-      ["Guests", event ? (guests ? `+${guests}` : "Just them") : ""],
       ["Experience", fields.experience ? EXPERIENCE_LABELS[fields.experience] : ""],
     ].filter((row): row is [string, string] => row[1] !== ""),
     message: fields.message,
@@ -293,10 +286,7 @@ export async function POST(request: Request) {
   }
 
   // The academy has the request, so a failed confirmation never fails the form. It shares the daily cap.
-  const confirmation =
-    kind === "trial" ? trialConfirmationEmail({ name: fields.name, trialClass: fields.trialClass })
-    : event ? supportConfirmationEmail({ name: fields.name, event: event.name, date: event.date, location: event.location, guests })
-    : null;
+  const confirmation = kind === "trial" ? trialConfirmationEmail({ name: fields.name, trialClass: fields.trialClass }) : null;
   if (confirmation && (await reserveDailySendShared(Date.now()))) {
     await sendEmail(apiKey, { from, to: fields.email, replyTo: to, ...confirmation });
   }

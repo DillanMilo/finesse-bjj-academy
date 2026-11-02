@@ -12,8 +12,11 @@ test('lead tracking happens only after successful requests, with categorical dat
   const window = { location: { hostname: 'finessebjj.com' }, gtag: (...args) => events.push(args), dispatchEvent() {} };
   const { load } = createLoader({ window, localStorage: { getItem: () => 'granted', setItem() {} }, Event, fetch: async () => Response.json({ ok: true }) });
   const { sendContactForm } = load('src/lib/contact-form.ts');
-  for (const kind of ['enquiry', 'trial', 'support']) await sendContactForm({ kind, name: 'Private Name', email: 'private@example.test', phone: '555555', message: 'Private message', source: 'Private source', startedAt: Date.now() });
-  assert.deepEqual(events.map(e => e[1]), ['generate_lead', 'generate_lead', 'team_support_rsvp']);
+  for (const kind of ['enquiry', 'trial']) await sendContactForm({ kind, name: 'Private Name', email: 'private@example.test', phone: '555555', message: 'Private message', source: 'Private source', startedAt: Date.now() });
+  const { sendSheetForm } = load('src/lib/sheet-forms.ts');
+  await sendSheetForm('/api/competition-signup', { name: 'Private Name', contact: '555555', event: 'x', role: 'supporting', guests: '0', startedAt: Date.now() });
+  await sendSheetForm('/api/promotion-checkin', { name: 'Private Name', contact: 'private@example.test', event: 'x', belt: 'Blue', attending: 'yes', startedAt: Date.now() });
+  assert.deepEqual(events.map(e => e[1]), ['generate_lead', 'generate_lead', 'team_support_rsvp', 'promotion_checkin']);
   assert.ok(!JSON.stringify(events).includes('Private'));
   assert.ok(!JSON.stringify(events).includes('private@example.test'));
   assert.ok(!JSON.stringify(events).includes('555555'));

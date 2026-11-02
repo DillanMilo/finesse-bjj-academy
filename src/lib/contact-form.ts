@@ -15,17 +15,13 @@ const TRIAL_REQUESTED_KEY = "finesse-trial-requested";
 export const TRIAL_REQUESTED_EVENT = "finesse-trial-requested";
 
 export interface ContactFormPayload {
-  kind: "trial" | "enquiry" | "support";
+  kind: "trial" | "enquiry";
   name: string;
   email: string;
   phone?: string;
   experience?: string;
   message?: string;
   trialClass?: string;
-  /** Competition slug, for kind "support". */
-  event?: string;
-  /** Number of guests coming along, for kind "support". */
-  guests?: string;
   source: string;
   /** Date.now() when the form mounted; the server rejects sends that come too fast. */
   startedAt: number;
@@ -60,7 +56,7 @@ export async function sendContactForm(payload: ContactFormPayload): Promise<Send
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-    if (res.ok) trackEvent(payload.kind === "support" ? "team_support_rsvp" : "generate_lead", { form_type: payload.kind });
+    if (res.ok) trackEvent("generate_lead", { form_type: payload.kind });
     const duplicate = res.status === 409 && payload.kind === "trial";
     if (duplicate || (res.ok && payload.kind === "trial")) markTrialRequested();
     return res.ok ? "sent" : duplicate ? "duplicate" : "failed";

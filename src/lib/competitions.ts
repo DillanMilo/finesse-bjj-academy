@@ -1,6 +1,8 @@
 // Competitions the team is attending. Add new events here; check details on the organizer's page first.
 // Timing is automatic (Central Time): "upcoming" before the day, "today" on competition day, then the
 // event drops off the hub. It only comes back under Results & Recaps if you add a recap or results below.
+import type { SheetEvent } from "@/lib/sheet-forms";
+
 export interface Competition {
   slug: string;
   name: string;
@@ -84,4 +86,9 @@ export function isUpcoming(event: Pick<Competition, "isoDate">, now = new Date()
 /** Past events only stay listed once a recap or results have been added. */
 export function hasRecap(event: Competition) {
   return Boolean(event.recap?.length || event.results?.length || event.gallery?.length);
+}
+
+/** What the sign-up form needs to show a competition. */
+export function signupEvent(event: Competition): SheetEvent {
+  return { slug: event.slug, name: event.name, isoDate: event.isoDate, date: event.date, time: event.time, location: event.address ?? event.location, registerUrl: event.registerUrl ?? event.url, registrationNote: event.registrationNote };
 }

@@ -15,6 +15,8 @@ const VISIT_STARTED_KEY = "finesse:visit-started";
 const POPUP_DELAY_MS = 12000;
 // Pages about adult training open the trial picker on teen & adult classes; everything else starts on kids.
 const ADULT_PAGES = /adult|wrestling|striking|womens|personalized/;
+// Members-only forms: the free trial prompt would just get in the way there.
+const MEMBER_FORM_PAGES = /^\/(competitions\/sign-up|promotion-check-in)\/?$/;
 
 export default function ClientLayout({
   children,
@@ -29,6 +31,7 @@ export default function ClientLayout({
 
   useEffect(() => {
     let delay = POPUP_DELAY_MS;
+    if (MEMBER_FORM_PAGES.test(pathname)) return;
     // Visitors who already requested a trial only see the pop-up when they open it themselves.
     if (hasRequestedTrial()) return;
     try {
