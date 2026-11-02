@@ -2,7 +2,8 @@
 import ArrowIcon from "@/components/ui/ArrowIcon";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ReactNode, useCallback, useEffect, useRef } from "react";
-import { calendarLinks, type SheetEvent } from "@/lib/sheet-forms";
+import { calendarLinks, type CalendarNote } from "@/lib/calendar";
+import type { SheetEvent } from "@/lib/sheet-forms";
 
 // Building blocks for the one-question-per-screen sheet forms (competition sign-up, promotion check-in).
 
@@ -59,9 +60,9 @@ const BURST = Array.from({ length: 16 }, (_, n) => {
 });
 
 /** The finish screen: a little confetti burst, what they signed up for, and add-to-calendar links. */
-export function Celebration({ title, message, event, calendarDetails, summary, onAgain, againLabel }: { title: string; message: string; event?: SheetEvent; calendarDetails?: string; summary: [string, string][]; onAgain: () => void; againLabel: string }) {
+export function Celebration({ title, message, event, calendarNote, summary, onAgain, againLabel }: { title: string; message: string; event?: SheetEvent; calendarNote?: CalendarNote; summary: [string, string][]; onAgain: () => void; againLabel: string }) {
   const reduceMotion = useReducedMotion();
-  const links = event && calendarDetails ? calendarLinks(event, calendarDetails) : null;
+  const links = event && calendarNote ? calendarLinks(event, calendarNote) : null;
   return <div role="status" className="relative">
     {!reduceMotion && <div aria-hidden="true" className="pointer-events-none absolute left-12 top-10">{BURST.map((piece, n) => <motion.span key={n} className="absolute block h-2.5 w-2.5" style={{ background: piece.color }} initial={{ x: 0, y: 0, opacity: 1, rotate: 0, scale: 0.4 }} animate={{ x: piece.x, y: piece.y, opacity: 0, rotate: piece.rotate, scale: 1 }} transition={{ duration: 1.1, ease: "easeOut" }} />)}</div>}
     <motion.div initial={reduceMotion ? false : { scale: 0.6, rotate: -8, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} transition={{ type: "spring", damping: 12, stiffness: 180 }} className="inline-flex h-16 w-16 items-center justify-center bg-black">
@@ -72,7 +73,7 @@ export function Celebration({ title, message, event, calendarDetails, summary, o
     <dl className="mt-6 grid sm:grid-cols-2 gap-px bg-white/25 border border-white/25">{summary.map(([label, value]) => <div key={label} className="bg-[#CC1122] p-4"><dt className="text-xs font-bold tracking-[.2em] text-white/80">{label.toUpperCase()}</dt><dd className="mt-1 font-headline text-2xl leading-tight">{value}</dd></div>)}</dl>
     <div className="mt-6 flex flex-wrap gap-3">
       {links && <><a href={links.google} target="_blank" rel="noopener noreferrer" className="bg-black px-5 py-3 font-headline text-xl tracking-wider hover:bg-[#1a1a1a]">ADD TO GOOGLE CALENDAR <ArrowIcon /></a>
-      <a href={links.ics} download={links.icsFilename} className="border border-white/60 px-5 py-3 font-headline text-xl tracking-wider hover:bg-white/10">APPLE / OUTLOOK</a></>}
+      <a href={links.ics} className="border border-white/60 px-5 py-3 font-headline text-xl tracking-wider hover:bg-white/10">APPLE / OUTLOOK</a></>}
       <button type="button" onClick={onAgain} className="px-5 py-3 font-headline text-xl tracking-wider underline underline-offset-4 hover:text-white/80">{againLabel}</button>
     </div>
   </div>;
