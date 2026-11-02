@@ -61,7 +61,7 @@ export default function PromotionCheckinForm({ events, onSent }: { events: Sheet
     return <Card><Celebration
       title={coming ? "SEE YOU ON THE MAT." : "THANKS FOR LETTING US KNOW."}
       message={coming ? "You’re checked in. The coaches can see it now. Get some rest, bring your gi and your family." : "The coaches can see you can’t make it. Keep training. There’s always a next one."}
-      event={coming ? event : undefined} calendarDetails="Belt promotion at Finesse BJJ Academy."
+      event={coming ? event : undefined} calendarNote="promotion"
       summary={[["Promotion", event.name], ["Date", [event.date, event.time].filter(Boolean).join(" · ")], ["Current belt", `${belt} · ${stripeLabel(belt, stripes).toLowerCase()}`], ["Attending", coming ? "Yes" : "No"]]}
       onAgain={startAgain} againLabel="CHECK IN SOMEONE ELSE" /></Card>;
   }

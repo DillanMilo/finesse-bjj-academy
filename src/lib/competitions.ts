@@ -13,6 +13,9 @@ export interface Competition {
   month: string;
   day: string;
   time?: string;
+  /** "HH:MM" (24-hour, Central Time) for "add to calendar". Without it the calendar entry is all-day. */
+  startTime?: string;
+  endTime?: string;
   location: string;
   address?: string;
   image: string;
@@ -50,6 +53,7 @@ export const competitions: Competition[] = [
     month: "NOV",
     day: "15",
     time: "Doors open 1:30 PM",
+    startTime: "13:30",
     location: "Imagen Venues Escapade, Houston, TX",
     address: "11903 Eastex Fwy, Houston, TX 77039",
     image: "/photos/instructors/ty-background.webp",
@@ -111,5 +115,5 @@ export function hasRecap(event: Competition) {
 
 /** What the sign-up form needs to show a competition. */
 export function signupEvent(event: Competition): SheetEvent {
-  return { slug: event.slug, name: event.name, isoDate: event.isoDate, date: event.date, time: event.time, location: event.address ?? event.location, registerUrl: event.registerUrl ?? event.url, registrationNote: event.registrationNote, supportOnly: event.supportOnly };
+  return { slug: event.slug, name: event.name, isoDate: event.isoDate, date: event.date, time: event.time, startTime: event.startTime, endTime: event.endTime, location: event.address ?? event.location, registerUrl: event.registerUrl ?? event.url, registrationNote: event.registrationNote, supportOnly: event.supportOnly };
 }

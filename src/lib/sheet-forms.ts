@@ -15,7 +15,12 @@ export interface SheetEvent {
   isoDate: string;
   /** Display date, e.g. "Saturday, December 12, 2026". */
   date: string;
+  /** Shown as written, e.g. "Doors open 1:30 PM". */
   time?: string;
+  /** "HH:MM" (24-hour, Central Time). With it, "add to calendar" saves a timed event instead of an all-day one. */
+  startTime?: string;
+  /** "HH:MM", Central Time. Defaults to three hours after startTime. */
+  endTime?: string;
   location?: string;
   /** Where competitors register with the organizer. */
   registerUrl?: string;
@@ -73,28 +78,4 @@ export async function sendSheetForm(path: "/api/competition-signup" | "/api/prom
   } catch {
     return "failed";
   }
-}
-
-function nextDay(isoDate: string) {
-  const day = new Date(`${isoDate}T00:00:00Z`);
-  day.setUTCDate(day.getUTCDate() + 1);
-  return day.toISOString().slice(0, 10);
-}
-
-/** All-day "add to calendar" links: Google Calendar, and an .ics file for Apple Calendar and Outlook. */
-export function calendarLinks(event: SheetEvent, details: string) {
-  const start = event.isoDate.replaceAll("-", "");
-  const end = nextDay(event.isoDate).replaceAll("-", "");
-  const description = [details, event.time].filter(Boolean).join("\n");
-  const google = `https://calendar.google.com/calendar/render?${new URLSearchParams({ action: "TEMPLATE", text: event.name, dates: `${start}/${end}`, details: description, location: event.location ?? "" })}`;
-  const icsText = (value: string) => value.replace(/[\\;,]/g, (c) => `\\${c}`).replace(/\n/g, "\\n");
-  const ics = [
-    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Finesse BJJ//Website//EN", "BEGIN:VEVENT",
-    `UID:${event.slug}@finessebjj.com`, `DTSTAMP:${start}T000000Z`,
-    `DTSTART;VALUE=DATE:${start}`, `DTEND;VALUE=DATE:${end}`,
-    `SUMMARY:${icsText(event.name)}`, `DESCRIPTION:${icsText(description)}`,
-    ...(event.location ? [`LOCATION:${icsText(event.location)}`] : []),
-    "END:VEVENT", "END:VCALENDAR",
-  ].join("\r\n");
-  return { google, ics: `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`, icsFilename: `${event.slug}.ics` };
 }

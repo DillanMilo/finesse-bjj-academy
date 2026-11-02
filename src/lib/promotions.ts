@@ -12,6 +12,9 @@ export interface PromotionEvent {
   isoDate: string;
   date: string;
   time?: string;
+  /** "HH:MM" (24-hour, Central Time) for "add to calendar". Without it the calendar entry is all-day. */
+  startTime?: string;
+  endTime?: string;
 }
 
 export const promotions: PromotionEvent[] = [
