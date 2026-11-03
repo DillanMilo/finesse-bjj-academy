@@ -35,7 +35,7 @@ export default function PromotionCheckinForm({ events, onSent }: { events: Sheet
   const [contact, setContact] = useState("");
   const [contactError, setContactError] = useState(false);
   const [status, setStatus] = useState<FormStatus>("idle");
-  // Restarts the timer each time the form is shown again ("sign up someone else").
+  // Restarts the timer each time the form is shown again ("check in another student").
   const startedAt = useFormStartedAt(status !== "sent");
   const event = events.find(item => item.slug === eventSlug);
   const steps = stepsFor(events.length);
@@ -51,8 +51,9 @@ export default function PromotionCheckinForm({ events, onSent }: { events: Sheet
     if (result === "sent") onSent?.(event.slug);
     setStatus(result);
   }
+  // Keeps the phone or email, so a parent checking in several kids only types it once.
   function startAgain() {
-    setStep("attending"); setAttending(null); setBelt(null); setStripes(null); setAllKidsBelts(false); setName(""); setContact(""); setStatus("idle");
+    setStep("attending"); setAttending(null); setBelt(null); setStripes(null); setAllKidsBelts(false); setName(""); setStatus("idle");
     if (events.length > 1) setEventSlug("");
   }
   if (events.length === 0) return <Card><p className="border-l-2 border-white pl-5 text-white/90">No promotions are scheduled right now. Your coach will let you know when the next one is.</p></Card>;
@@ -62,8 +63,8 @@ export default function PromotionCheckinForm({ events, onSent }: { events: Sheet
       title={coming ? "SEE YOU ON THE MAT." : "THANKS FOR LETTING US KNOW."}
       message={coming ? "You’re checked in. The coaches can see it now. Get some rest, bring your gi and your family." : "The coaches can see you can’t make it. Keep training. There’s always a next one."}
       event={coming ? event : undefined} calendarNote="promotion"
-      summary={[["Promotion", event.name], ["Date", [event.date, event.time].filter(Boolean).join(" · ")], ["Current belt", `${belt} · ${stripeLabel(belt, stripes).toLowerCase()}`], ["Attending", coming ? "Yes" : "No"]]}
-      onAgain={startAgain} againLabel="CHECK IN SOMEONE ELSE" /></Card>;
+      summary={[["Student", name], ["Promotion", event.name], ["Date", [event.date, event.time].filter(Boolean).join(" · ")], ["Current belt", `${belt} · ${stripeLabel(belt, stripes).toLowerCase()}`], ["Attending", coming ? "Yes" : "No"]]}
+      onAgain={startAgain} againLabel="CHECK IN ANOTHER STUDENT" /></Card>;
   }
   const kidsExpanded = allKidsBelts || Boolean(belt?.includes("/"));
   const pickBelt = (item: Belt) => { if (item !== belt) setStripes(null); setBelt(item); goNext(); };
@@ -96,10 +97,10 @@ export default function PromotionCheckinForm({ events, onSent }: { events: Sheet
           <BeltSwatch belt={belt} stripes={count} />
           <span className="block mt-2 font-headline text-2xl leading-none">{stripeLabel(belt, count).toUpperCase()}</span>
         </motion.button>)}</div> },
-    details: { title: "LAST THING: WHO ARE YOU?", hint: "Phone or email, whichever you check most.", body: <>
+    details: { title: "LAST THING: WHO’S CHECKING IN?", hint: "Checking in your kids? One student at a time. After this one, tap “Check in another student” and we’ll keep your phone or email.", body: <>
       <div className="grid sm:grid-cols-2 gap-4">
-        <label className="block text-sm">Your name<input value={name} onChange={e => setName(e.target.value)} type="text" required maxLength={100} autoComplete="name" className={`${stepInputClass} mt-2`} /></label>
-        <label className="block text-sm">Phone or email<input value={contact} onChange={e => { setContact(e.target.value); setContactError(false); }} type="text" required maxLength={254} autoComplete="email" aria-invalid={contactError} aria-describedby={contactError ? "promotion-contact-error" : undefined} className={`${stepInputClass} mt-2`} /></label>
+        <label className="block text-sm">Student’s name<input value={name} onChange={e => setName(e.target.value)} type="text" required maxLength={100} autoComplete="name" className={`${stepInputClass} mt-2`} /></label>
+        <label className="block text-sm">Your phone or email<input value={contact} onChange={e => { setContact(e.target.value); setContactError(false); }} type="text" required maxLength={254} autoComplete="email" aria-invalid={contactError} aria-describedby={contactError ? "promotion-contact-error" : undefined} className={`${stepInputClass} mt-2`} /></label>
       </div>
       {contactError && <p id="promotion-contact-error" role="alert" className="mt-3 text-sm font-bold">Please enter a phone number or an email address.</p>}
       <div className="mt-5"><NextButton type="submit" disabled={status === "sending"}>{status === "sending" ? "SENDING…" : <>CHECK IN <ArrowIcon direction="right" /></>}</NextButton></div>
