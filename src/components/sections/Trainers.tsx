@@ -8,12 +8,12 @@ const trainers = [
   {
     name: "LUIS DIAZ",
     role: "HEAD COACH",
-    rank: "3RD DEGREE BLACK BELT",
+    rank: "2ND DEGREE BLACK BELT",
     image: "/Luis_clean.png",
     background: "/photos/instructors/luis-background.webp",
     quote:
       "In the depth of the struggle, finesse becomes your only language.",
-    bio: "Finesse founder, 3rd Degree Black Belt, and active competitor, Coach Luis has spent most of his life on the mats. An absolute animal in competition, he pairs relentless intensity with sharp technique and technical economy. He brings that same drive to his coaching, helping students build the skill, confidence, and competitive fire to meet their next challenge.",
+    bio: "Finesse founder, 2nd Degree Black Belt, and active competitor, Coach Luis has spent most of his life on the mats. An absolute animal in competition, he pairs relentless intensity with sharp technique and technical economy. He brings that same drive to his coaching, helping students build the skill, confidence, and competitive fire to meet their next challenge.",
   },
   {
     name: "NATHAN BATES",

@@ -11,7 +11,7 @@ export const COLORS = {
 export const TRAINERS = [
   {
     name: "Luis Diaz",
-    role: "HEAD COACH / 3RD DEGREE BLACK BELT",
+    role: "HEAD COACH / 2ND DEGREE BLACK BELT",
     quote:
       "Technique is the multiplier of force. We don't just fight; we solve puzzles with precision.",
     bio: "Coach Diaz has over 20 years of experience in high-level competition and teaching. His philosophy centers on the surgical application of BJJ fundamentals.",
