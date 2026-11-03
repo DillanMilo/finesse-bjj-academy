@@ -70,11 +70,12 @@ export function Celebration({ title, message, event, calendarNote, summary, onAg
     </motion.div>
     <p className="mt-6 font-headline text-5xl md:text-6xl leading-none">{title}</p>
     <p className="mt-3 text-white/90 max-w-xl">{message}</p>
+    {/* Right under the message so it's on screen without scrolling, even in the pop-up on a phone. */}
+    <button type="button" onClick={onAgain} className="mt-5 border-2 border-white px-5 py-3 font-headline text-xl tracking-wider hover:bg-white/10">+ {againLabel}</button>
     <dl className="mt-6 grid sm:grid-cols-2 gap-px bg-white/25 border border-white/25">{summary.map(([label, value]) => <div key={label} className="bg-[#CC1122] p-4"><dt className="text-xs font-bold tracking-[.2em] text-white/80">{label.toUpperCase()}</dt><dd className="mt-1 font-headline text-2xl leading-tight">{value}</dd></div>)}</dl>
-    <div className="mt-6 flex flex-wrap gap-3">
-      {links && <><a href={links.google} target="_blank" rel="noopener noreferrer" className="bg-black px-5 py-3 font-headline text-xl tracking-wider hover:bg-[#1a1a1a]">ADD TO GOOGLE CALENDAR <ArrowIcon /></a>
-      <a href={links.ics} className="border border-white/60 px-5 py-3 font-headline text-xl tracking-wider hover:bg-white/10">APPLE / OUTLOOK</a></>}
-      <button type="button" onClick={onAgain} className="px-5 py-3 font-headline text-xl tracking-wider underline underline-offset-4 hover:text-white/80">{againLabel}</button>
-    </div>
+    {links && <div className="mt-6 flex flex-wrap gap-3">
+      <a href={links.google} target="_blank" rel="noopener noreferrer" className="bg-black px-5 py-3 font-headline text-xl tracking-wider hover:bg-[#1a1a1a]">ADD TO GOOGLE CALENDAR <ArrowIcon /></a>
+      <a href={links.ics} className="border border-white/60 px-5 py-3 font-headline text-xl tracking-wider hover:bg-white/10">APPLE / OUTLOOK</a>
+    </div>}
   </div>;
 }
