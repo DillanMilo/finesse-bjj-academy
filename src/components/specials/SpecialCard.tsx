@@ -22,8 +22,8 @@ export default function SpecialCard() {
         <p className="inline-flex items-center gap-2 bg-[#CC1122] px-3 py-1.5 text-[11px] font-bold tracking-[.25em]"><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />{special.when.toUpperCase()} ONLY</p>
         <h2 className="mt-5 font-headline text-6xl leading-[.9] md:text-8xl">BLACK FRIDAY<span className="block text-[#CC1122]">SPECIAL.</span></h2>
         <ul className="mt-6 grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2">
-          {highlights.map(item => <li key={item.label} className={`flex items-baseline justify-between gap-4 px-4 py-3 ${item.featured ? "bg-[#CC1122]" : "bg-[#121212]"}`}>
-            <span className="text-xs font-bold tracking-[.18em] text-white/80">{item.label.toUpperCase()}</span>
+          {highlights.map(item => <li key={item.label} className={`flex items-baseline justify-between gap-3 px-4 py-3 ${item.featured ? "bg-[#CC1122]" : "bg-[#121212]"}`}>
+            <span className="text-[11px] font-bold tracking-[.1em] text-white/80 min-[360px]:tracking-[.18em] sm:text-xs">{item.label.toUpperCase()}</span>
             <span className="font-headline text-2xl">{item.price}</span>
           </li>)}
         </ul>

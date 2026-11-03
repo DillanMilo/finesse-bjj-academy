@@ -47,7 +47,7 @@ export default function SpecialPage({ special }: { special: Special }) {
       <div aria-hidden="true" className="absolute -right-40 -top-40 -z-10 h-[34rem] w-[34rem] rounded-full bg-[#CC1122]/35 blur-[120px]" />
       <p aria-hidden="true" className="pointer-events-none absolute -bottom-6 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-headline text-[26vw] leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.07)] md:-bottom-12">BLACK FRIDAY</p>
       <div className="mx-auto max-w-6xl">
-        <p className="inline-flex items-center gap-2 bg-[#CC1122] px-3 py-1.5 text-[11px] font-bold tracking-[.25em]">
+        <p className="inline-flex items-center gap-2 bg-[#CC1122] px-3 py-1.5 text-[10px] font-bold tracking-[.16em] sm:text-[11px] sm:tracking-[.25em]">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />{special.when.toUpperCase()} · ENDS {special.lastDay.split(", ")[1].toUpperCase()}
         </p>
         <h1 className="mt-6 font-headline text-[17vw] leading-[.85] sm:text-8xl md:text-[9rem]">
@@ -63,7 +63,7 @@ export default function SpecialPage({ special }: { special: Special }) {
           </div>
           <div className="flex flex-wrap gap-3">
             <a href="#prices" className="inline-flex items-center gap-3 bg-[#CC1122] px-7 py-4 font-headline text-xl tracking-wider shadow-[0_12px_40px_rgba(204,17,34,0.35)] hover:brightness-110">SEE THE PRICES <ArrowIcon direction="down" /></a>
-            <a href={TEL} className="inline-flex items-center gap-3 border border-white/40 px-7 py-4 font-headline text-xl tracking-wider hover:bg-white/10">CALL {CONTACT.phone}</a>
+            <a href={TEL} className="inline-flex items-center gap-3 whitespace-nowrap border border-white/40 px-7 py-4 font-headline text-xl tracking-wider hover:bg-white/10">CALL {CONTACT.phone}</a>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@ export default function SpecialPage({ special }: { special: Special }) {
           </motion.div>
           <div className={`grid gap-4 md:gap-5 ${group.plans.length > 1 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
             {group.plans.map((plan, n) => <motion.div key={plan.term} {...rise(n * 0.08)} className="grid"><PlanCard plan={plan} onClaim={() => setClaim(planKey(special, group, plan))} /></motion.div>)}
-            {group.plans.length === 1 && <motion.div {...rise(0.08)} className="relative flex flex-col justify-end overflow-hidden border border-white/10 p-7 min-h-56">
+            {group.plans.length === 1 && <motion.div {...rise(0.08)} className="relative isolate flex min-h-56 flex-col justify-end overflow-hidden border border-white/10 p-7">
               <Image src="/photos/striking-training.webp" alt="" fill sizes="(min-width: 768px) 50vw, 100vw" className="-z-10 object-cover opacity-50" />
               <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/50 to-transparent" />
               <p className="font-headline text-3xl leading-tight">Twice a week. Range, rhythm, footwork.</p>
@@ -96,7 +96,7 @@ export default function SpecialPage({ special }: { special: Special }) {
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
         <motion.div {...rise()}>
           <p className="text-xs font-bold tracking-[.25em]">HOW TO CLAIM IT</p>
-          <h2 className="mt-3 font-headline text-5xl leading-none md:text-7xl">PICK YOUR PLAN. TELL US. YOU’RE IN.</h2>
+          <h2 className="mt-3 text-balance font-headline text-5xl leading-none md:text-7xl">PICK YOUR PLAN. TELL US. YOU’RE IN.</h2>
           <ol className="mt-8 grid gap-4">
             {[["Pick your plan", "Jiu-Jitsu for 1 year, 2 years or life, or a year of Striking."],
               ["Let us know", "Send us your details, give us a call, or grab us at the front desk."],
@@ -104,12 +104,12 @@ export default function SpecialPage({ special }: { special: Special }) {
               <li key={title} className="flex gap-4"><span className="flex h-10 w-10 shrink-0 items-center justify-center bg-black font-headline text-xl">{n + 1}</span><span><span className="block font-headline text-2xl leading-tight">{title.toUpperCase()}</span><span className="text-white/85">{body}</span></span></li>)}
           </ol>
         </motion.div>
-        <motion.div {...rise(0.1)} className="bg-black p-7 md:p-10">
+        <motion.div {...rise(0.1)} className="bg-black p-6 sm:p-7 md:p-10">
           <p className="font-headline text-3xl">READY WHEN YOU ARE.</p>
           <div className="mt-6 grid gap-3">
-            <a href={TEL} className="flex items-center justify-between bg-[#CC1122] px-6 py-4 font-headline text-xl tracking-wider hover:brightness-110">CALL {CONTACT.phone} <ArrowIcon /></a>
-            <button type="button" onClick={() => setClaim("")} className="flex items-center justify-between border border-white/30 px-6 py-4 text-left font-headline text-xl tracking-wider hover:bg-white/10">EMAIL US <ArrowIcon direction="right" /></button>
-            <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Finesse BJJ Academy, ${CONTACT.address}`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between border border-white/30 px-6 py-4 font-headline text-xl tracking-wider hover:bg-white/10">VISIT THE FRONT DESK <ArrowIcon /></a>
+            <a href={TEL} className="flex items-center justify-between gap-4 bg-[#CC1122] px-5 py-4 font-headline text-lg tracking-wider hover:brightness-110 sm:px-6 sm:text-xl"><span>CALL <span className="whitespace-nowrap">{CONTACT.phone}</span></span> <ArrowIcon /></a>
+            <button type="button" onClick={() => setClaim("")} className="flex items-center justify-between gap-4 border border-white/30 px-5 py-4 text-left font-headline text-lg tracking-wider hover:bg-white/10 sm:px-6 sm:text-xl">EMAIL US <ArrowIcon direction="right" /></button>
+            <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Finesse BJJ Academy, ${CONTACT.address}`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-4 border border-white/30 px-5 py-4 font-headline text-lg tracking-wider hover:bg-white/10 sm:px-6 sm:text-xl">VISIT THE FRONT DESK <ArrowIcon /></a>
           </div>
           <p className="mt-4 text-sm text-white/60">{CONTACT.address}</p>
           <div className="mt-8 border-t border-white/15 pt-6">
@@ -132,11 +132,11 @@ function PlanCard({ plan, onClaim }: { plan: SpecialPlan; onClaim: () => void })
   const [dollars, cents] = formatPrice(plan.price).split(".");
   const monthly = monthlyPrice(plan);
   return <motion.div whileHover={{ y: -6 }} transition={{ type: "spring", stiffness: 300, damping: 22 }}
-    className={`relative flex flex-col overflow-hidden p-7 md:p-8 ${plan.featured ? "bg-[#CC1122] shadow-[0_24px_60px_rgba(204,17,34,0.35)]" : "border border-white/12 bg-[#151515]"}`}>
+    className={`relative flex flex-col overflow-hidden p-7 md:p-5 lg:p-8 ${plan.featured ? "bg-[#CC1122] shadow-[0_24px_60px_rgba(204,17,34,0.35)]" : "border border-white/12 bg-[#151515]"}`}>
     {plan.featured && <span className="absolute right-0 top-0 bg-black px-3 py-1.5 text-[11px] font-bold tracking-[.22em]">BEST VALUE</span>}
-    <p className={`text-xs font-bold tracking-[.25em] ${plan.featured ? "text-white" : "text-[#FFB3AD]"}`}>{plan.term.toUpperCase()}</p>
-    <p className="mt-5 font-headline leading-none"><span className="text-6xl md:text-7xl">{dollars}</span>{cents && <span className="align-top text-3xl">.{cents}</span>}</p>
+    <p className={`text-xs font-bold tracking-[.25em] ${plan.featured ? "pr-24 text-white" : "text-[#FFB3AD]"}`}>{plan.term.toUpperCase()}</p>
+    <p className="mt-5 font-headline leading-none"><span className="text-6xl md:text-5xl lg:text-7xl">{dollars}</span>{cents && <span className="align-top text-3xl md:text-2xl lg:text-3xl">.{cents}</span>}</p>
     <p className={`mt-3 mb-8 text-sm ${plan.featured ? "text-white/90" : "text-white/65"}`}>{monthly ? `About ${formatPrice(monthly)} a month` : "One payment. Train for life."}</p>
-    <button type="button" onClick={onClaim} className={`mt-auto flex items-center justify-between px-5 py-3 text-left font-headline text-lg tracking-wider ${plan.featured ? "bg-black hover:bg-[#1a1a1a]" : "border border-white/30 hover:bg-white/10"}`}>CLAIM THIS DEAL <ArrowIcon direction="right" /></button>
+    <button type="button" onClick={onClaim} className={`mt-auto flex items-center justify-between gap-2 whitespace-nowrap px-5 py-3 text-left font-headline text-lg tracking-wider md:px-4 md:text-base lg:px-5 lg:text-lg ${plan.featured ? "bg-black hover:bg-[#1a1a1a]" : "border border-white/30 hover:bg-white/10"}`}>CLAIM THIS DEAL <ArrowIcon direction="right" /></button>
   </motion.div>;
 }

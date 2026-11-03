@@ -56,30 +56,30 @@ function ClaimForm({ special, initialPlan, onClose }: { special: Special; initia
     setStatus(result);
   }
 
-  if (status === "sent") return <div role="status" className="p-7 md:p-10">
+  if (status === "sent") return <div role="status" className="p-6 sm:p-7 md:p-10">
     <p className="text-xs font-bold tracking-[.2em]">{special.name.toUpperCase()}</p>
     <motion.div initial={{ scale: 0.6, rotate: -8, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }} transition={{ type: "spring", damping: 12, stiffness: 180 }} className="mt-6 inline-flex h-16 w-16 items-center justify-center bg-black">
       <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
     </motion.div>
-    <p className="mt-6 font-headline text-5xl leading-none md:text-6xl">YOU’RE ON THE LIST{sent.name ? `, ${sent.name.toUpperCase()}` : ""}.</p>
+    <p className="mt-6 text-balance font-headline text-5xl leading-none md:text-6xl">YOU’RE ON THE LIST{sent.name ? `, ${sent.name.toUpperCase()}` : ""}.</p>
     <p className="mt-3 text-white/90">We’ve sent a confirmation to your inbox. Someone from the Finesse team will be in touch shortly to get you set up.</p>
     <div className="mt-6 border border-white/30 p-4"><p className="text-xs font-bold tracking-[.2em] text-white/80">YOUR PACKAGE</p><p className="mt-1 font-headline text-2xl">{sent.label}</p></div>
     <button type="button" onClick={onClose} className="mt-6 bg-black px-6 py-3 font-headline text-xl tracking-wider hover:bg-[#1a1a1a]">DONE</button>
   </div>;
 
-  return <form onSubmit={handleSubmit} className="relative p-7 md:p-10"><HoneypotField />
+  return <form onSubmit={handleSubmit} className="relative p-6 sm:p-7 md:p-10"><HoneypotField />
     <p className="text-xs font-bold tracking-[.2em]">{special.name.toUpperCase()}</p>
-    <h2 className="mt-4 font-headline text-5xl leading-none md:text-6xl">CLAIM YOUR SPOT.</h2>
+    <h2 className="mt-4 text-balance font-headline text-5xl leading-none md:text-6xl">CLAIM YOUR SPOT.</h2>
     <p className="mt-3 text-white/90">Tell us who you are and which package you want. We’ll email you a confirmation, and someone from the team will be in touch shortly.</p>
 
     <fieldset className="mt-6">
       <legend className="text-xs font-bold tracking-[.2em]">YOUR PACKAGE</legend>
-      <div className="mt-3 grid gap-2 sm:grid-cols-2">{plans.map(item => {
+      <div className="mt-3 grid grid-cols-2 gap-2">{plans.map(item => {
         const selected = plan === item.key;
-        return <label key={item.key} className={`flex cursor-pointer items-center justify-between gap-3 border-2 px-4 py-3 transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-white ${selected ? "border-black bg-black" : "border-white/45 hover:border-white hover:bg-white/10"}`}>
+        return <label key={item.key} className={`flex cursor-pointer flex-col gap-1 border-2 px-3 py-3 transition-colors sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-4 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-white ${selected ? "border-black bg-black" : "border-white/45 hover:border-white hover:bg-white/10"}`}>
           <input type="radio" name="plan" value={item.key} checked={selected} onChange={() => { setPlan(item.key); setPlanError(false); }} className="sr-only" />
           <span><span className="block text-[11px] font-bold tracking-[.18em] text-white/80">{item.group.program.toUpperCase()}</span><span className="block font-headline text-xl leading-tight">{item.plan.term.toUpperCase()}</span></span>
-          <span className="font-headline text-xl">{item.label.split(" · ").pop()}</span>
+          <span className="font-headline text-lg sm:text-xl">{item.label.split(" · ").pop()}</span>
         </label>;
       })}</div>
       {planError && <p role="alert" className="mt-2 text-sm font-bold">Please pick a package.</p>}
