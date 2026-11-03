@@ -1,6 +1,6 @@
 import { CONTACT } from "@/lib/constants";
 
-// Confirmation emails sent to visitors by /api/contact. Table layout and inline styles so they
+// Emails sent by /api/contact: confirmations to visitors and notifications to the academy. Table layout and inline styles so they
 // render the same in Gmail, Outlook and Apple Mail. Every visitor value passes through escapeHtml.
 
 export interface EmailContent {
@@ -96,11 +96,31 @@ export function trialConfirmationEmail({ name, trialClass }: { name: string; tri
   };
 }
 
-export type NotificationKind = "trial" | "enquiry";
+/** Sent when someone claims a membership special (src/lib/specials.ts) on the website. */
+export function specialConfirmationEmail({ name, specialName, plan }: { name: string; specialName: string; plan: string }): EmailContent {
+  const first = greetingName(name);
+  const hello = first ? `Thanks, ${escapeHtml(first)}.` : "Thanks.";
+  const content = `${detailRow("YOUR PACKAGE", escapeHtml(plan))}
+<tr><td style="padding:22px 32px 0;${BODY}font-size:15px;line-height:24px;color:#d4d4d8;">Someone from the Finesse team will be in touch <strong style="color:#ffffff;">shortly</strong> to get you set up. Want to talk sooner? Give us a call at <a href="tel:${CONTACT.phone.replace(/[^\d+]/g, "")}" style="color:#ffffff;">${CONTACT.phone}</a> or stop by the front desk.</td></tr>`;
+  return {
+    subject: `We got your ${specialName} request`,
+    html: layout({
+      preheader: `Your ${escapeHtml(specialName)} request is in. Someone will be in touch shortly.`,
+      eyebrow: `${escapeHtml(specialName.toUpperCase())} REQUEST RECEIVED`,
+      title: "YOU'RE ON<br><span style=\"color:" + RED + ";\">THE LIST.</span>",
+      intro: `${hello} Your request for the ${escapeHtml(specialName)} is in.`,
+      content,
+    }),
+    text: `${first ? `Thanks, ${first}.` : "Thanks."} Your request for the ${specialName} is in.\n\nYour package: ${plan}\n\nSomeone from the Finesse team will be in touch shortly to get you set up. Want to talk sooner? Call ${CONTACT.phone} or stop by the front desk.\n\nFinesse BJJ Academy\n${CONTACT.address}\n${CONTACT.phone} · ${CONTACT.email}\n\nQuestions? Just reply to this email.`,
+  };
+}
+
+export type NotificationKind = "trial" | "enquiry" | "special";
 
 const NOTIFICATION_COPY: Record<NotificationKind, { eyebrow: string; intro: (first: string) => string }> = {
   trial: { eyebrow: "NEW FREE TRIAL REQUEST", intro: (first) => `${first} just booked a free trial on the website. Reach out to confirm their spot. They've already been emailed what to bring.` },
   enquiry: { eyebrow: "NEW WEBSITE ENQUIRY", intro: (first) => `${first} sent a message through the website.` },
+  special: { eyebrow: "NEW MEMBERSHIP SPECIAL REQUEST", intro: (first) => `${first} wants to claim a membership special. Reach out to get them signed up. They've been emailed that someone will be in touch shortly.` },
 };
 
 function button(href: string, label: string, primary: boolean) {

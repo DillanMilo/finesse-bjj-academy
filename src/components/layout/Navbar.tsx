@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import SpecialBar, { useSpecialBar } from "@/components/specials/SpecialBar";
 
 const NAV_LINKS = [
   { label: "PROGRAMS", href: "/#programs" },
@@ -25,6 +26,8 @@ export default function Navbar({ onOpenLeadForm }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  // While a special is running, its bar sits just below the navbar and tucks away on scroll.
+  const special = useSpecialBar();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 32);
@@ -47,6 +50,7 @@ export default function Navbar({ onOpenLeadForm }: NavbarProps) {
 
   return (
     <>
+      <SpecialBar special={special} tucked={scrolled || mobileOpen} />
       <nav
         className={`fixed top-0 w-full z-50 border-b border-white/5 backdrop-blur-md transition-colors duration-300 ${
           scrolled

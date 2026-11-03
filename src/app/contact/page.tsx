@@ -154,7 +154,7 @@ export default function ContactPage() {
   return (
     <main className="bg-[#0A0A0A] min-h-screen">
       {/* ── Hero: Two-Column Layout ── */}
-      <section className="pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+      <section className="pt-[calc(6rem+var(--special-bar-space,0px))] sm:pt-[calc(7rem+var(--special-bar-space,0px))] md:pt-[calc(8rem+var(--special-bar-space,0px))] pb-16 md:pb-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-start">
           {/* Left Column */}
           <div ref={heroLeftRef}>

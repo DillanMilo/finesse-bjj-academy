@@ -15,13 +15,15 @@ const TRIAL_REQUESTED_KEY = "finesse-trial-requested";
 export const TRIAL_REQUESTED_EVENT = "finesse-trial-requested";
 
 export interface ContactFormPayload {
-  kind: "trial" | "enquiry";
+  kind: "trial" | "enquiry" | "special";
   name: string;
   email: string;
   phone?: string;
   experience?: string;
   message?: string;
   trialClass?: string;
+  /** Plan key from src/lib/specials.ts, for "special" (claim a membership special). */
+  plan?: string;
   source: string;
   /** Date.now() when the form mounted; the server rejects sends that come too fast. */
   startedAt: number;

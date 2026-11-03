@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import CompetitionBanner from "@/components/competitions/CompetitionBanner";
 import MerchStore from "@/components/sections/MerchStore";
 import Hero from "@/components/sections/Hero";
+import SpecialCard from "@/components/specials/SpecialCard";
 
 // Temporarily disabled; keep the component for future refinement.
 // const ScrollSnake = dynamic(() => import("@/components/motion/ScrollSnake"), { ssr: false });
@@ -19,6 +20,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <SpecialCard />
       <Programs />
       <CompetitionBanner />
       <Trainers />
