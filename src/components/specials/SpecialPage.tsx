@@ -38,7 +38,7 @@ export default function SpecialPage({ special }: { special: Special }) {
   return <main className="bg-[#0A0A0A] text-white">
     {/* Hero: no fade-in, so the headline paints straight away. */}
     <section className="relative isolate overflow-hidden px-6 pb-16 pt-32 md:pb-24 md:pt-44">
-      <Image src="/photos/adult-1414.webp" alt="" fill priority sizes="100vw" className="-z-30 object-cover object-[55%_60%] opacity-50 grayscale" />
+      <Image src="/photos/academy-1422.webp" alt="" fill priority sizes="100vw" className="-z-30 object-cover object-[50%_40%] opacity-50 grayscale" />
       <div aria-hidden="true" className="absolute inset-0 -z-20 bg-gradient-to-b from-black/70 via-[#0A0A0A]/80 to-[#0A0A0A]" />
       <div aria-hidden="true" className="absolute -right-40 -top-40 -z-10 h-[34rem] w-[34rem] rounded-full bg-[#CC1122]/35 blur-[120px]" />
       <p aria-hidden="true" className="pointer-events-none absolute -bottom-6 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-headline text-[26vw] leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.07)] md:-bottom-12">BLACK FRIDAY</p>
