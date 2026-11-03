@@ -90,3 +90,26 @@ export function timeLeftLabel(special: Special, now = Date.now()) {
   const days = Math.floor((Date.parse(special.endsAt) - now) / 86_400_000);
   return days < 1 ? "Ends tonight" : days === 1 ? "Ends tomorrow" : `${days} days left`;
 }
+
+/** Stable key for one plan, e.g. "black-friday:jiu-jitsu-lifetime". Sent by the claim form and checked by /api/contact. */
+export function planKey(special: Special, group: SpecialGroup, plan: SpecialPlan) {
+  const slug = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return `${special.slug}:${slug(group.program)}-${slug(plan.term)}`;
+}
+
+/** "Jiu-Jitsu · Lifetime · $5,997" */
+export function planLabel(group: SpecialGroup, plan: SpecialPlan) {
+  return `${group.program} · ${plan.term} · ${formatPrice(plan.price)}`;
+}
+
+/** Every plan in a special, with its key and label. */
+export function specialPlans(special: Special) {
+  return special.groups.flatMap(group => group.plans.map(plan => ({ key: planKey(special, group, plan), label: planLabel(group, plan), group, plan })));
+}
+
+/** The plan a key points to, only while its special is running. */
+export function findActivePlan(key: string, now = Date.now()) {
+  const special = activeSpecial(now);
+  const match = special && specialPlans(special).find(item => item.key === key);
+  return special && match ? { special, ...match } : null;
+}

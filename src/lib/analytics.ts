@@ -2,7 +2,7 @@ export const GA_ID = "G-9N5EQ7RVHQ";
 export const ANALYTICS_CONSENT_KEY = "finesse-analytics-consent-v1";
 export const ANALYTICS_CONSENT_EVENT = "finesse-analytics-consent-change";
 type AnalyticsEvent = "generate_lead" | "team_support_rsvp" | "promotion_checkin" | "contact_click";
-type EventParams = { form_type?: "trial" | "enquiry" | "competition" | "promotion"; contact_method?: "phone" | "email" };
+type EventParams = { form_type?: "trial" | "enquiry" | "competition" | "promotion" | "special"; contact_method?: "phone" | "email" };
 declare global {
   interface Window {
     dataLayer?: unknown[];

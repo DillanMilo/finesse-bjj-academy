@@ -3,25 +3,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
 import ArrowIcon from "@/components/ui/ArrowIcon";
+import SpecialClaimForm from "@/components/specials/SpecialClaimForm";
 import SpecialCountdown from "@/components/specials/SpecialCountdown";
 import { CONTACT } from "@/lib/constants";
 import { useOpenLeadForm } from "@/lib/lead-form-context";
-import { formatPrice, monthlyPrice, type Special, type SpecialPlan } from "@/lib/specials";
+import { formatPrice, monthlyPrice, planKey, type Special, type SpecialPlan } from "@/lib/specials";
 import { useNowSeconds } from "@/lib/use-special";
 
 // FIN-SPECIAL-1103: the full offer for a special (/black-friday). Headings and copy are placeholders for
-// Patty to approve. Members claim it in person, by phone or by email; there's no online checkout.
+// Patty to approve. Members claim it in person, by phone, or through the claim pop-up (SpecialClaimForm), which
+// emails the academy and the member. There's no online checkout.
 
-const TEL = `tel:${CONTACT.phone.replace(/\D/g, "")}`;
+const TEL = `tel:+1${CONTACT.phone.replace(/\D/g, "")}`;
 
 export default function SpecialPage({ special }: { special: Special }) {
   const now = useNowSeconds();
   const ended = now !== null && now * 1000 >= Date.parse(special.endsAt);
   const openTrial = useOpenLeadForm();
   const reduceMotion = useReducedMotion();
+  // The claim pop-up: null when closed, "" when open without a package picked yet.
+  const [claim, setClaim] = useState<string | null>(null);
   const rise = (delay = 0) => reduceMotion ? {} : { initial: { opacity: 0, y: 28 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-60px" }, transition: { duration: 0.5, delay, ease: "easeOut" as const } };
-  const mail = `mailto:${CONTACT.email}?subject=${encodeURIComponent(special.name)}`;
 
   if (ended) return <main className="bg-[#0A0A0A] px-6 pb-24 pt-40 text-white">
     <div className="mx-auto max-w-3xl">
@@ -74,7 +78,7 @@ export default function SpecialPage({ special }: { special: Special }) {
             <p className="text-xs font-bold tracking-[.25em] text-[#FFB3AD]">{group.audience.toUpperCase()}</p>
           </motion.div>
           <div className={`grid gap-4 md:gap-5 ${group.plans.length > 1 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
-            {group.plans.map((plan, n) => <motion.div key={plan.term} {...rise(n * 0.08)} className="grid"><PlanCard plan={plan} /></motion.div>)}
+            {group.plans.map((plan, n) => <motion.div key={plan.term} {...rise(n * 0.08)} className="grid"><PlanCard plan={plan} onClaim={() => setClaim(planKey(special, group, plan))} /></motion.div>)}
             {group.plans.length === 1 && <motion.div {...rise(0.08)} className="relative flex flex-col justify-end overflow-hidden border border-white/10 p-7 min-h-56">
               <Image src="/photos/striking-training.webp" alt="" fill sizes="(min-width: 768px) 50vw, 100vw" className="-z-10 object-cover opacity-50" />
               <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/50 to-transparent" />
@@ -95,7 +99,7 @@ export default function SpecialPage({ special }: { special: Special }) {
           <h2 className="mt-3 font-headline text-5xl leading-none md:text-7xl">PICK YOUR PLAN. TELL US. YOU’RE IN.</h2>
           <ol className="mt-8 grid gap-4">
             {[["Pick your plan", "Jiu-Jitsu for 1 year, 2 years or life, or a year of Striking."],
-              ["Let us know", "Grab us at the front desk, give us a call, or send an email."],
+              ["Let us know", "Send us your details, give us a call, or grab us at the front desk."],
               [`Lock it in by ${special.lastDay.split(", ")[1]}`, "The special ends at midnight, Central Time."]].map(([title, body], n) =>
               <li key={title} className="flex gap-4"><span className="flex h-10 w-10 shrink-0 items-center justify-center bg-black font-headline text-xl">{n + 1}</span><span><span className="block font-headline text-2xl leading-tight">{title.toUpperCase()}</span><span className="text-white/85">{body}</span></span></li>)}
           </ol>
@@ -104,7 +108,7 @@ export default function SpecialPage({ special }: { special: Special }) {
           <p className="font-headline text-3xl">READY WHEN YOU ARE.</p>
           <div className="mt-6 grid gap-3">
             <a href={TEL} className="flex items-center justify-between bg-[#CC1122] px-6 py-4 font-headline text-xl tracking-wider hover:brightness-110">CALL {CONTACT.phone} <ArrowIcon /></a>
-            <a href={mail} className="flex items-center justify-between border border-white/30 px-6 py-4 font-headline text-xl tracking-wider hover:bg-white/10">EMAIL US <ArrowIcon /></a>
+            <button type="button" onClick={() => setClaim("")} className="flex items-center justify-between border border-white/30 px-6 py-4 text-left font-headline text-xl tracking-wider hover:bg-white/10">EMAIL US <ArrowIcon direction="right" /></button>
             <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Finesse BJJ Academy, ${CONTACT.address}`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between border border-white/30 px-6 py-4 font-headline text-xl tracking-wider hover:bg-white/10">VISIT THE FRONT DESK <ArrowIcon /></a>
           </div>
           <p className="mt-4 text-sm text-white/60">{CONTACT.address}</p>
@@ -119,11 +123,12 @@ export default function SpecialPage({ special }: { special: Special }) {
     <section className="px-6 py-10">
       <p className="mx-auto max-w-6xl text-sm text-white/50">Prices are for the full term shown. Offer ends at midnight on {special.lastDay}, Central Time. Ask the front desk for details.</p>
     </section>
+    <SpecialClaimForm special={special} plan={claim} onClose={() => setClaim(null)} />
   </main>;
 }
 
 /** One price. The featured plan is red with a "best value" tag. */
-function PlanCard({ plan }: { plan: SpecialPlan }) {
+function PlanCard({ plan, onClaim }: { plan: SpecialPlan; onClaim: () => void }) {
   const [dollars, cents] = formatPrice(plan.price).split(".");
   const monthly = monthlyPrice(plan);
   return <motion.div whileHover={{ y: -6 }} transition={{ type: "spring", stiffness: 300, damping: 22 }}
@@ -132,6 +137,6 @@ function PlanCard({ plan }: { plan: SpecialPlan }) {
     <p className={`text-xs font-bold tracking-[.25em] ${plan.featured ? "text-white" : "text-[#FFB3AD]"}`}>{plan.term.toUpperCase()}</p>
     <p className="mt-5 font-headline leading-none"><span className="text-6xl md:text-7xl">{dollars}</span>{cents && <span className="align-top text-3xl">.{cents}</span>}</p>
     <p className={`mt-3 mb-8 text-sm ${plan.featured ? "text-white/90" : "text-white/65"}`}>{monthly ? `About ${formatPrice(monthly)} a month` : "One payment. Train for life."}</p>
-    <a href="#claim" className={`mt-auto flex items-center justify-between px-5 py-3 font-headline text-lg tracking-wider ${plan.featured ? "bg-black hover:bg-[#1a1a1a]" : "border border-white/30 hover:bg-white/10"}`}>CLAIM THIS DEAL <ArrowIcon direction="down" /></a>
+    <button type="button" onClick={onClaim} className={`mt-auto flex items-center justify-between px-5 py-3 text-left font-headline text-lg tracking-wider ${plan.featured ? "bg-black hover:bg-[#1a1a1a]" : "border border-white/30 hover:bg-white/10"}`}>CLAIM THIS DEAL <ArrowIcon direction="right" /></button>
   </motion.div>;
 }
