@@ -8,7 +8,7 @@ Approved by Dillan on 2026-10-29 for local pre-launch preparation.
 - Finesse BJJ Academy: 18300 Strack Dr, Suite 300, Spring, TX 77379; (346) 418-2999; info@finessebjj.com.
 - Next.js App Router with program, schedule, contact, news, and competition pages.
 - Vercel project: finesse-private-8k4q2m. Both business domains are verified and live on Vercel; GoDaddy remains the authoritative DNS provider. The www hostname has a Vercel 308 redirect to the apex.
-- The current public website embeds GA4 measurement ID G-9N5EQ7RVHQ. Account access and stream configuration must be verified independently.
+- The website uses GA4 measurement ID G-HZ491L13L8 (Finesse BJJ account, property Finesse BJJ Website, created 2026-11-05 under dillan@creativecurrents.io). See docs/analytics-ga4-2026-11-05.md.
 - Resend sending domain is verified. The real inbox test was marked Delivered; human inbox confirmation is still outstanding.
 
 ## Scope and constraints

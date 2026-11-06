@@ -1,4 +1,4 @@
-export const GA_ID = "G-9N5EQ7RVHQ";
+export const GA_ID = "G-HZ491L13L8";
 export const ANALYTICS_CONSENT_KEY = "finesse-analytics-consent-v1";
 export const ANALYTICS_CONSENT_EVENT = "finesse-analytics-consent-change";
 type AnalyticsEvent = "generate_lead" | "team_support_rsvp" | "promotion_checkin" | "contact_click";

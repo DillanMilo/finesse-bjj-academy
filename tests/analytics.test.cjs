@@ -29,3 +29,17 @@ test('failed and duplicate submissions do not create conversions', async () => {
     assert.equal(events.length, 0);
   }
 });
+
+test('the site uses only the Finesse BJJ GA4 stream and loads one Google tag', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const { GA_ID } = createLoader().load('src/lib/analytics.ts');
+  assert.equal(GA_ID, 'G-HZ491L13L8');
+  const files = [];
+  const walk = dir => { for (const entry of fs.readdirSync(dir, { withFileTypes: true })) { const full = path.join(dir, entry.name); if (entry.isDirectory()) walk(full); else if (/\.(ts|tsx|js|mjs)$/.test(entry.name)) files.push(full); } };
+  walk(path.join(__dirname, '..', 'src'));
+  const source = files.map(file => fs.readFileSync(file, 'utf8')).join('\n');
+  assert.ok(!source.includes('G-9N5EQ7RVHQ'), 'retired measurement ID must not return');
+  assert.deepEqual([...new Set(source.match(/G-[A-Z0-9]{8,12}/g))], ['G-HZ491L13L8']);
+  assert.equal(source.match(/googletagmanager\.com\/gtag\/js/g).length, 1);
+});
