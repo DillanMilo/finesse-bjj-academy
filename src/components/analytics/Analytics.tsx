@@ -73,16 +73,8 @@ export default function Analytics({ production }: { production: boolean }) {
     window.gtag("config", GA_ID, { allow_google_signals: false, allow_ad_personalization_signals: false });
   }
   const showChoice = preferencesOpen || (production && consent === null && optInRequired && !visitorHasGpc());
-  const showNotice = !showChoice && production && consent === null && !optInRequired;
   return <>
     {enabled && <Script id="finesse-ga" src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" onReady={initialize} />}
-    {showNotice && <aside aria-label="Analytics notice" className="fixed bottom-3 left-3 right-3 z-[100] max-w-sm border border-white/20 bg-[#111] p-3 text-xs leading-relaxed text-zinc-300 shadow-2xl">
-      <p>We use Google Analytics to understand how visitors use our site. No ads, and we never share your form details. <Link href="/privacy" className="underline text-white">Privacy notice</Link></p>
-      <div className="mt-2 flex gap-2">
-        <button type="button" className="min-h-11 flex-1 border border-white/40 px-3 py-2 text-white" onClick={() => saveConsent("denied")}>Opt out</button>
-        <button type="button" className="min-h-11 flex-1 bg-[#CC1122] px-3 py-2 text-white" onClick={() => saveConsent("granted")}>OK</button>
-      </div>
-    </aside>}
     {showChoice && <aside aria-label="Analytics cookie preferences" className="fixed bottom-3 left-3 right-3 z-[100] max-w-sm border border-white/20 bg-[#111] p-3 text-xs leading-relaxed text-zinc-300 shadow-2xl">
       <p>Allow Google Analytics cookies to measure visits and enquiries? <Link href="/privacy" className="underline text-white">Privacy notice</Link></p>
       <div className="mt-2 flex gap-2">

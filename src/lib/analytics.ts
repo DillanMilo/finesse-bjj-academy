@@ -10,7 +10,7 @@ declare global {
   }
 }
 // Visitors in the EU/EEA, UK and Switzerland are asked before analytics loads (GDPR/ePrivacy).
-// Everyone else is measured by default with a visible notice and a one-tap opt-out.
+// Everyone else is measured by default; the privacy notice and footer Cookie preferences give a one-tap opt-out.
 // Detection uses the browser time zone, so no location lookup or server request is needed.
 const OPT_IN_ATLANTIC_ZONES = ["Atlantic/Reykjavik", "Atlantic/Canary", "Atlantic/Madeira", "Atlantic/Azores", "Atlantic/Faroe"];
 export function requiresOptIn(timeZone: string | undefined, globalPrivacyControl: boolean): boolean {
