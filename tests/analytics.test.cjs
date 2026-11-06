@@ -43,3 +43,18 @@ test('the site uses only the Finesse BJJ GA4 stream and loads one Google tag', (
   assert.deepEqual([...new Set(source.match(/G-[A-Z0-9]{8,12}/g))], ['G-HZ491L13L8']);
   assert.equal(source.match(/googletagmanager\.com\/gtag\/js/g).length, 1);
 });
+
+test('US visitors are measured by default; EU/UK, GPC and declined visitors are not', () => {
+  const { analyticsAllowed, requiresOptIn } = createLoader().load('src/lib/analytics.ts');
+  assert.equal(requiresOptIn('America/Chicago', false), false);
+  assert.equal(requiresOptIn('Europe/London', false), true);
+  assert.equal(requiresOptIn('Europe/Berlin', false), true);
+  assert.equal(requiresOptIn('Atlantic/Canary', false), true);
+  assert.equal(requiresOptIn('America/Chicago', true), true);
+  assert.equal(analyticsAllowed('finessebjj.com', null, true, false), true);
+  assert.equal(analyticsAllowed('finessebjj.com', null, true, true), false);
+  assert.equal(analyticsAllowed('finessebjj.com', 'denied', true, false), false);
+  assert.equal(analyticsAllowed('finessebjj.com', 'granted', true, true), true);
+  assert.equal(analyticsAllowed('localhost', null, true, false), false);
+  assert.equal(analyticsAllowed('finessebjj.com', null, false, false), false);
+});

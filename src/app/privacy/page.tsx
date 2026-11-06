@@ -1,7 +1,7 @@
 import PolicyPage from "@/components/ui/PolicyPage";
 import { CONTACT } from "@/lib/constants";
 import { pageMetadata } from "@/lib/seo";
-export const metadata = { ...pageMetadata("/privacy", "Website Privacy Notice", "How the Finesse BJJ website handles enquiries, essential storage, and optional analytics."), robots: { index: false, follow: true } };
+export const metadata = { ...pageMetadata("/privacy", "Website Privacy Notice", "How the Finesse BJJ website handles enquiries, essential storage, and analytics."), robots: { index: false, follow: true } };
 export default function PrivacyPage() {
   return <PolicyPage title="Website Privacy Notice">
     <p>This notice describes the Finesse BJJ Academy website. For privacy questions, contact <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.</p>
@@ -10,9 +10,9 @@ export default function PrivacyPage() {
     <h2>Website services and essential storage</h2>
     <p>Vercel hosts this website. Resend processes form notification and confirmation emails. Cloudflare Turnstile helps prevent spam. Upstash stores rate limits and a hashed email identifier to prevent duplicate free trial requests for up to one year. These services may process technical information such as IP addresses and browser details. Our email provider handles messages received by the academy.</p>
     <p>Your browser remembers whether you have requested a trial, whether you have seen the trial prompt during this visit, and your analytics preference. This helps avoid repeated prompts and respects your cookie choice. Browser storage controls can remove these preferences.</p>
-    <h2>Optional analytics</h2>
-    <p>If you allow analytics, Google Analytics uses cookies and visit information to help us understand page visits and actions such as successful training enquiries, trial requests, team support responses, and phone or email link clicks. Our custom events send categories of actions; they do not include the names, email addresses, phone numbers, or messages entered into our forms. Advertising storage and advertising personalization are disabled in this website integration.</p>
-    <p>You can allow or decline analytics and change your choice using Cookie preferences in the footer. Declining analytics does not prevent you from using the forms. See <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">how Google uses information from partner sites</a>.</p>
+    <h2>Analytics</h2>
+    <p>We use Google Analytics, which uses cookies and visit information to help us understand page visits and actions such as successful training enquiries, trial requests, team support responses, and phone or email link clicks. Our custom events send categories of actions; they do not include the names, email addresses, phone numbers, or messages entered into our forms. Advertising storage and advertising personalization are disabled in this website integration.</p>
+    <p>Analytics is on by default, and a notice appears on your first visit. You can opt out at any time using Opt out on that notice or Cookie preferences in the footer, and opting out clears the analytics cookies. If your browser sends a Global Privacy Control signal, or you appear to be visiting from the European Economic Area, the United Kingdom or Switzerland, analytics stays off unless you choose to allow it. Opting out does not prevent you from using the forms. You can also use <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google&rsquo;s browser opt-out add-on</a>. See <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">how Google uses information from partner sites</a>.</p>
     <h2>External websites</h2>
     <p>Social media, merchandise, maps, and event links open services operated by other organizations. Their own privacy notices apply when you use them.</p>
     <h2>Questions and requests</h2>
