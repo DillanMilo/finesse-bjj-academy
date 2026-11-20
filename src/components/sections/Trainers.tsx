@@ -145,7 +145,7 @@ function TrainerBlock({
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.55 }}
-            className="inline-flex items-center gap-2 min-h-[44px] text-white/80 hover:text-[#CC1122] transition-colors font-headline tracking-widest text-sm sm:text-base"
+            className="inline-flex items-center gap-2 min-h-[44px] text-[#FF2E97] hover:text-[#C04BFF] transition-colors font-headline tracking-widest text-sm sm:text-base"
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" />
