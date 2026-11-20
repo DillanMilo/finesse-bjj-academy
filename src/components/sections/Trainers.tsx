@@ -10,6 +10,8 @@ const trainers = [
     role: "HEAD COACH",
     rank: "2ND DEGREE BLACK BELT",
     image: "/Luis_clean.png",
+    // TODO before launch: replace with the coach's own Instagram handle
+    instagram: "finessejiujitsu",
     background: "/photos/instructors/luis-background.webp",
     quote:
       "In the depth of the struggle, finesse becomes your only language.",
@@ -20,6 +22,8 @@ const trainers = [
     role: "COACH",
     rank: "BLACK BELT",
     image: "/nathan_clean.png",
+    // TODO before launch: replace with the coach's own Instagram handle
+    instagram: "finessejiujitsu",
     background: "/photos/instructors/nathan-background.webp",
     quote:
       "The mat is a mirror. It doesn\u2019t lie about your preparation or your heart.",
@@ -27,19 +31,23 @@ const trainers = [
   },
   {
     name: "TY",
-    role: "",
-    rank: "COACH",
+    role: "COACH",
+    rank: "BLACK BELT",
     image: "/ty_clean.png",
+    // TODO before launch: replace with the coach's own Instagram handle
+    instagram: "finessejiujitsu",
     background: "/photos/instructors/ty-background.webp",
     quote:
       "Show up, work hard, and trust the process. The mats will take care of the rest.",
-    bio: "A veteran of the mats as both a competitor and referee, Coach Ty knows the game from every angle. He brings surgical precision to his coaching and keeps the energy high with music, laughter, and plenty of smiles. Friendly, approachable, and always ready to help, Ty makes hard training feel like the best part of your day.",
+    bio: "Newly promoted to black belt, Coach Ty is a veteran of the mats as both a competitor and referee. He knows the game from every angle. He brings surgical precision to his coaching and keeps the energy high with music, laughter, and plenty of smiles. Friendly, approachable, and always ready to help, Ty makes hard training feel like the best part of your day.",
   },
   {
     name: "PATTY",
     role: "WOMEN'S INSTRUCTOR",
     rank: "INSTRUCTOR",
     image: "/patty_clean.png",
+    // TODO before launch: replace with the coach's own Instagram handle
+    instagram: "finessejiujitsu",
     background: "/photos/instructors/patty-background.webp",
     quote:
       "Jiu-jitsu isn't just for everyone — it's for you. Step on the mat and surprise yourself.",
@@ -50,6 +58,8 @@ const trainers = [
     role: "KIDS CLASS ASSISTANT",
     rank: "BLUE BELT",
     image: "/Bhodi_clean.png",
+    // TODO before launch: replace with the coach's own Instagram handle
+    instagram: "finessejiujitsu",
     background: "/photos/instructors/bodhi-background.webp",
     quote:
       "Every kid who steps on the mat is learning more than just jiu-jitsu — they're building character.",
@@ -131,6 +141,25 @@ function TrainerBlock({
         >
           {trainer.bio}
         </motion.p>
+        {trainer.instagram && (
+          <motion.a
+            href={`https://www.instagram.com/${trainer.instagram}/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${trainer.name} on Instagram`}
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.55 }}
+            className="inline-flex items-center gap-2 min-h-[44px] text-white/80 hover:text-[#CC1122] transition-colors font-headline tracking-widest text-sm sm:text-base"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+            @{trainer.instagram}
+          </motion.a>
+        )}
       </div>
     </motion.div>
   );
