@@ -38,7 +38,7 @@ const trainers = [
   {
     name: "PATTY",
     role: "WOMEN'S INSTRUCTOR",
-    rank: "INSTRUCTOR",
+    rank: "BROWN BELT",
     image: "/patty_clean.png",
     background: "/photos/instructors/patty-background.webp",
     quote:
