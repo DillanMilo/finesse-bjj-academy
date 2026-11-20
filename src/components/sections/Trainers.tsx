@@ -44,7 +44,7 @@ const trainers = [
   {
     name: "PATTY",
     role: "WOMEN'S INSTRUCTOR",
-    rank: "INSTRUCTOR",
+    rank: "BROWN BELT",
     image: "/patty_clean.png",
     // TODO before launch: replace with the coach's own Instagram handle
     instagram: "finessejiujitsu",
