@@ -17,17 +17,6 @@ const trainers = [
     bio: "Finesse founder, 2nd Degree Black Belt, and active competitor, Coach Luis has spent most of his life on the mats. An absolute animal in competition, he pairs relentless intensity with sharp technique and technical economy. He brings that same drive to his coaching, helping students build the skill, confidence, and competitive fire to meet their next challenge.",
   },
   {
-    name: "NATHAN BATES",
-    role: "COACH",
-    rank: "BLACK BELT",
-    image: "/nathan_clean.png",
-    instagram: "nathan.bates.bjj",
-    background: "/photos/instructors/nathan-background.webp",
-    quote:
-      "The mat is a mirror. It doesn\u2019t lie about your preparation or your heart.",
-    bio: "An active competitor and analytical mastermind. Nathan specializes in modern guard systems and leg-lock entries. He brings a surgical precision to the academy\u2019s advanced program.",
-  },
-  {
     name: "TY",
     role: "COACH",
     rank: "BLACK BELT",
@@ -37,6 +26,17 @@ const trainers = [
     quote:
       "Show up, work hard, and trust the process. The mats will take care of the rest.",
     bio: "A veteran of the mats as both a competitor and referee, Coach Ty knows the game from every angle. He brings surgical precision to his coaching and keeps the energy high with music, laughter, and plenty of smiles. Friendly, approachable, and always ready to help, Ty makes hard training feel like the best part of your day.",
+  },
+  {
+    name: "NATHAN BATES",
+    role: "COACH",
+    rank: "BLACK BELT",
+    image: "/nathan_clean.png",
+    instagram: "nathan.bates.bjj",
+    background: "/photos/instructors/nathan-background.webp",
+    quote:
+      "The mat is a mirror. It doesn\u2019t lie about your preparation or your heart.",
+    bio: "An active competitor and analytical mastermind. Nathan specializes in modern guard systems and leg-lock entries. He brings a surgical precision to the academy\u2019s advanced program.",
   },
   {
     name: "PATTY",
