@@ -39,7 +39,7 @@ const trainers = [
     background: "/photos/instructors/ty-background.webp",
     quote:
       "Show up, work hard, and trust the process. The mats will take care of the rest.",
-    bio: "Newly promoted to black belt, Coach Ty is a veteran of the mats as both a competitor and referee. He knows the game from every angle. He brings surgical precision to his coaching and keeps the energy high with music, laughter, and plenty of smiles. Friendly, approachable, and always ready to help, Ty makes hard training feel like the best part of your day.",
+    bio: "A veteran of the mats as both a competitor and referee, Coach Ty knows the game from every angle. He brings surgical precision to his coaching and keeps the energy high with music, laughter, and plenty of smiles. Friendly, approachable, and always ready to help, Ty makes hard training feel like the best part of your day.",
   },
   {
     name: "PATTY",
