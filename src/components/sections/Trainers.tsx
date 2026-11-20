@@ -27,8 +27,8 @@ const trainers = [
   },
   {
     name: "TY",
-    role: "",
-    rank: "COACH",
+    role: "COACH",
+    rank: "BLACK BELT",
     image: "/ty_clean.png",
     background: "/photos/instructors/ty-background.webp",
     quote:
