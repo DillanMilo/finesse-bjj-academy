@@ -10,7 +10,9 @@ import { hasRequestedTrial } from "@/lib/contact-form";
 
 const LeadPopup = dynamic(() => import("../ui/LeadPopup"), { ssr: false });
 const TrialNudge = dynamic(() => import("../ui/TrialNudge"), { ssr: false });
-const PromotionBadge = dynamic(() => import("../ui/PromotionBadge"), { ssr: false });
+// Belt promotion tab paused after the 19 Nov 2026 promotion (Dillan). To bring it back for the next one:
+// uncomment this line and the <PromotionBadge> line below, and add the new date in src/lib/promotions.ts.
+// const PromotionBadge = dynamic(() => import("../ui/PromotionBadge"), { ssr: false });
 const POPUP_SEEN_KEY = "finesse:consultation-seen";
 const VISIT_STARTED_KEY = "finesse:visit-started";
 const POPUP_DELAY_MS = 12000;
@@ -81,7 +83,8 @@ export default function ClientLayout({
       {children}
       <Footer />
       <TrialNudge isOpen={isNudgeOpen && !isLeadPopupOpen} onAccept={openForm} onDismiss={() => setIsNudgeOpen(false)} audience={ADULT_PAGES.test(pathname) ? "adults" : "kids"} />
-      <PromotionBadge hidden={isNudgeOpen || isLeadPopupOpen || pathname === "/promotion-check-in"} />
+      {/* Belt promotion tab paused until the next promotion (see note at top of file).
+      <PromotionBadge hidden={isNudgeOpen || isLeadPopupOpen || pathname === "/promotion-check-in"} /> */}
       <LeadPopup isOpen={isLeadPopupOpen} onClose={closeLeadForm} audience={ADULT_PAGES.test(pathname) ? "adults" : "kids"} />
       </TrialFormProvider>
     </LeadFormProvider>
