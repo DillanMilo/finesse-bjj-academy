@@ -10,8 +10,7 @@ const trainers = [
     role: "HEAD COACH",
     rank: "2ND DEGREE BLACK BELT",
     image: "/Luis_clean.png",
-    // TODO before launch: replace with the coach's own Instagram handle
-    instagram: "finessejiujitsu",
+    instagram: "finesse_bjj",
     background: "/photos/instructors/luis-background.webp",
     quote:
       "In the depth of the struggle, finesse becomes your only language.",
@@ -22,8 +21,7 @@ const trainers = [
     role: "COACH",
     rank: "BLACK BELT",
     image: "/nathan_clean.png",
-    // TODO before launch: replace with the coach's own Instagram handle
-    instagram: "finessejiujitsu",
+    instagram: "nathan.bates.bjj",
     background: "/photos/instructors/nathan-background.webp",
     quote:
       "The mat is a mirror. It doesn\u2019t lie about your preparation or your heart.",
@@ -34,8 +32,7 @@ const trainers = [
     role: "COACH",
     rank: "BLACK BELT",
     image: "/ty_clean.png",
-    // TODO before launch: replace with the coach's own Instagram handle
-    instagram: "finessejiujitsu",
+    instagram: "tyhazel",
     background: "/photos/instructors/ty-background.webp",
     quote:
       "Show up, work hard, and trust the process. The mats will take care of the rest.",
@@ -46,8 +43,7 @@ const trainers = [
     role: "WOMEN'S INSTRUCTOR",
     rank: "BROWN BELT",
     image: "/patty_clean.png",
-    // TODO before launch: replace with the coach's own Instagram handle
-    instagram: "finessejiujitsu",
+    instagram: "pattyluisdiaz",
     background: "/photos/instructors/patty-background.webp",
     quote:
       "Jiu-jitsu isn't just for everyone — it's for you. Step on the mat and surprise yourself.",
@@ -58,8 +54,7 @@ const trainers = [
     role: "KIDS CLASS ASSISTANT",
     rank: "BLUE BELT",
     image: "/Bhodi_clean.png",
-    // TODO before launch: replace with the coach's own Instagram handle
-    instagram: "finessejiujitsu",
+    instagram: "bodhi.fs",
     background: "/photos/instructors/bodhi-background.webp",
     quote:
       "Every kid who steps on the mat is learning more than just jiu-jitsu — they're building character.",
